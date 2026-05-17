@@ -249,7 +249,8 @@ textarea {
 
 .hero-products {
   position: absolute;
-  top: 103px;
+  z-index: 4;
+  top: 75px;
   left: 517px;
   width: 763px;
   height: 429px;
@@ -259,7 +260,8 @@ textarea {
 
 .hero-copy {
   position: absolute;
-  top: 173px;
+  z-index: 4;
+  top: 145px;
   left: 80px;
   width: 560px;
 }
@@ -292,7 +294,8 @@ textarea {
 
 .hero-button {
   position: absolute;
-  top: 637px;
+  z-index: 4;
+  top: 584px;
   right: 58.84px;
   width: 194.16px;
   min-height: 51px;
@@ -302,7 +305,8 @@ textarea {
 
 .hero-deserve {
   position: absolute;
-  top: 604px;
+  z-index: 4;
+  top: 552px;
   left: 77px;
   margin: 0;
   color: var(--color-blue);
@@ -334,7 +338,7 @@ textarea {
 }
 
 .patch-gold {
-  margin-top: -16px;
+  margin-top: -96px;
 }
 
 .patch-gold::before {
@@ -368,7 +372,7 @@ textarea {
   position: relative;
   z-index: 4;
   height: 977px;
-  margin-top: -83px;
+  margin-top: -79.737px;
   overflow: hidden;
   background: #f9f9f9;
 }

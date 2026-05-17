@@ -25,14 +25,6 @@ function getViewportWidthScale() {
   return clampedWidth / DESIGN_WIDTH;
 }
 
-function getHomeScale() {
-  return getViewportWidthScale();
-}
-
-function getResponsivePageScale(isResponsivePage) {
-  return isResponsivePage ? getHomeScale() : 1;
-}
-
 function ChipsPage() {
   return <CategoryPage pageKey="chips" />;
 }
@@ -203,9 +195,8 @@ export default function App() {
   const pageKey = getPageKey();
   const config = pageConfig[pageKey];
   const { Page } = config;
-  const isResponsivePage = pageKey === "home";
   const shellRef = React.useRef(null);
-  const [scale, setScale] = React.useState(() => getResponsivePageScale(isResponsivePage));
+  const [scale, setScale] = React.useState(() => getViewportWidthScale());
   const [shellHeight, setShellHeight] = React.useState(0);
   const [viewportHeight, setViewportHeight] = React.useState(() =>
     typeof window === "undefined" ? DEFAULT_HOME_HERO_HEIGHT : window.innerHeight || DEFAULT_HOME_HERO_HEIGHT,
@@ -213,7 +204,7 @@ export default function App() {
 
   React.useLayoutEffect(() => {
     const updateLayout = () => {
-      const nextScale = getResponsivePageScale(isResponsivePage);
+      const nextScale = getViewportWidthScale();
       const nextHeight = shellRef.current?.offsetHeight || 0;
       const nextViewportHeight = window.innerHeight || DEFAULT_HOME_HERO_HEIGHT;
 
@@ -236,13 +227,13 @@ export default function App() {
       window.removeEventListener("resize", updateLayout);
       resizeObserver?.disconnect();
     };
-  }, [isResponsivePage]);
+  }, []);
 
-  const homeHeroHeight = isResponsivePage ? viewportHeight / scale : DEFAULT_HOME_HERO_HEIGHT;
+  const homeHeroHeight = viewportHeight / scale;
 
   return (
     <div
-      className={`app-viewport ${isResponsivePage ? "app-viewport--scaled" : "app-viewport--fixed"}`}
+      className="app-viewport app-viewport--scaled"
       style={{
         "--app-scale": scale,
         "--scaled-shell-height": `${shellHeight * scale}px`,

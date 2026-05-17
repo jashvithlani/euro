@@ -1,0 +1,1041 @@
+.category-page {
+  background: var(--color-page);
+}
+
+.category-main {
+  position: relative;
+  width: var(--page-width);
+  overflow: hidden;
+  background: var(--color-page);
+}
+
+.category-hero {
+  position: absolute;
+  top: 136px;
+  left: 0;
+  width: 1280px;
+  height: 559.37px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.category-hero h1 {
+  position: absolute;
+  z-index: 2;
+  top: 34px;
+  left: 50%;
+  width: 697px;
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 110px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.category-hero p {
+  position: absolute;
+  z-index: 2;
+  top: 141px;
+  left: 50%;
+  width: 590px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.category-main--namkeen .category-hero p {
+  width: 348px;
+}
+
+.category-main--chikki .category-hero p {
+  width: 415px;
+}
+
+.category-main--khakhra .category-hero p {
+  width: 417px;
+}
+
+.category-main--bakery .category-hero p {
+  width: 473px;
+}
+
+.category-main--fryums .category-hero p {
+  width: 347px;
+}
+
+.category-hero-badge {
+  position: absolute;
+  z-index: 3;
+  bottom: 41px;
+  left: 37px;
+  display: inline-flex;
+  min-width: 150px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff7f7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.category-hero-visual,
+.category-hero-custom {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 559.37px;
+}
+
+.category-hero-visual {
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-hero-visual--chips {
+  top: -160px;
+  height: 768px;
+  object-fit: fill;
+}
+
+.category-hero-visual--beverages {
+  height: 560px;
+  object-fit: contain;
+}
+
+.category-hero-getmore {
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff3ed 0%, #ffffff 100%);
+}
+
+.getmore-blob {
+  position: absolute;
+  top: 119px;
+  left: 235px;
+  width: 810px;
+  height: 386px;
+  border-radius: 50%;
+  background: #f8ebff;
+  transform: rotate(-4deg);
+}
+
+.getmore-line {
+  position: absolute;
+  height: 6px;
+  border-radius: 999px;
+  transform: rotate(-8deg);
+}
+
+.getmore-line-red {
+  top: 379px;
+  left: 171px;
+  width: 390px;
+  background: #be004b;
+}
+
+.getmore-line-blue {
+  top: 302px;
+  left: 729px;
+  width: 420px;
+  background: #203679;
+}
+
+.getmore-hero-pack,
+.farali-hero-pack,
+.chikki-hero-products,
+.khakhra-hero-pack,
+.bakery-hero-pack,
+.fryums-hero-pack {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.getmore-hero-pack-red {
+  top: 174px;
+  left: 199px;
+  width: 309px;
+  height: 372px;
+  transform: rotate(-15deg);
+}
+
+.getmore-hero-pack-blue {
+  top: 166px;
+  left: 769px;
+  width: 318px;
+  height: 381px;
+  transform: rotate(15deg);
+}
+
+.category-hero-farali {
+  overflow: hidden;
+  background: #f7efff;
+}
+
+.farali-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 560px;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.farali-pack-wafer {
+  top: 98.49px;
+  left: 81.41px;
+  width: 178.62px;
+  height: 288.72px;
+  transform: rotate(32.77deg);
+}
+
+.farali-pack-kela-tikha {
+  top: 199.91px;
+  left: 303.31px;
+  width: 178.62px;
+  height: 288.82px;
+  transform: rotate(17.1deg);
+}
+
+.farali-pack-tikha {
+  top: 237.06px;
+  left: 546.67px;
+  width: 178.62px;
+  height: 288.93px;
+}
+
+.farali-pack-mitha {
+  top: 203.84px;
+  left: 793.3px;
+  width: 178.62px;
+  height: 288.88px;
+  transform: rotate(-16.72deg);
+}
+
+.farali-pack-kela-mitha {
+  top: 103.07px;
+  left: 1017.64px;
+  width: 178.62px;
+  height: 289.07px;
+  transform: rotate(-32.39deg);
+}
+
+.category-hero-namkeen {
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.namkeen-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 560px;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.namkeen-hero-pack {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.namkeen-pack-all-in-one {
+  top: 103.37px;
+  left: 83.93px;
+  width: 178.62px;
+  height: 288.72px;
+  transform: rotate(32.77deg);
+}
+
+.namkeen-pack-chakhna {
+  top: 206.82px;
+  left: 303.35px;
+  width: 178.62px;
+  height: 291.72px;
+  transform: rotate(17.1deg);
+}
+
+.namkeen-pack-papad {
+  top: 238.4px;
+  left: 551.08px;
+  width: 178.62px;
+  height: 289.07px;
+}
+
+.namkeen-pack-gathiya {
+  top: 206.6px;
+  left: 797.64px;
+  width: 178.62px;
+  height: 288.85px;
+  transform: rotate(-16.72deg);
+}
+
+.namkeen-pack-sev-mamra {
+  top: 103.36px;
+  left: 1017.83px;
+  width: 178.62px;
+  height: 289.05px;
+  transform: rotate(-32.39deg);
+}
+
+.category-hero-chikki,
+.category-hero-khakhra,
+.category-hero-fryums {
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.category-hero-bakery {
+  overflow: hidden;
+  background: #ddffef;
+}
+
+.chikki-hero-bg,
+.khakhra-hero-bg,
+.fryums-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 560px;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bakery-hero-curve {
+  position: absolute;
+  z-index: 0;
+  top: 326px;
+  left: -108px;
+  width: 1496px;
+  height: 306px;
+  border-radius: 50% 50% 0 0;
+  background: #ffffff;
+  transform: rotate(-2.3deg);
+}
+
+.chikki-hero-products {
+  top: 210px;
+  left: 256px;
+  width: 768px;
+  height: 429px;
+  object-fit: contain;
+}
+
+.khakhra-pack-7grain {
+  top: 170px;
+  left: 92px;
+  width: 246px;
+  height: 224px;
+  transform: rotate(-19deg);
+}
+
+.khakhra-pack-panipuri {
+  top: 247px;
+  left: 306px;
+  width: 235px;
+  height: 214px;
+  transform: rotate(12deg);
+}
+
+.khakhra-pack-fafda {
+  top: 270px;
+  left: 553px;
+  width: 188px;
+  height: 209px;
+}
+
+.khakhra-pack-jeera {
+  top: 252px;
+  left: 781px;
+  width: 231px;
+  height: 211px;
+  transform: rotate(-12deg);
+}
+
+.khakhra-pack-masala {
+  top: 169px;
+  left: 989px;
+  width: 246px;
+  height: 224px;
+  transform: rotate(19deg);
+}
+
+.bakery-pack-plain {
+  top: 231px;
+  left: 109px;
+  width: 352px;
+  height: 300px;
+}
+
+.bakery-pack-coconut {
+  top: 231px;
+  left: 500px;
+  width: 352px;
+  height: 300px;
+}
+
+.bakery-pack-methi {
+  top: 231px;
+  left: 892px;
+  width: 352px;
+  height: 300px;
+}
+
+.fryums-pack-cone {
+  top: 91px;
+  left: 89px;
+  width: 230px;
+  height: 309px;
+  transform: rotate(-22deg);
+}
+
+.fryums-pack-magic {
+  top: 214px;
+  left: 322px;
+  width: 230px;
+  height: 310px;
+  transform: rotate(14deg);
+}
+
+.fryums-pack-noodles {
+  top: 246px;
+  left: 566px;
+  width: 204px;
+  height: 254px;
+}
+
+.fryums-pack-pasta {
+  top: 211px;
+  left: 798px;
+  width: 230px;
+  height: 310px;
+  transform: rotate(-14deg);
+}
+
+.fryums-pack-cups {
+  top: 91px;
+  left: 1010px;
+  width: 230px;
+  height: 309px;
+  transform: rotate(22deg);
+}
+
+.category-product-card,
+.category-promo,
+.category-feature,
+.category-newsletter {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.category-product-card {
+  background: #ffffff;
+  box-shadow: 0 18px 44px -24px rgba(78, 40, 31, 0.36);
+}
+
+.category-product-cover,
+.category-product-texture,
+.category-product-img {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-product-cover,
+.category-product-texture {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-product-texture {
+  opacity: 0.06;
+}
+
+.category-product-img {
+  object-fit: contain;
+}
+
+.category-product-badge {
+  position: absolute;
+  z-index: 3;
+  top: 377px;
+  left: 15px;
+  display: inline-flex;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.category-product-badge--gold {
+  background: #6c4c00;
+  color: #ffffff;
+}
+
+.category-product-badge--pink {
+  background: #ffffff;
+  color: #f65468;
+}
+
+.category-product-badge--brown {
+  background: #ffffff;
+  color: #693c3d;
+}
+
+.category-product-badge--muted {
+  background: #ffffff;
+  color: #825348;
+}
+
+.category-product-title {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.category-product-title span {
+  display: block;
+}
+
+.category-main--namkeen .category-product-title span,
+.category-main--chikki .category-product-title span,
+.category-main--khakhra .category-product-title span,
+.category-main--bakery .category-product-title span,
+.category-main--fryums .category-product-title span {
+  white-space: nowrap;
+}
+
+.category-product-subtitle {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  color: #838383;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.product-title-xl {
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.product-title-lg,
+.product-title-md,
+.product-title-sm {
+  font-size: 48px;
+  line-height: 45px;
+}
+
+.product-title-sm {
+  font-size: 38px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.product-title-shadow {
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-red {
+  color: #d21f24;
+}
+
+.text-guava {
+  color: #f65468;
+}
+
+.text-orange {
+  color: #fb6902;
+}
+
+.text-green {
+  color: #005c15;
+}
+
+.text-dark {
+  color: #221f26;
+}
+
+.text-brown {
+  color: #672a0d;
+}
+
+.text-lime {
+  color: #5b8f22;
+}
+
+.text-tomato {
+  color: #c43635;
+}
+
+.text-indigo {
+  color: #34356c;
+}
+
+.text-purple {
+  color: #78405c;
+}
+
+.text-farali-brown {
+  color: #693c3d;
+}
+
+.text-deep-green {
+  color: #1d4122;
+}
+
+.text-magenta {
+  color: #923580;
+}
+
+.text-namkeen-plum {
+  color: #7b2d54;
+}
+
+.text-namkeen-blue {
+  color: #387c93;
+}
+
+.text-namkeen-red {
+  color: #d0483b;
+}
+
+.text-chikki-red {
+  color: #d0383c;
+}
+
+.text-chikki-blue {
+  color: #0d778b;
+}
+
+.text-chikki-purple {
+  color: #773c54;
+}
+
+.text-khakhra-blue {
+  color: #0c7fa6;
+}
+
+.text-khakhra-brown,
+.text-bakery-brown {
+  color: #7d4232;
+}
+
+.text-khakhra-red {
+  color: #d70000;
+}
+
+.text-bakery-green {
+  color: #4f820c;
+}
+
+.text-bakery-gold {
+  color: #89460b;
+}
+
+.text-fryums-green {
+  color: #348251;
+}
+
+.text-fryums-red {
+  color: #ba2b2e;
+}
+
+.text-fryums-purple {
+  color: #78405c;
+}
+
+.text-fryums-ring {
+  color: #a32020;
+}
+
+.text-fryums-darkgreen {
+  color: #1d4122;
+}
+
+.text-fryums-magenta {
+  color: #923580;
+}
+
+.text-fryums-deepgreen {
+  color: #285133;
+}
+
+.category-side-arrow {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--color-accent);
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.12);
+  cursor: pointer;
+}
+
+.category-side-arrow span {
+  transform: translateY(-1px);
+}
+
+.category-promo {
+  padding: 100px 64px;
+}
+
+.category-promo-ghost {
+  position: absolute;
+  top: -82px;
+  right: -126px;
+  color: currentColor;
+  font-family: var(--font-display);
+  font-size: 250px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  opacity: 0.1;
+  transform: rotate(12deg);
+}
+
+.category-promo-copy {
+  position: relative;
+  z-index: 1;
+  width: 630px;
+}
+
+.category-main--namkeen .category-promo-copy {
+  width: 664px;
+}
+
+.category-promo h2 {
+  width: 576px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 60px;
+}
+
+.category-main--namkeen .category-promo h2 {
+  width: 664px;
+}
+
+.category-promo h2 span {
+  display: block;
+}
+
+.category-promo p {
+  width: 630px;
+  margin: 23px 0 32px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32.5px;
+  white-space: pre-line;
+}
+
+.category-promo a {
+  display: inline-flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 40px;
+  background: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 28px;
+}
+
+.category-feature {
+  background: #ffffff;
+}
+
+.category-feature-copy {
+  position: absolute;
+  z-index: 2;
+  top: 50px;
+  left: 48px;
+  width: 290px;
+}
+
+.category-feature-copy > span {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.category-feature h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 60px;
+}
+
+.category-feature h2 span {
+  display: block;
+}
+
+.category-feature p {
+  margin: 0 0 16px;
+  color: var(--color-muted);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  white-space: pre-line;
+}
+
+.category-feature a {
+  display: inline-flex;
+  height: 56px;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 32px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.category-feature a span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.category-feature > img {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-spotlight {
+  position: absolute;
+  left: 0;
+  width: 1280px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.category-spotlight-bg {
+  position: absolute;
+  top: -64.9px;
+  left: -64px;
+  width: 1408px;
+  height: 529.8px;
+  background: #eefaff;
+  transform: rotate(-2.31deg) skewX(-2.31deg);
+}
+
+.category-spotlight h2 {
+  position: absolute;
+  top: 142px;
+  left: 47px;
+  z-index: 1;
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 60px;
+}
+
+.category-spotlight h2 span {
+  display: block;
+}
+
+.category-spotlight-cards {
+  position: absolute;
+  top: 50px;
+  left: 341px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 268px);
+  gap: 30px;
+}
+
+.category-spotlight-card {
+  position: relative;
+  display: grid;
+  width: 268px;
+  height: 304px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 48px;
+  background: #ffffff;
+  box-shadow: 0 18px 44px -24px rgba(78, 40, 31, 0.25);
+}
+
+.category-spotlight-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 207px;
+  height: 207px;
+  max-width: none;
+  object-fit: contain;
+  opacity: 0.45;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.category-spotlight-card > img:not(.category-spotlight-ring) {
+  position: relative;
+  z-index: 1;
+  width: 198px;
+  height: 225px;
+  max-width: none;
+  object-fit: contain;
+}
+
+.category-spotlight-arrow {
+  position: absolute;
+  top: 190.8px;
+  z-index: 2;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.12);
+  cursor: pointer;
+}
+
+.category-spotlight-arrow--left {
+  left: 327px;
+}
+
+.category-spotlight-arrow--right {
+  left: 1222px;
+}
+
+.category-newsletter {
+  width: 1192px;
+  height: 489px;
+  border-radius: 48px;
+  padding-top: 123px;
+  text-align: center;
+}
+
+.category-newsletter h2 {
+  margin: 0;
+  color: #543b00;
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 60px;
+}
+
+.category-newsletter p {
+  margin: 16px 0 0;
+  color: #785500;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.category-newsletter form {
+  display: flex;
+  width: 576px;
+  height: 56px;
+  gap: 16px;
+  margin: 40px auto 0;
+}
+
+.category-newsletter input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 32px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #6b7280;
+  outline: none;
+}
+
+.category-newsletter button {
+  width: 171px;
+  border: 0;
+  border-radius: 999px;
+  background: #543b00;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  cursor: pointer;
+}

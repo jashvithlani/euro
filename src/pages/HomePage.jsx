@@ -100,7 +100,7 @@ export default function HomePage() {
               <section className="favorites-section">
                 <div className="section-heading favorites-heading">
                   <span className="kicker">Trending Now</span>
-                  <h2>The Crowd<br />Favorites</h2>
+                  <h2>The Crowd<br />Favourites</h2>
                 </div>
                 <div className="slider-buttons" aria-label="Product carousel controls">
                   <button className="slider-btn" type="button" data-carousel-prev aria-label="Previous products">&lsaquo;</button>
@@ -216,23 +216,15 @@ export default function HomePage() {
                       <input type="text" />
                     </label>
                     <label>
+                      <span>City</span>
+                      <input type="text" />
+                    </label>
+                    <label className="form-field-full">
                       <span>Phone Number</span>
                       <input type="tel" />
                     </label>
-                    <label>
-                      <span>Email</span>
-                      <input type="email" />
-                    </label>
-                    <label>
-                      <span>Preferred City</span>
-                      <input type="text" />
-                    </label>
                   </div>
-                  <label>
-                    <span>Message</span>
-                    <textarea></textarea>
-                  </label>
-                  <button className="button button-primary" type="submit">Send Inquiry</button>
+                  <button className="button button-primary" type="submit">Send Enquiry</button>
                 </form>
               </section>
 

@@ -157,29 +157,29 @@ textarea {
 .site-nav {
   position: absolute;
   z-index: 30;
-  top: 12px;
+  top: 0;
   left: 0;
   display: flex;
   width: var(--page-width);
   height: 98px;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 32px;
+  padding: 0 32px;
   background: rgba(255, 248, 246, 0.8);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
 }
 
 .site-logo img {
-  width: 103px;
-  height: 79px;
+  width: 90.63px;
+  height: 70.18px;
   object-fit: cover;
 }
 
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 32px;
   color: var(--color-stone);
   font-family: var(--font-display);
   font-size: 16px;
@@ -195,6 +195,23 @@ textarea {
 .nav-list .is-active {
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
+}
+
+.nav-search {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-stone);
+  cursor: pointer;
+}
+
+.nav-search svg {
+  width: 18px;
+  height: 18px;
 }
 
 .nav-icon {
@@ -218,7 +235,7 @@ textarea {
 
 .hero {
   position: relative;
-  height: 1106.36px;
+  height: var(--home-hero-height, 720px);
 }
 
 .hero-bg {
@@ -234,9 +251,10 @@ textarea {
   position: absolute;
   top: 103px;
   left: 517px;
-  width: 794px;
-  height: 447px;
+  width: 763px;
+  height: 429px;
   max-width: none;
+  object-fit: cover;
 }
 
 .hero-copy {
@@ -250,10 +268,14 @@ textarea {
   display: grid;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 128px;
+  font-size: 96px;
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 94px;
   letter-spacing: 0;
+}
+
+.hero-title .accent {
+  line-height: 115.2px;
 }
 
 .accent {
@@ -261,63 +283,92 @@ textarea {
 }
 
 .hero-copy p {
-  width: 448px;
-  margin: 30px 0 0 3px;
+  width: 403.27px;
+  margin: 16px 0 0;
   color: var(--color-muted);
   font-size: 20px;
-  line-height: 1.625;
+  line-height: 32.5px;
 }
 
 .hero-button {
   position: absolute;
-  top: 600px;
-  right: 80px;
+  top: 637px;
+  right: 58.84px;
+  width: 194.16px;
+  min-height: 51px;
+  padding: 0 40px;
+  font-weight: 700;
 }
 
 .hero-deserve {
   position: absolute;
-  top: 690px;
-  left: 80px;
+  top: 604px;
+  left: 77px;
   margin: 0;
   color: var(--color-blue);
   font-family: var(--font-display);
-  font-size: 128px;
+  font-size: 96px;
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 115.2px;
   letter-spacing: 0;
 }
 
 .patch {
   position: relative;
   z-index: 3;
+  width: 1280px;
+  height: 175.737px;
+  margin-left: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.patch::before {
+  position: absolute;
+  top: 50%;
+  left: -20px;
   width: 1320px;
-  height: 195.082px;
-  margin-left: -20px;
+  height: 108.7px;
+  content: "";
+  transform-origin: center;
 }
 
 .patch-gold {
-  margin-top: -195.082px;
+  margin-top: -16px;
+}
+
+.patch-gold::before {
   background: var(--color-gold);
-  transform: rotate(-3deg) skewX(-3deg);
+  transform: translateY(-50%) rotate(-3deg) skewX(-3deg);
 }
 
 .patch-lavender {
-  height: 204.699px;
-  margin-top: -125.2px;
+  height: 157.669px;
+  margin-top: -78px;
+}
+
+.patch-lavender::before {
+  height: 112.95px;
   background: var(--color-lavender);
-  transform: rotate(2deg) skewX(2deg);
+  transform: translateY(-50%) rotate(2deg) skewX(2deg);
 }
 
 .patch-rose {
-  margin-top: 67.08px;
+  height: 195.082px;
+  margin-top: 0;
+}
+
+.patch-rose::before {
+  height: 128px;
   background: var(--color-rose);
-  transform: rotate(-3deg) skewX(-3deg);
+  transform: translateY(-50%) rotate(-3deg) skewX(-3deg);
 }
 
 .mood-section {
   position: relative;
-  height: 1504.5px;
-  margin-top: -131.08px;
+  z-index: 4;
+  height: 977px;
+  margin-top: -83px;
   overflow: hidden;
   background: #f9f9f9;
 }
@@ -333,7 +384,7 @@ textarea {
 
 .mood-heading {
   position: absolute;
-  top: 128px;
+  top: 54px;
   left: 32px;
   z-index: 1;
 }
@@ -351,13 +402,13 @@ textarea {
 
 .mood-cta {
   position: absolute;
-  top: 160.5px;
-  left: 754.74px;
+  top: 54px;
+  left: 862px;
   z-index: 1;
-  width: 442px;
-  min-height: 80px;
+  width: 369px;
+  min-height: 51px;
   border-radius: 24px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .category-card {
@@ -393,10 +444,10 @@ textarea {
 }
 
 .card-chips {
-  top: 320.5px;
+  top: 206.5px;
   left: 32px;
-  width: 782.101px;
-  height: 465.408px;
+  width: 782px;
+  height: 403px;
   padding: 30.65px 23.63px;
   color: white;
 }
@@ -424,10 +475,10 @@ textarea {
 }
 
 .card-juice {
-  top: 320.5px;
-  left: 864px;
-  width: 353.663px;
-  height: 447.283px;
+  top: 206px;
+  left: 855.08px;
+  width: 354.85px;
+  height: 404.445px;
   padding: 0;
   transform: rotate(-1.72deg);
 }
@@ -450,10 +501,10 @@ textarea {
 }
 
 .card-namkeen {
-  top: 888.5px;
+  top: 626px;
   left: 32px;
-  width: 417.514px;
-  height: 488px;
+  width: 418px;
+  height: 387px;
   padding: 0;
   background: #fad3e0;
 }
@@ -477,11 +528,11 @@ textarea {
 }
 
 .card-basket {
-  top: 888.5px;
+  top: 626px;
   left: 475px;
   display: flex;
   width: 773px;
-  height: 488px;
+  height: 377px;
   align-items: center;
   gap: 43px;
   padding: 48px;
@@ -518,14 +569,15 @@ textarea {
 
 .favorites-section {
   position: relative;
-  height: 972.5px;
+  z-index: 4;
+  height: 730px;
   overflow: hidden;
   background: #fff8f6;
 }
 
 .favorites-heading {
   position: absolute;
-  top: 128px;
+  top: 0;
   left: 32px;
 }
 
@@ -537,14 +589,14 @@ textarea {
 }
 
 .favorites-heading h2 {
-  width: 402px;
+  width: 576px;
   font-size: 72px;
   line-height: 1;
 }
 
 .slider-buttons {
   position: absolute;
-  top: 248.5px;
+  top: 120.5px;
   right: 32px;
   display: flex;
   gap: 16px;
@@ -573,7 +625,7 @@ textarea {
 
 .product-viewport {
   position: absolute;
-  top: 392.5px;
+  top: 206px;
   left: 16px;
   width: 1248px;
   height: 580px;
@@ -717,15 +769,16 @@ textarea {
 
 .story-section {
   position: relative;
-  height: 913px;
-  margin-top: -133.95px;
+  z-index: 4;
+  height: 817px;
+  margin-top: -96.75px;
   background: #ffffff;
   overflow: hidden;
 }
 
 .story-photo-wrap {
   position: absolute;
-  top: 103.68px;
+  top: 26.68px;
   left: 32px;
   width: 603.777px;
   height: 715.643px;
@@ -758,7 +811,7 @@ textarea {
 
 .story-copy {
   position: absolute;
-  top: 127px;
+  top: 51px;
   left: 672px;
   width: 576px;
 }
@@ -767,9 +820,9 @@ textarea {
   display: grid;
   margin: 0 0 39px;
   font-family: var(--font-display);
-  font-size: 96px;
+  font-size: 86px;
   font-weight: 900;
-  line-height: 1;
+  line-height: 86px;
   letter-spacing: 0;
   max-width: 576px;
 }
@@ -777,6 +830,7 @@ textarea {
 .story-copy em {
   color: var(--color-accent);
   font-style: italic;
+  line-height: 96px;
 }
 
 .story-copy p {
@@ -815,16 +869,19 @@ textarea {
 }
 
 .quality-section {
-  height: 560px;
-  padding-top: 128px;
+  position: relative;
+  z-index: 4;
+  height: 367px;
+  padding-top: 28px;
   background: #eafbe6;
 }
 
 .quality-grid {
   display: grid;
-  grid-template-columns: repeat(4, 268px);
-  gap: 32px;
-  justify-content: center;
+  grid-template-columns: repeat(4, 273.265px);
+  gap: 37.43px;
+  justify-content: start;
+  padding-left: 32px;
 }
 
 .quality-card {
@@ -885,11 +942,12 @@ textarea {
 
 .dealership-section {
   position: relative;
+  z-index: 4;
   display: flex;
-  height: 1066px;
+  height: 789px;
   align-items: center;
-  gap: 38px;
-  padding: 120px 32px 120px 21px;
+  gap: 36.69px;
+  padding: 39px 32px 119.69px 20.68px;
   background: var(--color-navy);
 }
 
@@ -897,7 +955,7 @@ textarea {
   position: relative;
   width: 488px;
   min-height: 584px;
-  margin-left: 36px;
+  margin-left: 0;
   overflow: hidden;
   border-radius: var(--radius-xxl);
   padding: 64px;
@@ -956,7 +1014,8 @@ textarea {
 }
 
 .inquiry-form {
-  width: 681px;
+  width: 679.205px;
+  min-height: 720px;
   border-radius: var(--radius-xxl);
   padding: 64px 64px 80px;
   background: white;
@@ -977,10 +1036,14 @@ textarea {
   gap: 32px;
 }
 
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
 .inquiry-form label {
   display: grid;
   gap: 12px;
-  margin: 0 0 32px;
+  margin: 0;
 }
 
 .inquiry-form span {
@@ -994,9 +1057,10 @@ textarea {
 .inquiry-form input,
 .inquiry-form textarea {
   width: 100%;
+  height: 79px;
   border: 4px solid transparent;
   border-radius: 32px;
-  padding: 26px 28px;
+  padding: 0 28px;
   background: #f7f1ef;
   color: var(--color-ink);
   outline: none;
@@ -1009,12 +1073,15 @@ textarea {
 
 .inquiry-form .button {
   width: 100%;
-  min-height: 64px;
+  min-height: 80px;
+  margin-top: 32px;
 }
 
 .social-section {
   position: relative;
-  height: 685px;
+  z-index: 4;
+  height: 627px;
+  margin-top: 105px;
   overflow: hidden;
   background: #fff8f6;
 }
@@ -1024,7 +1091,7 @@ textarea {
   top: 0;
   left: 0;
   width: 1280px;
-  height: 685px;
+  height: 627px;
   max-width: none;
   object-fit: cover;
   object-position: top center;

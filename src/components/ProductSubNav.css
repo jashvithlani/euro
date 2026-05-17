@@ -14,6 +14,13 @@
   box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
 }
 
+.product-subnav--top {
+  top: 125.69px;
+  left: 32px;
+  width: 1216px;
+  background: #ffe7e2;
+}
+
 .product-subnav > div {
   display: flex;
   align-items: center;
@@ -36,6 +43,11 @@
   letter-spacing: 0;
   line-height: 24px;
   white-space: nowrap;
+}
+
+.product-subnav--top a {
+  margin-right: -15px;
+  font-weight: 600;
 }
 
 .product-subnav a.is-active {

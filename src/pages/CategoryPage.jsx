@@ -21,54 +21,57 @@ const pages = {
       </>
     ),
     badge: "FRESHLY PACKED",
-    height: 3056,
+    height: 2458,
     hero: {
       mode: "image",
       image: "assets/category-chips-hero.png",
       className: "category-hero-visual--chips",
     },
-    newsletter: { top: 2530, left: 33, background: "#d8efcf" },
+    heroClassName: "category-hero--chips-top-nav",
+    subnavPlacement: "top",
+    newsletter: { top: 2117, left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
     sections: [
       {
         type: "imageCard",
-        left: 33,
-        top: 835.37,
-        width: 549.667,
-        height: 549.667,
+        left: 32.68,
+        top: 835,
+        width: 411,
+        height: 389,
         image: "assets/category-chips-masti.png",
-        badge: { label: "BEST SELLER", tone: "gold" },
-        title: "Masti\nMasala",
-        titleClass: "text-white product-title-shadow product-title-xl",
-        titleStyle: { left: 16, top: 408, width: 329 },
+        badge: { label: "BEST SELLER", tone: "gold", style: { left: 304, top: 350.53 } },
+        title: "Masti Masala",
+        titleClass: "text-white product-title-shadow product-title-chips-card",
+        titleStyle: { left: 8.84, top: 331.53, width: 329 },
       },
       {
         type: "imageCard",
-        left: 654.15,
-        top: 835.06,
-        width: 575.854,
-        height: 549.667,
+        left: 462.79,
+        top: 835,
+        width: 392,
+        height: 389,
         image: "assets/category-chips-onion.png",
         title: "Cream’n\nOnion",
-        titleClass: "text-white product-title-shadow product-title-xl text-right",
-        titleStyle: { right: 28, top: 31, width: 278 },
+        titleClass: "text-white product-title-shadow product-title-chips-card text-right",
+        titleStyle: { right: 19.78, top: 278.8, width: 324.82 },
       },
       {
         type: "imageCard",
-        left: 33,
-        top: 1417.03,
-        width: 380,
-        height: 533.714,
+        left: 32.68,
+        top: 1244,
+        width: 361,
+        height: 373,
         image: "assets/category-chips-salted.png",
-        title: "Classic\nSalted",
-        titleClass: "text-red product-title-lg",
-        titleStyle: { left: 16, top: 18, width: 245 },
+        title: "Classic Salted",
+        titleClass: "text-red product-title-chips-salted",
+        titleStyle: { left: 16, top: 0, width: 353.22 },
       },
       {
         type: "promo",
-        left: 438,
-        top: 1417.37,
+        left: 432.68,
+        top: 1244,
         width: 792,
-        height: 533,
+        height: 373,
+        className: "category-promo--chips-compact",
         background: "#be004b",
         color: "#fff7f7",
         buttonColor: "#be004b",
@@ -78,21 +81,22 @@ const pages = {
       },
       {
         type: "imageCard",
-        left: 33,
-        top: 2007.83,
-        width: 471.679,
-        height: 471.679,
+        left: 874.68,
+        top: 835,
+        width: 385,
+        height: 385,
         image: "assets/category-chips-tomato.png",
         title: "Tingling Tomato",
-        titleClass: "text-white product-title-shadow product-title-md",
-        titleStyle: { left: 23, top: 26, width: 382 },
+        titleClass: "text-white product-title-shadow product-title-chips-card",
+        titleStyle: { left: 32.58, top: 26.48, width: 381.99 },
       },
       {
         type: "feature",
-        left: 551,
-        top: 2007.37,
-        width: 674,
-        height: 472,
+        left: 225.68,
+        top: 1641,
+        width: 846,
+        height: 438,
+        className: "category-feature--chips-wide",
         background: "radial-gradient(circle at 50% 50%, #ffece8 0%, #ffcda6 100%)",
         kicker: "LIMITED EDITION",
         kickerColor: "#ce0603",
@@ -100,8 +104,9 @@ const pages = {
         titleColor: "#ce0603",
         copy: "Extra thick, extra crunchy,\nextra flavor.",
         buttonColor: "#ce0603",
+        buttonLabel: "Know more",
         image: "assets/category-chips-chilli.png",
-        imageStyle: { left: 299, top: 35, width: 362, height: 437 },
+        imageStyle: { left: 423, top: 0, width: 362, height: 437 },
       },
     ],
   },
@@ -1333,7 +1338,7 @@ function layerStyle({ left, top, width, height, ...rest }) {
 
 function CategoryHero({ page }) {
   return (
-    <section className="category-hero" aria-labelledby={`${page.title.toLowerCase()}-title`}>
+    <section className={`category-hero ${page.heroClassName || ""}`} aria-labelledby={`${page.title.toLowerCase()}-title`}>
       <HeroVisual hero={page.hero} />
       {page.badge ? <span className="category-hero-badge">{page.badge}</span> : null}
       <h1 id={`${page.title.toLowerCase()}-title`}>{page.title}</h1>
@@ -1432,7 +1437,11 @@ function HeroVisual({ hero }) {
 
 function Badge({ badge }) {
   if (!badge) return null;
-  return <span className={`category-product-badge category-product-badge--${badge.tone || "pink"}`}>{badge.label}</span>;
+  return (
+    <span className={`category-product-badge category-product-badge--${badge.tone || "pink"}`} style={layerStyle(badge.style || {})}>
+      {badge.label}
+    </span>
+  );
 }
 
 function ProductTitle({ title, className, style }) {
@@ -1486,7 +1495,7 @@ function ProductCard({ item }) {
 function PromoPanel({ item }) {
   return (
     <section
-      className="category-promo"
+      className={`category-promo ${item.className || ""}`}
       style={{ ...boxStyle(item), background: item.background, color: item.color }}
       aria-label={item.title}
     >
@@ -1508,7 +1517,7 @@ function PromoPanel({ item }) {
 
 function FeatureCard({ item }) {
   return (
-    <article className="category-feature" style={{ ...boxStyle(item), background: item.background }}>
+    <article className={`category-feature ${item.className || ""}`} style={{ ...boxStyle(item), background: item.background }}>
       <div className="category-feature-copy">
         <span style={{ color: item.kickerColor }}>{item.kicker}</span>
         <h2 style={{ color: item.titleColor }}>
@@ -1518,7 +1527,7 @@ function FeatureCard({ item }) {
         </h2>
         <p>{item.copy}</p>
         <a href="#" style={{ background: item.buttonColor }}>
-          BUY NOW
+          {item.buttonLabel || "BUY NOW"}
           <span aria-hidden="true">-&gt;</span>
         </a>
       </div>
@@ -1569,7 +1578,7 @@ function SpotlightStrip({ item }) {
 
 function NewsletterPatch({ config }) {
   return (
-    <section className="category-newsletter" style={{ left: `${config.left}px`, top: `${config.top}px`, background: config.background }}>
+    <section className={`category-newsletter ${config.className || ""}`} style={{ left: `${config.left}px`, top: `${config.top}px`, background: config.background }}>
       <h2>CRUNCH INBOX</h2>
       <p>
         Get notified about new flavors and exclusive
@@ -1599,7 +1608,7 @@ export default function CategoryPage({ pageKey }) {
   return (
     <main className={`category-main category-main--${pageKey}`} aria-label={`${page.title} category page`} style={{ height: `${page.height}px` }}>
       <CategoryHero page={page} />
-      <ProductSubNav active={pageKey} />
+      <ProductSubNav active={pageKey} placement={page.subnavPlacement} />
       {page.sections.map((section, index) => (
         <CategorySection key={`${section.type}-${section.left}-${section.top}-${index}`} item={section} />
       ))}

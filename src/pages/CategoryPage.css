@@ -19,6 +19,10 @@
   background: #ffffff;
 }
 
+.category-hero--chips-top-nav {
+  top: 222px;
+}
+
 .category-hero h1 {
   position: absolute;
   z-index: 2;
@@ -562,6 +566,16 @@
   line-height: 60px;
 }
 
+.product-title-chips-card {
+  font-size: 40px;
+  line-height: 45px;
+}
+
+.product-title-chips-salted {
+  font-size: 45px;
+  line-height: 45px;
+}
+
 .product-title-lg,
 .product-title-md,
 .product-title-sm {
@@ -738,6 +752,32 @@
   padding: 100px 64px;
 }
 
+.category-promo--chips-compact {
+  padding: 0;
+}
+
+.category-promo--chips-compact .category-promo-ghost {
+  top: 41px;
+  right: -87px;
+  font-size: 320px;
+}
+
+.category-promo--chips-compact .category-promo-copy {
+  position: absolute;
+  top: 20px;
+  left: 64px;
+  width: 576px;
+}
+
+.category-promo.category-promo--chips-compact h2 {
+  width: 551px;
+}
+
+.category-promo.category-promo--chips-compact p {
+  width: 556px;
+  margin: 22px 0 32px;
+}
+
 .category-promo-ghost {
   position: absolute;
   top: -82px;
@@ -804,6 +844,11 @@
 
 .category-feature {
   background: #ffffff;
+}
+
+.category-feature--chips-wide .category-feature-copy {
+  top: 50px;
+  left: 72.8px;
 }
 
 .category-feature-copy {
@@ -989,6 +1034,19 @@
   border-radius: 48px;
   padding-top: 123px;
   text-align: center;
+}
+
+.category-newsletter--chips-compact {
+  height: 303px;
+  padding: 40px 80px 24px;
+}
+
+.category-newsletter.category-newsletter--chips-compact p {
+  margin-top: 16px;
+}
+
+.category-newsletter.category-newsletter--chips-compact form {
+  margin-top: 24px;
 }
 
 .category-newsletter h2 {

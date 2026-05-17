@@ -14,9 +14,9 @@ const categoryTabs = [
   { key: "celebrations", label: "Celebrations", href: "#" },
 ];
 
-export default function ProductSubNav({ active }) {
+export default function ProductSubNav({ active, placement = "default" }) {
   return (
-    <nav className="product-subnav" aria-label="Product categories">
+    <nav className={`product-subnav product-subnav--${placement}`} aria-label="Product categories">
       <div>
         {categoryTabs.map((tab) => (
           <a key={tab.key} className={tab.key === active ? "is-active" : undefined} href={tab.href}>

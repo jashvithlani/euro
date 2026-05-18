@@ -21,7 +21,7 @@ const pages = {
       </>
     ),
     badge: "FRESHLY PACKED",
-    height: 2458,
+    height: 2396,
     hero: {
       mode: "image",
       image: "assets/category-chips-hero.png",
@@ -29,12 +29,12 @@ const pages = {
     },
     heroClassName: "category-hero--chips-top-nav",
     subnavPlacement: "top",
-    newsletter: { top: 2117, left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
+    newsletter: { top: 2055, left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
     sections: [
       {
         type: "imageCard",
         left: 32.68,
-        top: 835,
+        top: 773,
         width: 411,
         height: 389,
         image: "assets/category-chips-masti.png",
@@ -46,7 +46,7 @@ const pages = {
       {
         type: "imageCard",
         left: 462.79,
-        top: 835,
+        top: 773,
         width: 392,
         height: 389,
         image: "assets/category-chips-onion.png",
@@ -57,7 +57,7 @@ const pages = {
       {
         type: "imageCard",
         left: 32.68,
-        top: 1244,
+        top: 1182,
         width: 361,
         height: 373,
         image: "assets/category-chips-salted.png",
@@ -68,7 +68,7 @@ const pages = {
       {
         type: "promo",
         left: 432.68,
-        top: 1244,
+        top: 1182,
         width: 792,
         height: 373,
         className: "category-promo--chips-compact",
@@ -82,7 +82,7 @@ const pages = {
       {
         type: "imageCard",
         left: 874.68,
-        top: 835,
+        top: 773,
         width: 385,
         height: 385,
         image: "assets/category-chips-tomato.png",
@@ -93,7 +93,7 @@ const pages = {
       {
         type: "feature",
         left: 225.68,
-        top: 1641,
+        top: 1579,
         width: 846,
         height: 438,
         className: "category-feature--chips-wide",

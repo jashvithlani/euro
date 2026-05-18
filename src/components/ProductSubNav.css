@@ -15,9 +15,11 @@
 }
 
 .product-subnav--top {
-  top: 125.69px;
+  top: 110px;
   left: 32px;
   width: 1216px;
+  height: 48px;
+  padding: 4px 20px;
   background: #ffe7e2;
 }
 
@@ -46,8 +48,12 @@
 }
 
 .product-subnav--top a {
-  margin-right: -15px;
+  height: 40px;
+  margin-right: 0;
+  padding: 0 18px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 20px;
 }
 
 .product-subnav a.is-active {

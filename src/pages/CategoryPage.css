@@ -11,16 +11,17 @@
 
 .category-hero {
   position: absolute;
-  top: 136px;
+  top: 152px;
   left: 0;
   width: 1280px;
-  height: 559.37px;
+  height: calc(var(--home-hero-height, 720px) - 152px);
   overflow: hidden;
   background: #ffffff;
 }
 
 .category-hero--chips-top-nav {
-  top: 160px;
+  top: 152px;
+  height: calc(var(--home-hero-height, 720px) - 152px);
 }
 
 .category-hero h1 {
@@ -100,7 +101,7 @@
   position: absolute;
   inset: 0;
   width: 1280px;
-  height: 559.37px;
+  height: 100%;
 }
 
 .category-hero-visual {
@@ -117,7 +118,7 @@
 }
 
 .category-hero-visual--beverages {
-  height: 560px;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -197,7 +198,7 @@
   position: absolute;
   inset: 0;
   width: 1280px;
-  height: 560px;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   pointer-events: none;
@@ -252,7 +253,7 @@
   position: absolute;
   inset: 0;
   width: 1280px;
-  height: 560px;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   pointer-events: none;
@@ -325,7 +326,7 @@
   position: absolute;
   inset: 0;
   width: 1280px;
-  height: 560px;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   pointer-events: none;

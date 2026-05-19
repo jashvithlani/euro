@@ -9,6 +9,7 @@ const chikkiBlueBackground = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #e3
 const khakhraCardBackground = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffeee4 100%)";
 const bakeryCardBackground = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffeee4 100%)";
 const fryumsCardBackground = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #faf0ff 100%)";
+const originalCategoryHeroBottom = 695.37;
 
 const pages = {
   chips: {
@@ -21,7 +22,7 @@ const pages = {
       </>
     ),
     badge: "FRESHLY PACKED",
-    height: 2396,
+    height: "calc(var(--home-hero-height, 720px) + 1676px)",
     hero: {
       mode: "image",
       image: "assets/category-chips-hero.png",
@@ -29,12 +30,12 @@ const pages = {
     },
     heroClassName: "category-hero--chips-top-nav",
     subnavPlacement: "top",
-    newsletter: { top: 2055, left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
+    newsletter: { top: "calc(var(--home-hero-height, 720px) + 1335px)", left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
     sections: [
       {
         type: "imageCard",
         left: 32.68,
-        top: 773,
+        top: "calc(var(--home-hero-height, 720px) + 53px)",
         width: 411,
         height: 389,
         image: "assets/category-chips-masti.png",
@@ -46,7 +47,7 @@ const pages = {
       {
         type: "imageCard",
         left: 462.79,
-        top: 773,
+        top: "calc(var(--home-hero-height, 720px) + 53px)",
         width: 392,
         height: 389,
         image: "assets/category-chips-onion.png",
@@ -57,7 +58,7 @@ const pages = {
       {
         type: "imageCard",
         left: 32.68,
-        top: 1182,
+        top: "calc(var(--home-hero-height, 720px) + 462px)",
         width: 361,
         height: 373,
         image: "assets/category-chips-salted.png",
@@ -68,7 +69,7 @@ const pages = {
       {
         type: "promo",
         left: 432.68,
-        top: 1182,
+        top: "calc(var(--home-hero-height, 720px) + 462px)",
         width: 792,
         height: 373,
         className: "category-promo--chips-compact",
@@ -82,7 +83,7 @@ const pages = {
       {
         type: "imageCard",
         left: 874.68,
-        top: 773,
+        top: "calc(var(--home-hero-height, 720px) + 53px)",
         width: 385,
         height: 385,
         image: "assets/category-chips-tomato.png",
@@ -93,7 +94,7 @@ const pages = {
       {
         type: "feature",
         left: 225.68,
-        top: 1579,
+        top: "calc(var(--home-hero-height, 720px) + 859px)",
         width: 846,
         height: 438,
         className: "category-feature--chips-wide",
@@ -1320,12 +1321,36 @@ const pages = {
   },
 };
 
+function cssLength(value) {
+  if (value === undefined) return undefined;
+  return typeof value === "number" ? `${value}px` : value;
+}
+
+function offsetFromHeroBottom(value) {
+  if (typeof value !== "number") return value;
+
+  const offset = Number((value - originalCategoryHeroBottom).toFixed(3));
+  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
+}
+
+function applyTopHeroLayout(page) {
+  return {
+    ...page,
+    height: offsetFromHeroBottom(page.height),
+    newsletter: page.newsletter ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) } : page.newsletter,
+    sections: page.sections.map((section) => ({
+      ...section,
+      top: offsetFromHeroBottom(section.top),
+    })),
+  };
+}
+
 function boxStyle({ left, top, width, height }) {
   return {
-    left: left === undefined ? undefined : `${left}px`,
-    top: top === undefined ? undefined : `${top}px`,
-    width: width === undefined ? undefined : `${width}px`,
-    height: height === undefined ? undefined : `${height}px`,
+    left: cssLength(left),
+    top: cssLength(top),
+    width: cssLength(width),
+    height: cssLength(height),
   };
 }
 
@@ -1551,7 +1576,7 @@ function ArrowControl({ item }) {
 
 function SpotlightStrip({ item }) {
   return (
-    <section className="category-spotlight" style={{ top: `${item.top}px` }} aria-label="Royal Crunch products">
+    <section className="category-spotlight" style={{ top: cssLength(item.top) }} aria-label="Royal Crunch products">
       <div className="category-spotlight-bg" />
       <h2>
         {item.title.split("\n").map((line) => (
@@ -1578,7 +1603,7 @@ function SpotlightStrip({ item }) {
 
 function NewsletterPatch({ config }) {
   return (
-    <section className={`category-newsletter ${config.className || ""}`} style={{ left: `${config.left}px`, top: `${config.top}px`, background: config.background }}>
+    <section className={`category-newsletter ${config.className || ""}`} style={{ left: cssLength(config.left), top: cssLength(config.top), background: config.background }}>
       <h2>CRUNCH INBOX</h2>
       <p>
         Get notified about new flavors and exclusive
@@ -1603,12 +1628,12 @@ function CategorySection({ item }) {
 }
 
 export default function CategoryPage({ pageKey }) {
-  const page = pages[pageKey] || pages.chips;
+  const page = applyTopHeroLayout(pages[pageKey] || pages.chips);
 
   return (
-    <main className={`category-main category-main--${pageKey}`} aria-label={`${page.title} category page`} style={{ height: `${page.height}px` }}>
+    <main className={`category-main category-main--${pageKey}`} aria-label={`${page.title} category page`} style={{ height: cssLength(page.height) }}>
       <CategoryHero page={page} />
-      <ProductSubNav active={pageKey} placement={page.subnavPlacement} />
+      <ProductSubNav active={pageKey} placement="top" />
       {page.sections.map((section, index) => (
         <CategorySection key={`${section.type}-${section.left}-${section.top}-${index}`} item={section} />
       ))}

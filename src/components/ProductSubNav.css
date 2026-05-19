@@ -15,12 +15,14 @@
 }
 
 .product-subnav--top {
-  top: 110px;
-  left: 32px;
-  width: 1216px;
-  height: 48px;
-  padding: 4px 20px;
+  top: 103px;
+  left: 50%;
+  width: 1064px;
+  height: 44px;
+  justify-content: center;
+  padding: 4px 14px;
   background: #ffe7e2;
+  transform: translateX(-50%);
 }
 
 .product-subnav > div {
@@ -28,6 +30,12 @@
   align-items: center;
   min-width: 0;
   overflow: hidden;
+}
+
+.product-subnav--top > div {
+  width: 100%;
+  justify-content: center;
+  overflow: visible;
 }
 
 .product-subnav a {
@@ -48,9 +56,9 @@
 }
 
 .product-subnav--top a {
-  height: 40px;
+  height: 36px;
   margin-right: 0;
-  padding: 0 18px;
+  padding: 0 24px;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;

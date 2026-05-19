@@ -15,12 +15,12 @@
 }
 
 .product-subnav--top {
-  top: 103px;
+  top: 82px;
   left: 50%;
-  width: 1064px;
-  height: 44px;
+  width: 980px;
+  height: 38px;
   justify-content: center;
-  padding: 4px 14px;
+  padding: 4px 12px;
   background: #ffe7e2;
   transform: translateX(-50%);
 }
@@ -56,12 +56,12 @@
 }
 
 .product-subnav--top a {
-  height: 36px;
+  height: 30px;
   margin-right: 0;
-  padding: 0 24px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 18px;
 }
 
 .product-subnav a.is-active {

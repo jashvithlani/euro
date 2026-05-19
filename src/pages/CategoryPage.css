@@ -11,17 +11,17 @@
 
 .category-hero {
   position: absolute;
-  top: 152px;
+  top: 126px;
   left: 0;
   width: 1280px;
-  height: calc(var(--home-hero-height, 720px) - 152px);
+  height: calc(var(--home-hero-height, 720px) - 126px);
   overflow: hidden;
   background: #ffffff;
 }
 
 .category-hero--chips-top-nav {
-  top: 152px;
-  height: calc(var(--home-hero-height, 720px) - 152px);
+  top: 126px;
+  height: calc(var(--home-hero-height, 720px) - 126px);
 }
 
 .category-hero h1 {

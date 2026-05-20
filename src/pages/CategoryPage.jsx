@@ -22,56 +22,60 @@ const pages = {
       </>
     ),
     badge: "FRESHLY PACKED",
-    height: "calc(var(--home-hero-height, 720px) + 1676.63px)",
+    height: "1628px",
     hero: {
-      mode: "image",
-      image: "assets/category-chips-hero.png",
-      className: "category-hero-visual--chips",
+      mode: "chipsWide",
     },
     heroClassName: "category-hero--chips-top-nav",
     subnavPlacement: "top",
-    newsletter: { top: "calc(var(--home-hero-height, 720px) + 1335.63px)", left: 32.68, background: "#d8efcf", className: "category-newsletter--chips-compact" },
+    newsletter: { top: "1411.33px", left: 22, background: "#d8efcf", className: "category-newsletter--chips-compact" },
     sections: [
       {
         type: "imageCard",
-        left: 93.42,
-        top: "calc(var(--home-hero-height, 720px) + 53.63px)",
-        width: 349,
-        height: 389,
-        image: "assets/category-chips-masti.png",
-        badge: { label: "BEST SELLER", tone: "gold", style: { left: 236.32, top: 349.53 } },
+        left: 65.33,
+        top: "550.67px",
+        width: 370,
+        height: 259.33,
+        background: "radial-gradient(circle at 50% 50%, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
+        image: "assets/category-chips-wide-card-masti.png",
+        imageStyle: { left: 94.17, top: -16.83, width: 292.99, height: 292.99 },
+        badge: { label: "BEST SELLER", tone: "gold", style: { left: 21.33, top: 222 } },
         title: "Masti Masala",
         titleClass: "text-white product-title-shadow product-title-chips-card",
-        titleStyle: { left: 8.84, top: 323.53, width: 329 },
+        titleStyle: { left: 21.33, top: 14.67, width: 219.33 },
       },
       {
         type: "imageCard",
-        left: 476.34,
-        top: "calc(var(--home-hero-height, 720px) + 53.63px)",
-        width: 333,
-        height: 389,
-        image: "assets/category-chips-onion.png",
-        title: "Cream’n\nOnion",
-        titleClass: "text-white product-title-shadow product-title-chips-card text-right",
-        titleStyle: { right: 8.18, top: 309, width: 324.82 },
+        left: 453.99,
+        top: "550.67px",
+        width: 370,
+        height: 259.33,
+        background: "radial-gradient(circle at 50% 50%, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
+        image: "assets/category-chips-wide-card-onion.png",
+        imageStyle: { left: 90.66, top: -30.18, width: 300.01, height: 300.01 },
+        title: "Cream’n Onion",
+        titleClass: "text-white product-title-shadow product-title-chips-card",
+        titleStyle: { left: 21.33, top: 14.67, width: 219.33 },
       },
       {
         type: "imageCard",
-        left: 93,
-        top: "calc(var(--home-hero-height, 720px) + 462.63px)",
-        width: 347,
-        height: 373,
-        image: "assets/category-chips-salted.png",
+        left: 65.33,
+        top: "836px",
+        width: 370,
+        height: 242,
+        background: "radial-gradient(circle at 50% 50%, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
+        image: "assets/category-chips-wide-card-salted.png",
+        imageStyle: { left: 136.15, top: 0, width: 248.67, height: 248.67 },
         title: "Classic Salted",
         titleClass: "text-red product-title-chips-salted",
-        titleStyle: { left: 16, top: 0, width: 353.22 },
+        titleStyle: { left: 21.33, top: 14.67, width: 120 },
       },
       {
         type: "promo",
-        left: 476,
-        top: "calc(var(--home-hero-height, 720px) + 462.63px)",
-        width: 694,
-        height: 373,
+        left: 454,
+        top: "829.33px",
+        width: 760.67,
+        height: 248.67,
         className: "category-promo--chips-compact",
         background: "#be004b",
         color: "#fff7f7",
@@ -82,21 +86,23 @@ const pages = {
       },
       {
         type: "imageCard",
-        left: 843.27,
-        top: "calc(var(--home-hero-height, 720px) + 53.63px)",
-        width: 327,
-        height: 385,
-        image: "assets/category-chips-tomato.png",
+        left: 844.67,
+        top: "547.33px",
+        width: 370,
+        height: 259.33,
+        background: "radial-gradient(circle at 50% 50%, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
+        image: "assets/category-chips-wide-card-tomato.png",
+        imageStyle: { left: 97.4, top: -13.6, width: 286.53, height: 286.53 },
         title: "Tingling Tomato",
         titleClass: "text-white product-title-shadow product-title-chips-card",
-        titleStyle: { left: 12.26, top: 20, width: 381.99, letterSpacing: "-1.8px" },
+        titleStyle: { left: 21.33, top: 14.67, width: 219.33, letterSpacing: "-1.2px" },
       },
       {
         type: "feature",
-        left: 275.68,
-        top: "calc(var(--home-hero-height, 720px) + 859.63px)",
-        width: 720,
-        height: 438,
+        left: 371.56,
+        top: "1094px",
+        width: 554,
+        height: 292,
         className: "category-feature--chips-wide",
         background: "radial-gradient(circle at 50% 50%, #ffece8 0%, #ffcda6 100%)",
         kicker: "LIMITED EDITION",
@@ -106,8 +112,8 @@ const pages = {
         copy: "Extra thick, extra crunchy,\nextra flavor.",
         buttonColor: "#ce0603",
         buttonLabel: "Know more",
-        image: "assets/category-chips-chilli.png",
-        imageStyle: { left: 323.86, top: 0, width: 362.25, height: 436.91 },
+        image: "assets/category-chips-wide-card-chilli.png",
+        imageStyle: { left: 215.91, top: 0, width: 241.5, height: 291.27 },
       },
     ],
   },
@@ -1457,6 +1463,19 @@ function HeroVisual({ hero }) {
     );
   }
 
+  if (hero.mode === "chipsWide") {
+    return (
+      <div className="category-hero-custom category-hero-chips-wide" aria-hidden="true">
+        <img className="chips-wide-hero-bg" src="assets/category-chips-wide-hero-bg.png" alt="" />
+        <img className="chips-wide-hero-pack chips-wide-pack-salted" src="assets/category-chips-wide-hero-salted.png" alt="" />
+        <img className="chips-wide-hero-pack chips-wide-pack-tomato" src="assets/category-chips-wide-hero-tomato.png" alt="" />
+        <img className="chips-wide-hero-pack chips-wide-pack-masti" src="assets/category-chips-wide-hero-masti.png" alt="" />
+        <img className="chips-wide-hero-pack chips-wide-pack-onion" src="assets/category-chips-wide-hero-onion.png" alt="" />
+        <img className="chips-wide-hero-pack chips-wide-pack-chilli" src="assets/category-chips-wide-hero-chilli.png" alt="" />
+      </div>
+    );
+  }
+
   return <img className={`category-hero-visual ${hero.className || ""}`} src={hero.image} alt="" aria-hidden="true" />;
 }
 
@@ -1489,8 +1508,13 @@ function ProductSubtitle({ subtitle, style }) {
 
 function ImageCard({ item }) {
   return (
-    <article className="category-product-card category-product-card--image" style={boxStyle(item)}>
-      <img className="category-product-cover" src={item.image} alt="" />
+    <article className="category-product-card category-product-card--image" style={{ ...boxStyle(item), background: item.background }}>
+      <img
+        className={`category-product-cover ${item.imageStyle ? "category-product-cover--positioned" : ""}`}
+        src={item.image}
+        alt=""
+        style={item.imageStyle ? layerStyle(item.imageStyle) : undefined}
+      />
       <Badge badge={item.badge} />
       {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
     </article>
@@ -1553,7 +1577,9 @@ function FeatureCard({ item }) {
         <p>{item.copy}</p>
         <a href="#" style={{ background: item.buttonColor }}>
           {item.buttonLabel || "BUY NOW"}
-          <span aria-hidden="true">-&gt;</span>
+          <svg className="category-feature-arrow" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
         </a>
       </div>
       <img src={item.image} alt="" style={layerStyle(item.imageStyle)} />

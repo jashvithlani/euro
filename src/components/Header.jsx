@@ -13,15 +13,7 @@ const navItems = [
   { key: "contact", label: "Contact", href: "/contact" },
 ];
 
-const localLinksByPage = {
-  home: {
-    products: "#products",
-  },
-};
-
 export default function Header({ active = "home" }) {
-  const localLinks = localLinksByPage[active] || {};
-
   return (
     <header className="site-nav">
       <a className="site-logo" href="/" aria-label="Euro India Foods">
@@ -32,7 +24,7 @@ export default function Header({ active = "home" }) {
           <a
             key={item.key}
             className={item.key === active ? "is-active" : undefined}
-            href={localLinks[item.key] || item.href}
+            href={item.href}
             aria-current={item.key === active ? "page" : undefined}
           >
             {item.label}

@@ -18,7 +18,7 @@ export default function HomePage() {
 
     const moveCarousel = (direction) => {
       carouselViewport.scrollBy({
-        left: direction * 379,
+        left: direction * 256,
         behavior: "smooth",
       });
     };
@@ -56,6 +56,8 @@ export default function HomePage() {
                 </div>
                 <a className="button button-primary hero-button" href="#products">Explore <span aria-hidden="true">-&gt;</span></a>
                 <h2 className="hero-deserve">You deserve.</h2>
+                <span className="hero-tag hero-tag-crunchy" aria-hidden="true">#Crunchy</span>
+                <span className="hero-tag hero-tag-delicious" aria-hidden="true">#delicious</span>
               </section>
 
               <div className="patch patch-gold"></div>

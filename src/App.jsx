@@ -66,7 +66,7 @@ const pageConfig = {
     Page: HomePage,
     shellClassName: "page-shell",
     header: { active: "home" },
-    footer: { useLocalLinks: true },
+    footer: {},
   },
   about: {
     Page: AboutPage,

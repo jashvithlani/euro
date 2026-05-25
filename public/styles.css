@@ -951,8 +951,8 @@ textarea {
 .story-copy {
   position: absolute;
   top: 99px;
-  left: 614.67px;
-  width: 384px;
+  left: 651.67px;
+  width: 544px;
 }
 
 .story-copy h2 {
@@ -973,8 +973,8 @@ textarea {
 }
 
 .story-copy p {
-  width: 384px;
-  max-width: 384px;
+  width: 544px;
+  max-width: 544px;
   margin: 0 0 20.67px;
   color: var(--color-muted);
   font-size: 13.33px;

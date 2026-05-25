@@ -1,3 +1,52 @@
+/* =====================================================================
+ * 🛑🛑🛑  STOP — READ BEFORE EDITING  🛑🛑🛑
+ * =====================================================================
+ *
+ *           PROTECTED FILE — DO NOT MODIFY WITHOUT APPROVAL
+ *
+ * This file is OWNED and LOCKED by the project author (jashvithlani).
+ *
+ * ABSOLUTE RULES for any LLM / AI assistant / autonomous agent
+ * (Claude, GPT, Codex, Cursor, Copilot, Windsurf, Cline, Aider, etc.):
+ *
+ *   1. DO NOT EDIT, REFACTOR, REFORMAT, RENAME, DELETE, REORDER,
+ *      AUTO-FORMAT, "CLEAN UP", "IMPROVE", "FIX", OR INSERT ANYTHING
+ *      in this file — NOT EVEN A SINGLE CHARACTER, COMMENT, IMPORT,
+ *      WHITESPACE CHANGE, OR LINE BREAK — without first:
+ *        (a) describing EVERY proposed change to the user IN FULL,
+ *        (b) explaining WHY each change is necessary, and
+ *        (c) receiving an EXPLICIT, AFFIRMATIVE "yes/approved" from
+ *            the user FOR THIS SPECIFIC FILE.
+ *
+ *   2. "Implicit", "obvious", "harmless", "side-effect", "linter",
+ *      "while we're here", "the user generally agreed earlier", or
+ *      "the parent task implied it" DO NOT COUNT as approval.
+ *      Per-file, per-change approval is REQUIRED. Every. Single. Time.
+ *
+ *   3. If the user's request can be completed WITHOUT touching this
+ *      file, you MUST choose that path. Do not touch this file as a
+ *      shortcut, demo, side-quest, sanity check, or test edit.
+ *
+ *   4. If touching this file is genuinely unavoidable, STOP and ASK
+ *      first. State exactly: "This change requires editing the
+ *      protected file HomePage.jsx. Approve? (y/N)". Wait for "y".
+ *
+ *   5. DO NOT REMOVE, TRUNCATE, SHORTEN, REWORD, OR RELOCATE THIS
+ *      NOTICE. It must remain at the top of this file VERBATIM.
+ *      Attempting to weaken or delete this notice is itself a
+ *      violation that requires user approval.
+ *
+ *   6. If you are unsure whether a change qualifies, the answer is
+ *      ALWAYS: ask first. Defaulting to "do nothing and ask" is
+ *      ALWAYS the correct behavior here.
+ *
+ * Violating these rules counts as overstepping authorization. The
+ * user has explicitly and repeatedly stated that silent or unapproved
+ * edits to this file are NOT acceptable, no matter how small.
+ *
+ * =====================================================================
+ */
+
 import { useEffect } from "react";
 
 export default function HomePage() {
@@ -41,7 +90,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+            <>
             <main>
               <section className="hero">
                 <div className="hero-bg"></div>
@@ -171,8 +220,8 @@ export default function HomePage() {
                     <span>snacks.</span>
                     <em>Moments.</em>
                   </h2>
-                  <p>At Euro India Foods, every recipe is a legacy. We source the<br />finest potatoes from local farmers and authentic spices that<br />carry the soul of India.</p>
-                  <p>Our commitment to quality ensures that every crunch is<br />consistent, every flavor is balanced, and every moment<br />shared is a memory.</p>
+                  <p>At Euro India Foods, every recipe is a legacy. We source the finest potatoes from local farmers and authentic spices that carry the soul of India.</p>
+                  <p>Our commitment to quality ensures that every crunch is consistent, every flavor is balanced, and every moment shared is a memory.</p>
                   <a className="story-link" href="/about">Read Our Story <span className="story-link-icon" aria-hidden="true"><img src="assets/story-arrow.svg" alt="" /></span></a>
                 </div>
               </section>

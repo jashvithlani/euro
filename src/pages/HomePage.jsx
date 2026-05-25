@@ -54,7 +54,7 @@ export default function HomePage() {
                   </h1>
                   <p>Redefining the snack game with premium ingredients and bold, authentic flavors that travel from our kitchen to your heart.</p>
                 </div>
-                <a className="button button-primary hero-button" href="#products">Explore <span aria-hidden="true">-&gt;</span></a>
+                <a className="button button-primary hero-button" href="#products">Explore <img className="hero-button-icon" src="assets/hero-explore-icon.svg" alt="" aria-hidden="true" /></a>
                 <h2 className="hero-deserve">You deserve.</h2>
                 <span className="hero-tag hero-tag-crunchy" aria-hidden="true">#Crunchy</span>
                 <span className="hero-tag hero-tag-delicious" aria-hidden="true">#delicious</span>
@@ -105,8 +105,12 @@ export default function HomePage() {
                   <h2>The Crowd<br />Favourites</h2>
                 </div>
                 <div className="slider-buttons" aria-label="Product carousel controls">
-                  <button className="slider-btn" type="button" data-carousel-prev aria-label="Previous products">&lsaquo;</button>
-                  <button className="slider-btn" type="button" data-carousel-next aria-label="Next products">&rsaquo;</button>
+                  <button className="slider-btn" type="button" data-carousel-prev aria-label="Previous products">
+                    <img src="assets/arrow-prev.svg" alt="" aria-hidden="true" />
+                  </button>
+                  <button className="slider-btn" type="button" data-carousel-next aria-label="Next products">
+                    <img src="assets/arrow-next.svg" alt="" aria-hidden="true" />
+                  </button>
                 </div>
                 <div className="product-viewport" data-carousel-viewport>
                   <div className="product-track">
@@ -142,6 +146,14 @@ export default function HomePage() {
                       <h3>Raw Mango Punch</h3>
                       <p>Tangy refreshment in every sip.</p>
                     </article>
+                    <article className="product-card product-card--lavender">
+                      <div className="product-art">
+                        <span className="product-badge product-badge--gold">Best Seller</span>
+                        <img src="assets/bestseller-masala.png" alt="Masti Masala chips" />
+                      </div>
+                      <h3>Masti Masala chips</h3>
+                      <p>Light, crispy, and perfectly salted.</p>
+                    </article>
                   </div>
                 </div>
               </section>
@@ -161,7 +173,7 @@ export default function HomePage() {
                   </h2>
                   <p>At Euro India Foods, every recipe is a legacy. We source the<br />finest potatoes from local farmers and authentic spices that<br />carry the soul of India.</p>
                   <p>Our commitment to quality ensures that every crunch is<br />consistent, every flavor is balanced, and every moment<br />shared is a memory.</p>
-                  <a className="story-link" href="/about">Read Our Story <span aria-hidden="true">-&gt;</span></a>
+                  <a className="story-link" href="/about">Read Our Story <span className="story-link-icon" aria-hidden="true"><img src="assets/story-arrow.svg" alt="" /></span></a>
                 </div>
               </section>
 
@@ -172,28 +184,28 @@ export default function HomePage() {
                       <img src="assets/icon-veg.svg" alt="" />
                     </div>
                     <h3>100% Vegetarian</h3>
-                    <p>No animal ingredients, no compromise.</p>
+                    <p>No animal-derived ingredients or processing aids</p>
                   </article>
                   <article className="quality-card tilt-right">
                     <div className="quality-icon icon-pink">
                       <img src="assets/icon-test.svg" alt="" />
                     </div>
                     <h3>Strict Tests</h3>
-                    <p>Batch-wise quality control at every stage.</p>
+                    <p>Batch-wise quality control at every stage</p>
                   </article>
                   <article className="quality-card tilt-left">
                     <div className="quality-icon icon-gold">
                       <img src="assets/icon-hygiene.svg" alt="" />
                     </div>
                     <h3>Hygiene</h3>
-                    <p>Strict hygiene audits and pest control.</p>
+                    <p>Strict hygiene audits &amp; pest control</p>
                   </article>
                   <article className="quality-card tilt-right">
                     <div className="quality-icon icon-pink">
                       <img src="assets/icon-quality.svg" alt="" />
                     </div>
                     <h3>Quality</h3>
-                    <p>Standardized recipes for uniform taste.</p>
+                    <p>Standardized recipes for uniform taste &amp; texture</p>
                   </article>
                 </div>
               </section>
@@ -215,23 +227,26 @@ export default function HomePage() {
                   <div className="form-grid">
                     <label>
                       <span>Full Name</span>
-                      <input type="text" />
+                      <input type="text" placeholder="Your Name" />
                     </label>
                     <label>
                       <span>City</span>
-                      <input type="text" />
+                      <input type="text" placeholder="Where you at?" />
                     </label>
                     <label className="form-field-full">
                       <span>Phone Number</span>
-                      <input type="tel" />
+                      <input type="tel" placeholder="+91 00000 00000" />
                     </label>
                   </div>
                   <button className="button button-primary" type="submit">Send Enquiry</button>
                 </form>
               </section>
 
+              <div className="patch patch-yellow-slant" aria-hidden="true"></div>
+
               <section className="social-section">
-                <img src="assets/social-strip.png" alt="Euro India social feed" />
+                <img className="social-feed-header" src="assets/social-feed-header-figma.png" alt="Euro India social feed header" />
+                <img className="social-feed-cards" src="assets/social-feed-cards-figma.png" alt="Euro India social moments" />
               </section>
             </main>
     </>

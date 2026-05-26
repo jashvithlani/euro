@@ -70,7 +70,11 @@ export default function AboutPage() {
                 <img className="manufacturing-photo" src="assets/about-manufacturing.png" alt="Euro India Foods manufacturing line" />
                 <div className="manufacturing-copy">
                   <span className="about-kicker">Precision Crafted</span>
-                  <h2>Manufacturing Excellence</h2>
+                  <h2>
+                    Manufacturing
+                    <br />
+                    <em>Excellence</em>
+                  </h2>
                   <div className="manufacturing-feature">
                     <span className="manufacturing-icon"><img src="assets/about-icon-facility.svg" alt="" /></span>
                     <div>
@@ -108,6 +112,52 @@ export default function AboutPage() {
                   <h2>Our <em>Milestones</em></h2>
                 </div>
                 <div className="timeline-line" aria-hidden="true"></div>
+                <article className="timeline-milestone timeline-2009 timeline-left">
+                  <div className="timeline-copy timeline-copy-left">
+                    <h3>2009</h3>
+                    <h4>The Spark</h4>
+                    <p>Formation of Euro India Fresh Foods Limited with a vision to establish a strong presence in the packaged food industry.</p>
+                  </div>
+                  <div className="timeline-card timeline-2009-card" aria-label="Euro India Foods plant">
+                    <img src="assets/about-timeline-2009.png" alt="" />
+                  </div>
+                </article>
+                <article className="timeline-milestone timeline-2012 timeline-right">
+                  <div className="timeline-card timeline-2012-card" aria-label="Scaling Up production">
+                    <img src="assets/about-timeline-2012.png" alt="" />
+                  </div>
+                  <div className="timeline-copy timeline-copy-right">
+                    <h3>2012</h3>
+                    <h4>Scaling Up</h4>
+                    <p>Commencement of commercial operations and the establishment of manufacturing capabilities for chips and fried snacks.</p>
+                  </div>
+                </article>
+                <article className="timeline-milestone timeline-2014 timeline-left">
+                  <div className="timeline-copy timeline-copy-left">
+                    <h3>2014</h3>
+                    <h4>Public Debut</h4>
+                    <ul>
+                      <li>Received ISO 22000:2005 certification for food safety and quality standards.</li>
+                      <li>Honoured as Asia's Fastest Growing Marketing Brand at WCRC Leaders Asia Summit.</li>
+                    </ul>
+                  </div>
+                  <div className="timeline-card timeline-iso-card" aria-label="ISO 22000:2005 certification">
+                    <img src="assets/footer-cert-iso-22000.png" alt="" />
+                  </div>
+                </article>
+                <article className="timeline-milestone timeline-2015 timeline-right">
+                  <div className="timeline-card timeline-2015-card" aria-label="Global Reach production line">
+                    <img src="assets/about-timeline-2015.png" alt="" />
+                  </div>
+                  <div className="timeline-copy timeline-copy-right">
+                    <h3>2015</h3>
+                    <h4>Global Reach</h4>
+                    <ul>
+                      <li>Awarded as Fastest Growing Indian Company at the International Achievers Summit in Bangkok, Thailand.</li>
+                      <li>Secured the International Star for Quality at the International Star Award in Geneva.</li>
+                    </ul>
+                  </div>
+                </article>
                 <article className="timeline-milestone timeline-2016 timeline-left">
                   <div className="timeline-copy timeline-copy-left">
                     <h3>2016</h3>
@@ -141,6 +191,9 @@ export default function AboutPage() {
                     <p>* Migration to the NSE Main Board, elevating the Company's presence in the public market.</p>
                     <p>* Acknowledged during the Vibrant Gujarat Global Summit for entrepreneurship and recognised continued excellence.</p>
                   </div>
+                  <div className="timeline-card timeline-2021-card" aria-label="Vibrant Gujarat">
+                    <img src="assets/about-timeline-2021.png" alt="" />
+                  </div>
                 </article>
                 <article className="timeline-milestone timeline-2025 timeline-right">
                   <div className="timeline-card timeline-gt-card" aria-label="Gujarat Titans x Euro">
@@ -159,6 +212,9 @@ export default function AboutPage() {
                     <h3>2026</h3>
                     <h4>Manufacturing Expansion</h4>
                     <p>28.57 Acres manufacturing plant development at Chikhli, sized huge &amp; production capacity to next level.</p>
+                  </div>
+                  <div className="timeline-card timeline-2026-card" aria-label="Euro Food Park">
+                    <img src="assets/about-timeline-2026-source.png" alt="" />
                   </div>
                 </article>
               </section>
@@ -218,7 +274,7 @@ export default function AboutPage() {
 
               <section className="about-logistics">
                 <h2>Logistics</h2>
-                <p>Getting our products from the plant to your shelf is just as important as making them. With a robust in-house logistics network of 40+ fleets, we ensure timely, efficient, and reliable delivery across the country.</p>
+                <p>Getting our products from the plant to your shelf is just as important as making them. With a robust in-house logistics network of <strong>40+ fleets</strong>, we ensure timely, efficient, and reliable delivery across the country.</p>
                 <img src="assets/about-logistics.png" alt="Euro logistics fleet" />
               </section>
 
@@ -231,7 +287,22 @@ export default function AboutPage() {
               </section>
 
               <section className="about-social">
-                <img src="assets/social-strip.png" alt="Euro India social feed" />
+                <div className="about-social-header">
+                  <div className="about-social-heading">
+                    <span className="about-social-kicker">Social Feed</span>
+                    <h2>
+                      #EuroIndia
+                      <br />
+                      Moments
+                    </h2>
+                  </div>
+                  <p className="about-social-tagline">
+                    Tag us in your snack selfies for a chance
+                    <br />
+                    to get featured!
+                  </p>
+                </div>
+                <img className="about-social-cards" src="assets/social-cards.png" alt="Euro India social feed" />
               </section>
             </main>
     </>

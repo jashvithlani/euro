@@ -70,8 +70,9 @@
 }
 
 .contact-hero h1 {
-  /* Figma 1079:3312: Epilogue Black 96 tracking -3.6 w=737. First line 72 leading, second line 83 leading. */
-  width: 491.33px;
+  /* Figma 1079:3312: Epilogue Black 96 tracking -3.6 w=737 (= 491 scaled — but "& grow business" needs the full width).
+     First line leading 72, second line leading 83. */
+  width: 540px;
   margin: 0;
   color: #4e281f;
   font-family: var(--font-display);
@@ -79,6 +80,7 @@
   font-weight: 900;
   letter-spacing: -2.4px;
   line-height: 48px;
+  white-space: nowrap;
 }
 
 .contact-hero h1 em {
@@ -97,8 +99,8 @@
 }
 
 .contact-hero p {
-  /* Figma 1079:3314: PJS Regular 20/28 #825348, max-w=448 (text width 635 in metadata but visible wrap at 448) */
-  width: 298.67px;
+  /* Figma 1079:3314: PJS Regular 20/28 #825348, body wraps to 3 lines (parent container 1079:3313 w=448 → 298.67 scaled, but 340 matches the actual Figma line breaks). */
+  width: 340px;
   margin: 16px 0 0;
   color: #825348;
   font-family: var(--font-body);

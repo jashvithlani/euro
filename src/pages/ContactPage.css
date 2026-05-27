@@ -23,9 +23,10 @@
 
 /* ----- Hero (Figma 1079:3306) ----------------------------------- */
 .contact-hero {
-  /* Figma: 1920 × 751, gradient + texture overlay. +65.33 padding-top for absolute nav clearance + 13.33 (=20 × 0.667) gap from Figma container top */
+  /* Figma: 1920 × 751 → 500.67 + 65.33 nav clearance = 566. Explicit height so overflow:hidden doesn't chop the absolute bottle card. */
   position: relative;
   width: 1280px;
+  height: 566px;
   padding-top: 65.33px;
   background: #fff8f6;
   overflow: hidden;

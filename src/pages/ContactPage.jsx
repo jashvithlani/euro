@@ -23,7 +23,7 @@ const contactCards = [
 
 function ContactCard({ title, text, lines, icon, tone }) {
   return (
-    <article className="contact-card">
+    <article className={`contact-card contact-card--${tone}`}>
       <div className={`contact-card-icon contact-card-icon--${tone}`}>
         <img src={icon} alt="" />
       </div>
@@ -49,22 +49,22 @@ export default function ContactPage() {
   return (
     <main className="contact-main">
       <section className="contact-hero" aria-labelledby="contact-title">
-        <div className="contact-hero-gradient"></div>
+        <div className="contact-hero-gradient" aria-hidden="true"></div>
         <div className="contact-hero-texture" aria-hidden="true"></div>
-        <div className="contact-hero-copy">
-          <h1 id="contact-title">
-            <span>
+        <div className="contact-hero-inner">
+          <div className="contact-hero-copy">
+            <h1 id="contact-title">
               Let&apos;s <em>Connect</em>
-            </span>
-            <span>&amp; grow business</span>
-          </h1>
-          <p>
-            Whether it&apos;s business, distribution, or queries - our team of snack
-            connoisseurs is here to help you taste excellence.
-          </p>
-        </div>
-        <div className="contact-hero-card" aria-hidden="true">
-          <img src="assets/contact-hero.png" alt="" />
+              <span>&amp; grow business</span>
+            </h1>
+            <p>
+              Whether it&apos;s business, distribution, or queries - our team of snack
+              connoisseurs is here to help you taste excellence.
+            </p>
+          </div>
+          <div className="contact-hero-card" aria-hidden="true">
+            <img src="assets/contact-hero.png" alt="" />
+          </div>
         </div>
       </section>
 
@@ -113,14 +113,14 @@ export default function ContactPage() {
         </h2>
         <img className="contact-map-image" src="assets/contact-map.png" alt="" />
         <div className="contact-map-actions" aria-label="Location shortcuts">
-          <a href="#distributor">Become a Distributor</a>
-          <a href="#contact-form-title">Send Inquiry</a>
+          <a className="contact-map-action contact-map-action--ghost" href="#distributor">Become a Distributor</a>
+          <a className="contact-map-action contact-map-action--solid" href="#contact-form-title">Business Inquiry</a>
         </div>
         <article className="contact-map-card contact-map-card--office">
           <h3>Euro India Foods HQ</h3>
           <p>4408, Kohinoor Square,N.C.Kelkar Marg, Dadar West, Mumbai-400028</p>
           <a href="https://maps.google.com/?q=Kohinoor%20Square%20Dadar%20West%20Mumbai" target="_blank" rel="noreferrer">
-            Get Directions -&gt;
+            Get Directions →
           </a>
         </article>
         <article className="contact-map-card contact-map-card--plant">
@@ -130,7 +130,7 @@ export default function ContactPage() {
             Hotel, Nh-48, Taluka- Chikhli, District- Navsari, Gujarat- 396530.
           </p>
           <a href="https://maps.google.com/?q=Euro%20Food%20Park%20Chikhli%20Navsari%20Gujarat" target="_blank" rel="noreferrer">
-            Get Directions -&gt;
+            Get Directions →
           </a>
         </article>
         <span className="contact-map-pin" aria-hidden="true"></span>

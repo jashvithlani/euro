@@ -3032,7 +3032,6 @@ textarea {
 }
 
 .exports-main {
-  height: 3500.133px;
   background: var(--color-page);
 }
 
@@ -3042,26 +3041,26 @@ textarea {
 }
 
 .career-main {
-  height: 3229px;
   padding-top: 137px;
+  background: var(--color-page);
 }
 
 .career-hero {
-  display: grid;
+  position: relative;
   width: 1280px;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 600px;
-  gap: 24px;
-  padding: 80px 32px;
+  height: 443px;
+  padding: 35px 44px 0;
 }
 
 .career-hero-copy {
+  position: absolute;
+  top: 35px;
+  left: 44px;
   display: flex;
-  grid-column: 1 / span 6;
-  align-self: center;
+  width: 598px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 31.3px;
+  gap: 20.87px;
 }
 
 .career-hero h1 {
@@ -3070,10 +3069,10 @@ textarea {
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 96px;
+  font-size: 64px;
   font-weight: 900;
-  letter-spacing: -4.8px;
-  line-height: 96px;
+  letter-spacing: -3.2px;
+  line-height: 64px;
 }
 
 .career-hero h1 strong {
@@ -3084,28 +3083,30 @@ textarea {
 }
 
 .career-hero-copy > p {
-  width: 512px;
+  width: 643px;
   margin: 0;
   color: var(--color-muted);
-  font-size: 20px;
-  line-height: 32.5px;
+  font-family: var(--font-body);
+  font-size: 13.33px;
+  line-height: 21.67px;
 }
 
 .career-hero-actions {
   display: flex;
-  gap: 16px;
+  gap: 10.67px;
 }
 
 .career-hero-actions a {
   display: inline-flex;
-  min-height: 60px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  padding: 15.5px 32px 16.5px;
-  font-size: 18px;
+  padding: 10.33px 21.33px 11px;
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 18.67px;
 }
 
 .career-hero-actions a:first-child {
@@ -3121,18 +3122,17 @@ textarea {
 }
 
 .career-hero-media {
-  position: relative;
-  display: flex;
-  height: 600px;
-  grid-column: 7 / span 6;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  top: 16px;
+  left: 697px;
+  width: 483.5px;
+  height: 400px;
 }
 
 .career-hero-tilt {
   position: absolute;
-  inset: -15.18px -15.3px -15.19px -15.29px;
-  border-radius: 48px;
+  inset: -10.13px -10.2px -10.13px -10.19px;
+  border-radius: 32px;
   background: rgba(255, 222, 167, 0.2);
   transform: rotate(-3deg);
 }
@@ -3142,7 +3142,7 @@ textarea {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 40px;
+  border-radius: 26.67px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
@@ -3161,16 +3161,17 @@ textarea {
 
 .career-family-badge {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  max-width: 200px;
-  border-radius: 16px;
-  padding: 24px;
+  bottom: 26.67px;
+  left: 26.67px;
+  max-width: 133.33px;
+  border-radius: 10.67px;
+  padding: 16px;
   background: rgba(255, 255, 255, 0.7);
   color: var(--color-ink);
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: 9.33px;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 13.33px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
@@ -3178,26 +3179,30 @@ textarea {
 
 .career-values {
   display: flex;
-  width: 100%;
+  width: 1280px;
   flex-direction: column;
-  gap: 64px;
-  padding: 96px 32px;
+  gap: 42.67px;
+  padding: 64px 45.34px;
   background: #fff0ed;
 }
 
 .career-section-heading {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10.67px;
+  text-align: center;
+  align-items: center;
 }
 
 .career-section-heading span,
 .career-application-heading span {
   color: var(--color-accent);
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: 10.67px;
   font-weight: 700;
-  letter-spacing: 2.8px;
-  line-height: 20px;
+  letter-spacing: 2.13px;
+  line-height: 13.33px;
+  text-transform: uppercase;
 }
 
 .career-section-heading h2,
@@ -3205,57 +3210,62 @@ textarea {
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 900;
-  line-height: 48px;
+  line-height: 32px;
 }
 
 .career-values-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 24px;
+  gap: 16px;
 }
 
 .career-value-card {
-  min-height: 266px;
+  min-height: 164px;
   border: 1px solid rgba(222, 164, 151, 0.1);
-  border-radius: 24px;
-  padding: 33px;
+  border-radius: 16px;
+  padding: 22px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
 }
 
 .career-value-icon {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   place-items: center;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .career-value-icon img {
-  width: 20px;
-  max-height: 20px;
+  width: 13.33px;
+  max-height: 13.33px;
 }
 
 .career-value-card h3 {
-  margin: 24px 0 12px;
+  margin: 16px 0 8px;
   color: var(--color-ink);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
+  font-family: var(--font-display);
+  font-size: 13.33px;
+  font-weight: 900;
+  line-height: 18.67px;
 }
 
 .career-value-card p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 14px;
-  line-height: 20px;
+  font-family: var(--font-body);
+  font-size: 9.33px;
+  line-height: 13.33px;
 }
 
 .career-application {
-  min-height: 1260px;
-  padding: 96px 32px;
+  display: flex;
+  width: 1280px;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 44.67px;
   background: #daf4d1;
 }
 
@@ -3263,37 +3273,39 @@ textarea {
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 10.67px;
+  margin-bottom: 42.67px;
   text-align: center;
 }
 
 .career-application-heading p {
-  width: 493px;
-  margin: 8px 0 48px;
+  width: 384px;
+  margin: 0;
   color: var(--color-muted);
-  font-size: 12px;
-  line-height: 19.5px;
+  font-family: var(--font-body);
+  font-size: 13.33px;
+  line-height: 16px;
 }
 
 .career-form {
-  width: 640px;
-  min-height: 952px;
+  width: 1147px;
   margin: 0 auto;
-  border-radius: 32px;
-  padding: 48px;
+  border-radius: 21.33px;
+  padding: 43.33px;
   background: white;
 }
 
 .career-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .career-field {
   display: flex;
-  min-height: 70px;
+  min-height: 54.67px;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .career-field-wide {
@@ -3303,30 +3315,34 @@ textarea {
 .career-field span,
 .career-upload span {
   color: var(--color-muted);
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: 9.33px;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 13.33px;
+  padding-left: 10.67px;
 }
 
 .career-field input,
 .career-field textarea {
   width: 100%;
   border: 1px solid transparent;
-  border-radius: 24px;
+  border-radius: 16px;
   background: #fff0ed;
   color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 9.33px;
   outline: none;
 }
 
 .career-field input {
-  height: 46px;
-  padding: 0 25px;
+  height: 38px;
+  padding: 0 16.67px;
 }
 
 .career-field textarea {
-  min-height: 120px;
+  min-height: 80px;
   resize: none;
-  padding: 17px 25px;
+  padding: 11.33px 16.67px;
 }
 
 .career-field input::placeholder,
@@ -3336,54 +3352,57 @@ textarea {
 
 .career-upload {
   display: flex;
-  min-height: 160px;
+  min-height: 106.67px;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .career-upload > div {
   display: flex;
-  min-height: 112px;
+  min-height: 74.67px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5.33px;
   border: 2px dashed rgba(222, 164, 151, 0.3);
-  border-radius: 24px;
-  padding: 34px;
+  border-radius: 16px;
+  padding: 22.67px;
 }
 
 .career-upload img {
-  width: 24px;
-  height: 30px;
+  width: 16px;
+  height: 20px;
 }
 
 .career-upload p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 14px;
-  line-height: 20px;
+  font-family: var(--font-body);
+  font-size: 9.33px;
+  line-height: 13.33px;
   text-align: center;
 }
 
 .career-message {
-  min-height: 144px;
+  min-height: 96px;
 }
 
 .career-form button {
   display: flex;
   width: 100%;
-  min-height: 68px;
+  min-height: 45.33px;
   align-items: center;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 16px;
   border: 0;
   border-radius: 9999px;
   background: var(--color-accent);
   color: white;
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 18.67px;
+  letter-spacing: 0.5px;
   box-shadow: 0 10px 15px -3px rgba(190, 0, 75, 0.2),
     0 4px 6px -4px rgba(190, 0, 75, 0.2);
   cursor: pointer;
@@ -3391,7 +3410,8 @@ textarea {
 
 .career-ready {
   display: flex;
-  height: 277px;
+  width: 1280px;
+  height: 184.67px;
   align-items: center;
   justify-content: center;
   background: var(--color-page);
@@ -3403,75 +3423,90 @@ textarea {
   background-clip: text;
   color: transparent;
   font-family: var(--font-display);
-  font-size: 72px;
+  font-size: 48px;
   font-weight: 900;
-  line-height: 72px;
+  line-height: 48px;
 }
 
+/* ====================================================
+   Exports Hero — Figma node 1079:2087
+   All values scaled from Figma 1920 → 1280 viewport (× 0.6667).
+   ==================================================== */
 .export-hero {
-  height: 921px;
-  padding: 95.5px 40px;
+  /* Figma section: 1826 × 843 at x=66; pad 95.5 × 40 inner */
+  height: 562px;
+  padding: 63.67px 26.67px;
 }
 
 .export-hero-grid {
-  display: grid;
-  width: 1200px;
-  height: 730px;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 32px;
+  /* Figma inner container 1079:2088: 1746 wide × 730 tall.
+     Image-1130 + text-1130 sit in overlapping containers → image lands ~35% from left edge. */
+  position: relative;
+  width: 1164px;
+  height: 487px;
+  margin: 0 auto;
 }
 
 .export-hero-copy {
-  grid-column: 1 / span 6;
-  align-self: start;
-  margin-top: 33.5px;
+  /* Figma text container 1079:2097: x=-40, w=1130 (visible content uses left half) */
+  position: absolute;
+  top: 1.5px; /* 2.25 * 0.667 */
+  left: -26.67px; /* -40 * 0.667 */
+  width: 753.33px;
 }
 
 .export-pill {
+  /* Figma node 1079:2098 — GLOBAL REACH */
   display: inline-flex;
-  min-height: 23px;
   align-items: center;
   border-radius: 9999px;
-  padding: 4px 16px;
+  padding: 2.67px 10.67px;
   background: var(--color-gold);
   color: #543b00;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  line-height: 15px;
+  font-family: var(--font-body);
+  font-size: 6.67px;
+  font-weight: 700;
+  letter-spacing: 0.67px;
+  line-height: 10px;
   text-transform: uppercase;
 }
 
 .export-hero h1 {
-  margin: 24px 0 0;
+  /* Figma node 1079:2101: Epilogue Black 96/96 tracking -4.8, w=1130 */
+  margin: 21.33px 0 0; /* gap 47 from pill top → top 47, less pill height 15 ≈ 32 below pill → use 21.33 (32*0.667) for clean offset */
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 96px;
+  font-size: 64px;
   font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
+  line-height: 64px;
+  letter-spacing: -3.2px;
 }
 
 .export-hero h1 em {
   display: block;
   color: var(--color-accent);
   font-style: italic;
+  font-weight: 900;
 }
 
 .export-hero-lede {
-  width: 424px;
-  margin: 24px 0 0;
+  /* Figma node 1079:2102: PJS Regular 20/28, w=424 */
+  width: 282.67px;
+  margin: 16px 0 0;
   color: var(--color-muted);
-  font-size: 20px;
-  line-height: 28px;
+  font-family: var(--font-body);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 18.67px;
 }
 
 .export-stats-row {
+  /* Figma node 1079:2103: gap 24 pt 16 */
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin-top: 24px;
-  padding-top: 16px;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 10.67px;
 }
 
 .export-stats-row-wide {
@@ -3479,118 +3514,135 @@ textarea {
 }
 
 .export-stat {
-  width: 118px;
+  /* Figma stat container w=118 (Commercial Start) */
+  width: 78.67px;
 }
 
 .export-stat-long {
-  width: 242px;
+  /* Figma stat container w=242/261 — using 242 for "100+" and adding to 200+ via separate sizing if needed */
+  width: 174px; /* 261 * 0.667 — wider to fit "distributors extend the Company's reach" */
 }
 
 .export-stat strong {
+  /* Figma node 1079:2106 etc: Epilogue Bold 30/36 #be004b */
   display: block;
   color: var(--color-accent);
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 24px;
 }
 
 .export-stat span {
+  /* Figma node 1079:2108 etc: PJS Bold 10/15 tracking 1 uppercase #4e281f opacity 0.6 */
   display: block;
   margin-top: 0;
   color: rgba(78, 40, 31, 0.6);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  line-height: 15px;
+  font-family: var(--font-body);
+  font-size: 6.67px;
+  font-weight: 700;
+  letter-spacing: 0.67px;
+  line-height: 10px;
   text-transform: uppercase;
 }
 
 .export-stat-divider {
-  width: 1px;
-  height: 48px;
+  /* Figma 1079:2109: 1 × 48 rgba(222,164,151,0.3) */
+  width: 0.67px;
+  height: 32px;
   background: rgba(222, 164, 151, 0.3);
 }
 
 .export-hero-media {
-  position: relative;
-  grid-column: 7 / span 6;
-  width: 584px;
-  height: 730px;
-  align-self: center;
+  /* Figma image container 1079:2089: x=616, w=1130, h=649 */
+  position: absolute;
+  top: 0;
+  left: 410.67px; /* 616 * 0.667 */
+  width: 753.33px; /* 1130 * 0.667 */
+  height: 432.67px; /* 649 * 0.667 */
   overflow: visible;
 }
 
 .export-hero-media > img {
   width: 100%;
   height: 100%;
-  border-radius: 16px;
+  border-radius: 10.67px;
   object-fit: cover;
-  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
 }
 
 .export-hero-gradient {
   position: absolute;
   inset: 0;
-  border-radius: 16px;
+  border-radius: 10.67px;
   background: linear-gradient(to top, rgba(78, 40, 31, 0.4), rgba(78, 40, 31, 0));
   pointer-events: none;
 }
 
 .export-presence-card {
+  /* Figma node 1079:2093: x=-43, y=439 inside image → bottom -10, left -28.67. p 32, gap 16, max-w 320, bg #ffdad2 */
   position: absolute;
-  bottom: -38px;
-  left: -43px;
-  width: 301px;
-  min-height: 225px;
-  border-radius: 12px;
-  padding: 32px;
+  bottom: -10px;
+  left: -28.67px;
+  max-width: 213.33px;
+  display: flex;
+  flex-direction: column;
+  gap: 10.67px;
+  border-radius: 8px;
+  padding: 21.33px;
   background: #ffdad2;
 }
 
 .export-presence-card h2 {
-  margin: 0 0 16px;
+  /* Figma 1079:2095: Epilogue Bold 20/25 #4e281f */
+  margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 13.33px;
   font-weight: 700;
-  line-height: 25px;
+  line-height: 16.67px;
+  white-space: nowrap;
 }
 
 .export-presence-card ul {
+  /* Figma 1079:2096: PJS SemiBold 14/20 #825348 */
   display: grid;
   gap: 0;
   margin: 0;
   padding: 0;
-  color: var(--color-muted);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 20px;
+  color: #825348;
+  font-family: var(--font-body);
+  font-size: 9.33px;
+  font-weight: 600;
+  line-height: 13.33px;
   list-style: none;
 }
 
+/* ====================================================
+   Story Section — Figma node 1079:2127, all × 0.667
+   ==================================================== */
 .export-story {
-  height: 1010.891px;
-  padding: 128px 40px;
+  padding: 85.33px 26.67px; /* 128 40 */
   background: #fff0ed;
 }
 
 .export-story-grid {
   display: grid;
-  grid-template-columns: 673.333px 408.421px;
-  gap: 64px;
-  width: 1200px;
-  height: 754.891px;
+  grid-template-columns: 448.89px 272.28px; /* 673.333 408.421 × 0.667 */
+  gap: 42.67px;
+  width: 1226.67px; /* 1840 × 0.667 */
+  margin: 0 auto;
 }
 
 .export-story-copy h2 {
+  /* Figma 1079:2131: Epilogue ExtraBold 48/48 tracking -1.2 */
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 800;
-  line-height: 48px;
-  letter-spacing: 0;
+  line-height: 32px;
+  letter-spacing: -0.8px;
 }
 
 .export-story-copy h2 span {
@@ -3600,90 +3652,100 @@ textarea {
 
 .export-story-text {
   display: grid;
-  gap: 32px;
-  margin-top: 48px;
+  gap: 21.33px;
+  margin-top: 32px;
 }
 
 .export-story-text p {
+  /* Figma 1079:2134/2136: PJS Regular 18/29.25 #825348 */
   margin: 0;
   color: var(--color-muted);
-  font-size: 18px;
-  line-height: 29.25px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
 }
 
 .export-story-text strong {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .export-contact-card {
+  /* Figma 1079:2137: bg #fff8f6, border-l 4 accent, p 56/40/40/44, radius 24 */
   display: flex;
-  width: 673.333px;
-  height: 196px;
-  align-items: center;
-  gap: 24px;
-  margin-top: 48px;
-  border-left: 4px solid var(--color-accent);
-  border-radius: 24px;
-  padding: 40px 44px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
+  width: 448.89px;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 32px;
+  border-left: 2.67px solid var(--color-accent);
+  border-radius: 16px;
+  padding: 37.33px 26.67px 26.67px 29.33px;
+  background: #fff8f6;
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
 }
 
 .export-contact-card > img {
-  width: 64px;
-  height: 64px;
+  width: 42.67px;
+  height: 42.67px;
   flex: 0 0 auto;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .export-contact-card h3 {
-  margin: 0 0 4px;
+  /* Figma 1079:2144: Epilogue Bold 20/28 */
+  margin: 0 0 2.67px;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 13.33px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 18.67px;
 }
 
 .export-contact-card p {
-  margin: 0 0 14px;
+  /* Figma 1079:2146: PJS Bold 14/20 tracking 1.4 #be004b */
+  margin: 0 0 8px;
   color: var(--color-accent);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.8px;
-  line-height: 16px;
+  font-family: var(--font-body);
+  font-size: 9.33px;
+  font-weight: 700;
+  letter-spacing: 0.93px;
+  line-height: 13.33px;
   text-transform: uppercase;
 }
 
 .export-contact-card a {
+  /* Figma 1079:2152/2157: PJS Regular 14/20 #4e281f, gap 8 */
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-  color: var(--color-muted);
-  font-size: 14px;
-  line-height: 20px;
+  gap: 5.33px;
+  margin-top: 5.33px;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
 }
 
 .export-contact-card a img {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   flex: 0 0 auto;
   object-fit: contain;
 }
 
 .export-story-media {
   display: grid;
-  gap: 22px;
+  gap: 14.67px;
   align-content: start;
-  width: 408.421px;
+  width: 272.28px;
 }
 
 .export-wafers-card {
+  /* Figma 1079:2161: 546 × 431, radius 24 */
   position: relative;
-  width: 408.421px;
-  height: 453.367px;
+  width: 272.28px;
+  height: 287.33px; /* 431 × 0.667, slightly clipped to keep aspect */
   margin: 0;
   overflow: hidden;
   border-radius: 16px;
@@ -3696,82 +3758,86 @@ textarea {
 }
 
 .export-wafers-card figcaption {
+  /* Figma 1079:2164: PJS Bold 10/15 tracking 1 uppercase #4e281f, bg rgba(255,248,246,0.9) blur */
   position: absolute;
-  top: 22px;
-  right: 39px;
+  top: 14.67px;
+  right: 26px;
   border-radius: 9999px;
-  padding: 6.5px 16px;
-  background: rgba(255, 255, 255, 0.9);
+  padding: 4.33px 10.67px;
+  background: rgba(255, 248, 246, 0.9);
   color: var(--color-ink);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  line-height: 15px;
+  font-family: var(--font-body);
+  font-size: 6.67px;
+  font-weight: 700;
+  letter-spacing: 0.67px;
+  line-height: 10px;
   text-transform: uppercase;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
 }
 
 .export-factory-image {
-  width: 408.421px;
-  height: 218px;
+  /* Figma 1079:2159: 547 × 308 */
+  width: 272.28px;
+  height: 145.33px;
   border-radius: 16px;
   object-fit: cover;
 }
 
+/* ====================================================
+   Form Section — Figma node 1079:2165, all × 0.667
+   ==================================================== */
 .export-inquiry {
   position: relative;
-  height: 1568.242px;
   background: var(--color-page);
+  padding: 0 0 85.33px; /* breathing space below form */
 }
 
 .export-inquiry-inner {
-  position: absolute;
-  top: 0;
-  left: 134.825px;
-  width: 1024px;
-  height: 1495px;
+  width: 1098px; /* 1647 × 0.667 */
+  margin: 0 auto;
 }
 
 .export-inquiry-heading {
-  padding-top: 128px;
+  padding-top: 85.33px;
   text-align: center;
 }
 
 .export-inquiry-heading h2 {
+  /* Figma 1079:2168: Epilogue Black 60/60 tracking -3 */
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 40px;
   font-weight: 900;
-  line-height: 60px;
+  line-height: 40px;
+  letter-spacing: -2px;
 }
 
 .export-inquiry-heading p {
-  width: 672px;
-  margin: 24px auto 0;
+  /* Figma 1079:2170: PJS Regular 16/24, w=672 */
+  width: 448px;
+  margin: 16px auto 0;
   color: var(--color-muted);
-  font-size: 16px;
-  line-height: 24px;
+  font-family: var(--font-body);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 16px;
 }
 
 .export-form {
-  width: 1024px;
-  height: 1155px;
-  margin-top: 80px;
-  border-radius: 32px;
-  padding: 64px;
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
+  /* Figma 1079:2171: bg #fff8f6, p 64, radius 32 */
+  width: 1098px;
+  margin: 53.33px auto 0; /* gap 162 between heading and form bottom → use 53 */
+  border-radius: 21.33px;
+  padding: 42.67px;
+  background: #fff8f6;
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
 }
 
 .export-form fieldset {
-  margin: 0 0 48px;
+  margin: 0 0 32px;
   border: 0;
   padding: 0;
-}
-
-.export-form fieldset:nth-of-type(2) {
-  margin-bottom: 48px;
 }
 
 .export-form fieldset:nth-of-type(3) {
@@ -3779,34 +3845,38 @@ textarea {
 }
 
 .export-form legend {
+  /* Figma 1079:2177: Epilogue Bold 18/28 */
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 32px;
+  gap: 8px;
+  margin: 0 0 21.33px;
   padding: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 18.67px;
 }
 
 .export-form legend span {
+  /* Figma 1079:2175: 32×32 bg rgba(190,0,75,0.1) Epilogue Bold 12 #be004b */
   display: inline-grid;
-  width: 32px;
-  height: 32px;
+  width: 21.33px;
+  height: 21.33px;
   place-items: center;
   border-radius: 50%;
   background: rgba(190, 0, 75, 0.1);
   color: var(--color-accent);
-  font-size: 12px;
-  line-height: 16px;
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 10.67px;
 }
 
 .export-field-grid {
   display: grid;
-  grid-template-columns: repeat(2, 432px);
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr); /* 743 × 0.667 = 495 — let the form width drive */
+  gap: 21.33px;
 }
 
 .export-form label {
@@ -3819,32 +3889,38 @@ textarea {
 }
 
 .export-form label span {
+  /* Figma 1079:2183 etc: PJS Regular 16/24 #825348 */
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 10.67px;
+  left: 10.67px;
   z-index: 1;
   color: var(--color-muted);
-  font-size: 16px;
-  line-height: 24px;
+  font-family: var(--font-body);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 16px;
   pointer-events: none;
 }
 
 .export-form input,
 .export-form select,
 .export-form textarea {
+  /* Figma 1079:2180: bg #fff0ed, border-b rgba(222,164,151,0.3) */
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(222, 164, 151, 0.55);
-  border-radius: 8px 8px 0 0;
+  border-bottom: 0.67px solid rgba(222, 164, 151, 0.3);
+  border-radius: 5.33px 5.33px 0 0;
   background: #fff0ed;
   color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 10.67px;
   outline: none;
 }
 
 .export-form input,
 .export-form select {
-  height: 56px;
-  padding: 16px;
+  height: 37.33px;
+  padding: 10.67px;
 }
 
 .export-form select {
@@ -3852,77 +3928,89 @@ textarea {
 }
 
 .export-message-field textarea {
-  height: 129px;
-  padding: 16px;
+  height: 86px; /* 129 × 0.667 */
+  padding: 10.67px;
   resize: none;
 }
 
 .export-form-actions {
   display: flex;
   justify-content: flex-end;
-  padding-top: 32px;
+  padding-top: 21.33px;
 }
 
 .export-form button {
+  /* Figma 1079:2251: 257×60, gradient be004b → a70041, Epilogue Bold 14/20 tracking 1.4 uppercase */
   display: inline-flex;
-  min-width: 257px;
-  min-height: 60px;
+  min-width: 171.33px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   border: 0;
   border-radius: 9999px;
-  padding: 20px 48px;
+  padding: 13.33px 32px;
   background: linear-gradient(90deg, var(--color-accent), var(--color-accent-dark));
   color: white;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 9.33px;
   font-weight: 700;
-  letter-spacing: 1.4px;
-  line-height: 20px;
+  letter-spacing: 0.93px;
+  line-height: 13.33px;
   text-transform: uppercase;
-  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
   cursor: pointer;
 }
 
 .export-form button img {
-  width: 19px;
-  height: 16px;
+  width: 12.67px;
+  height: 10.67px;
   flex: 0 0 auto;
 }
 
+/* ====================================================
+   Footprint Section — Figma node 1079:2256, all × 0.667
+   ==================================================== */
 .export-footprint {
-  display: grid;
-  height: 611px;
-  grid-template-columns: 600px 600px;
-  gap: 80px;
+  /* Figma section: 1784 × 710, x=66 in page */
+  position: relative;
+  display: block;
+  width: 1189.33px; /* 1784 × 0.667 */
+  height: 473.33px; /* 710 × 0.667 */
+  margin: 0 auto;
   overflow: hidden;
-  border-radius: 24px 24px 0 0;
+  border-radius: 16px;
   background: #fff0ed;
 }
 
 .export-footprint-copy {
-  padding: 80px 0 0 80px;
+  /* Figma container 1079:2257: padded 80 80 inside */
+  padding: 53.33px 0 0 53.33px;
 }
 
 .export-footprint-copy > span {
+  /* Figma 1079:2259: PJS Regular 12 tracking 1.2 uppercase #be004b */
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 10.67px;
   color: var(--color-accent);
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  line-height: 16px;
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  line-height: 10.67px;
   text-transform: uppercase;
 }
 
 .export-footprint h2 {
-  width: 392px;
+  /* Figma 1079:2261: Epilogue Bold 48/60 tracking -1.2 */
+  width: 261.33px;
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 60px;
+  line-height: 40px;
+  letter-spacing: -0.8px;
 }
 
 .export-footprint h2 em {
@@ -3932,36 +4020,47 @@ textarea {
 }
 
 .export-footprint p {
-  width: 475px;
-  margin: 48px 0 0;
+  /* Figma 1079:2263: PJS Regular 20/32.5 #825348, w=954 */
+  width: 636px;
+  margin: 32px 0 0;
   color: var(--color-muted);
-  font-size: 20px;
-  line-height: 32.5px;
+  font-family: var(--font-body);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
 }
 
 .export-footprint strong {
+  /* Figma 1079:2267: Epilogue SemiBold 64/40 */
   display: block;
-  margin-top: 48px;
+  margin-top: 32px;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 42.67px;
   font-weight: 600;
-  line-height: 40px;
+  line-height: 26.67px;
 }
 
 .export-footprint small {
+  /* Figma 1079:2269: PJS Regular 24/20 tracking 1.4 uppercase #825348 */
   display: block;
-  margin-top: 4px;
+  margin-top: 14.67px;
   color: var(--color-muted);
-  font-size: 14px;
-  letter-spacing: 1.4px;
-  line-height: 20px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.93px;
+  line-height: 13.33px;
   text-transform: uppercase;
 }
 
 .export-footprint img {
-  width: 600px;
-  height: 611px;
+  /* Figma 1079:2270: 698 × 710 right-aligned */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 465.33px;
+  height: 473.33px;
   object-fit: cover;
 }
 

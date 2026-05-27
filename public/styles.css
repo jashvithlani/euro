@@ -3433,9 +3433,10 @@ textarea {
    All values scaled from Figma 1920 → 1280 viewport (× 0.6667).
    ==================================================== */
 .export-hero {
-  /* Figma section: 1826 × 843 at x=66; pad 95.5 × 40 inner */
+  /* Figma section: 1826 × 843 at x=66; pad 95.5 × 40 inner.
+     Main starts at Figma y=161 (= 98 nav + 63 gap); add 65.33 nav + 42 gap = 107.33 padding-top */
   height: 562px;
-  padding: 63.67px 26.67px;
+  padding: 107.33px 26.67px 63.67px;
 }
 
 .export-hero-grid {
@@ -3627,15 +3628,21 @@ textarea {
 }
 
 .export-story-grid {
+  /* Figma 1079:2128 (1840w): left col 1079:2129 (x=0,w=1070) + right group 1079:2158 (x=1237,w=547) → gap 167 */
   display: grid;
-  grid-template-columns: 448.89px 272.28px; /* 673.333 408.421 × 0.667 */
-  gap: 42.67px;
-  width: 1226.67px; /* 1840 × 0.667 */
+  grid-template-columns: 713.33px 364.67px;
+  gap: 111.33px;
+  width: 1226.67px;
   margin: 0 auto;
 }
 
+.export-story-copy {
+  width: 713.33px;
+}
+
 .export-story-copy h2 {
-  /* Figma 1079:2131: Epilogue ExtraBold 48/48 tracking -1.2 */
+  /* Figma 1079:2131: Epilogue ExtraBold 48/48 tracking -1.2, w=1070 */
+  width: 713.33px;
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
@@ -3671,12 +3678,12 @@ textarea {
 }
 
 .export-contact-card {
-  /* Figma 1079:2137: bg #fff8f6, border-l 4 accent, p 56/40/40/44, radius 24 */
+  /* Figma 1079:2137: bg #fff8f6, border-l 4 accent, p 56/40/40/44, radius 24, w=1070 (matches left col) */
   display: flex;
-  width: 448.89px;
+  width: 713.33px;
   align-items: flex-start;
   gap: 16px;
-  margin-top: 32px;
+  margin-top: 57.33px; /* Figma y=519 - bottom of body y=433 = 86 → 57.33 */
   border-left: 2.67px solid var(--color-accent);
   border-radius: 16px;
   padding: 37.33px 26.67px 26.67px 29.33px;
@@ -3735,17 +3742,18 @@ textarea {
 }
 
 .export-story-media {
+  /* Figma right group 1079:2158: wafers card 546×431 + factory 547×308 stacked, gap 16 (Figma: y=447 - 431 = 16) */
   display: grid;
-  gap: 14.67px;
+  gap: 10.67px;
   align-content: start;
-  width: 272.28px;
+  width: 364.67px;
 }
 
 .export-wafers-card {
   /* Figma 1079:2161: 546 × 431, radius 24 */
   position: relative;
-  width: 272.28px;
-  height: 287.33px; /* 431 × 0.667, slightly clipped to keep aspect */
+  width: 364.67px;
+  height: 287.33px;
   margin: 0;
   overflow: hidden;
   border-radius: 16px;
@@ -3776,9 +3784,9 @@ textarea {
 }
 
 .export-factory-image {
-  /* Figma 1079:2159: 547 × 308 */
-  width: 272.28px;
-  height: 145.33px;
+  /* Figma 1079:2159: 547 × 308, radius 24 */
+  width: 364.67px;
+  height: 205.33px;
   border-radius: 16px;
   object-fit: cover;
 }
@@ -3972,12 +3980,12 @@ textarea {
    Footprint Section — Figma node 1079:2256, all × 0.667
    ==================================================== */
 .export-footprint {
-  /* Figma section: 1784 × 710, x=66 in page */
+  /* Figma section: 1784 × 710, x=66 in page; Footer at Figma y=3966 → gap 69 below footprint = 46 scaled */
   position: relative;
   display: block;
   width: 1189.33px; /* 1784 × 0.667 */
   height: 473.33px; /* 710 × 0.667 */
-  margin: 0 auto;
+  margin: 0 auto 46px;
   overflow: hidden;
   border-radius: 16px;
   background: #fff0ed;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const footerLinks = [
@@ -34,23 +33,9 @@ const certificateLogos = [
   { src: "assets/footer-cert-member.png", alt: "Member certification" },
 ];
 
-function getFooterLinks(useLocalLinks) {
-  return footerLinks.map((link) => {
-    if (!useLocalLinks) {
-      return link;
-    }
-
-    if (link.key === "products") {
-      return { ...link, href: "#products" };
-    }
-
-    return link;
-  });
-}
-
-function Newsletter({ className, action }) {
+function Newsletter() {
   return (
-    <form className={className} action={action}>
+    <form className="newsletter" action="#">
       <input type="email" placeholder="Email Address" aria-label="Email Address" />
       <button type="submit" aria-label="Subscribe">
         <img src="assets/exports-icon-arrow.svg" alt="" />
@@ -59,95 +44,58 @@ function Newsletter({ className, action }) {
   );
 }
 
-function LinkColumn({ className, useLocalLinks }) {
+export default function Footer() {
   return (
-    <div className={className}>
-      <h2>Links</h2>
-      {getFooterLinks(useLocalLinks).map((link) =>
-        link.href.startsWith("/") ? (
-          <Link key={link.key} to={link.href}>
-            {link.label}
-          </Link>
-        ) : (
-          <a key={link.key} href={link.href}>
-            {link.label}
-          </a>
-        ),
-      )}
-    </div>
-  );
-}
-
-function SupportColumn() {
-  return (
-    <div className="footer-support">
-      <h2>Support</h2>
-      {supportItems.map((item) => (
-        <p key={item.icon}>
-          <img src={item.icon} alt="" />
-          {item.exportsLabel || item.label}
-        </p>
-      ))}
-    </div>
-  );
-}
-
-function NewsletterColumn() {
-  return (
-    <div className="footer-newsletter">
-      <h2>Newsletter</h2>
-      <p>Get the latest snack drops!</p>
-      <Newsletter className="newsletter" action="#" />
-    </div>
-  );
-}
-
-function Certificates() {
-  return (
-    <div className="footer-certificates">
-      <h2>Certificates</h2>
-      <div className="footer-certificate-strip">
-        {certificateLogos.map((logo) => (
-          <img key={logo.src} src={logo.src} alt={logo.alt} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Availability() {
-  return (
-    <div className="footer-availability">
-      <span>Also available on</span>
-      <img src="assets/footer-amazon.png" alt="Amazon" />
-    </div>
-  );
-}
-
-function DesignFooter({ useLocalLinks = false, extraBottomSpace = false }) {
-  const className = ["footer", extraBottomSpace ? "footer--extra" : ""].filter(Boolean).join(" ");
-
-  return (
-    <footer className={className} id="contact">
+    <footer className="footer" id="contact">
       <div className="footer-inner">
         <div className="footer-primary">
           <div className="footer-about">
             <img src="assets/logo-footer.png" alt="Euro India Foods" />
-            <p>Elevating India's snack culture through quality, innovation, and authentic flavor stories.</p>
+            <p>Elevating India&apos;s snack culture through quality, innovation, and authentic flavor stories.</p>
           </div>
-          <LinkColumn className="footer-links" useLocalLinks={useLocalLinks} />
-          <SupportColumn />
-          <NewsletterColumn />
+
+          <div className="footer-links">
+            <h2>Links</h2>
+            {footerLinks.map((link) => (
+              <Link key={link.key} to={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="footer-support">
+            <h2>Support</h2>
+            {supportItems.map((item) => (
+              <p key={item.icon}>
+                <img src={item.icon} alt="" />
+                {item.exportsLabel || item.label}
+              </p>
+            ))}
+          </div>
+
+          <div className="footer-newsletter">
+            <h2>Newsletter</h2>
+            <p>Get the latest snack drops!</p>
+            <Newsletter />
+          </div>
         </div>
+
         <div className="footer-secondary">
-          <Certificates />
-          <Availability />
+          <div className="footer-certificates">
+            <h2>Certificates</h2>
+            <div className="footer-certificate-strip">
+              {certificateLogos.map((logo) => (
+                <img key={logo.src} src={logo.src} alt={logo.alt} />
+              ))}
+            </div>
+          </div>
+
+          <div className="footer-availability">
+            <span>Also available on</span>
+            <img src="assets/footer-amazon.png" alt="Amazon" />
+          </div>
         </div>
       </div>
     </footer>
   );
-}
-
-export default function Footer({ useLocalLinks = false, extraBottomSpace = false }) {
-  return <DesignFooter useLocalLinks={useLocalLinks} extraBottomSpace={extraBottomSpace} />;
 }

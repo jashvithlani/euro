@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getNavActive } from "../site-routing.js";
 
 const navItems = [
   { key: "home", label: "Home", href: "/" },
@@ -33,7 +33,10 @@ function NavItem({ item, active }) {
   );
 }
 
-export default function Header({ active = "home" }) {
+export default function Header() {
+  const { pathname } = useLocation();
+  const active = getNavActive(pathname);
+
   return (
     <header className="site-nav">
       <Link className="site-logo" to="/" aria-label="Euro India Foods">

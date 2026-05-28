@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const footerLinks = [
   { key: "home", label: "Home", href: "/" },
@@ -62,11 +63,17 @@ function LinkColumn({ className, useLocalLinks }) {
   return (
     <div className={className}>
       <h2>Links</h2>
-      {getFooterLinks(useLocalLinks).map((link) => (
-        <a key={link.key} href={link.href}>
-          {link.label}
-        </a>
-      ))}
+      {getFooterLinks(useLocalLinks).map((link) =>
+        link.href.startsWith("/") ? (
+          <Link key={link.key} to={link.href}>
+            {link.label}
+          </Link>
+        ) : (
+          <a key={link.key} href={link.href}>
+            {link.label}
+          </a>
+        ),
+      )}
     </div>
   );
 }

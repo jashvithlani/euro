@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -8,6 +9,7 @@ import CareerPage from "./pages/CareerPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import DealersPage from "./pages/DealersPage.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
+import InvestorPage from "./pages/InvestorPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 
 const DESIGN_WIDTH = 1280;
@@ -23,42 +25,6 @@ function getViewportWidthScale() {
   const viewportWidth = window.innerWidth || DESIGN_WIDTH;
   const clampedWidth = Math.min(MAX_RESPONSIVE_WIDTH, Math.max(MIN_RESPONSIVE_WIDTH, viewportWidth));
   return clampedWidth / DESIGN_WIDTH;
-}
-
-function ChipsPage() {
-  return <CategoryPage pageKey="chips" />;
-}
-
-function BeveragesPage() {
-  return <CategoryPage pageKey="beverages" />;
-}
-
-function GetmorePage() {
-  return <CategoryPage pageKey="getmore" />;
-}
-
-function NamkeenPage() {
-  return <CategoryPage pageKey="namkeen" />;
-}
-
-function ChikkiPage() {
-  return <CategoryPage pageKey="chikki" />;
-}
-
-function KhakhraPage() {
-  return <CategoryPage pageKey="khakhra" />;
-}
-
-function BakeryPage() {
-  return <CategoryPage pageKey="bakery" />;
-}
-
-function FryumsPage() {
-  return <CategoryPage pageKey="fryums" />;
-}
-
-function FaraliPage() {
-  return <CategoryPage pageKey="farali" />;
 }
 
 const pageConfig = {
@@ -104,95 +70,70 @@ const pageConfig = {
     header: { active: "achievements" },
     footer: { variant: "exports" },
   },
+  investor: {
+    Page: InvestorPage,
+    shellClassName: "page-shell investor-page",
+    header: { active: "investor" },
+    footer: { variant: "exports" },
+  },
   chips: {
-    Page: ChipsPage,
+    Page: () => <CategoryPage pageKey="chips" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   beverages: {
-    Page: BeveragesPage,
+    Page: () => <CategoryPage pageKey="beverages" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   getmore: {
-    Page: GetmorePage,
+    Page: () => <CategoryPage pageKey="getmore" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   namkeen: {
-    Page: NamkeenPage,
+    Page: () => <CategoryPage pageKey="namkeen" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   chikki: {
-    Page: ChikkiPage,
+    Page: () => <CategoryPage pageKey="chikki" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   khakhra: {
-    Page: KhakhraPage,
+    Page: () => <CategoryPage pageKey="khakhra" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   bakery: {
-    Page: BakeryPage,
+    Page: () => <CategoryPage pageKey="bakery" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   fryums: {
-    Page: FryumsPage,
+    Page: () => <CategoryPage pageKey="fryums" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
   farali: {
-    Page: FaraliPage,
+    Page: () => <CategoryPage pageKey="farali" />,
     shellClassName: "page-shell category-page",
     header: { active: "products" },
     footer: { variant: "category" },
   },
 };
 
-const routeToPage = {
-  "/": "home",
-  "/about": "about",
-  "/exports": "exports",
-  "/career": "career",
-  "/contact": "contact",
-  "/dealers": "dealers",
-  "/achievements": "achievements",
-  "/chips": "chips",
-  "/beverages": "beverages",
-  "/getmore": "getmore",
-  "/namkeen": "namkeen",
-  "/chikki": "chikki",
-  "/khakhra": "khakhra",
-  "/bakery": "bakery",
-  "/fryums": "fryums",
-  "/farali": "farali",
-};
-
-function normalizePath(pathname) {
-  if (pathname !== "/" && pathname.endsWith("/")) {
-    return pathname.slice(0, -1);
-  }
-
-  return pathname;
-}
-
-function getPageKey() {
-  return routeToPage[normalizePath(window.location.pathname)] || "home";
-}
-
-export default function App() {
-  const pageKey = getPageKey();
+function PageShell({ pageKey }) {
+  const location = useLocation();
   const config = pageConfig[pageKey];
   const { Page } = config;
   const shellRef = React.useRef(null);
@@ -201,6 +142,10 @@ export default function App() {
   const [viewportHeight, setViewportHeight] = React.useState(() =>
     typeof window === "undefined" ? DEFAULT_HOME_HERO_HEIGHT : window.innerHeight || DEFAULT_HOME_HERO_HEIGHT,
   );
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   React.useLayoutEffect(() => {
     const updateLayout = () => {
@@ -227,7 +172,7 @@ export default function App() {
       window.removeEventListener("resize", updateLayout);
       resizeObserver?.disconnect();
     };
-  }, []);
+  }, [pageKey]);
 
   const homeHeroHeight = viewportHeight / scale;
 
@@ -246,5 +191,34 @@ export default function App() {
         <Footer {...config.footer} />
       </div>
     </div>
+  );
+}
+
+function PageRoute({ pageKey }) {
+  return <PageShell pageKey={pageKey} />;
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<PageRoute pageKey="home" />} />
+      <Route path="/about" element={<PageRoute pageKey="about" />} />
+      <Route path="/exports" element={<PageRoute pageKey="exports" />} />
+      <Route path="/career" element={<PageRoute pageKey="career" />} />
+      <Route path="/contact" element={<PageRoute pageKey="contact" />} />
+      <Route path="/dealers" element={<PageRoute pageKey="dealers" />} />
+      <Route path="/achievements" element={<PageRoute pageKey="achievements" />} />
+      <Route path="/investor" element={<PageRoute pageKey="investor" />} />
+      <Route path="/chips" element={<PageRoute pageKey="chips" />} />
+      <Route path="/beverages" element={<PageRoute pageKey="beverages" />} />
+      <Route path="/getmore" element={<PageRoute pageKey="getmore" />} />
+      <Route path="/namkeen" element={<PageRoute pageKey="namkeen" />} />
+      <Route path="/chikki" element={<PageRoute pageKey="chikki" />} />
+      <Route path="/khakhra" element={<PageRoute pageKey="khakhra" />} />
+      <Route path="/bakery" element={<PageRoute pageKey="bakery" />} />
+      <Route path="/fryums" element={<PageRoute pageKey="fryums" />} />
+      <Route path="/farali" element={<PageRoute pageKey="farali" />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }

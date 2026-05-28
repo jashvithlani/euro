@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const valueCards = [
   {
@@ -71,7 +72,7 @@ export default function CareerPage() {
             </p>
             <div className="career-hero-actions">
               <a href="#career-application">Apply Now</a>
-              <a href="/about">About us</a>
+              <Link to="/about">About us</Link>
             </div>
           </div>
           <div className="career-hero-media">

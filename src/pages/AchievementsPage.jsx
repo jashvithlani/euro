@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./AchievementsPage.css";
 
 const stats = [
@@ -109,7 +110,7 @@ export default function AchievementsPage() {
             delivers a product your customers will trust.
           </p>
         </div>
-        <a className="achievements-cta-button" href="/dealers">Explore Dealership</a>
+        <Link className="achievements-cta-button" to="/dealers">Explore Dealership</Link>
       </section>
     </main>
   );

@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { key: "home", label: "Home", href: "/" },
   { key: "products", label: "Products", href: "/chips" },
   { key: "about", label: "About", href: "/about" },
-  { key: "investor", label: "Investor", href: "/achievements" },
+  { key: "investor", label: "Investor", href: "/investor" },
   { key: "exports", label: "Exports", href: "/exports" },
   { key: "career", label: "Career", href: "/career" },
   { key: "partner", label: "Dealership", href: "/dealers" },
@@ -13,22 +14,34 @@ const navItems = [
   { key: "contact", label: "Contact", href: "/contact" },
 ];
 
+function NavItem({ item, active }) {
+  const className = item.key === active ? "is-active" : undefined;
+  const ariaCurrent = item.key === active ? "page" : undefined;
+
+  if (item.href.startsWith("/")) {
+    return (
+      <Link className={className} to={item.href} aria-current={ariaCurrent}>
+        {item.label}
+      </Link>
+    );
+  }
+
+  return (
+    <a className={className} href={item.href} aria-current={ariaCurrent}>
+      {item.label}
+    </a>
+  );
+}
+
 export default function Header({ active = "home" }) {
   return (
     <header className="site-nav">
-      <a className="site-logo" href="/" aria-label="Euro India Foods">
+      <Link className="site-logo" to="/" aria-label="Euro India Foods">
         <img src="assets/logo-main.png" alt="Euro India Foods" />
-      </a>
+      </Link>
       <nav className="nav-list" aria-label="Main navigation">
         {navItems.map((item) => (
-          <a
-            key={item.key}
-            className={item.key === active ? "is-active" : undefined}
-            href={item.href}
-            aria-current={item.key === active ? "page" : undefined}
-          >
-            {item.label}
-          </a>
+          <NavItem key={item.key} item={item} active={active} />
         ))}
         <button className="nav-search" type="button" aria-label="Search">
           <svg aria-hidden="true" viewBox="0 0 18 18" focusable="false">

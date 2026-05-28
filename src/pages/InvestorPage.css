@@ -1,0 +1,396 @@
+.investor-main {
+  position: relative;
+  width: 1280px;
+  height: 1521px;
+  overflow: hidden;
+  background: var(--color-page, #fff8f6);
+  color: var(--color-ink, #4e281f);
+}
+
+/* Hero — Figma 1103:4510 */
+
+.investor-hero {
+  position: absolute;
+  top: 82px;
+  left: 44px;
+  width: 1192px;
+  height: 479px;
+}
+
+.investor-hero-copy {
+  position: absolute;
+  top: 104px;
+  left: 0;
+  width: 442px;
+}
+
+.investor-hero-copy h1 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 64px;
+  letter-spacing: -1.28px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-hero-copy h1 em {
+  display: block;
+  font-style: italic;
+  color: #d51357;
+}
+
+.investor-hero-copy p {
+  margin: 32px 0 0;
+  max-width: 299px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
+  color: var(--color-muted, #825348);
+}
+
+/* Media card — 802×543 @1920 → 535×362 @1280 */
+.investor-hero-media {
+  position: absolute;
+  top: 43px;
+  right: 0;
+  width: 535px;
+  height: 362px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffe2db;
+}
+
+/* Fit full image in box without cropping/zoom */
+.investor-hero-photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center top;
+  pointer-events: none;
+}
+
+/* 1103:4517 — left texture overlay */
+.investor-hero-media-texture {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 316px;
+  height: 394px;
+  overflow: hidden;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.investor-hero-media-texture img {
+  position: absolute;
+  top: 0;
+  left: -12.5%;
+  width: 125%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* 1103:4519 — bottom fade */
+.investor-hero-gradient {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 395px;
+  background: linear-gradient(0deg, rgba(255, 218, 210, 0.8) 0%, rgba(255, 218, 210, 0) 100%);
+  pointer-events: none;
+}
+
+.investor-hero-ticker {
+  position: absolute;
+  z-index: 2;
+  left: 21px;
+  bottom: 21px;
+  width: 273px;
+}
+
+.investor-hero-ticker-label {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #d51357;
+}
+
+.investor-hero-ticker-value {
+  margin: 5px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+/* Filter navigation — Figma 1103:4526 / 1103:4527 (absolute pill grid) */
+
+.investor-filters {
+  position: absolute;
+  top: 537px;
+  left: 0;
+  width: 1280px;
+  height: 190px;
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+  border-bottom: 1px solid rgba(222, 164, 151, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+}
+
+.investor-filters-inner {
+  position: absolute;
+  top: 16.67px;
+  left: 48px;
+  width: 1189.33px;
+  height: 138.67px;
+}
+
+.investor-filter-pill {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(222, 164, 151, 0.3);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-muted, #825348);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 600;
+  line-height: 13.33px;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.investor-filter-pill--muted-border {
+  border-color: rgba(130, 83, 72, 0.2);
+}
+
+.investor-filter-pill.is-active {
+  border-color: rgba(213, 19, 87, 0.3);
+  background: rgba(213, 19, 87, 0.1);
+  color: #d51357;
+}
+
+/* Prospectus document — Figma 1103:4560–4573 */
+
+.investor-documents {
+  position: absolute;
+  top: 779px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-documents > h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 26.67px;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+/* Document card — Figma 1103:4561 (935×393 → 623×262) */
+
+.investor-document-card {
+  position: relative;
+  width: 623px;
+  height: 262px;
+  margin: 21px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 8px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-document-card-accent {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  width: 85px;
+  height: 85px;
+  border-bottom-left-radius: 9999px;
+  background: rgba(255, 169, 183, 0.2);
+  pointer-events: none;
+}
+
+.investor-document-icon {
+  position: absolute;
+  top: 19px;
+  left: 279px;
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 9999px;
+  background: #fff0ed;
+}
+
+.investor-document-icon img {
+  width: 27px;
+  height: 27px;
+}
+
+.investor-document-copy {
+  position: absolute;
+  top: 105px;
+  left: 174px;
+  width: 274px;
+  text-align: center;
+}
+
+.investor-document-copy h3 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-document-copy p {
+  margin: 12px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-document-download {
+  position: absolute;
+  top: 205px;
+  left: 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 181px;
+  height: 37px;
+  border-radius: 9999px;
+  background: var(--color-ink, #4e281f);
+  box-shadow:
+    0 6.67px 10px -2px rgba(0, 0, 0, 0.1),
+    0 2.67px 4px -2.67px rgba(0, 0, 0, 0.1);
+  color: var(--color-page, #fff8f6);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.investor-document-download img {
+  width: 10px;
+  height: 10px;
+}
+
+/* Transparency — Figma 1103:4580 → 4583 (Margin) → 4584 (Background) */
+
+.investor-transparency {
+  position: absolute;
+  top: 1134px;
+  left: 197px;
+  width: 885px;
+  height: 387px;
+}
+
+.investor-transparency-layout {
+  position: relative;
+  width: 885px;
+  height: 387px;
+}
+
+/* 1103:4581 — photo card */
+.investor-transparency-visual {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 592px;
+  height: 267px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16.67px 33.33px -8px rgba(0, 0, 0, 0.25);
+}
+
+.investor-transparency-visual img {
+  position: absolute;
+  top: 33px;
+  left: 49px;
+  width: 262px;
+  height: 201px;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* 1103:4583 — right column wrapper */
+.investor-transparency-aside {
+  position: absolute;
+  top: 52px;
+  left: 411px;
+  right: 0;
+  height: 226px;
+}
+
+/* 1103:4584 — pink panel: left -80px @1920, p 40px, gap 24px */
+.investor-transparency-copy {
+  position: absolute;
+  top: 36px;
+  left: -53px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 27px;
+  border-radius: 8px;
+  background: #ffe2db;
+}
+
+.investor-transparency-copy h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-transparency-copy h2 span {
+  display: block;
+  line-height: 25px;
+}
+
+.investor-transparency-copy p {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
+  color: var(--color-muted, #825348);
+}

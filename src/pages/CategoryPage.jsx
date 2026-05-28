@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./CategoryPage.css";
 import ProductSubNav from "../components/ProductSubNav.jsx";
 
@@ -1556,9 +1557,9 @@ function PromoPanel({ item }) {
           ))}
         </h2>
         <p style={{ color: item.copyColor || item.color }}>{item.copy}</p>
-        <a href="/about" style={{ color: item.buttonColor }}>
+        <Link to="/about" style={{ color: item.buttonColor }}>
           LEARN OUR STORY
-        </a>
+        </Link>
       </div>
     </section>
   );

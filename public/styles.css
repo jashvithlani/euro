@@ -56,22 +56,6 @@ textarea {
   font: inherit;
 }
 
-.route-fallback {
-  display: flex;
-  min-height: 320px;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 24px;
-}
-
-.route-fallback__text {
-  color: var(--color-muted, #825348);
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
 .app-viewport {
   width: 100%;
   min-height: 100vh;

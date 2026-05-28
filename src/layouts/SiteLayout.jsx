@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import RouteFallback from "../components/RouteFallback.jsx";
 import { getShellClassName } from "../site-routing.js";
 
 const DESIGN_WIDTH = 1280;
@@ -75,9 +74,7 @@ export default function SiteLayout() {
     >
       <div ref={shellRef} className={shellClassName}>
         <Header />
-        <Suspense fallback={<RouteFallback />}>
-          <Outlet />
-        </Suspense>
+        <Outlet />
         <Footer />
       </div>
     </div>

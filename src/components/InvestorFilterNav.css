@@ -1,0 +1,62 @@
+/* Filter navigation — Figma 1103:4526 / 1103:4527 (absolute pill grid) */
+
+.investor-filter-nav {
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+  border-bottom: 1px solid rgba(222, 164, 151, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+}
+
+.investor-filter-nav__inner {
+  position: absolute;
+  top: 16.67px;
+  left: 48px;
+  width: 1189.33px;
+  height: 138.67px;
+}
+
+.investor-filter-nav__pill {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(222, 164, 151, 0.3);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-muted, #825348);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 600;
+  line-height: 13.33px;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.investor-filter-nav__pill--muted-border {
+  border-color: rgba(130, 83, 72, 0.2);
+}
+
+.investor-filter-nav__pill.is-active {
+  border-color: rgba(213, 19, 87, 0.3);
+  background: rgba(213, 19, 87, 0.1);
+  color: #d51357;
+}
+
+.investor-filter-nav__pill:hover:not(.is-active),
+.investor-filter-nav__pill:focus-visible:not(.is-active) {
+  border-color: rgba(213, 19, 87, 0.25);
+  background: rgba(213, 19, 87, 0.06);
+  color: #b81049;
+}
+
+.investor-filter-nav__pill:focus-visible {
+  outline: 2px solid rgba(213, 19, 87, 0.4);
+  outline-offset: 2px;
+}

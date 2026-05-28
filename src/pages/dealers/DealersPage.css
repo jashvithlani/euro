@@ -1,0 +1,472 @@
+.dealers-main {
+  width: 1280px;
+  min-height: 3804px;
+  padding-top: 197px;
+  background: #fff8f6;
+  color: #4e281f;
+}
+
+.dealers-form-section {
+  width: 1024px;
+  height: 1734px;
+  margin: 0 auto 43px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 40px;
+  padding: 65px 65px 81px;
+  background: #fff0ed;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.dealers-form-section h1 {
+  display: flex;
+  width: 930px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 64px;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -3.6px;
+  line-height: 72px;
+  text-align: center;
+}
+
+.dealers-form-section h1 em {
+  color: #be004b;
+  font-style: italic;
+}
+
+.dealers-form-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.dealers-form-intro h2 {
+  margin: 0;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.dealers-form-intro p {
+  width: 551px;
+  margin: 0;
+  color: #825348;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.dealers-form {
+  width: 100%;
+}
+
+.dealers-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 32px;
+}
+
+.dealers-field,
+.dealers-upload {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8.5px;
+}
+
+.dealers-field-wide {
+  grid-column: 1 / -1;
+}
+
+.dealers-field span,
+.dealers-upload span {
+  color: #a16e62;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.dealers-field input,
+.dealers-field select,
+.dealers-field textarea {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #4e281f;
+  font-size: 16px;
+  outline: none;
+}
+
+.dealers-field input,
+.dealers-field select {
+  height: 56px;
+  padding: 16px;
+}
+
+.dealers-field input::placeholder,
+.dealers-field textarea::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+.dealers-select-field {
+  position: relative;
+}
+
+.dealers-select-field select {
+  appearance: none;
+  color: #4e281f;
+  background-image: url("./assets/dealers-select.svg");
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+}
+
+.dealers-upload {
+  position: relative;
+}
+
+.dealers-upload input {
+  position: absolute;
+  inset: 24.5px 0 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.dealers-upload > div {
+  display: flex;
+  min-height: 126px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px dashed rgba(222, 164, 151, 0.3);
+  border-radius: 12px;
+  background: #fff0ed;
+}
+
+.dealers-upload img {
+  width: 24px;
+  height: 30px;
+}
+
+.dealers-upload p {
+  margin: 0;
+  color: #825348;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.dealers-notes textarea {
+  min-height: 128px;
+  padding: 16px;
+  resize: none;
+}
+
+.dealers-form button {
+  display: flex;
+  width: 228px;
+  height: 68px;
+  align-items: center;
+  justify-content: center;
+  margin: 32px auto 0;
+  border: 0;
+  border-radius: 9999px;
+  background: #be004b;
+  color: #ffffff;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  box-shadow: 0 10px 15px -3px rgba(190, 0, 75, 0.2),
+    0 4px 6px -4px rgba(190, 0, 75, 0.2);
+  cursor: pointer;
+}
+
+.dealers-footprint {
+  display: grid;
+  width: 1280px;
+  height: 606px;
+  grid-template-columns: 600px 600px;
+  gap: 80px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff0ed;
+}
+
+.dealers-footprint-copy {
+  padding: 80px 0 0 80px;
+}
+
+.dealers-footprint-copy > span {
+  display: block;
+  margin-bottom: 16px;
+  color: #be004b;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.dealers-footprint h2 {
+  width: 392px;
+  margin: 0;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 60px;
+}
+
+.dealers-footprint h2 em {
+  display: block;
+  color: #be004b;
+  font-style: normal;
+}
+
+.dealers-footprint p {
+  width: 475px;
+  margin: 48px 0 0;
+  color: #825348;
+  font-size: 20px;
+  line-height: 32.5px;
+}
+
+.dealers-footprint strong {
+  display: block;
+  margin-top: 48px;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.dealers-footprint small {
+  display: block;
+  margin-top: 4px;
+  color: #825348;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.dealers-map-panel {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  align-self: center;
+  overflow: hidden;
+  background: #ffdad2;
+}
+
+.dealers-map-panel img {
+  position: absolute;
+  top: 0;
+  left: -26px;
+  width: 652px;
+  height: 600px;
+  max-width: none;
+  object-fit: cover;
+}
+
+.dealers-pin {
+  position: absolute;
+  z-index: 2;
+  border: 4px solid #fff8f6;
+  border-radius: 50%;
+  background: #be004b;
+}
+
+.dealers-pin::after {
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  background: #ffffff;
+  content: "";
+}
+
+.dealers-pin-surat {
+  top: 295px;
+  left: 144px;
+  width: 21px;
+  height: 21px;
+  border-color: #4d1809;
+}
+
+.dealers-pin-surat::after {
+  display: none;
+}
+
+.dealers-pin-bhavnagar {
+  top: 336px;
+  left: 172px;
+  width: 32px;
+  height: 32px;
+}
+
+.dealers-pin-mumbai {
+  top: 318px;
+  left: 158px;
+  width: 13px;
+  height: 13px;
+}
+
+.dealers-pin-mumbai::after {
+  display: none;
+}
+
+.dealers-map-label {
+  position: absolute;
+  z-index: 3;
+  color: #be004b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.dealers-map-label-surat {
+  top: 273px;
+  left: 125px;
+}
+
+.dealers-map-label-bhavnagar {
+  top: 330px;
+  left: 54px;
+}
+
+.dealers-map-label-mumbai {
+  top: 330px;
+  left: 207px;
+}
+
+.dealers-partnership {
+  background: #fff8f6;
+}
+
+.dealers-partnership > h2 {
+  width: 1254px;
+  margin: 0 auto;
+  padding: 126px 0 124px;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -3.6px;
+  line-height: 72px;
+  text-align: center;
+}
+
+.dealers-partnership > h2 span {
+  color: #f58ea6;
+}
+
+.dealers-why {
+  height: 786px;
+  padding: 96px 32px;
+  background: #f1f7fb;
+}
+
+.dealers-why-heading {
+  width: 544px;
+}
+
+.dealers-why-heading h3 {
+  margin: 0;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.dealers-why-heading p {
+  width: 443px;
+  margin: 16px 0 0;
+  color: #825348;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.dealers-rule {
+  width: 384px;
+  height: 1px;
+  margin: 52px 0 40px 704px;
+  background: rgba(222, 164, 151, 0.3);
+}
+
+.dealers-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.dealers-card {
+  height: 378px;
+  border-radius: 8px;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.dealers-card-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.dealers-card-icon img {
+  max-width: 28px;
+  max-height: 30px;
+}
+
+.dealers-card-icon-rose {
+  background: rgba(255, 169, 183, 0.3);
+}
+
+.dealers-card-icon-gold {
+  background: #ffdea7;
+}
+
+.dealers-card-icon-green {
+  background: #9df197;
+}
+
+.dealers-card-icon-pink {
+  background: rgba(255, 169, 183, 0.3);
+}
+
+.dealers-card h4 {
+  min-height: 80px;
+  margin: 16px 0 16px;
+  color: #4e281f;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.dealers-card p {
+  margin: 0;
+  color: #825348;
+  font-size: 16px;
+  line-height: 26px;
+}

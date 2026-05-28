@@ -1,14 +1,16 @@
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SiteLayout from "./layouts/SiteLayout.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import AboutPage from "./pages/AboutPage.jsx";
-import ExportsPage from "./pages/ExportsPage.jsx";
-import CareerPage from "./pages/CareerPage.jsx";
-import ContactPage from "./pages/ContactPage.jsx";
-import DealersPage from "./pages/DealersPage.jsx";
-import AchievementsPage from "./pages/AchievementsPage.jsx";
-import InvestorPage from "./pages/InvestorPage.jsx";
-import CategoryPage from "./pages/CategoryPage.jsx";
+import HomePage from "./pages/home/HomePage.jsx";
+
+const AboutPage = lazy(() => import("./pages/about/AboutPage.jsx"));
+const ExportsPage = lazy(() => import("./pages/exports/ExportsPage.jsx"));
+const CareerPage = lazy(() => import("./pages/career/CareerPage.jsx"));
+const ContactPage = lazy(() => import("./pages/contact/ContactPage.jsx"));
+const DealersPage = lazy(() => import("./pages/dealers/DealersPage.jsx"));
+const AchievementsPage = lazy(() => import("./pages/achievements/AchievementsPage.jsx"));
+const InvestorPage = lazy(() => import("./pages/investor/InvestorPage.jsx"));
+const CategoryPage = lazy(() => import("./pages/category/CategoryPage.jsx"));
 
 export default function App() {
   return (

@@ -56,6 +56,22 @@ textarea {
   font: inherit;
 }
 
+.route-fallback {
+  display: flex;
+  min-height: 320px;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.route-fallback__text {
+  color: var(--color-muted, #825348);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .app-viewport {
   width: 100%;
   min-height: 100vh;
@@ -493,15 +509,6 @@ textarea {
   margin-top: -44.5px;
   overflow: hidden;
   background: #f9f9f9;
-}
-
-.pattern-layer {
-  position: absolute;
-  inset: 0;
-  opacity: 0.065;
-  background-image: url("assets/category-pattern.png");
-  background-size: 1200px 1200px;
-  filter: invert(1);
 }
 
 .mood-heading {
@@ -1870,13 +1877,6 @@ textarea {
   padding: 33.95px 26.67px;
   color: white;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.pillar-card::before {
-  position: absolute;
-  inset: 0;
-  background: url("assets/about-pillar-bg-source.png") center / 222.57% 100%;
-  content: "";
 }
 
 .pillar-card > * {

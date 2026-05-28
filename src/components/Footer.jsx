@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { sharedAsset } from '../shared/asset.js';
 
 const footerLinks = [
   { key: "home", label: "Home", href: "/" },
@@ -9,7 +10,7 @@ const footerLinks = [
 
 const supportItems = [
   {
-    icon: "assets/exports-icon-location.svg",
+    icon: sharedAsset('exports-icon-location.svg'),
     label: "Plot 12, GIDC, Surat, Gujarat",
     exportsLabel: (
       <>
@@ -19,18 +20,18 @@ const supportItems = [
       </>
     ),
   },
-  { icon: "assets/exports-icon-phone.svg", label: "+91 261 2400000" },
-  { icon: "assets/exports-icon-mail.svg", label: "hello@euroindia.com" },
+  { icon: sharedAsset('exports-icon-phone.svg'), label: "+91 261 2400000" },
+  { icon: sharedAsset('exports-icon-mail.svg'), label: "hello@euroindia.com" },
 ];
 
 const certificateLogos = [
-  { src: "assets/footer-cert-fssai.png", alt: "FSSAI" },
-  { src: "assets/footer-cert-apeda.png", alt: "APEDA" },
-  { src: "assets/footer-cert-ghp.png", alt: "GMP" },
-  { src: "assets/footer-cert-gmp.png", alt: "GHP" },
-  { src: "assets/footer-cert-haccp.png", alt: "HACCP" },
-  { src: "assets/footer-cert-iso-22000.png", alt: "ISO 22000" },
-  { src: "assets/footer-cert-member.png", alt: "Member certification" },
+  { src: sharedAsset('footer-cert-fssai.png'), alt: "FSSAI" },
+  { src: sharedAsset('footer-cert-apeda.png'), alt: "APEDA" },
+  { src: sharedAsset('footer-cert-ghp.png'), alt: "GMP" },
+  { src: sharedAsset('footer-cert-gmp.png'), alt: "GHP" },
+  { src: sharedAsset('footer-cert-haccp.png'), alt: "HACCP" },
+  { src: sharedAsset('footer-cert-iso-22000.png'), alt: "ISO 22000" },
+  { src: sharedAsset('footer-cert-member.png'), alt: "Member certification" },
 ];
 
 function Newsletter() {
@@ -38,7 +39,7 @@ function Newsletter() {
     <form className="newsletter" action="#">
       <input type="email" placeholder="Email Address" aria-label="Email Address" />
       <button type="submit" aria-label="Subscribe">
-        <img src="assets/exports-icon-arrow.svg" alt="" />
+        <img src={sharedAsset('exports-icon-arrow.svg')} alt="" />
       </button>
     </form>
   );
@@ -50,7 +51,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-primary">
           <div className="footer-about">
-            <img src="assets/logo-footer.png" alt="Euro India Foods" />
+            <img src={sharedAsset("logo-footer.png")} alt="Euro India Foods" />
             <p>Elevating India&apos;s snack culture through quality, innovation, and authentic flavor stories.</p>
           </div>
 
@@ -92,7 +93,7 @@ export default function Footer() {
 
           <div className="footer-availability">
             <span>Also available on</span>
-            <img src="assets/footer-amazon.png" alt="Amazon" />
+            <img src={sharedAsset("footer-amazon.png")} alt="Amazon" />
           </div>
         </div>
       </div>

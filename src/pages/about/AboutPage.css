@@ -1,0 +1,6 @@
+.pillar-card::before {
+  position: absolute;
+  inset: 0;
+  background: url("./assets/about-pillar-bg-source.png") center / 222.57% 100%;
+  content: "";
+}

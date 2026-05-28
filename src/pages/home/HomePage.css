@@ -1,0 +1,8 @@
+.pattern-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.065;
+  background-image: url("./assets/category-pattern.png");
+  background-size: 1200px 1200px;
+  filter: invert(1);
+}

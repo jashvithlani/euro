@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { getNavActive } from "../site-routing.js";
+import { sharedAsset } from '../shared/asset.js';
 
 const navItems = [
   { key: "home", label: "Home", href: "/" },
@@ -40,7 +41,7 @@ export default function Header() {
   return (
     <header className="site-nav">
       <Link className="site-logo" to="/" aria-label="Euro India Foods">
-        <img src="assets/logo-main.png" alt="Euro India Foods" />
+        <img src={sharedAsset('logo-main.png')} alt="Euro India Foods" />
       </Link>
       <nav className="nav-list" aria-label="Main navigation">
         {navItems.map((item) => (

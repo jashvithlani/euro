@@ -1,0 +1,58 @@
+/* FY year tab buttons — shared across investor subpages */
+
+.investor-year-tabs__pill,
+.investor-shareholding__year,
+.investor-financial__year {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 9999px;
+  background: #fff0ed;
+  color: var(--color-ink, #4e281f);
+  font-family: var(--font-body);
+  font-size: 10.67px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.investor-year-tabs__pill.is-active,
+.investor-shareholding__year.is-active,
+.investor-financial__year.is-active {
+  background: #be004b;
+  color: #fff7f7;
+  font-weight: 700;
+  box-shadow:
+    0 6.67px 10px -2px rgba(190, 0, 75, 0.2),
+    0 2.67px 4px -2.67px rgba(190, 0, 75, 0.2);
+}
+
+.investor-year-tabs__pill:hover:not(.is-active),
+.investor-shareholding__year:hover:not(.is-active),
+.investor-financial__year:hover:not(.is-active),
+.investor-year-tabs__pill:focus-visible:not(.is-active),
+.investor-shareholding__year:focus-visible:not(.is-active),
+.investor-financial__year:focus-visible:not(.is-active) {
+  background: #ffe2db;
+  color: #be004b;
+}
+
+.investor-year-tabs__pill.is-active:hover,
+.investor-shareholding__year.is-active:hover,
+.investor-financial__year.is-active:hover {
+  background: #a80042;
+}
+
+.investor-year-tabs__pill:focus-visible,
+.investor-shareholding__year:focus-visible,
+.investor-financial__year:focus-visible {
+  outline: 2px solid rgba(190, 0, 75, 0.45);
+  outline-offset: 2px;
+}

@@ -1,0 +1,550 @@
+/* Annual Reports — Figma 1130:449 @1920 → 1280 (× 0.6667) */
+
+.investor-main.investor-main--annual {
+  height: auto;
+  min-height: 2080px;
+  overflow: visible;
+}
+
+.investor-annual {
+  position: absolute;
+  top: 727px;
+  left: 0;
+  width: 1280px;
+  padding: 0 21px 48px;
+  box-sizing: border-box;
+}
+
+.investor-annual__header {
+  text-align: center;
+  margin-bottom: 27px;
+  margin-top: 40px;
+}
+
+.investor-annual__header h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__header p {
+  margin: 12px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-annual__list {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.investor-annual__block {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+/* Year divider — 1130:716 / 762 */
+
+.investor-annual__year-head {
+  position: relative;
+  height: 32px;
+}
+
+.investor-annual__year-head--left .investor-annual__year-label {
+  left: 0;
+}
+
+.investor-annual__year-head--left .investor-annual__year-rule {
+  left: 121px;
+  right: 0;
+}
+
+.investor-annual__year-head--right .investor-annual__year-label {
+  right: 0;
+  left: auto;
+  text-align: right;
+  color: #a16e62;
+}
+
+.investor-annual__year-head--right .investor-annual__year-rule {
+  left: 0;
+  right: 121px;
+}
+
+.investor-annual__year-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -1.6px;
+  color: #be004b;
+}
+
+.investor-annual__year-rule {
+  position: absolute;
+  top: 24px;
+  height: 1px;
+  background: rgba(222, 164, 151, 0.2);
+}
+
+/* 2024-25 grid — 1130:720 */
+
+.investor-annual__grid-2024 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 21px;
+}
+
+.investor-annual__integrated {
+  position: relative;
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 253px;
+  padding: 27px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff0ed;
+}
+
+.investor-annual__integrated-watermark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.investor-annual__integrated-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding-bottom: 11px;
+}
+
+.investor-annual__integrated-copy h4 {
+  margin: 0;
+  max-width: 320px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__side-stack {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  justify-content: center;
+}
+
+.investor-annual__eyebrow {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.investor-annual__eyebrow--brand {
+  color: #be004b;
+}
+
+.investor-annual__eyebrow--amber {
+  color: #6c4c00;
+}
+
+.investor-annual__eyebrow--muted {
+  color: #a16e62;
+  font-size: 6.67px;
+  letter-spacing: 0.67px;
+  line-height: 10px;
+}
+
+.investor-annual__text-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.investor-annual__text-cta span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+}
+
+.investor-annual__text-cta--brand span {
+  color: #be004b;
+}
+
+.investor-annual__text-cta--amber span {
+  color: #6c4c00;
+  font-size: 8px;
+  letter-spacing: 0.8px;
+  line-height: 10.67px;
+}
+
+.investor-annual__text-cta img {
+  width: 10px;
+  height: 10px;
+}
+
+.investor-annual__notice-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 27px;
+  border-radius: 8px;
+}
+
+.investor-annual__notice-card--amber {
+  min-height: 169px;
+  background: rgba(255, 205, 205, 0.4);
+}
+
+.investor-annual__notice-card--amber h4 {
+  margin: 11px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #676767;
+}
+
+.investor-annual__notice-card--amber h4 span {
+  display: block;
+}
+
+.investor-annual__notice-card--amber .investor-annual__text-cta {
+  margin-top: 21px;
+}
+
+.investor-annual__notice-card--peach {
+  min-height: 159px;
+  background: #ffdad2;
+}
+
+.investor-annual__notice-card--peach h4 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 600;
+  line-height: 18.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__notice-card--peach h4 span {
+  display: block;
+}
+
+.investor-annual__notice-card--peach .investor-annual__text-cta {
+  margin-top: 16px;
+}
+
+.investor-annual__return-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 65px;
+  padding: 17px;
+  border: 1px solid rgba(222, 164, 151, 0.2);
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  text-decoration: none;
+}
+
+.investor-annual__return-row-main {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.investor-annual__return-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 8px;
+  background: #ffe2db;
+}
+
+.investor-annual__return-icon img {
+  width: 11px;
+  height: 13px;
+}
+
+.investor-annual__return-row h4 {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 13.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__return-row p {
+  margin: 3px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-annual__return-arrow {
+  width: 11px;
+  height: 11px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* 2023-24 grid — 1130:766 */
+
+.investor-annual__grid-2023 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 21px;
+}
+
+.investor-annual__grid-2023 .investor-annual__notice-card--peach {
+  grid-column: span 4;
+}
+
+.investor-annual__report-card {
+  grid-column: span 8;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 161px;
+  padding: 27px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 8px;
+  background: #fff0ed;
+}
+
+.investor-annual__report-card h4 {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 26.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__pill-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 11px 27px;
+  border-radius: 9999px;
+  background: #be004b;
+  box-shadow:
+    0 6.67px 10px -2px rgba(190, 0, 75, 0.2),
+    0 2.67px 4px -2.67px rgba(190, 0, 75, 0.2);
+  color: #fff;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
+  letter-spacing: 0.23px;
+  text-decoration: none;
+}
+
+.investor-annual__doc-preview {
+  width: 85px;
+  height: 107px;
+  padding: 11px 0 0;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.investor-annual__doc-preview span {
+  display: block;
+  height: 5px;
+  margin-bottom: 5px;
+  background: rgba(190, 0, 75, 0.2);
+}
+
+.investor-annual__doc-preview span:last-child {
+  width: 57px;
+  background: rgba(190, 0, 75, 0.1);
+}
+
+/* Prior archives — 1130:790 */
+
+.investor-annual__archives {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+  margin-top: 16px;
+}
+
+.investor-annual__archives-head {
+  display: flex;
+  align-items: center;
+}
+
+.investor-annual__archives-head h3 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 26.67px;
+  letter-spacing: -1.2px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-annual__archives-accent {
+  width: 53px;
+  height: 1px;
+  margin-left: 16px;
+  background: rgba(190, 0, 75, 0.3);
+}
+
+.investor-annual__archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 21px;
+}
+
+.investor-annual__archive-card {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  padding: 22px;
+  border: 1px solid rgba(222, 164, 151, 0.2);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.investor-annual__archive-card--compact {
+  gap: 27px;
+}
+
+.investor-annual__archive-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.investor-annual__archive-card-head h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__archive-card-head img {
+  width: 11px;
+  height: 11px;
+}
+
+.investor-annual__archive-links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.investor-annual__archive-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px;
+  border-radius: 5px;
+  background: #fff0ed;
+  text-decoration: none;
+}
+
+.investor-annual__archive-link span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__archive-link img {
+  width: 6px;
+  height: 6px;
+}
+
+.investor-annual__request-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 118px;
+  padding: 29px 23px;
+  border: 2px dashed rgba(222, 164, 151, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.investor-annual__request-card img {
+  width: 19px;
+  height: 15px;
+  margin-bottom: 11px;
+}
+
+.investor-annual__request-card h4 {
+  margin: 0 0 5px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-annual__request-card p {
+  margin: 0;
+  max-width: 203px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  color: var(--color-muted, #825348);
+}

@@ -1,0 +1,262 @@
+/* Investor Grievance — Figma 1105:4593 @1920 → 1280 (×2/3) */
+
+.investor-grievance {
+  position: absolute;
+  top: 779px;
+  left: 0;
+  width: 1280px;
+  height: 561px;
+}
+
+.investor-grievance__title {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-grievance__lead {
+  margin: 27px auto 0;
+  max-width: 754px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+.investor-grievance__cards {
+  position: absolute;
+  top: 112px;
+  left: 160px;
+  width: 960px;
+  height: 426px;
+}
+
+.investor-grievance__card {
+  position: absolute;
+  top: 0;
+  height: 426px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-grievance__card--secretary {
+  left: 0;
+  width: 513px;
+  padding: 43px;
+  background: #fff0ed;
+  box-sizing: border-box;
+}
+
+.investor-grievance__card--rta {
+  right: 0;
+  width: 413px;
+  padding: 27px 27px 27px 27px;
+  background: #ffdad2;
+  box-sizing: border-box;
+}
+
+.investor-grievance__card-accent {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  width: 85px;
+  height: 85px;
+  border-bottom-left-radius: 9999px;
+  background: rgba(255, 169, 183, 0.2);
+  pointer-events: none;
+}
+
+.investor-grievance__card-heading {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-weight: 700;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-grievance__card--secretary .investor-grievance__card-heading {
+  font-size: 24px;
+  line-height: 26.67px;
+  letter-spacing: -0.6px;
+}
+
+.investor-grievance__card--rta .investor-grievance__card-heading {
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 21.33px;
+  letter-spacing: -0.4px;
+}
+
+.investor-grievance__rows {
+  position: relative;
+  margin-top: 27px;
+}
+
+.investor-grievance__card--rta .investor-grievance__rows {
+  margin-top: 37px;
+}
+
+.investor-grievance__row {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.investor-grievance__row + .investor-grievance__row {
+  margin-top: 32px;
+}
+
+.investor-grievance__row.investor-grievance__row--grievance-contact {
+  margin-top: 35px;
+}
+
+.investor-grievance a {
+  color: var(--color-ink, #4e281f);
+  text-decoration: none;
+}
+
+.investor-grievance a:hover {
+  text-decoration: underline;
+}
+
+.investor-grievance__icon-wrap {
+  flex-shrink: 0;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9999px;
+  background: #ffdad2;
+}
+
+.investor-grievance__icon-wrap img {
+  display: block;
+  width: 11px;
+  height: 11px;
+}
+
+.investor-grievance__icon-wrap--email img {
+  width: 13px;
+  height: 11px;
+}
+
+.investor-grievance__icon-wrap--phone img {
+  width: 12px;
+  height: 12px;
+}
+
+.investor-grievance__row-body {
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.investor-grievance__label {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 700;
+  line-height: 13.33px;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.investor-grievance__value {
+  margin: 5px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-grievance__value--address {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.17px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-grievance__value--rta-name {
+  font-size: 13.33px;
+  font-weight: 700;
+  line-height: 18.67px;
+}
+
+.investor-grievance__rta-block + .investor-grievance__rta-block {
+  margin-top: 27px;
+}
+
+.investor-grievance__rta-address {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+}
+
+.investor-grievance__rta-address img {
+  flex-shrink: 0;
+  width: 11px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.investor-grievance__rta-address p {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 15.17px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-grievance__rta-links {
+  margin-top: 27px;
+}
+
+.investor-grievance__rta-link-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 16px;
+}
+
+.investor-grievance__rta-link-row + .investor-grievance__rta-link-row {
+  margin-top: 18px;
+}
+
+.investor-grievance__rta-link-row img {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.investor-grievance__rta-link-row img.investor-grievance__rta-globe {
+  width: 15px;
+  height: 15px;
+}
+
+.investor-grievance__rta-link-row a,
+.investor-grievance__rta-link-row span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-main--grievance {
+  height: 1340px;
+}
+
+.investor-main--grievance .investor-transparency {
+  display: none;
+}

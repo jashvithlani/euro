@@ -1,0 +1,296 @@
+/* Corporate Announcements outlet — Figma 1117:6898 @ 1920 → 1280 (×2/3) */
+
+.investor-announcements {
+  position: absolute;
+  top: 727px;
+  left: 0;
+  width: 1280px;
+  padding: 0 45px 53px;
+  box-sizing: border-box;
+}
+
+.investor-announcements__header {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.investor-announcements__header h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-announcements__header p {
+  margin: 16px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
+  color: var(--color-muted, #825348);
+}
+
+/* Year tabs — Figma 1117:7037 */
+
+.investor-year-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  justify-content: center;
+  margin-top: 21px;
+}
+
+.investor-announcements__fy-tabs {
+  margin-top: 21px;
+}
+
+.investor-announcements__group {
+  margin-top: 32px;
+}
+
+.investor-announcements__group-label {
+  margin: 0 0 16px;
+  padding-left: 13px;
+  border-left: 2.67px solid #d51357;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 700;
+  line-height: 13.33px;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+  color: #d51357;
+}
+
+.investor-announcements__compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.investor-compact-doc-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 65px;
+  padding: 17px;
+  border: 1px solid rgba(222, 164, 151, 0.2);
+  border-radius: 10.67px;
+  background: var(--color-white, #fff);
+  color: inherit;
+  text-decoration: none;
+}
+
+.investor-compact-doc-card--tall {
+  min-height: 73px;
+}
+
+.investor-compact-doc-card__body {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  min-width: 0;
+}
+
+.investor-compact-doc-card__icon {
+  display: grid;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 8px;
+  background: #ffe2db;
+}
+
+.investor-compact-doc-card__icon--report img {
+  width: 13px;
+  height: 13px;
+}
+
+.investor-compact-doc-card__icon--return img {
+  width: 11px;
+  height: 14px;
+}
+
+.investor-compact-doc-card__icon--notice img {
+  width: 13px;
+  height: 12px;
+}
+
+.investor-compact-doc-card--tall .investor-compact-doc-card__icon {
+  width: 27px;
+  height: 32px;
+}
+
+.investor-compact-doc-card--tall .investor-compact-doc-card__icon--notice img {
+  width: 13px;
+  height: 12px;
+}
+
+.investor-compact-doc-card__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.investor-compact-doc-card__title {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 13.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-compact-doc-card__meta {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-compact-doc-card__external {
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  margin-top: 2px;
+}
+
+.investor-announcements__view-all {
+  display: block;
+  margin: 8px auto 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.investor-announcements__calendar-tabs {
+  margin-top: 43px;
+}
+
+.investor-announcements__report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px;
+  margin-top: 32px;
+}
+
+.investor-announcements__report-grid--secondary {
+  margin-top: 21px;
+}
+
+.investor-report-card {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 22px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 10.67px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-report-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.investor-report-card__icon {
+  display: block;
+  flex-shrink: 0;
+  width: 41px;
+  height: 41px;
+}
+
+.investor-report-card__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.investor-report-card__new {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.05);
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 6.67px;
+  font-weight: 700;
+  line-height: 10px;
+  letter-spacing: 0.67px;
+  text-transform: uppercase;
+}
+
+.investor-report-card__title {
+  margin: 0;
+  padding-top: 11px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 700;
+  line-height: 16.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-report-card__date {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 11px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 500;
+  line-height: 13.33px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-report-card__date img {
+  width: 7px;
+  height: 8px;
+}
+
+.investor-report-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 17px;
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+}
+
+.investor-report-card__size {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(78, 40, 31, 0.4);
+}
+
+.investor-report-card__link {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.investor-report-card__link img {
+  width: 11px;
+  height: 8px;
+}

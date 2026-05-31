@@ -1,0 +1,294 @@
+/* Shareholding Pattern — Figma 1110:4838 @ 1920 → 1280 (× 0.6667) */
+
+.investor-main:has(.investor-shareholding),
+.investor-main--shareholding {
+  height: 1867px;
+}
+
+.investor-shareholding {
+  position: absolute;
+  top: 765px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-shareholding__title {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-shareholding__intro {
+  margin: 31px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 18.67px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+/* Year tabs — 1110:5052 */
+.investor-shareholding__years {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 713px;
+  height: 53px;
+  margin: 37px auto 0;
+  overflow: hidden;
+}
+
+.investor-shareholding__year.is-active {
+  transform: scale(1.05);
+}
+
+/* Document grid — 1110:5068 */
+.investor-shareholding__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: 21px;
+  width: 993px;
+  margin: 29px auto 0;
+}
+
+.investor-shareholding__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 48px 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+.shareholding-doc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-height: 225px;
+  padding: 22px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.shareholding-doc-card--4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.shareholding-doc-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.shareholding-doc-card__icon {
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+}
+
+.shareholding-doc-card__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shareholding-doc-card__badge {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.05);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.shareholding-doc-card__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 11px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 700;
+  line-height: 16.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.shareholding-doc-card__date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding-bottom: 11px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 500;
+  line-height: 13.33px;
+  color: var(--color-muted, #825348);
+}
+
+.shareholding-doc-card__date img {
+  width: 7px;
+  height: 8px;
+}
+
+.shareholding-doc-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+}
+
+.shareholding-doc-card__meta {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(78, 40, 31, 0.4);
+}
+
+.shareholding-doc-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #be004b;
+  text-decoration: none;
+}
+
+.shareholding-doc-card__link img {
+  width: 11px;
+  height: 8px;
+}
+
+/* Promotional patch — 1110:5140 */
+.investor-shareholding__promo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  grid-column: 2 / span 2;
+  grid-row: 2;
+  min-height: 225px;
+  padding: 27px;
+  overflow: hidden;
+  border: 1px solid rgba(222, 164, 151, 0.2);
+  border-radius: 16px;
+  background: #ffdea7;
+}
+
+.investor-shareholding__promo-glow {
+  position: absolute;
+  right: -27px;
+  bottom: -27px;
+  width: 171px;
+  height: 171px;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.1);
+  filter: blur(21px);
+  pointer-events: none;
+}
+
+.investor-shareholding__promo-copy {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  max-width: 329px;
+}
+
+.investor-shareholding__promo-eyebrow {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 10.67px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #7d5900;
+}
+
+.investor-shareholding__promo-title {
+  display: flex;
+  flex-direction: column;
+  margin: 11px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+  color: #6c4c00;
+}
+
+.investor-shareholding__promo-text {
+  margin: 11px 0 0;
+  padding-bottom: 5px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 500;
+  line-height: 16px;
+  color: rgba(108, 76, 0, 0.8);
+}
+
+.investor-shareholding__promo-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 11px;
+  padding: 8px 21px;
+  border-radius: 9999px;
+  background: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.investor-shareholding__promo-visual {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0;
+}
+
+.investor-shareholding__promo-photo {
+  transform: rotate(3deg);
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  border-radius: 11px;
+  box-shadow: 0 17px 33px -8px rgba(0, 0, 0, 0.25);
+}
+
+.investor-shareholding__promo-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,187 @@
+/* Financial Information outlet — Figma 1130:37 @ 1280px (scale 1280/1920) */
+
+/* Figma 1130:37 ends after document grids — no transparency block */
+.investor-main--financial {
+  height: 1474px;
+}
+
+.investor-financial {
+  position: absolute;
+  top: 779px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-financial__title {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-financial__lede {
+  position: absolute;
+  top: 49px;
+  left: 50%;
+  width: 570px;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+.investor-financial__years {
+  position: absolute;
+  top: 79px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 713px;
+  height: 53px;
+  margin: 0;
+  padding: 0 11px;
+  transform: translateX(-50%);
+  list-style: none;
+}
+
+.investor-financial__grid {
+  position: absolute;
+  top: 176px;
+  left: 44px;
+  right: 47px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 21px;
+}
+
+.investor-financial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-height: 225px;
+  padding: 22px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -6px rgba(78, 40, 31, 0.08);
+}
+
+.investor-financial-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.investor-financial-card__icon {
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+}
+
+.investor-financial-card__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.investor-financial-card__badge {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.05);
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 6.67px;
+  font-weight: 700;
+  line-height: 10px;
+  letter-spacing: 0.67px;
+  text-transform: uppercase;
+}
+
+.investor-financial-card__title {
+  margin: 11px 0 0;
+  padding-top: 11px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 700;
+  line-height: 16.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-financial-card__date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding-bottom: 11px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 500;
+  line-height: 13.33px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-financial-card__date img {
+  width: 7px;
+  height: 8px;
+  flex-shrink: 0;
+}
+
+.investor-financial-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+}
+
+.investor-financial-card__meta {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(78, 40, 31, 0.4);
+}
+
+.investor-financial-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.investor-financial-card__link img {
+  width: 11px;
+  height: 8px;
+}
+
+.investor-financial-card__link:hover,
+.investor-financial-card__link:focus-visible {
+  text-decoration: underline;
+}
+
+.investor-financial-card__link:focus-visible {
+  outline: 2px solid rgba(190, 0, 75, 0.35);
+  outline-offset: 2px;
+}

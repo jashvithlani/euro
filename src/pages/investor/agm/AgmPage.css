@@ -1,0 +1,201 @@
+/* AGM/EGM — Figma 1119:7391 @1920 → 1280 (× 0.6667) */
+
+.investor-main--agm {
+  height: 1780px;
+}
+
+.investor-agm {
+  position: absolute;
+  top: 768px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-agm > h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-agm__lead {
+  margin: 19px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+/* Year tabs — Figma 1119:7886 */
+.investor-agm .investor-year-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  width: 713px;
+  height: 53px;
+  margin: 18px auto 0;
+  overflow: hidden;
+}
+
+/* Document grids — Figma 1119:8031 */
+.investor-agm__grids {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  margin-top: 41px;
+  padding: 0 44px 0 44px;
+}
+
+.investor-document-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--investor-grid-columns, 3), minmax(0, 1fr));
+  gap: 21px;
+}
+
+.investor-grid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-height: 225px;
+  padding: 22px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-grid-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.investor-grid-card__icon {
+  width: 41px;
+  height: 41px;
+}
+
+.investor-grid-card__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.investor-grid-card__badge {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.05);
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 6.67px;
+  font-weight: 700;
+  letter-spacing: 0.67px;
+  line-height: 10px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.investor-grid-card__title {
+  margin: 0;
+  padding-top: 11px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 700;
+  line-height: 16.67px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-grid-card__date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 11px;
+  color: var(--color-muted, #825348);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 500;
+  line-height: 13.33px;
+}
+
+.investor-grid-card__date img {
+  width: 7px;
+  height: 8px;
+}
+
+.investor-grid-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+}
+
+.investor-grid-card__meta {
+  color: rgba(78, 40, 31, 0.4);
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 10.67px;
+  text-transform: uppercase;
+}
+
+.investor-grid-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #be004b;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.investor-grid-card__link img {
+  width: 11px;
+  height: 8px;
+}
+
+/* Postal Ballot — Figma 1119:8159 */
+.investor-agm__postal {
+  margin-top: 32px;
+  padding: 0 44px;
+}
+
+.investor-agm__postal-heading {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  margin-bottom: 21px;
+}
+
+.investor-agm__postal-heading h3 {
+  flex: 0 0 auto;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: -0.5px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-agm__postal-divider {
+  flex: 1 1 auto;
+  height: 1px;
+  background: #ffdad2;
+}
+
+.investor-agm__postal .investor-document-grid {
+  max-width: 380px;
+}

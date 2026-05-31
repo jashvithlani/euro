@@ -1,3 +1,5 @@
+@import "./components/InvestorYearTabs.css";
+
 .investor-main {
   position: relative;
   width: 1280px;
@@ -5,6 +7,20 @@
   overflow: hidden;
   background: var(--color-page, #fff8f6);
   color: var(--color-ink, #4e281f);
+}
+
+/* Composition of Board — Figma 1110:5167 (no transparency block) */
+.investor-main:has(.investor-board) {
+  height: 2100px;
+}
+
+.investor-main--secretarial {
+  height: 1673px;
+}
+
+/* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 26px bottom gap */
+.investor-main--reconciliation {
+  height: 1904px;
 }
 
 /* Hero — Figma 1103:4510 */
@@ -347,4 +363,228 @@
   font-weight: 400;
   line-height: 17.33px;
   color: var(--color-muted, #825348);
+}
+
+/* Corporate Announcements — Figma 1117:6898 (outlet only; no transparency block) */
+
+.investor-main--announcements {
+  height: 2198px; /* report grids end ~2172 + 26px breathing room */
+}
+
+/* Corporate Updates — Figma 1131:2538; +31px outlet offset vs filter nav */
+.investor-main--updates {
+  height: 1678px;
+}
+
+/* Corporate Governance Reports — Figma 1117:5978 (outlet only; no transparency block) */
+
+.investor-main--governance {
+  height: 1189px; /* governance outlet bottom ~1163 + 26px breathing room */
+}
+
+/* Corporate Policies — Figma 1117:5551 (outlet only; no transparency block) */
+
+.investor-main--policies,
+.investor-main:has(.investor-policies) {
+  height: 1386px; /* policies bottom ~1360 + 26px breathing room */
+}
+
+/* KMP page — Figma 1130:1288 outlet @1920 → 1280 */
+
+.investor-main--kmp {
+  height: 1650px; /* KMP grid (1130:1517) ends ~1583 + breathing room */
+}
+
+.investor-kmp {
+  position: absolute;
+  top: 727px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-kmp-header {
+  padding-top: 37px;
+  text-align: center;
+}
+
+.investor-kmp-title {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-kmp-title span {
+  display: block;
+}
+
+.investor-kmp-subtitle {
+  margin: 12px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.5px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-kmp-grid-section {
+  margin-top: 32px;
+  padding: 27px 53px 30px;
+  background: #fff0ed;
+}
+
+.investor-kmp-grid-section__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.investor-kmp-grid-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.investor-kmp-grid-header__title h3 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-kmp-grid-header__accent {
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 11px;
+  border-radius: 9999px;
+  background: #be004b;
+}
+
+.investor-kmp-grid-header__note {
+  max-width: 299px;
+  margin: 0;
+  padding-right: 5px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.03px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 13.33px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-kmp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 263px auto;
+  column-gap: 21px;
+  row-gap: 8px;
+}
+
+.investor-kmp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  align-self: start;
+  padding: 27px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 8px;
+  background: var(--color-white, #fff);
+}
+
+.investor-kmp-card:nth-child(n + 4) {
+  padding-bottom: 49px;
+}
+
+.investor-kmp-card__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.investor-kmp-card__avatar {
+  display: grid;
+  width: 53px;
+  height: 53px;
+  place-items: center;
+  border-radius: 9999px;
+  background: rgba(190, 0, 75, 0.1);
+}
+
+.investor-kmp-card__avatar img {
+  width: 16px;
+  height: 16px;
+}
+
+.investor-kmp-card__name {
+  margin: 13px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-kmp-card__role {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
+  letter-spacing: 0.47px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.investor-kmp-card__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(222, 164, 151, 0.2);
+}
+
+.investor-kmp-card__contact-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.investor-kmp-card__icon {
+  flex-shrink: 0;
+  width: 8px;
+  height: 9px;
+  margin-top: 3px;
+}
+
+.investor-kmp-card__icon--phone {
+  width: 7px;
+  height: 10px;
+}
+
+.investor-kmp-card__email,
+.investor-kmp-card__phone {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-kmp-card__email {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+a.investor-kmp-card__email {
+  text-decoration: underline;
+}
+
+span.investor-kmp-card__email {
+  text-decoration: none;
 }

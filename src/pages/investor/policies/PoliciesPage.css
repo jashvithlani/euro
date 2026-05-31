@@ -1,0 +1,175 @@
+/* Corporate Policies outlet — Figma 1117:5551 @1920 → 1280 (× 0.6667) */
+
+.investor-policies {
+  position: absolute;
+  top: 782px;
+  left: 45px;
+  width: 1190px;
+}
+
+.investor-policies-header {
+  text-align: center;
+}
+
+.investor-policies-header h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-policies-subtitle {
+  margin: 16px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 19.5px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-policies-subtitle span {
+  display: block;
+}
+
+.investor-policies-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  margin-top: 37px;
+}
+
+.investor-policies-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.investor-policies-group + .investor-policies-group {
+  padding-top: 16px;
+}
+
+.investor-policies-group-label {
+  margin: 0;
+  padding-left: 13px;
+  border-left: 3px solid #d51357;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 700;
+  line-height: 13.33px;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+  color: #d51357;
+}
+
+.investor-policies-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.investor-policy-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 65px;
+  padding: 17px;
+  border: 1px solid rgba(222, 164, 151, 0.2);
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  color: inherit;
+  text-decoration: none;
+}
+
+.investor-policy-card--tall {
+  min-height: 73px;
+}
+
+.investor-policy-card-body {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.investor-policy-card-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.investor-policy-card-icon--accent {
+  width: 29px;
+  background: rgba(213, 19, 87, 0.1);
+}
+
+.investor-policy-card-icon--soft {
+  background: #ffe2db;
+}
+
+.investor-policy-card-icon img {
+  display: block;
+  width: 13px;
+  height: 13px;
+}
+
+.investor-policy-card-icon--accent img {
+  width: 13px;
+  height: 13px;
+}
+
+.investor-policy-card-icon--soft img {
+  width: 13px;
+  height: 12px;
+}
+
+.investor-policy-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.investor-policy-card-title {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 13.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-policy-card-meta {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-policy-card-external {
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  margin-top: 2px;
+}
+
+.investor-policies-view-all {
+  margin: 0;
+  text-align: center;
+}
+
+.investor-policies-view-all a {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #be004b;
+  text-decoration: none;
+}

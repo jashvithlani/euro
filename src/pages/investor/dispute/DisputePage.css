@@ -1,0 +1,347 @@
+/* Online Dispute Resolution — Figma 1131:1994 @1920 → 1280 (× 0.6667) */
+
+.investor-main.investor-main--dispute {
+  height: auto;
+  min-height: 1680px;
+  overflow: visible;
+}
+
+.investor-dispute {
+  position: absolute;
+  top: 756px;
+  left: 0;
+  width: 1280px;
+  padding: 0 45px;
+  box-sizing: border-box;
+}
+
+.investor-dispute__header {
+  text-align: center;
+}
+
+.investor-dispute__header h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-dispute__subtitle {
+  margin: 12px auto 0;
+  max-width: 540px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-dispute__subtitle span {
+  display: block;
+}
+
+/* Cards row — Figma 1131:2274: 961+45+776=1782 @1920 → 1188 @1280 */
+.investor-dispute__cards {
+  display: grid;
+  grid-template-columns: minmax(0, 641fr) minmax(0, 517fr);
+  gap: 30px;
+  width: min(1188px, 100%);
+  margin: 29px auto 0;
+}
+
+/* Integrated report — 1131:2275 */
+
+.investor-dispute__integrated {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 278px;
+  padding: 27px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff0ed;
+}
+
+.investor-dispute__integrated-watermark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.investor-dispute__integrated-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding-bottom: 11px;
+}
+
+.investor-dispute__eyebrow {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.investor-dispute__integrated-copy h3 {
+  margin: 0;
+  max-width: 320px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-dispute__text-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.investor-dispute__text-cta span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 13.33px;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.investor-dispute__text-cta img {
+  width: 10px;
+  height: 10px;
+}
+
+/* SMART ODR portal — 1131:2290 */
+
+.investor-dispute__portal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 278px;
+  padding: 27px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(150.52deg, #be004b 0%, #a70041 100%);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-dispute__portal-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #fff7f7;
+}
+
+.investor-dispute__portal-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-bottom: 11px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
+  color: rgba(255, 247, 247, 0.8);
+}
+
+.investor-dispute__portal-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 11px 21px;
+  border-radius: 9999px;
+  background: #fff;
+  text-decoration: none;
+}
+
+.investor-dispute__portal-cta span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18.67px;
+  color: #be004b;
+}
+
+.investor-dispute__portal-cta img {
+  width: 12px;
+  height: 12px;
+}
+
+.investor-dispute__portal-deco {
+  position: absolute;
+  right: -27px;
+  bottom: -27px;
+  width: 100px;
+  height: 106px;
+  pointer-events: none;
+}
+
+/* Trust band — 1131:2301 */
+
+.investor-dispute-trust {
+  position: absolute;
+  top: 1173px;
+  left: 0;
+  width: 1280px;
+  padding: 39px 53px 81px;
+  box-sizing: border-box;
+  background: #fff0ed;
+}
+
+/* Trust band inner — Figma 1131:2302: 2-col grid, 80px gap, 520px row @1920 */
+.investor-dispute-trust__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 53px;
+  align-items: center;
+  max-width: 1174px;
+  margin: 0 auto;
+}
+
+/* Photo — Figma 1131:2315: 836×520 @1920 → 557×347 @1280 */
+.investor-dispute-trust__visual {
+  position: relative;
+  justify-self: start;
+  width: 557px;
+  max-width: 100%;
+  height: 347px;
+  overflow: hidden;
+  border-radius: 11px;
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-dispute-trust__visual::before {
+  content: "";
+  position: absolute;
+  top: -27px;
+  left: -27px;
+  width: 85px;
+  height: 85px;
+  border-radius: 9999px;
+  background: #8c8c8c;
+  opacity: 0.3;
+  filter: blur(21px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.investor-dispute-trust__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.investor-dispute-trust__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.2);
+  mix-blend-mode: saturation;
+  pointer-events: none;
+}
+
+.investor-dispute-trust__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  justify-self: stretch;
+}
+
+.investor-dispute-trust__copy h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.8px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-dispute-trust__copy h2 span {
+  display: block;
+}
+
+.investor-dispute-trust__copy h2 em {
+  font-style: normal;
+  color: #be004b;
+}
+
+.investor-dispute-trust__copy p {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-dispute-trust__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin: 0;
+}
+
+.investor-dispute-trust__tag {
+  padding: 5px 11px;
+  border-radius: 9999px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.investor-dispute-trust__tag--green {
+  background: #9df197;
+  color: #005c15;
+}
+
+.investor-dispute-trust__tag--amber {
+  background: #ffdea7;
+  color: #6c4c00;
+}

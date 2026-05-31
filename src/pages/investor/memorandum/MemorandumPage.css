@@ -1,0 +1,224 @@
+/* Memorandum of Association — Figma 1131:2316 @1920 → 1280 (×2/3) */
+
+.investor-memorandum {
+  position: absolute;
+  top: 779px;
+  left: 0;
+  width: 1280px;
+}
+
+.investor-memorandum__title {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-memorandum__title span {
+  display: block;
+}
+
+.investor-memorandum__lead {
+  margin: 27px auto 0;
+  max-width: 540px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+.investor-memorandum__card-wrap {
+  position: relative;
+  width: 702px;
+  margin: 40px auto 0;
+}
+
+.investor-memorandum__glow {
+  position: absolute;
+  top: -32px;
+  left: -32px;
+  width: 128px;
+  height: 128px;
+  border-radius: 9999px;
+  background: rgba(255, 222, 167, 0.3);
+  filter: blur(21.33px);
+  pointer-events: none;
+}
+
+.investor-memorandum__card {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 361px;
+  padding: 21px 43px 43px;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 8px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-memorandum__card-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.investor-memorandum__icon-wrap {
+  position: relative;
+  display: grid;
+  width: 64px;
+  height: 85px;
+  place-items: center;
+  margin-bottom: 27px;
+  border-radius: 5.33px;
+  background: #ffe2db;
+  overflow: hidden;
+}
+
+.investor-memorandum__icon-wrap img {
+  position: relative;
+  z-index: 1;
+  width: 21px;
+  height: 27px;
+}
+
+.investor-memorandum__icon-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(126.87deg, rgba(190, 0, 75, 0.05) 0%, rgba(190, 0, 75, 0) 100%);
+  pointer-events: none;
+}
+
+.investor-memorandum__card-title {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-memorandum__card-copy {
+  margin: 11px 0 0;
+  max-width: 287px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
+  text-align: center;
+  color: var(--color-muted, #825348);
+}
+
+.investor-memorandum__download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  margin-top: 32px;
+  padding: 16px 21px;
+  border-radius: 9999px;
+  background: #fff0ed;
+  color: inherit;
+  text-decoration: none;
+}
+
+.investor-memorandum__download-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10.67px;
+  min-width: 0;
+}
+
+.investor-memorandum__download-main img {
+  width: 13.33px;
+  height: 13.33px;
+  flex-shrink: 0;
+}
+
+.investor-memorandum__download-main span {
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-memorandum__download-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.investor-memorandum__download-meta span {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-memorandum__download-meta img {
+  width: 10.67px;
+  height: 10.67px;
+}
+
+.investor-memorandum__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 21px;
+  padding-top: 21px;
+}
+
+.investor-memorandum__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2.67px;
+}
+
+.investor-memorandum__meta-item:not(:first-child) {
+  padding-left: 11.33px;
+  border-left: 1px solid rgba(222, 164, 151, 0.3);
+}
+
+.investor-memorandum__meta-label {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-muted, #825348);
+  opacity: 0.6;
+}
+
+.investor-memorandum__meta-value {
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-main--memorandum {
+  height: 1400px;
+}
+
+.investor-main--memorandum .investor-transparency {
+  display: none;
+}

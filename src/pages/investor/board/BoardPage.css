@@ -1,0 +1,286 @@
+/* Composition of Board — Figma 1110:5167 @ 1920px → 1280px */
+
+.investor-board {
+  position: absolute;
+  top: 763px;
+  left: 0;
+  width: 1280px;
+  padding: 0 45px 0 44px;
+  box-sizing: border-box;
+}
+
+.investor-board__intro {
+  text-align: center;
+}
+
+.investor-board__intro h2 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-board__intro p {
+  margin: 14px auto 0;
+  max-width: 570px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 18.67px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-board__members {
+  display: grid;
+  grid-template-columns: repeat(3, 242px);
+  justify-content: center;
+  column-gap: 115px;
+  margin-top: 35px;
+}
+
+.investor-board-member {
+  width: 242px;
+}
+
+/* Center card is vertically staggered down per Figma 1302:3502 */
+.investor-board-member--center {
+  margin-top: 41px;
+}
+
+.investor-board-member__photo-wrap {
+  position: relative;
+  width: 242px;
+  height: 302px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #fff0ed 0%,
+    #a5a1a1 0.01%,
+    #878787 0.01%,
+    #5f5f5f 50%,
+    #363636 100%
+  );
+}
+
+/* Source image is a 2000×1414 composite with three portraits.
+   Each card crops to a single portrait via explicit width/offset. */
+.investor-board-member__photo {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* Crop offsets derived from Figma 1113:5438 / 1113:5434 / 1113:5437
+   (scaled 1920 → 1280 by 2/3). */
+.investor-board-member--chairman .investor-board-member__photo {
+  width: 1614px;
+  height: auto;
+  left: -76px;
+  top: -91px;
+}
+
+.investor-board-member--center .investor-board-member__photo {
+  width: 1543px;
+  height: auto;
+  left: -344px;
+  top: -71px;
+}
+
+.investor-board-member--right .investor-board-member__photo {
+  width: 2052px;
+  height: auto;
+  left: -111px;
+  top: -971px;
+}
+
+.investor-board-member__copy {
+  margin-top: 15px;
+}
+
+.investor-board-member__copy h3 {
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21.33px;
+  letter-spacing: -0.4px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-board-member__role {
+  margin: 5px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.investor-board-member__bio {
+  margin: 5px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  font-weight: 400;
+  line-height: 15.17px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-board__committees {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 76px;
+}
+
+/* 12-col grid per Figma — text col-span 4, table col-span 7, with empty col 5 between */
+.investor-board-committee {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 32px;
+  align-items: start;
+}
+
+.investor-board-committee__copy {
+  grid-column: 1 / span 4;
+}
+
+.investor-board-committee .investor-board-table {
+  grid-column: 6 / span 7;
+}
+
+/* Stakeholder reverses sides: table on left, copy on right */
+.investor-board-committee--stakeholder .investor-board-committee__copy {
+  grid-column: 9 / span 4;
+}
+
+.investor-board-committee--stakeholder .investor-board-table {
+  grid-column: 1 / span 7;
+}
+
+.investor-board-committee__copy h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 30px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-board-committee__copy p {
+  margin: 16px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
+  color: var(--color-muted, #825348);
+}
+
+.investor-board-committee__meta {
+  margin-top: 16px;
+  padding: 9px 16px 16px;
+  border-radius: 8px;
+  background: #fff0ed;
+}
+
+.investor-board-committee__meta img {
+  width: 16px;
+  height: 20px;
+}
+
+.investor-board-committee__meta p {
+  margin: 10px 0 0;
+  font-size: 9.33px;
+  font-weight: 500;
+  line-height: 13.33px;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-board-committee__icons {
+  display: flex;
+  gap: 11px;
+  margin-top: 16px;
+  padding-top: 5px;
+}
+
+.investor-board-committee__icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9999px;
+}
+
+.investor-board-committee__icon--users {
+  background: #ffdea7;
+}
+
+.investor-board-committee__icon--handshake {
+  background: #9df197;
+}
+
+.investor-board-committee__icon--users img {
+  width: 15px;
+  height: 11px;
+}
+
+.investor-board-committee__icon--handshake img {
+  width: 15px;
+  height: 13px;
+}
+
+.investor-board-table {
+  overflow: hidden;
+  border-radius: 11px;
+  background: var(--color-white, #fff);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
+}
+
+.investor-board-table__header,
+.investor-board-table__row {
+  display: grid;
+  grid-template-columns: 1.48fr 1fr;
+}
+
+.investor-board-table__header {
+  background: #ffe9e4;
+}
+
+.investor-board-table__cell {
+  padding: 16px 21px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+}
+
+.investor-board-table__header .investor-board-table__cell {
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-muted, #825348);
+}
+
+.investor-board-table__row {
+  border-top: 1px solid rgba(222, 164, 151, 0.1);
+}
+
+.investor-board-table__row .investor-board-table__cell--name {
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--color-ink, #4e281f);
+}
+
+.investor-board-table__row .investor-board-table__cell--role {
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-muted, #825348);
+}

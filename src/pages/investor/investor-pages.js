@@ -1,0 +1,16 @@
+export { default as InvestorIndexPage } from "./InvestorIndexPage.jsx";
+export { default as GrievancePage } from "./grievance/GrievancePage.jsx";
+export { default as ShareholdingPage } from "./shareholding/ShareholdingPage.jsx";
+export { default as BoardPage } from "./board/BoardPage.jsx";
+export { default as PoliciesPage } from "./policies/PoliciesPage.jsx";
+export { default as GovernancePage } from "./governance/GovernancePage.jsx";
+export { default as AnnualPage } from "./annual/AnnualPage.jsx";
+export { default as SecretarialPage } from "./secretarial/SecretarialPage.jsx";
+export { default as AnnouncementsPage } from "./announcements/AnnouncementsPage.jsx";
+export { default as AgmPage } from "./agm/AgmPage.jsx";
+export { default as FinancialPage } from "./financial/FinancialPage.jsx";
+export { default as DisputePage } from "./dispute/DisputePage.jsx";
+export { default as MemorandumPage } from "./memorandum/MemorandumPage.jsx";
+export { default as KmpPage } from "./kmp/KmpPage.jsx";
+export { default as UpdatesPage } from "./updates/UpdatesPage.jsx";
+export { default as ReconciliationPage } from "./reconciliation/ReconciliationPage.jsx";

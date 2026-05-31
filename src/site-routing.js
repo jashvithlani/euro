@@ -33,8 +33,12 @@ export function getNavActive(pathname) {
     return "partner";
   }
 
+  if (path === "/investor" || path.startsWith("/investor/")) {
+    return "investor";
+  }
+
   const slug = path.slice(1);
-  const known = ["about", "exports", "career", "contact", "achievements", "investor"];
+  const known = ["about", "exports", "career", "contact", "achievements"];
 
   if (known.includes(slug)) {
     return slug;
@@ -56,6 +60,10 @@ export function getShellClassName(pathname) {
 
   if (path === "/dealers") {
     return "page-shell dealers-page";
+  }
+
+  if (path === "/investor" || path.startsWith("/investor/")) {
+    return "page-shell investor-page";
   }
 
   const slug = path.slice(1);

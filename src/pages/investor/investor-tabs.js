@@ -1,8 +1,4 @@
-import "./InvestorFilterNav.css";
-
-/** Layout from Figma node 1103:4527 at 1920px — scaled to 1280px */
-const FIGMA_SCALE = 1280 / 1920;
-
+/** Layout from Figma node 1103:4527 at 1920px — scaled to 1280px in InvestorFilterNav */
 export const investorFilterTabs = [
   { id: "prospectus", label: "Prospectus", left: 0, top: 0, width: 192, height: 61 },
   { id: "grievance", label: "Investor Grievance", left: 211, top: 0, width: 269, height: 61 },
@@ -27,45 +23,5 @@ export const investorFilterTabs = [
   { id: "memorandum", label: "Memorandum of Association", left: 675, top: 160, width: 376, height: 60 },
   { id: "kmp", label: "Authorized KMP's", left: 1070, top: 160, width: 256, height: 60 },
   { id: "updates", label: "Updates", left: 1345, top: 160, width: 160, height: 60 },
-  { id: "reconciliation", label: "Reconciliation of", left: 1532, top: 160, width: 250, height: 61 },
+  { id: "reconciliation", label: "Reconciliation", left: 1532, top: 160, width: 250, height: 61 },
 ];
-
-function scale(value) {
-  return value * FIGMA_SCALE;
-}
-
-function pillStyle(tab) {
-  return {
-    left: `${scale(tab.left)}px`,
-    top: `${scale(tab.top)}px`,
-    width: `${scale(tab.width)}px`,
-    height: `${scale(tab.height)}px`,
-  };
-}
-
-export default function InvestorFilterNav({ activeTab, onTabChange }) {
-  return (
-    <section className="investor-filter-nav" aria-label="Investor document categories">
-      <div className="investor-filter-nav__inner">
-        {investorFilterTabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            className={[
-              "investor-filter-nav__pill",
-              tab.id === activeTab ? "is-active" : "",
-              tab.borderTone === "muted" ? "investor-filter-nav__pill--muted-border" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-            style={pillStyle(tab)}
-            onClick={() => onTabChange(tab.id)}
-            aria-pressed={tab.id === activeTab}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-    </section>
-  );
-}

@@ -7,12 +7,15 @@ pages/
   home/
     HomePage.jsx
     HomePage.css
-    asset.js          # asset('file.png') → resolved URL
+    asset.js
     assets/
-  about/
-    ...
-  category/
-    ...
+  investor/
+    InvestorLayout.jsx    # shared shell: hero, subnav, transparency
+    InvestorPage.css
+    InvestorIndexPage.jsx # /investor
+    components/           # InvestorFilterNav, InvestorHero, …
+    grievance/GrievancePage.jsx   # /investor/grievance
+    …
 ```
 
 Site-wide assets (logos, footer, favicons) live in [`../shared/assets/`](../shared/assets/) and are loaded via `sharedAsset()` from [`../shared/asset.js`](../shared/asset.js).

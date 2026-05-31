@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import { isInvestorPath } from "../pages/investor/investor-routing.js";
 import { getShellClassName } from "../site-routing.js";
 
 const DESIGN_WIDTH = 1280;
@@ -29,8 +30,16 @@ export default function SiteLayout() {
   );
 
   const shellClassName = getShellClassName(location.pathname);
+  const prevPathnameRef = React.useRef(location.pathname);
 
   React.useEffect(() => {
+    const previousPathname = prevPathnameRef.current;
+    prevPathnameRef.current = location.pathname;
+
+    if (isInvestorPath(previousPathname) && isInvestorPath(location.pathname)) {
+      return;
+    }
+
     window.scrollTo(0, 0);
   }, [location.pathname]);
 

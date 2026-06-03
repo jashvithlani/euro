@@ -54,6 +54,14 @@
   letter-spacing: 0;
   line-height: 24px;
   white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Hover on non-active tabs: a lighter-accent fill that previews the
+   solid-accent active pill, one tone lighter. */
+.product-subnav a:not(.is-active):hover {
+  background: var(--color-accent-light);
+  color: #ffffff;
 }
 
 .product-subnav--top a {

@@ -9,6 +9,7 @@
   --color-stone: #57534e;
   --color-accent: #be004b;
   --color-accent-dark: #a70041;
+  --color-accent-light: #cf336f; /* one tone lighter than --color-accent, for hover states */
   --color-blue: #203679;
   --color-navy: #192841;
   --color-footer: #0c0a09;
@@ -193,6 +194,14 @@ textarea {
 .nav-list a {
   padding: 0 0 5.33px;
   border-bottom: 2.67px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover on non-active items: one tone lighter than the active accent,
+   previewing the active text + underline treatment. */
+.nav-list a:not(.is-active):hover {
+  color: var(--color-accent-light);
+  border-bottom-color: var(--color-accent-light);
 }
 
 .nav-list .is-active {

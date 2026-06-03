@@ -2,7 +2,7 @@
 
 .investor-main:has(.investor-shareholding),
 .investor-main--shareholding {
-  height: 1867px;
+  height: 1482px; /* grid ends ~1456 + 26px breathing room (was 1867) */
 }
 
 .investor-shareholding {

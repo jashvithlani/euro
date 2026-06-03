@@ -5,7 +5,7 @@ export const updatesPageCopy = {
   ctaTitle: ["Want to receive these", "updates automatically?"],
   ctaBody:
     "Subscribe to our investor newsletter to get real-time regulatory filings and corporate announcements delivered to your inbox.",
-  ctaButton: "Subscribe to Alerts",
+  ctaButton: "Subscribe to News",
 };
 
 export const fyYearTabs = [

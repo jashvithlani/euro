@@ -180,7 +180,7 @@ export default function ExportsPage() {
                 <h2>Our Footprint: <em>10+States</em></h2>
                 <p>Experience the taste of quality in 10+ States. With a heavy density in Gujarat and Maharashtra, we are rapidly expanding our distribution network.</p>
                 <strong>10+</strong>
-                <small>Active State</small>
+                <small>Active States</small>
               </div>
               <img src={asset('exports-map.png')} alt="India map showing Euro India Foods domestic footprint" />
             </section>

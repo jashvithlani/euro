@@ -3410,12 +3410,11 @@ textarea {
 }
 
 .export-contact-card {
-  /* Figma 1079:2137: bg #fff8f6, border-l 4 accent, p 56/40/40/44, radius 24, w=1070 (matches left col) */
   display: flex;
   width: 713.33px;
   align-items: flex-start;
   gap: 16px;
-  margin-top: 57.33px; /* Figma y=519 - bottom of body y=433 = 86 → 57.33 */
+  margin-top: 111.33px;
   border-left: 2.67px solid var(--color-accent);
   border-radius: 16px;
   padding: 37.33px 26.67px 26.67px 29.33px;
@@ -3760,9 +3759,8 @@ textarea {
 }
 
 .export-footprint p {
-  /* Figma 1079:2263: PJS Regular 20/32.5 #825348, w=954 */
   width: 636px;
-  margin: 32px 0 0;
+  margin: 43px 0 0;
   color: var(--color-muted);
   font-family: var(--font-body);
   font-size: 13.33px;
@@ -3771,9 +3769,8 @@ textarea {
 }
 
 .export-footprint strong {
-  /* Figma 1079:2267: Epilogue SemiBold 64/40 */
   display: block;
-  margin-top: 32px;
+  margin-top: 68px;
   color: var(--color-ink);
   font-family: var(--font-display);
   font-size: 42.67px;

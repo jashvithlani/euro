@@ -13,7 +13,7 @@ const EXPECT = {
   itemCount: 4,
   firstTitle: "26.07.2025 - Credit Rating",
   ctaHeading: "Want to receive these",
-  ctaButton: "Subscribe to Alerts",
+  ctaButton: "Subscribe to News",
 };
 
 async function runPass(page, pass) {

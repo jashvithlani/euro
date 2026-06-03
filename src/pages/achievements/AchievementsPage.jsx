@@ -11,18 +11,21 @@ const stats = [
 const awards = [
   {
     className: "achievements-award-excellence",
-    title: "Excellence Awards - 2011",
+    title: "eXCELLENCE AWARDS - 2011",
     label: "VCCI Leaders Summit excellence award",
+    ellipse: "achievements-ellipse-1.svg",
   },
   {
     className: "achievements-award-quality",
-    title: "Best Quality Choice - 2014",
+    title: "BEST QUALITY CHOICE - 2014",
     label: "ESQR Quality Choice Prize trophy",
+    ellipse: "achievements-ellipse-2.svg",
   },
   {
     className: "achievements-award-star",
-    title: "National Star for Quality",
+    title: "NATIONAL STAR FOR QUALITY",
     label: "International Star for Quality trophy",
+    ellipse: "achievements-ellipse-3.svg",
   },
 ];
 
@@ -87,7 +90,7 @@ export default function AchievementsPage() {
           {awards.map((award) => (
             <article className="achievements-award" key={award.title}>
               <div className="achievements-award-card">
-                <img className="achievements-award-ellipse" src={asset('achievements-award-ellipse.svg')} alt="" aria-hidden="true" />
+                <img className="achievements-award-ellipse" src={asset(award.ellipse)} alt="" aria-hidden="true" />
                 <div className={`achievements-award-crop ${award.className}`}>
                   <img src={asset('achievements-awards-sheet.png')} alt={award.label} />
                 </div>

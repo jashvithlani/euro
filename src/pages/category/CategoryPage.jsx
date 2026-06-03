@@ -141,14 +141,39 @@ function offsetFromHeroBottom(value) {
   return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
 }
 
-function applyTopHeroLayout(page) {
+function offsetFromHeroBottomNamkeen(value, shiftUp) {
+  if (typeof value !== "number") return value;
+
+  const offset = Number((value - originalCategoryHeroBottom - shiftUp).toFixed(3));
+  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
+}
+
+function applyTopHeroLayout(page, pageKey) {
+  if (pageKey !== "namkeen") {
+    return {
+      ...page,
+      height: offsetFromHeroBottom(page.height),
+      newsletter: page.newsletter
+        ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) }
+        : page.newsletter,
+      sections: page.sections.map((section) => ({
+        ...section,
+        top: offsetFromHeroBottom(section.top),
+      })),
+    };
+  }
+
+  const shiftUp = page.compactContentShift ?? 0;
+
   return {
     ...page,
-    height: offsetFromHeroBottom(page.height),
-    newsletter: page.newsletter ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) } : page.newsletter,
+    height: offsetFromHeroBottomNamkeen(page.height, shiftUp),
+    newsletter: page.newsletter
+      ? { ...page.newsletter, top: offsetFromHeroBottomNamkeen(page.newsletter.top, shiftUp) }
+      : page.newsletter,
     sections: page.sections.map((section) => ({
       ...section,
-      top: offsetFromHeroBottom(section.top),
+      top: offsetFromHeroBottomNamkeen(section.top, shiftUp),
     })),
   };
 }
@@ -310,8 +335,8 @@ function Badge({ badge }) {
 function ProductTitle({ title, className, style }) {
   return (
     <h2 className={`category-product-title ${className || ""}`} style={layerStyle(style || {})}>
-      {title.split("\n").map((line) => (
-        <span key={line}>{line}</span>
+      {title.split("\n").map((line, index) => (
+        <span key={`${line}-${index}`}>{line}</span>
       ))}
     </h2>
   );
@@ -361,6 +386,7 @@ function PromoPanel({ item }) {
       className={`category-promo ${item.className || ""}`}
       style={{ ...boxStyle(item), background: item.background, color: item.color }}
       aria-label={item.title}
+      {...(item.nodeId ? { "data-node-id": item.nodeId } : {})}
     >
       <span className="category-promo-ghost">{item.ghost}</span>
       <div className="category-promo-copy">
@@ -473,7 +499,7 @@ function CategorySection({ item }) {
 }
 
 export default function CategoryPage({ pageKey }) {
-  const page = applyTopHeroLayout(pages[pageKey] || pages.chips);
+  const page = applyTopHeroLayout(pages[pageKey] || pages.chips, pageKey);
 
   return (
     <main className={`category-main category-main--${pageKey}`} aria-label={`${page.title} category page`} style={{ height: cssLength(page.height) }}>

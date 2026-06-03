@@ -63,10 +63,9 @@
 }
 
 .contact-hero-copy {
-  /* Figma 1079:3310: y=73.5, w=1238, h=365 (heading 257 + gap 24 + body 84) */
   position: relative;
   z-index: 2;
-  padding-top: 49px;
+  padding-top: 60px;
   width: 825.33px;
 }
 
@@ -133,12 +132,11 @@
 
 /* ----- Contact cards row (Figma 1079:3316) ---------------------- */
 .contact-cards {
-  /* Figma: 1503 × 234 at x=176, y=861. Top spacing from hero bottom = 861 - 749 = 112 */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 21.33px;
   width: 1002px;
-  margin: 74.67px auto 0;
+  margin: -28.33px auto 0;
 }
 
 .contact-card {

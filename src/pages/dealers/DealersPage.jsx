@@ -59,13 +59,13 @@ const textFields = [
 const partnerCards = [
   {
     title: "Established Brand",
-    copy: "Leverage our reputation and trusted product portfolio across the Indian snack market.",
+    copy: "Leverage our reputation as a trusted leader in the Indian snack and packaged food market.",
     icon: "dealers-icon-established.svg",
     tone: "rose",
   },
   {
     title: "Extensive Support",
-    copy: "From sales collateral to training, our team ensures your success.",
+    copy: "From site selection to staff training, our dedicated operations team ensures your success.",
     icon: "dealers-icon-support.svg",
     tone: "gold",
   },
@@ -92,7 +92,7 @@ function Field({ label, name, placeholder, type = "text", wide = false }) {
   );
 }
 
-function SelectField({ label, name, children }) {
+function SelectField({ label, name, children, options = [] }) {
   return (
     <label className="dealers-field dealers-select-field">
       <span>{label}</span>
@@ -100,10 +100,9 @@ function SelectField({ label, name, children }) {
         <option value="" disabled>
           {children}
         </option>
-        <option>Gujarat</option>
-        <option>Maharashtra</option>
-        <option>Rajasthan</option>
-        <option>Madhya Pradesh</option>
+        {options.map((opt) => (
+          <option key={opt}>{opt}</option>
+        ))}
       </select>
     </label>
   );
@@ -111,44 +110,53 @@ function SelectField({ label, name, children }) {
 
 export default function DealersPage() {
   return (
-    <main className="dealers-main">
-      <section className="dealers-form-section" aria-labelledby="dealers-title">
-        <h1 id="dealers-title">
+    <main className="dealers-main" data-node-id="1079:3487">
+      <div className="dealers-hero-block" data-node-id="245:2036">
+        <div className="dealers-hero-meta">
+          <span className="dealers-pill">Distribution Partnership</span>
+          <p className="dealers-hero-lede">
+            Join India&apos;s trusted snack brand and grow with a proven distribution network.
+          </p>
+        </div>
+
+        <h1 id="dealers-title" data-node-id="245:2093">
           <span>Partner with a</span>
           <em>Global snack distributor</em>
         </h1>
+      </div>
 
-        <div className="dealers-form-intro">
+      <section className="dealers-form-section" aria-labelledby="dealers-title">
+        <div className="dealers-form-intro" data-node-id="489:301">
           <h2>Dealer Inquiry Application</h2>
           <p>Please provide the details of your established entity or proposed venture.</p>
         </div>
 
-        <form className="dealers-form" action="#">
+        <form className="dealers-form" action="#" data-node-id="489:305">
           <div className="dealers-form-grid">
             <Field {...textFields[0]} />
             <Field {...textFields[1]} />
             <Field {...textFields[2]} />
-            <SelectField label="State" name="state">
+            <SelectField label="State" name="state" options={["Gujarat", "Maharashtra", "Rajasthan", "Madhya Pradesh"]}>
               Select State
             </SelectField>
-            {textFields.slice(3, 7).map((field) => (
-              <Field key={field.name} {...field} />
-            ))}
-            <SelectField label="Warehouse Capacity*" name="warehouseCapacity">
+            {/* Address (wide) */}
+            <Field {...textFields[3]} />
+            {/* Firm type + Proprietor */}
+            <Field {...textFields[4]} />
+            <Field {...textFields[5]} />
+            {/* Operating Since + Warehouse Capacity */}
+            <Field {...textFields[6]} />
+            <SelectField
+              label="Warehouse Capacity*"
+              name="warehouseCapacity"
+              options={["Below 1,000 sq ft", "1,000–5,000 sq ft", "Above 5,000 sq ft"]}
+            >
               Below 1,000 sq ft
             </SelectField>
-            {textFields.slice(7).map((field) => (
-              <Field key={field.name} {...field} />
-            ))}
-
-            <label className="dealers-upload dealers-field-wide">
-              <span>Company GST Certificate*</span>
-              <input type="file" name="gstCertificate" accept=".pdf,.jpg,.jpeg,.png" />
-              <div>
-                <img src={asset("dealers-upload.svg")} alt="" />
-                <p>Click to upload or drag and drop your official company GST certificate</p>
-              </div>
-            </label>
+            {/* Type of Business */}
+            <Field {...textFields[7]} />
+            {/* Town/Territory Cover (wide) */}
+            <Field {...textFields[8]} />
 
             <label className="dealers-field dealers-field-wide dealers-notes">
               <span>Message / Additional Notes</span>
@@ -163,38 +171,36 @@ export default function DealersPage() {
         </form>
       </section>
 
-      <section className="dealers-footprint" aria-labelledby="dealers-footprint-title">
+      <section className="dealers-footprint" aria-labelledby="dealers-footprint-title" data-node-id="489:671">
         <div className="dealers-footprint-copy">
-          <span>Outlets</span>
+          <span>DOMESTIC</span>
           <h2 id="dealers-footprint-title">
             Our Footprint:
-            <em>Gujarat &amp; Maharashtra</em>
+            <em>10+ States</em>
           </h2>
           <p>
-            Experience the taste of quality in 10+ Stores. With a heavy density in Gujarat and
+            Experience the taste of quality in 10+ States. With a heavy density in Gujarat and
             Maharashtra, we are rapidly expanding our distribution network.
           </p>
-          <strong>10+</strong>
-          <small>Active Outlets</small>
+          <div className="dealers-footprint-stats">
+            <div className="dealers-footprint-stat">
+              <strong>10+</strong>
+              <small>Active State</small>
+            </div>
+          </div>
         </div>
 
-        <div className="dealers-map-panel" aria-label="Outlet footprint map">
-          <img src={asset("dealers-map.png")} alt="India map highlighting Gujarat and Maharashtra" />
-          <span className="dealers-pin dealers-pin-surat"></span>
-          <span className="dealers-pin dealers-pin-bhavnagar"></span>
-          <span className="dealers-pin dealers-pin-mumbai"></span>
-          <span className="dealers-map-label dealers-map-label-surat">Surat</span>
-          <span className="dealers-map-label dealers-map-label-bhavnagar">Bhavnagar</span>
-          <span className="dealers-map-label dealers-map-label-mumbai">Mumbai</span>
+        <div className="dealers-footprint-photo" aria-label="Euro India distribution network">
+          <img src={asset("dealers-footprint-photo.jpg")} alt="Euro India snack distribution" />
         </div>
       </section>
 
       <section className="dealers-partnership" aria-labelledby="dealers-partnership-title">
-        <h2 id="dealers-partnership-title">
+        <h2 id="dealers-partnership-title" data-node-id="245:2097">
           Join our network of <span>successful</span> partnerships.
         </h2>
 
-        <div className="dealers-why">
+        <div className="dealers-why" data-node-id="489:627">
           <div className="dealers-why-heading">
             <h3>Why Partner with EURO?</h3>
             <p>We provide a business model designed for scalability and long-term profitability.</p>

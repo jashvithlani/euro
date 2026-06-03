@@ -1,19 +1,22 @@
+/* Achievements page — Figma node 1079:4070 (1920px → 1280px ×2/3) */
+
 .achievements-main {
   position: relative;
   width: 1280px;
-  height: 2557px;
+  height: 2075px;
   overflow: hidden;
   background: var(--color-page, #fff8f6);
   color: #434343;
   font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
 }
 
+/* Hero — Figma 1079:4305 (y=98 at 1920 → 65px from top of main) */
 .achievements-hero {
   position: absolute;
-  top: 136px;
+  top: 65px;
   left: 0;
   width: 1280px;
-  height: 532px;
+  height: 309px;
   overflow: hidden;
 }
 
@@ -43,39 +46,42 @@
   content: "";
 }
 
+/* kicker: Figma y=289 - nav98 = 191 at 1920 → 127px at 1280 */
 .achievements-hero-kicker {
   position: absolute;
-  top: 193px;
+  top: 127px;
   left: 0;
   width: 1280px;
   margin: 0;
   color: #b90249;
-  font-size: 32px;
+  font-size: 21px;
   font-style: italic;
   font-weight: 400;
-  line-height: 61.6px;
+  line-height: 41px;
   text-align: center;
 }
 
+/* h1: Figma y=368 - nav98 = 270 at 1920 → 180px at 1280 */
 .achievements-hero h1 {
   position: absolute;
-  top: 268px;
+  top: 180px;
   left: 0;
   width: 1280px;
   margin: 0;
   color: #b90249;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 61.6px;
+  font-size: 43px;
+  font-weight: 600;
+  line-height: 41px;
   text-align: center;
 }
 
+/* Stats bar — Figma y=561 - nav98 = 463 at 1920 → 309px at 1280 */
 .achievements-stats {
   position: absolute;
-  top: 636px;
+  top: 374px;
   left: 0;
   width: 1280px;
-  height: 151px;
+  height: 101px;
   overflow: hidden;
   background: #b90249;
   color: #ffffff;
@@ -83,10 +89,10 @@
 
 .achievements-stats-texture {
   position: absolute;
-  top: -581px;
-  left: 269px;
-  width: 739px;
-  height: 1314px;
+  top: -388px;
+  left: 180px;
+  width: 493px;
+  height: 876px;
   max-width: none;
   object-fit: cover;
   opacity: 0.3;
@@ -96,26 +102,26 @@
 
 .achievements-stats-list {
   position: absolute;
-  top: 38px;
-  left: 50px;
+  top: 25px;
+  left: 33px;
   display: flex;
-  width: 1180px;
+  width: 1213px;
   align-items: flex-start;
   justify-content: center;
-  gap: 94px;
+  gap: 63px;
   text-align: center;
 }
 
 .achievements-stat {
   display: flex;
-  width: 210px;
+  width: 140px;
   flex-direction: column;
   align-items: center;
 }
 
 .achievements-stat strong {
   display: block;
-  font-size: 48px;
+  font-size: 32px;
   font-style: italic;
   font-weight: 900;
   line-height: 1;
@@ -123,12 +129,13 @@
 
 .achievements-stat span {
   display: block;
-  margin-top: 4px;
-  font-size: 24px;
+  margin-top: 3px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.05;
 }
 
+/* Section headings (ghost + subheading + title) */
 .achievements-section-heading {
   position: absolute;
   width: 1280px;
@@ -139,103 +146,105 @@
   position: absolute;
   margin: 0;
   color: rgba(67, 67, 67, 0.2);
-  font-size: 24px;
+  font-size: 21px;
   font-style: italic;
   font-weight: 400;
-  line-height: 61.6px;
+  line-height: 41px;
 }
 
 .achievements-section-heading h2 {
   position: absolute;
   margin: 0;
   color: #b90249;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 61.6px;
+  font-size: 43px;
+  font-weight: 600;
+  line-height: 41px;
 }
 
 .achievements-ghost {
   position: absolute;
   color: rgba(67, 67, 67, 0.1);
   font-family: "Source Serif Pro", Georgia, serif;
-  font-size: 150px;
+  font-size: 100px;
   font-style: italic;
   font-weight: 700;
-  line-height: 61.6px;
+  line-height: 41px;
 }
 
+/* Featured section — Figma: heading at y=895→597px, card at y=1026→684px */
 .achievements-featured {
   position: absolute;
   top: 0;
   left: 0;
   width: 1280px;
-  height: 1504px;
+  height: 1000px;
 }
 
 .achievements-featured-heading {
-  top: 895px;
-  height: 113px;
+  top: 597px;
+  height: 75px;
 }
 
 .achievements-featured-heading .achievements-ghost {
-  top: 28px;
-  left: 70px;
+  top: 19px;
+  left: 47px;
 }
 
 .achievements-featured-heading p {
   top: 0;
-  left: 407px;
+  left: 400px;
 }
 
 .achievements-featured-heading h2 {
-  top: 51px;
-  left: 415px;
+  top: 34px;
+  left: 410px;
 }
 
+/* Featured card — Figma: y=1026 → 684px at 1280; centered */
 .achievements-featured-card {
   position: absolute;
-  top: 1046px;
-  left: 55px;
-  width: 1170px;
-  height: 458px;
+  top: 684px;
+  left: calc(50% - 592px);
+  width: 1185px;
+  height: 305px;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 13px;
   background: rgba(255, 207, 226, 0.2);
 }
 
 .achievements-featured-media {
   position: absolute;
-  top: 32px;
-  left: 38px;
-  width: 394px;
-  height: 394px;
+  top: 21px;
+  left: 25px;
+  width: 263px;
+  height: 263px;
 }
 
 .achievements-featured-shadow {
   position: absolute;
   top: 0;
   left: 1px;
-  width: 393px;
-  height: 393px;
-  border-radius: 29px;
+  width: 262px;
+  height: 262px;
+  border-radius: 19px;
   background: #be004b;
 }
 
 .achievements-featured-media img {
   position: absolute;
-  top: 4px;
+  top: 3px;
   left: 0;
-  width: 386px;
-  height: 386px;
-  border-radius: 29px;
+  width: 257px;
+  height: 257px;
+  border-radius: 19px;
   object-fit: cover;
 }
 
 .achievements-featured-copy {
   position: absolute;
-  top: 69px;
-  left: 466px;
-  width: 650px;
+  top: 46px;
+  left: 480px;
+  width: 833px;
 }
 
 .achievements-award-label {
@@ -243,7 +252,7 @@
   align-items: center;
   gap: 8px;
   color: #434343;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
@@ -251,104 +260,119 @@
 
 .achievements-award-label span {
   display: block;
-  width: 32px;
+  width: 21px;
   height: 2px;
   background: #434343;
 }
 
 .achievements-featured-copy h3 {
-  margin: 24px 0 25px;
+  margin: 16px 0 17px;
   color: #b90249;
-  font-size: 38px;
+  font-size: 25px;
   font-weight: 700;
-  line-height: 61.6px;
+  line-height: 41px;
 }
 
 .achievements-featured-copy p {
-  width: 643px;
+  width: 429px;
   margin: 0;
   color: #434343;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 20px;
 }
 
 .achievements-presented {
-  width: 650px;
-  margin-top: 42px;
-  border-top: 2px solid rgba(67, 67, 67, 0.65);
-  padding-top: 28px;
+  width: 433px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(67, 67, 67, 0.65);
+  padding-top: 19px;
   color: #434343;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .achievements-presented span {
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
+/* Awards section — headings: y=1576→1051px at 1280 */
 .achievements-awards {
   position: absolute;
   top: 0;
   left: 0;
   width: 1280px;
-  height: 2090px;
+  height: 1600px;
 }
 
 .achievements-awards-heading {
-  top: 1576px;
-  height: 113px;
+  top: 1051px;
+  height: 75px;
 }
 
 .achievements-awards-heading .achievements-ghost {
-  top: 27px;
-  left: 84px;
+  top: 18px;
+  left: 56px;
 }
 
 .achievements-awards-heading p {
   top: 0;
-  left: 428px;
+  left: 285px;
 }
 
 .achievements-awards-heading h2 {
-  top: 51px;
-  left: 414px;
+  top: 34px;
+  left: 276px;
 }
 
+/* Awards grid — Figma: y=1800.94→1200px, x=66→44px; cards 527.769×307.062 → 352×205px; gap ~67px */
 .achievements-awards-grid {
   position: absolute;
-  top: 1726px;
-  left: 82px;
+  top: 1200px;
+  left: 44px;
   display: grid;
-  width: 1130px;
-  grid-template-columns: repeat(3, 334px);
-  gap: 64px;
+  width: 1192px;
+  grid-template-columns: repeat(3, 352px);
+  gap: 67px;
 }
 
 .achievements-award {
-  width: 334px;
+  width: 352px;
 }
 
 .achievements-award-card {
   position: relative;
-  width: 334px;
-  height: 264px;
+  width: 352px;
+  height: 205px;
   overflow: hidden;
   border: 1px solid rgba(190, 0, 75, 0.3);
-  border-radius: 12px;
+  border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
+  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
 }
 
+/* Ellipses: centered horizontally, positioned per Figma top values (×2/3) */
 .achievements-award-ellipse {
   position: absolute;
-  top: 155px;
-  left: -54px;
-  width: 442px;
-  height: 199px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 352px;
+  height: 133px;
   max-width: none;
+}
+
+.achievements-award:nth-child(1) .achievements-award-ellipse {
+  top: 122px; /* 184 × 2/3 */
+}
+
+.achievements-award:nth-child(2) .achievements-award-ellipse {
+  top: 106px; /* 159 × 2/3 */
+}
+
+.achievements-award:nth-child(3) .achievements-award-ellipse {
+  top: 102px; /* 153 × 2/3 */
 }
 
 .achievements-award-crop {
@@ -361,76 +385,75 @@
   max-width: none;
 }
 
+/* Card 1: wrapper 162×124 at top=29, left=94 (243×186 × 2/3) */
 .achievements-award-excellence {
-  top: 46px;
-  left: 42px;
-  width: 243px;
-  height: 186px;
+  top: 29px;
+  left: 94px;
+  width: 162px;
+  height: 124px;
 }
 
 .achievements-award-excellence img {
-  top: -266px;
-  left: -472px;
-  width: 934px;
+  top: -177px;
+  left: -315px;
+  width: 623px;
 }
 
+/* Card 2: wrapper 85×146 at top=9, left=calc(50%)=176px (Figma: left-[calc(50%+0.5px)]) */
 .achievements-award-quality {
-  top: 37px;
-  left: 109px;
-  width: 116px;
-  height: 201px;
+  top: 9px;
+  left: 176px;
+  width: 85px;
+  height: 146px;
 }
 
 .achievements-award-quality img {
-  top: -109px;
-  left: -747px;
-  width: 911px;
+  top: -79px;
+  left: -546px;
+  width: 666px;
 }
 
+/* Card 3: wrapper 87×141 at top=19, left=132 (131×212 × 2/3) */
 .achievements-award-star {
-  top: 25px;
-  left: 107px;
-  width: 131px;
-  height: 212px;
+  top: 19px;
+  left: 132px;
+  width: 87px;
+  height: 141px;
 }
 
 .achievements-award-star img {
-  top: -410px;
-  left: -772px;
-  width: 959px;
+  top: -273px;
+  left: -515px;
+  width: 639px;
 }
 
 .achievements-award h3 {
-  margin: 36px 0 0;
+  margin: 24px 0 0;
   color: #be004b;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 1.4px;
-  line-height: 21px;
+  letter-spacing: 0.93px;
+  line-height: 14px;
   text-align: center;
   text-transform: uppercase;
 }
 
-.achievements-award:first-child h3 {
-  text-align: left;
-  padding-left: 37px;
-}
-
+/* CTA section — Figma y=2307→1538px at 1280; x=66→44; w=1784→1189px; h=352→235px */
 .achievements-cta {
   position: absolute;
-  top: 2120px;
-  left: 96px;
-  width: 1088px;
-  height: 352px;
+  top: 1538px;
+  left: 44px;
+  width: 1189px;
+  height: 235px;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 16px;
   background: #fff8f6;
 }
 
 .achievements-cta-bg {
   position: absolute;
-  inset: -14px 0 0;
-  height: 366px;
+  inset: -9px 0 0;
+  height: 244px;
   background:
     linear-gradient(90deg, #fff8f6 0%, rgba(255, 248, 246, 0.9) 50%, rgba(255, 248, 246, 0) 100%),
     url("./assets/achievements-cta-bg.png") center / cover no-repeat;
@@ -446,17 +469,17 @@
 
 .achievements-cta-copy {
   position: absolute;
-  top: 74px;
-  left: 80px;
+  top: 49px;
+  left: 53px;
   width: 548px;
 }
 
 .achievements-cta h2 {
   margin: 0;
   color: #4e281f;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 63px;
+  line-height: 42px;
 }
 
 .achievements-cta h2 span {
@@ -464,28 +487,29 @@
 }
 
 .achievements-cta p {
-  width: 532px;
-  margin: 42px 0 0;
+  width: 355px;
+  margin: 28px 0 0;
   color: rgba(130, 83, 72, 0.8);
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 19px;
 }
 
 .achievements-cta-button {
   position: absolute;
-  top: 134px;
-  left: 761px;
+  top: 89px;
+  left: 824px;
   display: inline-flex;
-  width: 247px;
-  height: 68px;
+  width: 165px;
+  height: 45px;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
   background: #be004b;
-  box-shadow: 0 25px 50px -12px rgba(190, 0, 75, 0.3);
+  box-shadow: 0 17px 33px -8px rgba(190, 0, 75, 0.3);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 28px;
+  line-height: 19px;
+  text-decoration: none;
 }

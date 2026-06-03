@@ -60,6 +60,11 @@
   --home-hero-height: 524.67px;
 }
 
+/* Namkeen compact hero — same bottom (524.67); other top-nav pages keep SiteLayout viewport height. */
+.category-main--namkeen {
+  --home-hero-height: 524.67px;
+}
+
 .category-main--beverages .category-hero h1 {
   top: 12.9px;
   width: 464.9px;
@@ -838,8 +843,8 @@
 
 .product-title-namkeen-lg {
   font-size: 32px;
-  line-height: 30px;
-  letter-spacing: -1.2px;
+  line-height: 40px;
+  letter-spacing: -2px;
 }
 
 .product-title-getmore {
@@ -886,6 +891,50 @@
 }
 
 .category-product-img {
+  object-fit: contain;
+}
+
+/* Namkeen — Figma compact cards use object-cover on product images */
+.category-main--namkeen .category-product-card[data-node-id="1206:390"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:444"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:435"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:427"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:467"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:473"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:477"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:485"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:497"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1210:547"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1210:537"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1210:526"] .category-product-img {
+  object-fit: cover;
+}
+
+/* Namkeen grid — clip labels per card */
+.category-main--namkeen .category-product-card {
+  isolation: isolate;
+}
+
+.category-main--namkeen .category-product-title {
+  z-index: 2;
+}
+
+/* Figma 1206:514 — narrow center tile; title must not clip */
+.category-main--namkeen .category-product-card[data-node-id="1206:514"] {
+  z-index: 1;
+}
+
+.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-title {
+  white-space: nowrap;
+}
+
+.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-img {
+  object-fit: contain;
+}
+
+.category-main--namkeen .category-product-card[data-node-id="1206:485"] .category-product-img,
+.category-main--namkeen .category-product-card[data-node-id="1206:497"] .category-product-img {
   object-fit: contain;
 }
 

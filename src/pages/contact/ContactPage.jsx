@@ -56,7 +56,11 @@ export default function ContactPage() {
           <div className="contact-hero-copy">
             <h1 id="contact-title">
               Let&apos;s <em>Connect</em>
-              <span>&amp; grow business</span>
+              <span>
+                &amp; grow
+                <br />
+                business
+              </span>
             </h1>
             <p>
               Whether it&apos;s business, distribution, or queries - our team of snack

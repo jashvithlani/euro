@@ -1,3 +1,4 @@
+import "./getmore.css";
 import { asset } from "./asset.js";
 import { scaleCategoryPage } from "./category-scale.js";
 

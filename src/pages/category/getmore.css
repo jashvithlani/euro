@@ -1,0 +1,68 @@
+/* Getmore category page — Figma 1159:192 @ 1920 → 1280 (× 2/3).
+   All overrides scoped to .category-main--getmore. Do NOT touch CategoryPage.css. */
+
+/* --- HERO -------------------------------------------------------------- */
+/* The hero band height matches the Figma band (559 × 2/3 = 372.67px, set in
+   CategoryPage.css for the top-nav variant). The custom visual fills it. */
+.category-main--getmore .category-hero-getmore-wide {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 100%;
+  transform: none;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Peach gradient blob (Figma Vector 1) — full-bleed behind everything. */
+.category-main--getmore .category-hero-getmore-wide::before {
+  content: "";
+  position: absolute;
+  top: -9.33px;
+  left: -4px;
+  width: 1286px;
+  height: 392.63px;
+  background-image: url("assets/category-getmore-hero-blob.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Decorative squiggle lines + accent marks (Figma Vector 3/4, Group 25/26).
+   Layered onto a single pseudo so no extra DOM is needed. */
+.category-main--getmore .category-hero-getmore-wide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    url("assets/category-getmore-line-red.svg"),
+    url("assets/category-getmore-line-blue.svg"),
+    url("assets/category-getmore-mark-red.svg"),
+    url("assets/category-getmore-mark-blue.svg");
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position:
+    252.6px 229.9px,
+    798.7px 174.7px,
+    234.8px 109.5px,
+    1061.1px 98.7px;
+  background-size:
+    248.4px 37.4px,
+    281.3px 26px,
+    36.9px 30.9px,
+    35.6px 28.8px;
+}
+
+/* The original SVG-as-PNG <img> tags are broken (wrong mime); hide them and
+   rely on the CSS layers above. The two pack PNGs are real and kept visible. */
+.category-main--getmore .getmore-wide-hero-bg,
+.category-main--getmore .getmore-wide-line {
+  display: none !important;
+}
+
+/* Packs sit above the decorative layers. */
+.category-main--getmore .getmore-wide-pack {
+  z-index: 2;
+}

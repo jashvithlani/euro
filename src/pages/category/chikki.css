@@ -1,0 +1,144 @@
+/* Chikki category page — pixel overrides for Figma 1215:861 (@1920 → 1280 ×2/3).
+   All values are authored in the FINAL 1280 space. High-specificity selectors
+   prefixed with .category-main--chikki so they beat CategoryPage.css. Never edit
+   CategoryPage.css — keep every chikki rule here. */
+
+/* ── Hero ─────────────────────────────────────────────────────────────────
+   Full-width soft lavender gradient band with a white wave foot, the product
+   trio image floating low-centre. The shared HeroVisual renders a scaled
+   1920px canvas (.category-hero-chikki, transform: scale(0.6667)). */
+.category-main--chikki .category-hero {
+  background: linear-gradient(180deg, #efe3fb 0%, #f3e8fc 55%, #ffffff 100%);
+}
+
+.category-main--chikki .category-hero-chikki {
+  background: transparent;
+}
+
+/* Hide the legacy raster bg — use the gradient on .category-hero instead so the
+   band is full-width and never crops. */
+.category-main--chikki .chikki-hero-bg {
+  display: none;
+}
+
+.category-main--chikki .chikki-hero-products {
+  top: 168px;
+  left: 571.48px;
+  width: 777.04px;
+  height: 432px;
+  object-fit: contain;
+}
+
+/* ── Product card titles (exact Figma colours + scaled type) ─────────────── */
+.category-main--chikki .text-chikki-crush {
+  color: #c43635;
+}
+
+.category-main--chikki .text-chikki-peanut {
+  color: #3a447f;
+}
+
+.category-main--chikki .text-chikki-rajgira {
+  color: #78405c;
+}
+
+.category-main--chikki .text-chikki-blue {
+  color: #0d778b;
+}
+
+/* 48px @1920 → 32px; tight Epilogue tracking */
+.category-main--chikki .product-title-crush,
+.category-main--chikki .product-title-dryfruit {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -2px;
+}
+
+/* 38px @1920 → 25.33px (rajgira / murmura headings) */
+.category-main--chikki .product-title-rajgira {
+  font-size: 25.33px;
+  line-height: 30px;
+  letter-spacing: -1.2px;
+}
+
+/* Subtitle 24px @1920 → 16px */
+.category-main--chikki .category-product-subtitle {
+  color: #838383;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+/* Card rounding — Figma cards use 24px radius @1920 → 16px */
+.category-main--chikki .category-product-card,
+.category-main--chikki .category-promo {
+  border-radius: 16px;
+}
+
+/* BEST SELLER badge — pink chip, 12px @1920 → 8px */
+.category-main--chikki .category-product-badge {
+  height: 16px;
+  padding: 0 8px;
+  font-size: 8px;
+  line-height: 10.67px;
+  letter-spacing: -0.4px;
+}
+
+/* ── Promo panels (blue, Figma 1218:1054 / 1218:1096) ─────────────────────
+   Box width/height come from the data (scaled). Content laid out absolutely,
+   matching the 64px @1920 → 42.67px inset. */
+.category-main--chikki .category-promo--chikki-compact {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.category-main--chikki .category-promo--chikki-compact .category-promo-ghost {
+  top: -34px;
+  right: -86px;
+  font-size: 226.67px;
+  line-height: 213.33px;
+  opacity: 0.1;
+}
+
+.category-main--chikki .category-promo--chikki-compact .category-promo-copy {
+  position: absolute;
+  top: 50%;
+  left: 42.67px;
+  width: 384px;
+  transform: translateY(-50%);
+}
+
+.category-main--chikki .category-promo.category-promo--chikki-compact h2 {
+  width: 384px;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -1.6px;
+}
+
+.category-main--chikki .category-promo.category-promo--chikki-compact p {
+  width: 384px;
+  margin: 15.33px 0 21.33px;
+  font-size: 13.33px;
+  line-height: 21.67px;
+  white-space: pre-line;
+}
+
+.category-main--chikki .category-promo.category-promo--chikki-compact a {
+  height: 40px;
+  padding: 0 26.67px;
+  font-size: 12px;
+  line-height: 18.67px;
+}
+
+/* ── Newsletter colours (green patch — Figma 1215:971) ───────────────────── */
+.category-main--chikki .category-newsletter.category-newsletter--chikki-compact h2 {
+  color: #543b00;
+}
+
+.category-main--chikki .category-newsletter.category-newsletter--chikki-compact p {
+  color: #785500;
+}
+
+.category-main--chikki .category-newsletter.category-newsletter--chikki-compact button {
+  background: #543b00;
+}

@@ -1,0 +1,47 @@
+/* Bakery category page overrides — Figma node 1218:1606.
+   (Hero geometry handled here so it survives edits to CategoryPage.css.) */
+
+/* ---- Hero: render natively full-width like the Chips hero ----
+   Overrides the scaled legacy canvas in CategoryPage.css (which only fills
+   the left 2/3 and crops packs vertically). Figma 1218:1727 (×2/3). */
+.category-main--bakery .category-hero {
+  height: 500px;
+}
+
+.category-main--bakery .category-hero-bakery {
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 100%;
+  overflow: hidden;
+  transform: none;
+  background: linear-gradient(168deg, #d2f3e2 0%, #e9f9f0 52%, #ffffff 100%);
+}
+
+.category-main--bakery .bakery-hero-curve {
+  display: none;
+}
+
+.category-main--bakery .bakery-pack-plain {
+  top: 173px;
+  left: 65px;
+  width: 348px;
+  height: 297px;
+  transform: none;
+}
+
+.category-main--bakery .bakery-pack-coconut {
+  top: 173px;
+  left: 467px;
+  width: 347px;
+  height: 297px;
+  transform: none;
+}
+
+.category-main--bakery .bakery-pack-methi {
+  top: 173px;
+  left: 869px;
+  width: 348px;
+  height: 297px;
+  transform: none;
+}

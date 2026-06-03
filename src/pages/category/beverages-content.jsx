@@ -1,7 +1,13 @@
+import "./beverages.css";
 import { asset } from "./asset.js";
 import { scaleCategoryPage } from "./category-scale.js";
 
-/** Beverages — Figma 1131:3231 @ 1920px → 1280px (× 2/3). */
+/**
+ * Beverages — Figma 1131:3231 @ 1920px → 1280px (× 2/3).
+ * Layout authored in 1920 space (numeric sizes). Per-section `top`, `newsletter.top`
+ * and page `height` are STRING px in 1280 space (Figma1920_Y × 2/3) so they bypass
+ * offsetFromHeroBottom and sit relative to the page top, like the chips reference.
+ */
 const beveragesAt1920 = {
   title: "Beverages",
   copy: (
@@ -12,23 +18,24 @@ const beveragesAt1920 = {
     </>
   ),
   badge: "LOREAM IPSUM",
-  height: 3706,
+  height: "2470.67px",
   hero: {
     mode: "beveragesWide",
   },
   heroClassName: "category-hero--beverages-top-nav",
   subnavPlacement: "top",
   newsletter: {
-    top: 3403,
+    top: "2268.67px",
     left: 293,
     background: "#efd6cf",
     className: "category-newsletter--beverages-compact",
   },
   sections: [
+    /* ---------- Row 1 (Figma y=906) ---------- */
     {
       type: "productCard",
       left: 65,
-      top: 906,
+      top: "604px",
       width: 549.667,
       height: 549.667,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
@@ -37,25 +44,39 @@ const beveragesAt1920 = {
       badge: { label: "BEST SELLER", tone: "pink", style: { left: 45, top: 37 } },
       title: "Fresho\nGuava",
       titleClass: "text-guava product-title-beverages-xl",
-      titleStyle: { left: 45, top: 37, width: 329 },
+      titleStyle: { left: 45, top: 69, width: 329 },
     },
     {
       type: "productCard",
       left: 671,
-      top: 906,
-      width: 575.854,
+      top: "604px",
+      width: 595,
       height: 549.667,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
       image: asset("category-beverage-mango.png"),
-      imageStyle: { left: -25, top: 16, width: 718, height: 718 },
+      imageStyle: { left: -2, top: 23, width: 697, height: 522 },
       title: "Fresho\nMango",
       titleClass: "text-orange product-title-beverages-lg text-right",
-      titleStyle: { right: 29, top: 47, width: 378 },
+      titleStyle: { right: 47, top: 49, width: 378 },
     },
     {
       type: "productCard",
+      left: 1303,
+      top: "604px",
+      width: 542,
+      height: 540,
+      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
+      image: asset("category-beverage-water.png"),
+      imageStyle: { left: -15, top: 90, width: 622, height: 495, transform: "rotate(-5.14deg)" },
+      title: "Mineral Water",
+      titleClass: "text-dark product-title-beverages-water",
+      titleStyle: { left: 60, top: 45, width: 340 },
+    },
+    /* ---------- Row 2 (Figma y=1491) ---------- */
+    {
+      type: "productCard",
       left: 67,
-      top: 1491,
+      top: "994px",
       width: 548,
       height: 389,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
@@ -68,7 +89,7 @@ const beveragesAt1920 = {
     {
       type: "promo",
       left: 669,
-      top: 1491,
+      top: "994px",
       width: 1176,
       height: 389,
       className: "category-promo--beverages-compact",
@@ -79,10 +100,11 @@ const beveragesAt1920 = {
       title: "Where Flavor Meets Perfection",
       copy: "Handpicked ingredients and crafted processes, driven by quality. More than a sip - an experience.",
     },
+    /* ---------- Row 3 (Figma y=1929, three cards h=576) ---------- */
     {
       type: "productCard",
-      left: 117,
-      top: 1929,
+      left: 68,
+      top: "1286px",
       width: 576,
       height: 576,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
@@ -94,8 +116,8 @@ const beveragesAt1920 = {
     },
     {
       type: "productCard",
-      left: 693,
-      top: 1929,
+      left: 694,
+      top: "1286px",
       width: 534,
       height: 576,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
@@ -107,9 +129,10 @@ const beveragesAt1920 = {
     },
     {
       type: "productCard",
-      left: 1155,
-      top: 1929,
-      width: 576,
+      left: 1279,
+      top: "1286px",
+      width: 568,
+      height: 576,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
       image: asset("category-beverage-onceup.png"),
       imageStyle: { left: 83, top: -31, width: 277, height: 558 },
@@ -117,28 +140,11 @@ const beveragesAt1920 = {
       titleClass: "text-lime product-title-beverages-lg",
       titleStyle: { left: 36, top: 35, width: 245 },
     },
-    {
-      type: "feature",
-      left: 542,
-      top: 2982,
-      width: 836,
-      height: 360,
-      className: "category-feature--beverages-wide",
-      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
-      kicker: "LIMITED EDITION",
-      kickerColor: "#be004b",
-      title: "Fresho\nLitchi",
-      titleColor: "#be004b",
-      copy: "Extra thick, extra crunchy,\nextra flavor.",
-      buttonColor: "#be004b",
-      buttonLabel: "Inquire",
-      image: asset("category-beverage-litchi.png"),
-      imageStyle: { left: 608, top: 0, width: 259, height: 356 },
-    },
+    /* ---------- Row 4 (Figma y=2554) ---------- */
     {
       type: "promo",
       left: 68,
-      top: 2554,
+      top: "1702.67px",
       width: 1068,
       height: 389,
       className: "category-promo--beverages-compact",
@@ -152,8 +158,8 @@ const beveragesAt1920 = {
     },
     {
       type: "productCard",
-      left: 1123,
-      top: 2557,
+      left: 1191,
+      top: "1704.67px",
       width: 656,
       height: 386,
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
@@ -162,6 +168,25 @@ const beveragesAt1920 = {
       title: "Sparker\nEnergy",
       titleClass: "text-red product-title-beverages-lg",
       titleStyle: { left: 33, top: 35, width: 245 },
+    },
+    /* ---------- Feature (Figma y=2982) ---------- */
+    {
+      type: "feature",
+      left: 535,
+      top: "1988px",
+      width: 836,
+      height: 360,
+      className: "category-feature--beverages-wide",
+      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffece4 100%)",
+      kicker: "LIMITED EDITION",
+      kickerColor: "#be004b",
+      title: "Fresho\nLitchi",
+      titleColor: "#be004b",
+      copy: "Extra thick, extra crunchy,\nextra flavor.",
+      buttonColor: "#be004b",
+      buttonLabel: "Inquire",
+      image: asset("category-beverage-litchi.png"),
+      imageStyle: { left: 608, top: 0, width: 259, height: 356 },
     },
   ],
 };

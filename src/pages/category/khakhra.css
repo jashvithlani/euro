@@ -1,0 +1,112 @@
+/* Khakhra category page overrides — Figma node 1218:1112.
+   (Hero geometry is handled natively in CategoryPage.css, like the Chips hero.) */
+
+/* Exact title colors from Figma. */
+.category-main--khakhra .text-khakhra-blue {
+  color: #19729b;
+}
+
+.category-main--khakhra .text-khakhra-brown {
+  color: #763d2d;
+}
+
+.category-main--khakhra .text-khakhra-red {
+  color: #be0000;
+}
+
+/* Fafda card is narrow; keep the single-line title inside the card. */
+.category-main--khakhra .khakhra-title-fafda {
+  font-size: 27px;
+  line-height: 32px;
+}
+
+/* Bold Crunch promo: top-anchored like the other category promos so the
+   two-line title is never clipped by the banner's top edge. */
+.category-promo.category-promo--khakhra {
+  padding: 52px 64px;
+}
+
+.category-promo.category-promo--khakhra .category-promo-ghost {
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%) rotate(12deg);
+  font-size: 190px;
+  opacity: 0.1;
+  color: #ffffff;
+}
+
+.category-promo.category-promo--khakhra .category-promo-copy {
+  width: 576px;
+}
+
+.category-promo.category-promo--khakhra h2 {
+  width: 576px;
+  letter-spacing: -2.4px;
+}
+
+.category-promo.category-promo--khakhra p {
+  width: 556px;
+}
+
+/* ---- Hero: render natively full-width like the Chips hero ----
+   Overrides the scaled legacy canvas in CategoryPage.css. Higher specificity
+   so these win regardless of edits to CategoryPage.css. Figma 1218:1233 (×2/3). */
+.category-main--khakhra .category-hero {
+  height: 500px;
+}
+
+.category-main--khakhra .category-hero-khakhra {
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 100%;
+  overflow: hidden;
+  transform: none;
+  background: linear-gradient(168deg, #fcdfec 0%, #fdeef5 52%, #ffffff 100%);
+}
+
+.category-main--khakhra .khakhra-hero-bg {
+  display: none;
+}
+
+/* Packs arranged in a symmetric downward arc (fan) like the Chips hero:
+   outer packs sit high and tilt outward, the centre pack sits low and straight. */
+.category-main--khakhra .khakhra-pack-7grain {
+  top: 60px;
+  left: 120px;
+  width: 260px;
+  height: 271px;
+  transform: rotate(24deg);
+}
+
+.category-main--khakhra .khakhra-pack-panipuri {
+  top: 130px;
+  left: 320px;
+  width: 234px;
+  height: 251px;
+  transform: rotate(12deg);
+}
+
+.category-main--khakhra .khakhra-pack-fafda {
+  top: 175px;
+  left: 539px;
+  width: 201px;
+  height: 213px;
+  transform: none;
+}
+
+.category-main--khakhra .khakhra-pack-jeera {
+  top: 130px;
+  left: 725px;
+  width: 236px;
+  height: 251px;
+  transform: rotate(-12deg);
+}
+
+.category-main--khakhra .khakhra-pack-masala {
+  top: 60px;
+  left: 899px;
+  width: 262px;
+  height: 272px;
+  transform: rotate(-24deg);
+}

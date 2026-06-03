@@ -1,0 +1,9 @@
+/* Beverages body overrides — Figma 1131:3231. Scoped to .category-main--beverages. */
+
+/* Mineral Water title: single line, Epilogue Black 48px in 1920 space. */
+.category-main--beverages .product-title-beverages-water {
+  font-size: 32px; /* 48px @1920 × 2/3 */
+  line-height: 30px; /* 45px @1920 × 2/3 */
+  letter-spacing: -1.2px;
+  white-space: nowrap;
+}

@@ -1,0 +1,148 @@
+/* Fryums category — overrides on top of CategoryPage.css to match Figma 1246:2241.
+   All values are in 1280 (canvas) space. */
+
+/* Ringoli Tomato Rings title — Figma #971914 (CategoryPage ring color is #a32020). */
+.category-main--fryums .text-fryums-ring {
+  color: #971914;
+}
+
+/* Salted Finger Pipe feature card — Figma uses a wider copy column,
+   50px title and a vertically centred block. */
+.category-main--fryums .category-feature .category-feature-copy {
+  top: 50%;
+  left: 56px;
+  width: 360px;
+  transform: translateY(-50%);
+}
+
+.category-main--fryums .category-feature h2 {
+  font-size: 33.33px; /* 50px @1920 */
+  line-height: 40px;
+  letter-spacing: -2px;
+}
+
+.category-main--fryums .category-feature p {
+  font-size: 12px; /* 18px @1920 */
+  line-height: 18.67px;
+}
+
+.category-main--fryums .category-feature-copy > span {
+  font-size: 8px; /* 12px @1920 */
+  letter-spacing: 0.8px;
+  line-height: 10.67px;
+}
+
+.category-main--fryums .category-feature a {
+  height: 37.33px;
+  gap: 10.67px;
+  padding: 0 21.33px;
+  font-size: 10.67px;
+  line-height: 16px;
+}
+
+/* Promo copy column sizing for the Light Crunch panel. */
+.category-main--fryums .category-promo h2 {
+  font-size: 32px; /* 48px @1920 */
+  line-height: 40px;
+  letter-spacing: -1.6px;
+}
+
+.category-main--fryums .category-promo p {
+  font-size: 13.33px; /* 20px @1920 */
+  line-height: 21.67px;
+  margin: 15px 0 21px;
+  width: 384px;
+}
+
+.category-main--fryums .category-promo a {
+  height: 40px;
+  padding: 0 26.67px;
+  font-size: 12px;
+  line-height: 18.67px;
+}
+
+.category-main--fryums .category-promo-copy {
+  width: 420px;
+}
+
+/* 40px product titles (Wheels Chaska, Crunchy Cups) — Figma 40px @1920. */
+.category-main--fryums .product-title-fryums-40 {
+  font-size: 26.67px;
+  line-height: 30px;
+  letter-spacing: -1.2px;
+}
+
+/* Ringoli Tomato Rings — single-line title, fit within a 348px card. */
+.category-main--fryums .product-title-fryums-ringoli {
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: -1px;
+}
+
+.category-main--fryums .product-title-fryums-ringoli span {
+  white-space: nowrap;
+}
+
+/* ---- Hero: render natively full-width like the Chips hero ----
+   Overrides the scaled legacy canvas in CategoryPage.css (which only fills
+   the left 2/3 and crops packs vertically). Higher specificity so these win
+   regardless of edits to CategoryPage.css. Figma 1246:2362 (×2/3). */
+.category-main--fryums .category-hero {
+  height: 430px;
+}
+
+.category-main--fryums .category-hero-fryums {
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 100%;
+  overflow: hidden;
+  transform: none;
+  background: linear-gradient(168deg, #fdeaf1 0%, #f6e7f4 55%, #fdf2f7 100%);
+}
+
+.category-main--fryums .fryums-hero-bg {
+  display: none;
+}
+
+/* Packs arranged in a symmetric downward arc (fan) like the Chips hero:
+   outer packs sit high and tilt outward, the centre pack sits low and straight. */
+.category-main--fryums .fryums-pack-cone {
+  top: 30px;
+  left: 131px;
+  width: 238px;
+  height: 255px;
+  transform: rotate(30deg);
+}
+
+.category-main--fryums .fryums-pack-magic {
+  top: 100px;
+  left: 333px;
+  width: 203px;
+  height: 239px;
+  transform: rotate(15deg);
+}
+
+.category-main--fryums .fryums-pack-noodles {
+  top: 150px;
+  left: 559px;
+  width: 162px;
+  height: 201px;
+  transform: none;
+}
+
+.category-main--fryums .fryums-pack-pasta {
+  top: 100px;
+  left: 744px;
+  width: 203px;
+  height: 239px;
+  transform: rotate(-15deg);
+}
+
+.category-main--fryums .fryums-pack-cups {
+  top: 30px;
+  left: 911px;
+  width: 238px;
+  height: 255px;
+  transform: rotate(-30deg);
+}

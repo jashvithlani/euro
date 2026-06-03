@@ -32,11 +32,8 @@
   height: 372.67px;
 }
 
-/* Figma legacy category heroes (1280×559) scaled into the compact 372.67px shell */
-.category-hero-chikki,
-.category-hero-khakhra,
-.category-hero-bakery,
-.category-hero-fryums {
+/* Figma legacy chikki hero (1920×559) scaled into the compact shell */
+.category-hero-chikki {
   top: 0;
   left: 0;
   width: 1280px;
@@ -44,6 +41,19 @@
   overflow: visible;
   transform: scale(0.666667);
   transform-origin: top left;
+}
+
+/* Fryums / Bakery / Khakhra heroes render natively full-width like Chips
+   (no scale transform — they fall back to .category-hero-custom: inset:0,
+   width:1280, height:100%). Box heights match the Figma hero bands (×2/3)
+   so the floating packs are never cropped vertically. */
+.category-main--fryums .category-hero {
+  height: 430px;
+}
+
+.category-main--bakery .category-hero,
+.category-main--khakhra .category-hero {
+  height: 500px;
 }
 
 /* Chikki hero is designed at full 1920×559 so the scaled visual (×2/3) fills the 1280×372.67 shell.
@@ -635,21 +645,28 @@
   transform: rotate(-32.39deg);
 }
 
-.category-hero-chikki,
-.category-hero-khakhra,
-.category-hero-fryums {
+.category-hero-chikki {
   overflow: hidden;
   background: #ffffff;
 }
 
-.category-hero-bakery {
+/* Soft full-bleed gradient backgrounds (match Figma hero fills, cover the whole box) */
+.category-hero-fryums {
   overflow: hidden;
-  background: #ddffef;
+  background: linear-gradient(168deg, #fdeaf1 0%, #f6e7f4 55%, #fdf2f7 100%);
 }
 
-.chikki-hero-bg,
-.khakhra-hero-bg,
-.fryums-hero-bg {
+.category-hero-khakhra {
+  overflow: hidden;
+  background: linear-gradient(168deg, #fcdfec 0%, #fdeef5 52%, #ffffff 100%);
+}
+
+.category-hero-bakery {
+  overflow: hidden;
+  background: linear-gradient(168deg, #d2f3e2 0%, #e9f9f0 52%, #ffffff 100%);
+}
+
+.chikki-hero-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -661,16 +678,11 @@
   user-select: none;
 }
 
+/* Fryums/Khakhra use the gradient fill above instead of a bg image */
+.khakhra-hero-bg,
+.fryums-hero-bg,
 .bakery-hero-curve {
-  position: absolute;
-  z-index: 0;
-  top: 326px;
-  left: -108px;
-  width: 1496px;
-  height: 306px;
-  border-radius: 50% 50% 0 0;
-  background: #ffffff;
-  transform: rotate(-2.3deg);
+  display: none;
 }
 
 .category-hero-chikki .chikki-hero-bg {
@@ -685,102 +697,105 @@
   object-fit: contain;
 }
 
+/* Khakhra packs — Figma 1218:1325 children (×2/3), native 1280 canvas */
 .khakhra-pack-7grain {
-  top: 153.14px;
-  left: 129.17px;
-  width: 260.89px;
-  height: 271.87px;
+  top: 91px;
+  left: 49px;
+  width: 260px;
+  height: 271px;
   transform: rotate(-19deg);
 }
 
 .khakhra-pack-panipuri {
-  top: 234.13px;
-  left: 329.16px;
-  width: 235.02px;
-  height: 251.22px;
+  top: 172px;
+  left: 284px;
+  width: 234px;
+  height: 251px;
   transform: rotate(12deg);
 }
 
 .khakhra-pack-fafda {
-  top: 280.27px;
-  left: 536.28px;
-  width: 201.9px;
-  height: 213.52px;
+  top: 217px;
+  left: 538px;
+  width: 201px;
+  height: 213px;
 }
 
 .khakhra-pack-jeera {
-  top: 277.47px;
-  left: 758.86px;
-  width: 236.29px;
-  height: 251.51px;
+  top: 171px;
+  left: 760px;
+  width: 236px;
+  height: 251px;
   transform: rotate(-12deg);
 }
 
 .khakhra-pack-masala {
-  top: 229.43px;
-  left: 972.96px;
-  width: 262.29px;
-  height: 272.47px;
+  top: 91px;
+  left: 974px;
+  width: 262px;
+  height: 272px;
   transform: rotate(19deg);
 }
 
+/* Bakery packs — Figma 1218:1730 children (×2/3) */
 .bakery-pack-plain {
-  top: 226.67px;
-  left: 75.74px;
-  width: 350.75px;
-  height: 299.09px;
+  top: 173px;
+  left: 65px;
+  width: 348px;
+  height: 297px;
 }
 
 .bakery-pack-coconut {
-  top: 226.67px;
-  left: 465.12px;
-  width: 350.75px;
-  height: 299.11px;
+  top: 173px;
+  left: 467px;
+  width: 347px;
+  height: 297px;
 }
 
 .bakery-pack-methi {
-  top: 226.71px;
-  left: 857.51px;
-  width: 350.75px;
-  height: 299.02px;
+  top: 173px;
+  left: 869px;
+  width: 348px;
+  height: 297px;
 }
 
+/* Fryums packs — Figma 1246:2469 children (×2/3) */
 .fryums-pack-cone {
-  top: 88.22px;
-  left: 35.55px;
-  width: 278.8px;
-  height: 298.41px;
+  top: 41px;
+  left: 235px;
+  width: 238px;
+  height: 255px;
   transform: rotate(-22deg);
 }
 
 .fryums-pack-magic {
-  top: 102.74px;
-  left: 208.08px;
-  width: 237.93px;
-  height: 280.19px;
+  top: 129px;
+  left: 383px;
+  width: 203px;
+  height: 239px;
   transform: rotate(14deg);
 }
 
 .fryums-pack-noodles {
-  top: 160.71px;
-  left: 408.27px;
-  width: 189.47px;
-  height: 235.91px;
+  top: 178px;
+  left: 553px;
+  width: 162px;
+  height: 201px;
 }
 
 .fryums-pack-pasta {
-  top: 151.98px;
-  left: 625.67px;
-  width: 237.93px;
-  height: 280.19px;
+  top: 171px;
+  left: 739px;
+  width: 203px;
+  height: 239px;
   transform: rotate(-14deg);
 }
 
 .fryums-pack-cups {
-  top: 98.16px;
-  left: 825.66px;
-  width: 278.8px;
-  height: 298.41px;
+  top: 125px;
+  left: 910px;
+  width: 238px;
+  height: 255px;
   transform: rotate(22deg);
 }
 
@@ -836,7 +851,7 @@
 }
 
 .product-title-namkeen-sm {
-  font-size: 25.33px;
+  font-size: 26.67px;
   line-height: 30px;
   letter-spacing: -1.2px;
 }
@@ -894,48 +909,42 @@
   object-fit: contain;
 }
 
-/* Namkeen — Figma compact cards use object-cover on product images */
-.category-main--namkeen .category-product-card[data-node-id="1206:390"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:444"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:435"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:427"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:467"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:473"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:477"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:485"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:497"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1210:547"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1210:537"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1210:526"] .category-product-img {
-  object-fit: cover;
+/* Namkeen — product images use contain so they don't get clipped */
+.category-main--namkeen .category-product-img {
+  object-fit: contain;
 }
 
 /* Namkeen grid — clip labels per card */
 .category-main--namkeen .category-product-card {
   isolation: isolate;
+  overflow: hidden;
+  border-radius: 24px;
 }
 
 .category-main--namkeen .category-product-title {
   z-index: 2;
 }
 
-/* Figma 1206:514 — narrow center tile; title must not clip */
-.category-main--namkeen .category-product-card[data-node-id="1206:514"] {
+/* Ring overlay on large paired cards */
+.category-product-ring {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 550px;
+  height: 550px;
+  transform: translate(-50%, -50%);
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-product-card--ring .category-product-img {
   z-index: 1;
 }
 
-.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-title {
-  white-space: nowrap;
-}
-
-.category-main--namkeen .category-product-card[data-node-id="1206:514"] .category-product-img {
-  object-fit: contain;
-}
-
-.category-main--namkeen .category-product-card[data-node-id="1206:485"] .category-product-img,
-.category-main--namkeen .category-product-card[data-node-id="1206:497"] .category-product-img {
-  object-fit: contain;
+.category-product-card--ring .category-product-title {
+  z-index: 2;
 }
 
 .category-product-badge {
@@ -1105,6 +1114,10 @@
 
 .text-namkeen-plum {
   color: #7b2d54;
+}
+
+.text-namkeen-gray {
+  color: #6b6b6b;
 }
 
 .text-namkeen-blue {
@@ -1431,7 +1444,9 @@
 }
 
 .category-promo--namkeen-compact {
-  padding: 13.33px 35.33px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .category-promo--namkeen-compact .category-promo-ghost {
@@ -1443,8 +1458,8 @@
 
 .category-promo--namkeen-compact .category-promo-copy {
   position: absolute;
-  top: 13.33px;
-  left: 35.33px;
+  top: 64px;
+  left: 42.67px;
   width: 443px;
 }
 
@@ -1469,10 +1484,10 @@
   line-height: 18.67px;
 }
 
-/* Figma 1206:93 area — compact newsletter (must beat base .category-newsletter below) */
+/* Namkeen newsletter — Figma 1206:336 @ 1920 → 1280 (× 2/3): compact patch */
 .category-newsletter.category-newsletter--namkeen-compact {
-  width: 1186px;
-  height: 219.33px;
+  width: 1189.33px;
+  height: 202px;
   border-radius: 32px;
   padding: 21.33px 53.33px 16px;
 }
@@ -1512,61 +1527,65 @@
   line-height: 16px;
 }
 
-/* Royal Crunch spotlight — Figma 1206:93 @ 1920 → 1280 (× 2/3) */
+/* Royal Crunch — Figma 1215:605 @ 1920 → 1280 (× 2/3): green tilted band,
+   two product cards on the right, single right arrow. */
 .category-main--namkeen .category-spotlight {
-  height: 200px;
+  height: 266.67px;
 }
 
 .category-main--namkeen .category-spotlight-bg {
-  top: -48.67px;
-  left: -48px;
-  width: 938.67px;
-  height: 353.2px;
+  top: -5.48px;
+  left: -42.67px;
+  width: 1365.33px;
+  height: 353.19px;
+  background: #edffde;
+  transform: rotate(-1.59deg) skewX(-1.59deg);
 }
 
 .category-main--namkeen .category-spotlight h2 {
-  top: 71px;
-  left: 23.33px;
-  font-size: 24px;
-  line-height: 30px;
+  top: 93.33px;
+  left: 166.67px;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -2px;
 }
 
 .category-main--namkeen .category-spotlight-cards {
-  top: 25px;
-  left: 170.67px;
-  grid-template-columns: repeat(3, 133.33px);
-  gap: 15px;
+  top: 32px;
+  left: 532px;
+  grid-template-columns: repeat(2, 310.67px);
+  gap: 34.67px;
 }
 
 .category-main--namkeen .category-spotlight-card {
-  width: 133.33px;
-  height: 151.33px;
-  border-radius: 24px;
+  width: 310.67px;
+  height: 202.67px;
+  border-radius: 32px;
 }
 
 .category-main--namkeen .category-spotlight-ring {
-  width: 103px;
-  height: 103px;
+  width: 138.06px;
+  height: 138.06px;
 }
 
 .category-main--namkeen .category-spotlight-card > img:not(.category-spotlight-ring) {
-  width: 98.67px;
-  height: 112px;
+  width: 131.96px;
+  height: 149.68px;
 }
 
 .category-main--namkeen .category-spotlight-arrow {
-  top: 95px;
-  width: 18.67px;
-  height: 18.67px;
-  font-size: 9.33px;
+  top: 112px;
+  width: 42.67px;
+  height: 42.67px;
+  font-size: 18px;
 }
 
 .category-main--namkeen .category-spotlight-arrow--left {
-  left: 163.33px;
+  display: none;
 }
 
 .category-main--namkeen .category-spotlight-arrow--right {
-  left: 608px;
+  left: 1167.33px;
 }
 
 .category-promo-ghost {
@@ -2125,4 +2144,226 @@
   font-weight: 800;
   line-height: 24px;
   cursor: pointer;
+}
+
+/* =====================================================================
+ * Chips page motion layer
+ * ---------------------------------------------------------------------
+ * Scoped to .category-main--chips so the other eight category pages are
+ * untouched. Pure CSS; the JSX is unchanged.
+ *
+ * The hero packs and feature image carry resting `transform: rotate()`
+ * from the layout above. Animations drive the INDIVIDUAL translate /
+ * scale properties (which compose on top of `transform`) so each pack
+ * keeps its tilt while it floats. Ambient + entrance motion is gated on
+ * prefers-reduced-motion; hover effects stay (user-initiated, subtle).
+ * ===================================================================== */
+
+@keyframes chips-rise {
+  from {
+    opacity: 0;
+    translate: 0 26px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes chips-pack-in {
+  0% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  70% {
+    opacity: 1;
+    scale: 1.08;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes chips-pack-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -14px;
+  }
+}
+
+@keyframes chips-bg-grow {
+  from {
+    opacity: 0;
+    scale: 1.05;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* The five packs sit on a shallow arc whose circle centre is ~(640, -371)
+   in the hero box. Rotating the ring about that point turns the whole arc
+   like a slow wheel — every pack orbits together. Gentle ±1.6deg sway
+   (~18px travel at r≈640) so end packs never clip out of the hero. */
+@keyframes chips-ring-spin {
+  0% {
+    transform: rotate(-1.6deg);
+  }
+  50% {
+    transform: rotate(1.6deg);
+  }
+  100% {
+    transform: rotate(-1.6deg);
+  }
+}
+
+/* Full-size positioned wrapper so packs keep their exact coordinates;
+   transform-origin is the arc's circle centre. */
+.category-main--chips .chips-wide-hero-ring {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 100%;
+  transform-origin: 640px -371px;
+  pointer-events: none;
+}
+
+/* ---- Hover / focus interactions (always on) ---------------------- */
+
+.category-main--chips .category-product-card--image,
+.category-main--chips .category-product-cover,
+.category-main--chips .category-promo--chips-compact .category-promo-ghost,
+.category-main--chips .category-promo--chips-compact a,
+.category-main--chips .category-feature--chips-wide,
+.category-main--chips .category-feature--chips-wide > img,
+.category-main--chips .category-feature--chips-wide a,
+.category-main--chips .category-feature-arrow,
+.category-main--chips .category-newsletter--chips-compact input,
+.category-main--chips .category-newsletter--chips-compact button {
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.4s cubic-bezier(0.22, 1, 0.36, 1), rotate 0.4s ease,
+    box-shadow 0.4s ease, background 0.3s ease, border-color 0.25s ease;
+}
+
+/* Flavour cards lift + zoom their pack art (cover zoom clipped by the
+   card's existing overflow:hidden) */
+.category-main--chips .category-product-card--image:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.5);
+}
+
+.category-main--chips .category-product-card--image:hover .category-product-cover {
+  scale: 1.07;
+}
+
+/* Promo panel — the giant ghost word drifts, the CTA nudges forward */
+.category-main--chips .category-promo--chips-compact:hover .category-promo-ghost {
+  scale: 1.06;
+  rotate: 6deg;
+}
+
+.category-main--chips .category-promo--chips-compact a:hover {
+  translate: 2px 0;
+}
+
+/* Feature card — lift, nudge the chilli pack, slide the arrow */
+.category-main--chips .category-feature--chips-wide:hover {
+  box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
+}
+
+.category-main--chips .category-feature--chips-wide:hover > img {
+  translate: 0 -8px;
+  scale: 1.04;
+  rotate: -3deg;
+}
+
+.category-main--chips .category-feature--chips-wide a:hover {
+  translate: 0 -2px;
+  scale: 1.04;
+}
+
+.category-main--chips .category-feature--chips-wide a:hover .category-feature-arrow {
+  translate: 4px 0;
+}
+
+/* Newsletter signup */
+.category-main--chips .category-newsletter--chips-compact input:focus {
+  border: 1px solid var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+.category-main--chips .category-newsletter--chips-compact button:hover {
+  translate: 0 -2px;
+  scale: 1.04;
+  box-shadow: 0 18px 30px -12px rgba(84, 59, 0, 0.5);
+}
+
+/* ---- Entrance + ambient motion (motion-preference gated) --------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero backdrop grows in */
+  .category-main--chips .chips-wide-hero-bg {
+    transform-origin: center;
+    animation: chips-bg-grow 0.9s ease both;
+  }
+
+  /* The whole pack ring turns slowly like a wheel (the packs' own
+     float/scale animations run independently inside it). */
+  .category-main--chips .chips-wide-hero-ring {
+    animation: chips-ring-spin 16s ease-in-out 1s infinite;
+  }
+
+  /* Title / copy / badge cascade up */
+  .category-main--chips .category-hero h1 {
+    animation: chips-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+  .category-main--chips .category-hero p {
+    animation: chips-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+  }
+  .category-main--chips .category-hero-badge {
+    animation: chips-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
+  }
+
+  /* Each pack flies in (opacity + scale, keeping its rotate), then
+     floats forever. Two animations on different properties so they
+     don't fight: pack-in drives scale, pack-float drives translate. */
+  .category-main--chips .chips-wide-hero-pack {
+    animation: chips-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+      chips-pack-float 5.5s ease-in-out infinite;
+  }
+  .category-main--chips .chips-wide-pack-salted {
+    animation-delay: 0.25s, 1s;
+  }
+  .category-main--chips .chips-wide-pack-tomato {
+    animation-delay: 0.38s, 1.4s;
+  }
+  .category-main--chips .chips-wide-pack-masti {
+    animation-delay: 0.5s, 1.2s;
+  }
+  .category-main--chips .chips-wide-pack-onion {
+    animation-delay: 0.62s, 1.6s;
+  }
+  .category-main--chips .chips-wide-pack-chilli {
+    animation-delay: 0.74s, 1.8s;
+  }
+
+  /* Down-page content reveals on scroll where supported (never hides
+     content on browsers without view() timelines). */
+  @supports (animation-timeline: view()) {
+    .category-main--chips .category-product-card,
+    .category-main--chips .category-promo,
+    .category-main--chips .category-feature,
+    .category-main--chips .category-newsletter {
+      animation: chips-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
 }

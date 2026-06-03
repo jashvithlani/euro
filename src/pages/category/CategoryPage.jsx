@@ -298,11 +298,13 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-chips-wide" aria-hidden="true">
         <img className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" />
-        <img className="chips-wide-hero-pack chips-wide-pack-salted" src={asset('category-chips-wide-hero-salted.png')} alt="" />
-        <img className="chips-wide-hero-pack chips-wide-pack-tomato" src={asset('category-chips-wide-hero-tomato.png')} alt="" />
-        <img className="chips-wide-hero-pack chips-wide-pack-masti" src={asset('category-chips-wide-hero-masti.png')} alt="" />
-        <img className="chips-wide-hero-pack chips-wide-pack-onion" src={asset('category-chips-wide-hero-onion.png')} alt="" />
-        <img className="chips-wide-hero-pack chips-wide-pack-chilli" src={asset('category-chips-wide-hero-chilli.png')} alt="" />
+        <div className="chips-wide-hero-ring">
+          <img className="chips-wide-hero-pack chips-wide-pack-salted" src={asset('category-chips-wide-hero-salted.png')} alt="" />
+          <img className="chips-wide-hero-pack chips-wide-pack-tomato" src={asset('category-chips-wide-hero-tomato.png')} alt="" />
+          <img className="chips-wide-hero-pack chips-wide-pack-masti" src={asset('category-chips-wide-hero-masti.png')} alt="" />
+          <img className="chips-wide-hero-pack chips-wide-pack-onion" src={asset('category-chips-wide-hero-onion.png')} alt="" />
+          <img className="chips-wide-hero-pack chips-wide-pack-chilli" src={asset('category-chips-wide-hero-chilli.png')} alt="" />
+        </div>
       </div>
     );
   }
@@ -368,10 +370,13 @@ function ImageCard({ item }) {
 function ProductCard({ item }) {
   return (
     <article
-      className="category-product-card category-product-card--product"
+      className={`category-product-card category-product-card--product${item.ring ? " category-product-card--ring" : ""}`}
       style={{ ...boxStyle(item), background: item.background }}
       {...(item.nodeId ? { "data-node-id": item.nodeId } : {})}
     >
+      {item.ring && (
+        <img className="category-product-ring" src={asset('category-namkeen-royal-card-ring.svg')} alt="" aria-hidden="true" />
+      )}
       <img className="category-product-img" src={item.image} alt="" style={layerStyle(item.imageStyle)} />
       <Badge badge={item.badge} />
       {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}

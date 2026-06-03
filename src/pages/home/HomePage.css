@@ -6,3 +6,360 @@
   background-size: 1200px 1200px;
   filter: invert(1);
 }
+
+/* =====================================================================
+ * Home page motion layer
+ * ---------------------------------------------------------------------
+ * Lives with the home page (imported by HomePage.jsx). Implemented
+ * purely in CSS — the JSX markup is untouched.
+ *
+ * Technique: the existing layout in public/styles.css uses `transform`
+ * for the cards' resting rotations (e.g. product-card--lavender). To
+ * avoid clobbering those, every animation here drives the INDIVIDUAL
+ * `translate` / `scale` / `rotate` properties, which compose on top of
+ * the base `transform`. Hover lifts therefore keep each card's tilt.
+ *
+ * All ambient/entrance motion is gated behind prefers-reduced-motion.
+ * ===================================================================== */
+
+@keyframes home-rise {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes home-rise-left {
+  from {
+    opacity: 0;
+    translate: -36px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes home-pop {
+  0% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  70% {
+    opacity: 1;
+    scale: 1.08;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes home-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes home-tag-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes home-bg-grow {
+  from {
+    opacity: 0;
+    scale: 1.04;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hover / focus interactions — always on (user-initiated, subtle)     */
+/* ------------------------------------------------------------------ */
+
+.button-primary,
+.button-blue,
+.mood-cta,
+.card-basket a,
+.story-link,
+.slider-btn,
+.category-card,
+.product-card,
+.quality-card,
+.story-photo-wrap,
+.partner-panel li,
+.inquiry-form input,
+.inquiry-form textarea,
+.social-feed-header,
+.social-feed-cards {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, background 0.3s ease, border-color 0.25s ease;
+}
+
+/* Buttons lift + glow */
+.button-primary:hover,
+.button-blue:hover,
+.mood-cta:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+  box-shadow: 0 30px 56px -14px rgba(78, 40, 31, 0.32);
+}
+
+.button-primary:active,
+.button-blue:active,
+.mood-cta:active {
+  translate: 0 -1px;
+  scale: 1;
+}
+
+.hero-button {
+  transition: translate 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.hero-button:hover {
+  translate: 0 -2px;
+  scale: 1.05;
+}
+
+.hero-button-icon {
+  transition: translate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-button:hover .hero-button-icon {
+  translate: 4px 0;
+}
+
+/* Category cards — lift, keep their rotation, zoom the photo */
+.category-card img {
+  transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.category-card:hover {
+  translate: 0 -8px;
+  scale: 1.015;
+  box-shadow: 0 26px 46px -18px rgba(0, 0, 0, 0.4);
+}
+
+.category-card:hover img {
+  scale: 1.06;
+}
+
+/* Favourites carousel cards — straighten slightly and rise on hover */
+.product-card {
+  cursor: pointer;
+}
+
+.product-art img {
+  transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.product-card:hover {
+  translate: 0 -10px;
+  scale: 1.03;
+  box-shadow: 0 34px 60px -20px rgba(78, 40, 31, 0.3);
+}
+
+.product-card:hover .product-art img {
+  scale: 1.08;
+}
+
+.product-badge {
+  transition: scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.product-card:hover .product-badge {
+  scale: 1.08;
+}
+
+/* Slider arrows */
+.slider-btn:not(:disabled):hover {
+  scale: 1.12;
+  box-shadow: 0 18px 30px -10px rgba(190, 0, 75, 0.35);
+}
+
+.slider-btn:not(:disabled):active {
+  scale: 0.95;
+}
+
+/* Quality cards — lift + straighten, bounce the icon */
+.quality-icon {
+  transition: scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    rotate 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quality-card:hover {
+  translate: 0 -8px;
+  scale: 1.03;
+  box-shadow: 0 30px 54px -18px rgba(78, 40, 31, 0.28);
+}
+
+.quality-card:hover .quality-icon {
+  scale: 1.12;
+  rotate: -6deg;
+}
+
+/* Story photo — gentle straighten + lift */
+.story-photo-wrap:hover {
+  translate: 0 -6px;
+  scale: 1.02;
+}
+
+/* Story link — slide the arrow pill */
+.story-link-icon {
+  transition: translate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    rotate 0.3s ease;
+}
+
+.story-link:hover .story-link-icon {
+  translate: 6px 0;
+  rotate: -8deg;
+}
+
+/* Dealership benefit chips */
+.partner-panel li:hover {
+  translate: 6px 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Form fields focus */
+.inquiry-form input:focus,
+.inquiry-form textarea:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+/* Social collage — subtle lift */
+.social-feed-header:hover,
+.social-feed-cards:hover {
+  translate: 0 -5px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Entrance + ambient motion — gated on motion preference              */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero background wash grows in */
+  .hero-bg {
+    transform-origin: center;
+    animation: home-bg-grow 0.9s ease both;
+  }
+
+  /* Headline reveals line-by-line */
+  .hero-title span {
+    animation: home-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-title span:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .hero-title span:nth-child(2) {
+    animation-delay: 0.22s;
+  }
+  .hero-title span:nth-child(3) {
+    animation-delay: 0.34s;
+  }
+
+  .hero-copy p {
+    animation: home-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.46s both;
+  }
+
+  .hero-deserve {
+    animation: home-rise-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
+  }
+
+  .hero-button {
+    animation: home-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+  }
+
+  /* Hero products: float in, then breathe continuously */
+  .hero-products {
+    animation: home-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both,
+      home-float 6s ease-in-out 1.1s infinite;
+  }
+
+  /* Floating hashtag chips pop in then bob (translate composes over the
+     base rotate/skew transform, so the tilt is preserved) */
+  .hero-tag {
+    animation: home-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+      home-tag-bob 4.5s ease-in-out infinite;
+  }
+  .hero-tag-crunchy {
+    animation-delay: 0.7s, 1.3s;
+  }
+  .hero-tag-delicious {
+    animation-delay: 0.85s, 1.6s;
+  }
+
+  /* Scroll-driven reveals for the down-page sections (progressive
+     enhancement: only where view() timelines are supported, so content
+     is never hidden on unsupported browsers). `translate` composes over
+     each card's resting rotation. */
+  @supports (animation-timeline: view()) {
+    .mood-heading,
+    .mood-cta,
+    .category-card,
+    .favorites-heading,
+    .slider-buttons,
+    .product-card,
+    .story-photo-wrap,
+    .story-copy,
+    .quality-card,
+    .partner-panel,
+    .inquiry-form,
+    .social-feed-header,
+    .social-feed-cards {
+      animation: home-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+
+    /* Stagger the cards within each row as they enter */
+    .category-card.card-juice {
+      animation-range: entry 4% entry 46%;
+    }
+    .category-card.card-namkeen {
+      animation-range: entry 8% entry 50%;
+    }
+    .category-card.card-basket {
+      animation-range: entry 12% entry 54%;
+    }
+    .product-card:nth-child(2) {
+      animation-range: entry 4% entry 46%;
+    }
+    .product-card:nth-child(3) {
+      animation-range: entry 8% entry 50%;
+    }
+    .product-card:nth-child(4) {
+      animation-range: entry 12% entry 54%;
+    }
+    .quality-card:nth-child(2) {
+      animation-range: entry 4% entry 46%;
+    }
+    .quality-card:nth-child(3) {
+      animation-range: entry 8% entry 50%;
+    }
+    .quality-card:nth-child(4) {
+      animation-range: entry 12% entry 54%;
+    }
+  }
+}

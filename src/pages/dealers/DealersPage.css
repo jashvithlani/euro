@@ -1,9 +1,12 @@
-/* Dealership page — Figma node 1079:3487 (1280px canvas) */
+/* ================================================================
+   Dealership page — Figma node 1079:3487
+   All numeric values scaled from Figma 1920 → 1280 viewport (× 0.6667).
+   ================================================================ */
 
 .dealers-main {
+  position: relative;
   width: 1280px;
-  min-height: 2681px;
-  padding: 137px 0 0;
+  padding-bottom: 0;
   background: #fff8f6;
   color: #4e281f;
 }
@@ -12,429 +15,468 @@
   box-sizing: border-box;
 }
 
-/* Hero — Figma 245:2036 */
-.dealers-hero-block {
+/* ----- Apply / hero card (Figma 1079:3688) --------------------- */
+.dealers-apply {
   position: relative;
-  width: 896px;
-  margin: 28px auto 0;
-  padding: 0 24px;
-}
-
-.dealers-hero-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
-}
-
-.dealers-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 28px;
-  padding: 4px 16px;
-  border-radius: 9999px;
-  background: #ffdea7;
-  color: #543b00;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  line-height: 16px;
-  text-transform: uppercase;
-}
-
-.dealers-hero-lede {
-  width: 426px;
-  max-width: 100%;
-  margin: 0;
-  color: #825348;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 19px;
-}
-
-/* h1: Figma "Partner with a Global snack distributor" — 929px at 1920 → 619px at 1280, 96px font → 64px */
-.dealers-hero-block h1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 619px;
-  margin: 43px auto 43px;
-  color: #4e281f;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: -3.2px;
-  line-height: 64px;
-  text-align: center;
-}
-
-.dealers-hero-block h1 em {
-  color: #be004b;
-  font-style: italic;
-}
-
-/* Form card — Figma 1079:3688 (1781px at 1920 → 1187px at 1280) */
-.dealers-form-section {
-  width: 1187px;
-  min-height: 1156px;
-  margin: 0 auto 43px;
-  border: 1px solid rgba(222, 164, 151, 0.1);
-  border-radius: 27px;
-  padding: 43px 43px 54px;
+  width: 1187.33px;
+  margin: 137.33px auto 0;
+  padding: 43.67px 42.67px 42.67px;
   background: #fff0ed;
+  border: 1px solid rgba(222, 164, 151, 0.1);
+  border-radius: 26.67px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.dealers-form-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 64px;
-  text-align: center;
-}
-
-/* Figma "Dealer Inquiry Application" — 54px at 1920 → 36px at 1280 */
-.dealers-form-intro h2 {
+.dealers-apply-hero {
   margin: 0;
-  color: #4e281f;
   font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 27px;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  text-align: center;
+  color: #4e281f;
 }
 
-.dealers-form-intro p {
-  width: 551px;
-  max-width: 100%;
-  margin: 0;
-  color: #825348;
+.dealers-apply-hero em {
+  display: inline-block;
+  margin-top: 4px;
+  font-style: italic;
+  color: #be004b;
+}
+
+.dealers-apply-title {
+  margin: 44px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 26.67px;
+  text-align: center;
+  color: #4e281f;
+}
+
+.dealers-apply-note {
+  margin: 10.67px 0 0;
   font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 16px;
+  font-size: 10.67px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 16px;
+  text-align: center;
+  color: #825348;
 }
 
+/* ----- Form (Figma 1079:3695) ---------------------------------- */
 .dealers-form {
-  width: 100%;
+  margin-top: 42.67px;
 }
 
-/* Form grid — columns 694px at 1920 → 463px at 1280, gap 155 → 103px */
-.dealers-form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 463px);
-  column-gap: 103px;
-  row-gap: 21px;
+/* Absolutely-laid two-column field block */
+.dealers-fields {
+  position: relative;
+  width: 1100.67px;
+  height: 501px;
+  margin: 0 auto;
 }
 
 .dealers-field {
   display: flex;
-  min-width: 0;
   flex-direction: column;
-  gap: 8.5px;
+  gap: 5.67px;
 }
 
-.dealers-field-wide {
-  grid-column: 1 / -1;
+.dealers-fields .dealers-field {
+  position: absolute;
+  width: 462.67px;
 }
 
-.dealers-field span {
-  color: #a16e62;
+.dealers-field--right {
+  left: 566px;
+}
+
+.dealers-field--left {
+  left: 0;
+}
+
+.dealers-field--wide {
+  width: 716.67px;
+}
+
+.dealers-field--row-1 {
+  top: 0;
+}
+.dealers-field--row-2 {
+  top: 74.67px;
+}
+.dealers-field--row-3 {
+  top: 149.33px;
+}
+.dealers-field--row-4 {
+  top: 224px;
+}
+.dealers-field--row-5 {
+  top: 298.67px;
+}
+.dealers-field--row-6 {
+  top: 373.33px;
+}
+.dealers-field--row-7 {
+  top: 448px;
+}
+
+.dealers-field-label {
   font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 12px;
+  font-size: 9.33px;
   font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: 16px;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
+  color: #a16e62;
 }
 
 .dealers-field input,
-.dealers-field select,
+.dealers-field-select select,
 .dealers-field textarea {
   width: 100%;
   border: 0;
-  border-radius: 12px;
-  background-color: #ffffff;
-  color: #4e281f;
+  border-bottom: 1.33px solid #ffffff;
+  border-radius: 8px;
+  padding: 11.33px 10.67px 12px;
+  background: transparent;
   font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-}
-
-.dealers-field input,
-.dealers-field select {
-  height: 55px;
-  padding: 16px;
+  font-size: 10.67px;
+  line-height: 16px;
+  color: #4e281f;
 }
 
 .dealers-field input::placeholder,
 .dealers-field textarea::placeholder {
   color: #6b7280;
-  opacity: 1;
 }
 
-.dealers-select-field {
+.dealers-field input:focus,
+.dealers-field-select select:focus,
+.dealers-field textarea:focus {
+  outline: none;
+  border-bottom-color: #be004b;
+}
+
+/* Select with chevron */
+.dealers-field-select {
   position: relative;
+  display: block;
 }
 
-.dealers-select-field select {
+.dealers-field-select select {
   appearance: none;
-  color: #4e281f;
-  background-image: url("./assets/dealers-select.svg");
-  background-position: right 16px center;
-  background-repeat: no-repeat;
-  background-size: 24px 24px;
-}
-
-.dealers-notes textarea {
-  min-height: 128px;
-  padding: 16px;
-  resize: none;
-}
-
-.dealers-form button {
-  display: flex;
-  width: 228px;
-  height: 68px;
-  align-items: center;
-  justify-content: center;
-  margin: 32px auto 0;
-  border: 0;
-  border-radius: 9999px;
-  background: #be004b;
-  color: #ffffff;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 28px;
-  box-shadow: 0 10px 15px -3px rgba(190, 0, 75, 0.2),
-    0 4px 6px -4px rgba(190, 0, 75, 0.2);
+  -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* Partnership headline — Figma 1079:3849 (y=2812, font 96px → 64px at 1280) */
-.dealers-partnership {
-  background: #fff8f6;
+.dealers-field-select select:invalid {
+  color: #6b7280;
 }
 
-.dealers-partnership > h2 {
-  width: 836px;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 84px 9px 0;
-  color: #4e281f;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: -3.2px;
-  line-height: 64px;
+.dealers-field-select img {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ----- GST upload (Figma 1079:3770) ---------------------------- */
+.dealers-upload {
+  width: 1100.67px;
+  margin: 24.67px auto 0;
+}
+
+.dealers-upload-label {
+  display: block;
+  margin-bottom: 16px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  line-height: 13.33px;
+  letter-spacing: 0.8px;
+  color: #825348;
+}
+
+.dealers-upload-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5.33px;
+  padding: 22.67px;
+  border: 1.33px dashed rgba(222, 164, 151, 0.3);
+  border-radius: 16px;
+}
+
+.dealers-upload-drop img {
+  width: 16px;
+  height: 20px;
+}
+
+.dealers-upload-drop p {
+  margin: 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 9.33px;
+  line-height: 13.33px;
   text-align: center;
+  color: #825348;
 }
 
-.dealers-partnership > h2 span {
+/* ----- Message textarea (Figma 1079:3765) ---------------------- */
+.dealers-field--message {
+  width: 1100.67px;
+  margin: 17.33px auto 0;
+}
+
+.dealers-field--message textarea {
+  min-height: 85.33px;
+  border: 0;
+  border-radius: 8px;
+  padding: 10.67px;
+  background: #ffffff;
+  resize: vertical;
+}
+
+/* ----- Submit (Figma 1079:3753) -------------------------------- */
+.dealers-submit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 21.33px;
+}
+
+.dealers-submit {
+  border: 0;
+  border-radius: 9999px;
+  padding: 13.33px 32px;
+  background: linear-gradient(135deg, #be004b 0%, #a70041 100%);
+  box-shadow: 0 13.33px 16.67px -3.33px rgba(0, 0, 0, 0.1), 0 5.33px 6.67px -4px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 18.67px;
+  color: #fff7f7;
+  cursor: pointer;
+}
+
+/* ----- Footprint map (Figma 1079:3868) ------------------------- */
+.dealers-footprint {
+  position: relative;
+  width: 1189.33px;
+  height: 473.33px;
+  margin: 36px auto 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff0ed;
+}
+
+.dealers-footprint-copy {
+  position: absolute;
+  top: 53.33px;
+  left: 53.33px;
+  width: 660px;
+}
+
+.dealers-footprint-kicker {
+  display: block;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.67px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #be004b;
+}
+
+.dealers-footprint-heading {
+  margin: 12px 0 0;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.8px;
+  color: #4e281f;
+}
+
+.dealers-footprint-heading span {
+  color: #be004b;
+}
+
+.dealers-footprint-copy > p {
+  margin: 18.67px 0 0;
+  width: 636px;
+  max-width: 100%;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 13.33px;
+  font-weight: 400;
+  line-height: 21.67px;
+  color: #825348;
+}
+
+.dealers-footprint-stat {
+  margin-top: 30px;
+}
+
+.dealers-footprint-stat strong {
+  display: block;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 42.67px;
+  font-weight: 600;
+  line-height: 1;
+  color: #4e281f;
+}
+
+.dealers-footprint-stat span {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.93px;
+  text-transform: uppercase;
+  color: #825348;
+}
+
+.dealers-footprint-map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 465.33px;
+  height: 473.33px;
+}
+
+.dealers-footprint-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----- Join the network (Figma 1079:3849) ---------------------- */
+.dealers-join {
+  margin: 64px auto;
+  max-width: 835.6px;
+  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  text-align: center;
+  color: #4e281f;
+}
+
+.dealers-join span {
   color: #f58ea6;
 }
 
-/* Why Partner — Figma 1079:3884 (1920px → 1280px ×2/3) */
+/* ----- Why partner (Figma 1079:3884) --------------------------- */
 .dealers-why {
   width: 1280px;
-  min-height: 403px;
-  padding: 39px 32px 64px;
-  background: #f1f7fb;
+  padding: 39.33px 44px 64px;
+  background: rgba(227, 248, 255, 0.34);
+}
+
+.dealers-why-head {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 42.67px;
 }
 
 .dealers-why-heading {
-  width: 427px;
+  width: 427.55px;
 }
 
-.dealers-why-heading h3 {
+.dealers-why-heading h2 {
   margin: 0;
-  color: #4e281f;
   font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 600;
   line-height: 32px;
+  letter-spacing: -0.8px;
+  color: #4e281f;
 }
 
 .dealers-why-heading p {
-  width: 427px;
+  width: 427.55px;
   max-width: 100%;
-  margin: 11px 0 0;
-  color: #825348;
+  margin: 9.33px 0 0;
   font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 13px;
+  line-height: 18.67px;
+  color: #825348;
 }
 
 .dealers-rule {
-  width: 298px;
+  align-self: center;
+  width: 297.78px;
   height: 1px;
-  margin: 35px 0 27px 743px;
+  margin-top: 16px;
   background: rgba(222, 164, 151, 0.3);
 }
 
-/* Cards: 395px wide at 1920 → 263px at 1280, with gap 68→45px */
+/* Cards: 395px → 263.33px, gap 68px → 45.33px (Figma 1079:3894) */
 .dealers-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 263px);
-  gap: 21px;
+  grid-template-columns: repeat(4, 263.33px);
+  gap: 45.33px;
 }
 
 .dealers-card {
-  height: 195px;
-  border-radius: 5px;
-  padding: 27px;
+  position: relative;
+  height: 194.67px;
+  border-radius: 16px;
+  padding: 26.67px;
   background: #ffffff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .dealers-card-icon {
   display: grid;
-  width: 37px;
-  height: 37px;
+  width: 37.33px;
+  height: 37.33px;
   place-items: center;
   border-radius: 8px;
 }
 
 .dealers-card-icon img {
-  max-width: 19px;
-  max-height: 20px;
+  max-width: 18.33px;
+  max-height: 17.5px;
 }
 
-.dealers-card-icon-rose {
+.dealers-card-icon--rose {
   background: rgba(255, 169, 183, 0.3);
 }
 
-.dealers-card-icon-gold {
-  background: #ffdea7;
+.dealers-card-icon--gold {
+  background: rgba(255, 222, 167, 0.3);
 }
 
-.dealers-card-icon-green {
-  background: #9df197;
+.dealers-card-icon--green {
+  background: rgba(157, 241, 151, 0.3);
 }
 
-.dealers-card-icon-pink {
+.dealers-card-icon--pink {
   background: rgba(255, 169, 183, 0.3);
 }
 
-.dealers-card h4 {
-  margin: 11px 0 11px;
-  color: #4e281f;
+.dealers-card h3 {
+  margin: 24px 0 0;
   font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
   font-size: 16px;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 21.33px;
+  color: #4e281f;
 }
 
 .dealers-card p {
-  margin: 0;
+  margin: 12px 0 0;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 400;
+  line-height: 17.33px;
   color: #825348;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 17px;
-}
-
-/* Footprint — Figma 1079:3868 (container 1784px at 1920; photo x=1086 w=698 → 724+465 at 1280) */
-.dealers-footprint {
-  display: grid;
-  width: 1189px;
-  height: 473px;
-  grid-template-columns: 724px 465px;
-  gap: 0;
-  margin: 0 auto 48px;
-  overflow: hidden;
-  border-radius: 24px;
-  background: #fff0ed;
-}
-
-.dealers-footprint-copy {
-  padding: 53px 0 0 53px;
-}
-
-.dealers-footprint-copy > span {
-  display: block;
-  margin-bottom: 16px;
-  color: #be004b;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: 16px;
-  text-transform: uppercase;
-}
-
-.dealers-footprint h2 {
-  width: 392px;
-  margin: 0;
-  color: #4e281f;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: -1.2px;
-  line-height: 52px;
-}
-
-.dealers-footprint h2 em {
-  display: block;
-  color: #be004b;
-  font-style: normal;
-}
-
-.dealers-footprint p {
-  width: 388px;
-  margin: 16px 0 0;
-  color: #825348;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 32.5px;
-}
-
-.dealers-footprint-stats {
-  display: flex;
-  gap: 32px;
-  margin-top: 16px;
-}
-
-.dealers-footprint-stat strong {
-  display: block;
-  color: #4e281f;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 40px;
-}
-
-.dealers-footprint-stat small {
-  display: block;
-  margin-top: 4px;
-  color: #825348;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 1.4px;
-  line-height: 20px;
-  text-transform: uppercase;
-}
-
-/* Footprint photo — Figma 1079:3882 (698×710 at 1920 → 465×473 at 1280) */
-.dealers-footprint-photo {
-  position: relative;
-  width: 465px;
-  height: 473px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.dealers-footprint-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }

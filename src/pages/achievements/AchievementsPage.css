@@ -3,11 +3,11 @@
 .achievements-main {
   position: relative;
   width: 1280px;
-  height: 2075px;
+  height: 1818px;
   overflow: hidden;
   background: var(--color-page, #fff8f6);
   color: #434343;
-  font-family: var(--font-display, "Epilogue", system-ui, sans-serif);
+  font-family: var(--font-display);
 }
 
 /* Hero — Figma 1079:4305 (y=98 at 1920 → 65px from top of main) */
@@ -87,17 +87,17 @@
   color: #ffffff;
 }
 
+/* Figma 1079:4310 — full-width texture overlay; multiply keeps crimson uniform, grey lines add depth */
 .achievements-stats-texture {
   position: absolute;
-  top: -388px;
-  left: 180px;
-  width: 493px;
-  height: 876px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
-  opacity: 0.3;
-  transform: rotate(-90deg);
-  transform-origin: center;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  pointer-events: none;
 }
 
 .achievements-stats-list {
@@ -399,10 +399,10 @@
   width: 623px;
 }
 
-/* Card 2: wrapper 85×146 at top=9, left=calc(50%)=176px (Figma: left-[calc(50%+0.5px)]) */
+/* Card 2: wrapper 85×146 at top=9, left=134px (Figma x=200.88 × 2/3 → centered in 352px card) */
 .achievements-award-quality {
   top: 9px;
-  left: 176px;
+  left: 134px;
   width: 85px;
   height: 146px;
 }

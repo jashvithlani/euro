@@ -1,0 +1,604 @@
+/* Home page mobile layout — shell/footer in src/styles/MobileShell.css */
+
+@media (max-width: 999px) {
+  /* Hero */
+  .home-page .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 0 0 40px;
+    background: #ffffff;
+  }
+
+  .home-page .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 72%;
+    background: var(--color-mint);
+  }
+
+  .home-page .hero-products {
+    position: relative;
+    z-index: 4;
+    top: auto;
+    left: auto;
+    width: min(100%, 380px);
+    height: auto;
+    margin: 24px auto 0;
+    aspect-ratio: 380 / 214;
+    object-fit: contain;
+  }
+
+  .home-page .hero-copy {
+    position: relative;
+    z-index: 4;
+    top: auto;
+    left: auto;
+    width: auto;
+    padding: 8px 24px 0;
+  }
+
+  .home-page .hero-title {
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+  }
+
+  .home-page .hero-title .accent {
+    line-height: 1.1;
+  }
+
+  .home-page .hero-copy p {
+    width: 100%;
+    max-width: 346px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .home-page .hero-button {
+    position: relative;
+    z-index: 4;
+    top: auto;
+    left: auto;
+    width: auto;
+    min-height: 54px;
+    margin: 24px 24px 0;
+    align-self: flex-start;
+    padding: 0 28px;
+    font-size: 15px;
+  }
+
+  .home-page .hero-deserve {
+    position: relative;
+    z-index: 4;
+    top: auto;
+    left: auto;
+    margin: 32px 24px 0;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+  }
+
+  .home-page .hero-tag {
+    display: none;
+  }
+
+  /* Patches */
+  .home-page .patch {
+    width: 100%;
+    height: 52px;
+    margin: 0;
+    top: auto;
+  }
+
+  .home-page .patch-gold {
+    height: 52px;
+    margin-top: -28px;
+    top: auto;
+  }
+
+  .home-page .patch-gold::before,
+  .home-page .patch-lavender::before,
+  .home-page .patch-yellow-slant::before {
+    width: 110%;
+    left: -5%;
+  }
+
+  .home-page .patch-lavender {
+    height: 52px;
+    margin-top: -28px;
+    top: auto;
+  }
+
+  .home-page .patch-rose {
+    height: 54px;
+    margin-top: 0;
+  }
+
+  .home-page .patch-rose::before {
+    width: 110%;
+    left: -5%;
+    height: 54px;
+    transform: rotate(-3deg) skewX(-3deg);
+  }
+
+  .home-page .patch-yellow-slant {
+    height: 56px;
+    margin-top: -28px;
+  }
+
+  /* Categories */
+  .home-page .mood-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: auto;
+    margin-top: 0;
+    padding: 56px 20px 40px;
+    overflow: visible;
+  }
+
+  .home-page .mood-heading {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 1;
+  }
+
+  .home-page .mood-heading .kicker {
+    font-size: 13px;
+    letter-spacing: 4px;
+  }
+
+  .home-page .mood-heading h2 {
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .home-page .mood-cta {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 6;
+    width: 100%;
+    min-height: 67px;
+    border-radius: 24px;
+    font-size: 18px;
+  }
+
+  .home-page .category-card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    height: 220px;
+    transform: none !important;
+  }
+
+  .home-page .card-chips {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 220px;
+    padding: 20px 16px;
+    background: #a65b3b;
+  }
+
+  .home-page .card-chips span {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .home-page .card-chips small {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .home-page .card-chips img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+  }
+
+  .home-page .card-chips::after {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 28%, rgba(0, 0, 0, 0) 72%);
+  }
+
+  .home-page .card-juice {
+    order: 3;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .home-page .card-namkeen {
+    order: 4;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .home-page .card-chips > div {
+    position: absolute;
+    z-index: 2;
+    right: 16px;
+    bottom: 20px;
+    left: 16px;
+  }
+
+  .home-page .card-juice img,
+  .home-page .card-namkeen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-page .card-juice span,
+  .home-page .card-namkeen span {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 20px;
+    font-size: 22px;
+    color: var(--color-ink);
+  }
+
+  .home-page .card-juice::after,
+  .home-page .card-namkeen::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9) 13%, rgba(255, 255, 255, 0) 69%);
+    content: "";
+  }
+
+  .home-page .card-basket {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 220px;
+    padding: 16px;
+    order: 5;
+  }
+
+  .home-page .card-basket img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 145px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .home-page .card-basket > div {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    flex: 1;
+  }
+
+  .home-page .card-basket h3 {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .home-page .card-basket a {
+    min-height: 43px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
+
+  /* Favorites */
+  .home-page .favorites-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 0;
+    padding: 56px 0 48px;
+    overflow: visible;
+  }
+
+  .home-page .favorites-heading {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0 36px;
+  }
+
+  .home-page .favorites-heading .kicker {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+  }
+
+  .home-page .favorites-heading h2 {
+    width: auto;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .home-page .slider-buttons {
+    position: absolute;
+    top: 56px;
+    right: 36px;
+    left: auto;
+    gap: 12px;
+  }
+
+  .home-page .slider-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-page .product-viewport {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 32px;
+    padding: 0 0 0 36px;
+  }
+
+  .home-page .product-track {
+    height: auto;
+    gap: 16px;
+    padding-left: 0;
+  }
+
+  .home-page .product-card,
+  .home-page .product-card--rose,
+  .home-page .product-card--yellow {
+    width: min(272px, 78vw);
+    height: 420px;
+    transform: none !important;
+  }
+
+  .home-page .product-art {
+    height: 270px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .home-page .product-card--lavender .product-art img,
+  .home-page .product-card--cyan .product-art img,
+  .home-page .product-card--rose .product-art img,
+  .home-page .product-card--yellow .product-art img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+
+  .home-page .product-badge {
+    min-height: 28px;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+
+  .home-page .product-card h3 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .home-page .product-card p {
+    font-size: 14px;
+    line-height: 1.37;
+  }
+
+  /* Story */
+  .home-page .story-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: auto;
+    margin-top: 0;
+    padding: 56px 20px 64px;
+    overflow: visible;
+  }
+
+  .home-page .story-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    order: 1;
+  }
+
+  .home-page .story-copy h2 {
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    max-width: none;
+  }
+
+  .home-page .story-copy em {
+    line-height: 1;
+  }
+
+  .home-page .story-copy p {
+    width: 100%;
+    max-width: none;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .home-page .story-link {
+    font-size: 20px;
+    gap: 20px;
+  }
+
+  .home-page .story-link-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .home-page .story-photo-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 337px;
+    height: 442px;
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .home-page .story-photo-bg {
+    top: 12px;
+    left: 8px;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    transform: rotate(5deg) skewX(2deg);
+  }
+
+  .home-page .story-photo-wrap img {
+    top: 26px;
+    left: 50%;
+    width: min(295px, 82vw);
+    height: 378px;
+    transform: translateX(-50%) rotate(-8deg);
+  }
+
+  /* Quality */
+  .home-page .quality-section {
+    height: auto;
+    padding: 56px 20px 64px;
+    background: #eafbe6;
+  }
+
+  .home-page .quality-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 0;
+    justify-content: stretch;
+  }
+
+  .home-page .quality-card {
+    height: auto;
+    min-height: 286px;
+    padding: 40px 24px 32px;
+    border-radius: 40px;
+    transform: none !important;
+  }
+
+  .home-page .quality-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+  }
+
+  .home-page .quality-icon img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .home-page .quality-card h3 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .home-page .quality-card p {
+    font-size: 14px;
+    line-height: 1.37;
+  }
+
+  /* Dealership */
+  .home-page .dealership-section {
+    flex-direction: column;
+    height: auto;
+    gap: 32px;
+    padding: 56px 20px 40px;
+  }
+
+  .home-page .partner-panel {
+    width: 100%;
+    min-height: 0;
+    margin-top: 0;
+    padding: 32px;
+    border-radius: 40px;
+    transform: rotate(-1.5deg);
+  }
+
+  .home-page .partner-panel h2 {
+    font-size: 34px;
+    line-height: 1.25;
+  }
+
+  .home-page .partner-panel p {
+    font-size: 16px;
+    line-height: 1.625;
+  }
+
+  .home-page .partner-panel li {
+    padding: 14px 16px 14px 40px;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+
+  .home-page .inquiry-form {
+    width: 100%;
+    min-height: 0;
+    margin-top: 0;
+    padding: 32px;
+    border-radius: 40px;
+  }
+
+  .home-page .inquiry-form h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+
+  .home-page .inquiry-form input {
+    height: 66px;
+    border-radius: 24px;
+    font-size: 16px;
+  }
+
+  .home-page .inquiry-form .button {
+    min-height: 67px;
+    border-radius: 24px;
+    font-size: 18px;
+  }
+
+  /* Social */
+  .home-page .social-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: auto;
+    padding: 56px 20px 64px;
+    background: #f9f9f9;
+  }
+
+  .home-page .social-feed-header,
+  .home-page .social-feed-cards {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .home-page .social-feed-header {
+    max-height: 170px;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  .home-page .social-feed-cards {
+    border-radius: 24px;
+    overflow: hidden;
+  }
+}

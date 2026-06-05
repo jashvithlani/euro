@@ -51,7 +51,7 @@ export function getShellClassName(pathname) {
   const path = normalizePath(pathname);
 
   if (path === "/") {
-    return "page-shell";
+    return "page-shell home-page";
   }
 
   if (CATEGORY_PATHS.has(path)) {

@@ -1,0 +1,241 @@
+/* Shared mobile shell — nav, footer, fluid viewport. Desktop styles stay in public/styles.css. */
+
+.site-nav-actions,
+.mobile-nav-drawer,
+.nav-search--mobile {
+  display: none;
+}
+
+@media (max-width: 999px) {
+  body:has(.app-viewport--fluid) {
+    min-width: 0;
+  }
+
+  .app-viewport--fluid {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .app-viewport--fluid .page-shell {
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    overflow-x: clip;
+  }
+
+  .app-viewport--fluid .site-nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 76px;
+    padding: 12px 20px;
+    background: rgba(255, 248, 246, 0.92);
+  }
+
+  .app-viewport--fluid .site-logo img {
+    width: 68px;
+    height: 52px;
+  }
+
+  .app-viewport--fluid .site-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
+  .app-viewport--fluid .nav-search--mobile {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    margin-bottom: 0;
+  }
+
+  .app-viewport--fluid .nav-search--mobile svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .app-viewport--fluid .nav-menu-toggle {
+    display: grid;
+    width: 28px;
+    height: 28px;
+  }
+
+  .app-viewport--fluid .nav-menu-toggle span {
+    width: 20px;
+    background: var(--color-ink);
+  }
+
+  .app-viewport--fluid .nav-list {
+    display: none;
+  }
+
+  .app-viewport--fluid .mobile-nav-drawer {
+    position: fixed;
+    z-index: 40;
+    top: 76px;
+    right: 0;
+    left: 0;
+    display: grid;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background: rgba(255, 248, 246, 0.98);
+    box-shadow: 0 16px 32px -12px rgba(78, 40, 31, 0.18);
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+
+  .app-viewport--fluid .mobile-nav-drawer[data-open="true"] {
+    max-height: 80vh;
+    padding: 16px 20px 24px;
+    overflow-y: auto;
+  }
+
+  .app-viewport--fluid .mobile-nav-drawer a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(78, 40, 31, 0.08);
+    color: var(--color-stone);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .app-viewport--fluid .mobile-nav-drawer a.is-active {
+    color: var(--color-accent);
+  }
+
+  .app-viewport--fluid main {
+    display: block;
+    width: 100%;
+  }
+
+  .app-viewport--fluid .footer {
+    height: auto;
+    padding: 48px 20px 32px;
+  }
+
+  .app-viewport--fluid .footer::before {
+    display: none;
+  }
+
+  .app-viewport--fluid .footer-inner {
+    width: 100%;
+    height: auto;
+  }
+
+  .app-viewport--fluid .footer-primary {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    inset: auto;
+  }
+
+  .app-viewport--fluid .footer-about {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .app-viewport--fluid .footer-links,
+  .app-viewport--fluid .footer-support,
+  .app-viewport--fluid .footer-newsletter {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .app-viewport--fluid .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+
+  .app-viewport--fluid .footer-about img {
+    width: 72px;
+    height: 56px;
+  }
+
+  .app-viewport--fluid .footer-about p {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 240px;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .app-viewport--fluid .footer h2 {
+    margin-bottom: 24px;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .app-viewport--fluid .footer a {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .app-viewport--fluid .footer-support p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.37;
+  }
+
+  .app-viewport--fluid .footer-support p img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .app-viewport--fluid .footer-newsletter p {
+    font-size: 14px;
+  }
+
+  .app-viewport--fluid .newsletter {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .app-viewport--fluid .newsletter input {
+    width: 100%;
+    height: 53px;
+    padding-right: 56px;
+    border-radius: 32px;
+    font-size: 14px;
+  }
+
+  .app-viewport--fluid .newsletter button {
+    top: 6px;
+    right: 6px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-viewport--fluid .footer-secondary {
+    display: none;
+  }
+
+  .app-viewport--fluid .footer-primary::after {
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #78716c;
+    font-size: 12px;
+    line-height: 1.5;
+    content: "© 2026 Euro India Foods";
+  }
+}

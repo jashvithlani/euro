@@ -1,0 +1,455 @@
+/* About page mobile — desktop in public/styles.css; shell in MobileShell.css */
+
+@media (max-width: 999px) {
+  .about-page .about-hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 32px 20px 48px;
+    overflow: hidden;
+  }
+
+  .about-page .about-hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .about-page .about-kicker {
+    font-size: 13px;
+    letter-spacing: 3.2px;
+    line-height: 1.5;
+  }
+
+  .about-page .about-hero-title {
+    margin-top: 12px;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .about-page .about-hero-btn {
+    width: 100%;
+    max-width: 100%;
+    min-height: 54px;
+    margin-top: 28px;
+    font-size: 15px;
+  }
+
+  .about-page .about-hero-media {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 340px;
+    margin-top: 32px;
+    inset: auto;
+  }
+
+  .about-page .about-hero-card-wrap {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    width: auto;
+    height: auto;
+  }
+
+  .about-page .about-hero-left-wrap {
+    z-index: 2;
+    margin-right: -48px;
+  }
+
+  .about-page .about-hero-right-wrap {
+    z-index: 1;
+    margin-top: -24px;
+    margin-left: 48px;
+  }
+
+  .about-page .about-hero-left-card {
+    width: 180px;
+    height: 260px;
+    transform: rotate(-12deg);
+  }
+
+  .about-page .about-hero-right-card {
+    width: 200px;
+    height: 280px;
+    transform: rotate(8deg);
+  }
+
+  .about-page .about-hero-left-card img,
+  .about-page .about-hero-right-card img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-page .about-journey {
+    height: auto;
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-journey > img {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .about-page .float-tag {
+    display: none;
+  }
+
+  .about-page .about-journey h2 {
+    width: 100%;
+    margin-top: 32px;
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .about-page .about-journey p {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .about-page .about-pillars {
+    min-height: 0;
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-section-heading span {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .about-page .about-section-heading h2 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .about-page .pillar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .about-page .pillar-card {
+    height: auto;
+    min-height: 0;
+    padding: 28px 24px;
+    border-radius: 24px;
+  }
+
+  .about-page .pillar-card h3 {
+    margin: 24px 0 12px;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .about-page .pillar-card p {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-page .about-manufacturing {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .manufacturing-photo {
+    width: 100%;
+    height: auto;
+    min-height: 240px;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .about-page .manufacturing-copy h2 {
+    margin: 16px 0 24px;
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .about-page .manufacturing-feature {
+    margin-bottom: 20px;
+  }
+
+  .about-page .manufacturing-feature h3 {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .about-page .manufacturing-feature p {
+    max-width: none;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-page .about-timeline {
+    height: auto;
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-timeline .about-section-heading {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding: 0 0 32px;
+  }
+
+  .about-page .about-timeline .about-section-heading h2 {
+    font-size: 32px;
+  }
+
+  .about-page .timeline-line {
+    display: none;
+  }
+
+  .about-page .timeline-milestone,
+  .about-page .timeline-text-only {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    height: auto;
+    margin: 0 0 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(190, 0, 75, 0.12);
+  }
+
+  .about-page .timeline-milestone::after,
+  .about-page .timeline-text-only::after {
+    display: none;
+  }
+
+  .about-page .timeline-copy {
+    position: relative;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  .about-page .timeline-copy h3 {
+    opacity: 1;
+    font-size: 28px;
+  }
+
+  .about-page .timeline-copy h4 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .about-page .timeline-copy p,
+  .about-page .timeline-copy li {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-page .timeline-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    border-radius: 16px;
+  }
+
+  .about-page .timeline-2009-card,
+  .about-page .timeline-2012-card,
+  .about-page .timeline-2015-card,
+  .about-page .timeline-2021-card,
+  .about-page .timeline-2026-card,
+  .about-page .timeline-gt-card,
+  .about-page .timeline-iso-card,
+  .about-page .timeline-award-card,
+  .about-page .timeline-nse-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    padding: 16px;
+  }
+
+  .about-page .timeline-2009-card img,
+  .about-page .timeline-2012-card img,
+  .about-page .timeline-2015-card img,
+  .about-page .timeline-2021-card img,
+  .about-page .timeline-2026-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .about-page .timeline-award-crop {
+    width: 100%;
+    height: 140px;
+  }
+
+  .about-page .timeline-award-crop img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .about-page .timeline-gt-card span,
+  .about-page .timeline-gt-logo,
+  .about-page .timeline-euro-logo {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .about-page .timeline-gt-card {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .about-page .timeline-gt-logo,
+  .about-page .timeline-euro-logo {
+    width: 72px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .about-page .timeline-nse-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .about-page .about-patch {
+    width: 100%;
+    height: 48px;
+  }
+
+  .about-page .about-infrastructure {
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-infrastructure .about-section-heading h2 {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .about-page .infra-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .about-page .infra-card {
+    min-height: 0;
+    border-radius: 24px;
+  }
+
+  .about-page .infra-card img {
+    height: 200px;
+  }
+
+  .about-page .infra-card div {
+    padding: 20px 24px 24px;
+  }
+
+  .about-page .infra-card h3 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .about-page .infra-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-page .about-logistics {
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-logistics h2,
+  .about-page .about-family h2 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .about-page .about-logistics p {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .about-page .about-logistics img,
+  .about-page .about-family img {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    margin-top: 24px;
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .about-page .about-family {
+    padding: 48px 20px 56px;
+  }
+
+  .about-page .about-family h2 {
+    margin-bottom: 24px;
+  }
+
+  .about-page .about-social {
+    width: 100%;
+    gap: 24px;
+    padding: 48px 20px 64px;
+  }
+
+  .about-page .about-social-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .about-page .about-social-heading h2 {
+    font-size: 36px;
+    line-height: 1.05;
+  }
+
+  .about-page .about-social-tagline {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-page .about-social-cards {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 24px;
+  }
+}

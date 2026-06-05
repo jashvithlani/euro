@@ -1,0 +1,346 @@
+/* Exports page mobile — desktop in public/styles.css; shell in MobileShell.css */
+
+@media (max-width: 999px) {
+  .exports-page .export-hero {
+    height: auto;
+    padding: 32px 20px 40px;
+  }
+
+  .exports-page .export-hero-grid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .exports-page .export-hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .exports-page .export-pill {
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .exports-page .export-hero h1 {
+    margin-top: 16px;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .exports-page .export-hero-lede {
+    width: 100%;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .exports-page .export-stats-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 0;
+  }
+
+  .exports-page .export-stat-divider {
+    display: none;
+  }
+
+  .exports-page .export-stat,
+  .exports-page .export-stat-long {
+    width: 100%;
+  }
+
+  .exports-page .export-stat strong {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .exports-page .export-stat span {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .exports-page .export-hero-media {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .exports-page .export-hero-media > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+  }
+
+  .exports-page .export-presence-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    max-width: none;
+    width: 100%;
+    margin-top: -24px;
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .exports-page .export-presence-card h2 {
+    font-size: 18px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .exports-page .export-presence-card ul {
+    font-size: 14px;
+    line-height: 1.5;
+    gap: 4px;
+  }
+
+  .exports-page .export-story {
+    padding: 48px 20px 56px;
+  }
+
+  .exports-page .export-story-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .exports-page .export-story-copy {
+    width: 100%;
+  }
+
+  .exports-page .export-story-copy h2 {
+    width: 100%;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .exports-page .export-story-text {
+    margin-top: 20px;
+    gap: 16px;
+  }
+
+  .exports-page .export-story-text p {
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .exports-page .export-contact-card {
+    width: 100%;
+    margin-top: 32px;
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .exports-page .export-contact-card > img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .exports-page .export-contact-card h3 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .exports-page .export-contact-card p {
+    font-size: 12px;
+  }
+
+  .exports-page .export-contact-card a {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .exports-page .export-contact-card a img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .exports-page .export-story-media {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .exports-page .export-wafers-card {
+    width: 100%;
+    height: auto;
+    min-height: 240px;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .exports-page .export-wafers-card figcaption {
+    top: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .exports-page .export-factory-image {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+  }
+
+  .exports-page .export-inquiry {
+    padding: 0 20px 48px;
+  }
+
+  .exports-page .export-inquiry-inner {
+    width: 100%;
+  }
+
+  .exports-page .export-inquiry-heading {
+    padding-top: 48px;
+    text-align: left;
+  }
+
+  .exports-page .export-inquiry-heading h2 {
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .exports-page .export-inquiry-heading p {
+    width: 100%;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .exports-page .export-form {
+    width: 100%;
+    margin-top: 32px;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .exports-page .export-form legend {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .exports-page .export-form legend span {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .exports-page .export-field-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .exports-page .export-form label span {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .exports-page .export-form input,
+  .exports-page .export-form select,
+  .exports-page .export-form textarea {
+    font-size: 15px;
+  }
+
+  .exports-page .export-form input,
+  .exports-page .export-form select {
+    height: 48px;
+    padding: 12px 14px;
+  }
+
+  .exports-page .export-message-field textarea {
+    height: 120px;
+  }
+
+  .exports-page .export-form-actions {
+    justify-content: stretch;
+    padding-top: 16px;
+  }
+
+  .exports-page .export-form button {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .exports-page .export-footprint {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 48px 20px 56px;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .exports-page .export-footprint-copy {
+    padding: 0;
+  }
+
+  .exports-page .export-footprint-copy > span {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+
+  .exports-page .export-footprint h2 {
+    width: 100%;
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .exports-page .export-footprint p {
+    width: 100%;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .exports-page .export-footprint strong {
+    margin-top: 24px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .exports-page .export-footprint small {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+  }
+
+  .exports-page .export-footprint img {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 32px;
+    border-radius: 16px;
+    object-fit: contain;
+  }
+}

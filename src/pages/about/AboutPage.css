@@ -46,15 +46,20 @@
     box-shadow 0.35s ease;
 }
 
-/* Isolate scroll-driven cards so their entrance animations stay
-   compositor-only and a card's paint doesn't invalidate the whole
-   section. `contain: layout paint` is the cheap version of layer
-   promotion that also helps with view-timeline jank. */
+/* Isolate scroll-driven cards. `contain: layout paint` keeps each
+   card's layout/paint inside its own box. `will-change` + a static
+   transform promote each to its own GPU compositor layer so the
+   `about-rise` entrance translate runs compositor-only — without
+   this, .pillar-card's giant 222%-wide ::before background image
+   was being repainted during scroll (massive jank around the
+   Pillars section). */
 .pillar-card,
 .manufacturing-feature,
 .infra-card,
 .timeline-card {
   contain: layout paint;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .about-hero-btn:hover,

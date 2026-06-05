@@ -46,6 +46,17 @@
     box-shadow 0.35s ease;
 }
 
+/* Isolate scroll-driven cards so their entrance animations stay
+   compositor-only and a card's paint doesn't invalidate the whole
+   section. `contain: layout paint` is the cheap version of layer
+   promotion that also helps with view-timeline jank. */
+.pillar-card,
+.manufacturing-feature,
+.infra-card,
+.timeline-card {
+  contain: layout paint;
+}
+
 .about-hero-btn:hover,
 .button-primary.about-hero-btn:hover {
   translate: 0 -3px;
@@ -119,26 +130,401 @@
     .about-journey p {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
-      animation-range: entry 0% entry 45%;
+      animation-range: cover 0% cover 25%;
     }
 
     .pillar-card {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
-      animation-range: entry 0% entry 45%;
+      animation-range: cover 0% cover 25%;
     }
 
-    .pillar-card:nth-child(2) { animation-range: entry 4% entry 49%; }
-    .pillar-card:nth-child(3) { animation-range: entry 8% entry 53%; }
-    .pillar-card:nth-child(4) { animation-range: entry 12% entry 57%; }
+    .pillar-card:nth-child(2) { animation-range: cover 1% cover 26%; }
+    .pillar-card:nth-child(3) { animation-range: cover 2% cover 27%; }
+    .pillar-card:nth-child(4) { animation-range: cover 3% cover 28%; }
 
     .manufacturing-feature {
       animation: about-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
-      animation-range: entry 0% entry 45%;
+      animation-range: cover 0% cover 25%;
     }
 
-    .manufacturing-feature:nth-child(2) { animation-range: entry 6% entry 51%; }
-    .manufacturing-feature:nth-child(3) { animation-range: entry 12% entry 57%; }
+    .manufacturing-feature:nth-child(2) { animation-range: cover 2% cover 27%; }
+    .manufacturing-feature:nth-child(3) { animation-range: cover 3% cover 28%; }
+  }
+}
+
+/* =====================================================================
+ * About page — extended motion layer
+ * ---------------------------------------------------------------------
+ * Adds entrance + hover + scroll reveals for the sections the original
+ * layer skipped (timeline, infrastructure, logistics, family, social),
+ * plus Balaji-inspired patterns (hotspot pulse on every .float-tag and
+ * a flip-style "back panel" hover on the two large .infra-large cards).
+ *
+ * Same compose-over-transform rule as elsewhere: animations drive the
+ * individual `translate`/`scale`/`rotate` props so resting transforms
+ * survive.
+ * ===================================================================== */
+
+@keyframes about-tag-ping {
+  0%   { opacity: 0.7; scale: 1; }
+  80%  { opacity: 0; scale: 1.6; }
+  100% { opacity: 0; scale: 1.6; }
+}
+
+@keyframes about-grow-y {
+  from { scale: 1 0; }
+  to   { scale: 1 1; }
+}
+
+/* ---- Milestones: "stamped onto the spine" reveal ----
+   Cards 3D-flip outward from their inner edge (the spine side).
+   Copy slides in from the opposite side. Year h3 pops with a colour
+   flash, like a date stamp being inked. Composes with the existing
+   .timeline-card transition (no transform inheritance issues — the
+   flip uses individual rotate + translate properties). */
+
+@keyframes about-stamp-left {
+  /* Card on the LEFT side of the spine: photo lives on the RIGHT
+     half (closer to spine). Pivot from its right edge. */
+  from {
+    opacity: 0;
+    rotate: y 65deg;
+    translate: -24px 0;
+  }
+  to {
+    opacity: 1;
+    rotate: y 0deg;
+    translate: 0 0;
+  }
+}
+
+@keyframes about-stamp-right {
+  /* Card on the RIGHT side of the spine. Pivot from its left edge. */
+  from {
+    opacity: 0;
+    rotate: y -65deg;
+    translate: 24px 0;
+  }
+  to {
+    opacity: 1;
+    rotate: y 0deg;
+    translate: 0 0;
+  }
+}
+
+@keyframes about-year-stamp {
+  /* Refined "ink developing" — the year fades up from muted to accent.
+     letter-spacing was here originally but it triggers text layout on
+     every scroll frame (×9 milestones) and caused jank. Translate
+     composites on the GPU; color is paint-only. */
+  0%   { opacity: 0; translate: 0 8px; color: rgba(78, 40, 31, 0.35); }
+  100% { opacity: 1; translate: 0 0;   color: var(--color-accent); }
+}
+
+/* ---- Balaji-inspired hotspot pulse on every float-tag ---- */
+
+.float-tag {
+  /* allow the ring to extend past the rounded rect */
+  overflow: visible;
+}
+
+.float-tag::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--color-accent-light);
+  pointer-events: none;
+  opacity: 0;
+  /* Promote to its own GPU layer so the infinite scale+opacity pulse
+     compositor-only — no per-frame paint of the border. */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .float-tag::before {
+    animation: about-tag-ping 2.4s ease-out infinite;
+  }
+  /* Stagger so the three tags in each cluster don't pulse in lockstep */
+  .tag-trusted::before     { animation-delay: 0.4s; }
+  .tag-loyal::before       { animation-delay: 1.2s; }
+  .tag-experienced::before { animation-delay: 1.9s; }
+  .family-tag-one::before  { animation-delay: 0.4s; }
+  .family-tag-two::before  { animation-delay: 1.2s; }
+  .family-tag-three::before{ animation-delay: 1.9s; }
+}
+
+/* ---- Hover lifts / focus for previously-uncovered elements ---- */
+
+/* 3D perspective for the milestone flip-stamp reveal */
+.about-timeline {
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+}
+
+/* Pivot each card from the spine-facing edge so it folds outward.
+   `will-change` and `transform: translateZ(0)` promote each card to its
+   own GPU compositor layer, so the 3D rotate-Y stamp animation runs on
+   the compositor (no per-frame paint) — eliminates the scroll jank from
+   nine simultaneous 3D-flipping cards. */
+.timeline-left .timeline-card,
+.timeline-text-only .timeline-card {
+  transform-origin: right center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.timeline-right .timeline-card {
+  transform-origin: left center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.timeline-card,
+.timeline-card img,
+.infra-card,
+.infra-card > img,
+.about-logistics > img,
+.about-family > img {
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              scale 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              rotate 0.4s ease,
+              box-shadow 0.4s ease,
+              opacity 0.4s ease;
+}
+
+.timeline-card:hover {
+  translate: 0 -6px;
+  scale: 1.03;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.3);
+}
+
+.timeline-card:hover img {
+  scale: 1.05;
+}
+
+.infra-card:hover {
+  translate: 0 -8px;
+  scale: 1.02;
+  box-shadow: 0 30px 56px -22px rgba(78, 40, 31, 0.3);
+}
+
+.infra-card:hover > img {
+  scale: 1.05;
+}
+
+.about-logistics > img:hover,
+.about-family > img:hover {
+  translate: 0 -6px;
+  scale: 1.015;
+}
+
+/* ---- Balaji-inspired flip-style hover on the two large infra cards.
+   Each .infra-large already shows photo + text side-by-side; on hover
+   we lift the photo and reveal an accent panel that reads "Discover
+   →" sitting beneath. ::before is the back panel; the photo is
+   z-layered above it; the text card stays on top. Card itself has
+   overflow:hidden (verified in AboutPage.mobile.css and the base
+   styles), so the leaving photo is clipped. */
+
+.infra-large {
+  isolation: isolate;
+}
+
+.infra-large::before {
+  content: "Discover \2192";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 50%; /* matches the photo footprint on these cards */
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.infra-large > img {
+  position: relative;
+  z-index: 1;
+  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.infra-large > div {
+  position: relative;
+  z-index: 2;
+}
+
+.infra-large:hover::before {
+  opacity: 1;
+}
+
+.infra-large:hover > img {
+  translate: 0 -110%;
+  scale: 1 !important; /* beat the generic .infra-card:hover > img scale */
+}
+
+/* ---- Entrance + scroll reveals for the uncovered sections.
+   All gated on motion preference + view-timeline support so unsupported
+   browsers see the content fully (their absence of view() falls through
+   to nothing; we DO add a static `opacity: 1` baseline below where
+   needed via deliberate non-@supports rules). */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Family tags were already animating via the earlier .float-tag rule
+     but with no delay set for the family group — they'd pop at t=0.
+     Defer them to view-timeline so they pop as the family section
+     enters. (Overrides the wall-clock animation above.) */
+  @supports (animation-timeline: view()) {
+    .family-tag-one,
+    .family-tag-two,
+    .family-tag-three {
+      animation: about-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .family-tag-two  { animation-range: cover 2% cover 27%; }
+    .family-tag-three{ animation-range: cover 4% cover 29%; }
+
+    /* Manufacturing section: cover the photo + heading the existing
+       layer left out. */
+    .manufacturing-photo,
+    .manufacturing-copy > .about-kicker,
+    .manufacturing-copy > h2 {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .manufacturing-photo {
+      animation-name: about-rise-left;
+    }
+
+    /* Pillars heading was uncovered — reveal alongside its cards */
+    .about-pillars > .about-section-heading {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    /* ---- Timeline ----
+       Vertical spine grows in; copy and card slide in from their sides.
+       Side direction comes from .timeline-left / .timeline-right /
+       .timeline-text-only. Composes over the layout's own positioning. */
+    .timeline-line {
+      transform-origin: top center;
+      animation: about-grow-y 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+
+    .about-timeline > .about-section-heading {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    /* Copy slides in from the side opposite its card */
+    .timeline-left .timeline-copy,
+    .timeline-text-only .timeline-copy-left {
+      animation: about-rise-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    .timeline-right .timeline-copy,
+    .timeline-text-only .timeline-copy-right {
+      animation: about-rise-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    /* Cards 3D-flip outward from the spine. Different keyframe per
+       side because the rotateY direction reverses. */
+    .timeline-left .timeline-card,
+    .timeline-text-only .timeline-card {
+      animation: about-stamp-left 1s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 27%;
+    }
+
+    .timeline-right .timeline-card {
+      animation: about-stamp-right 1s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 27%;
+    }
+
+    /* Year stamp — ink develops on paper as the card lands.
+       Refined letter-spacing collapse + colour fade-in, smooth easing. */
+    .timeline-milestone h3,
+    .timeline-text-only h3 {
+      animation: about-year-stamp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    /* ---- Infrastructure ---- */
+    .about-infrastructure > .about-section-heading {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    .infra-card {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .infra-card:nth-child(2) { animation-range: cover 1% cover 26%; }
+    .infra-card:nth-child(3) { animation-range: cover 2% cover 27%; }
+    .infra-card:nth-child(4) { animation-range: cover 3% cover 28%; }
+    .infra-card:nth-child(5) { animation-range: cover 4% cover 29%; }
+    .infra-card:nth-child(6) { animation-range: cover 6% cover 31%; }
+
+    /* ---- Logistics ---- */
+    .about-logistics > h2,
+    .about-logistics > p {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .about-logistics > p { animation-range: cover 2% cover 27%; }
+
+    .about-logistics > img {
+      animation: about-rise-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    /* ---- Family ---- */
+    .about-family > h2,
+    .about-family > img {
+      animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .about-family > img { animation-range: cover 2% cover 27%; }
+
+    /* ---- Social feed ---- */
+    .about-social-header,
+    .about-social-cards {
+      animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+    .about-social-cards { animation-range: cover 3% cover 28%; }
   }
 }

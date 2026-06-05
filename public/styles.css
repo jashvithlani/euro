@@ -67,7 +67,12 @@ textarea {
 
 .app-viewport--scaled {
   min-width: 1000px;
-  overflow-x: hidden;
+  /* `overflow-x: clip` (not hidden). With `hidden`, the spec promotes
+     overflow-y from visible to auto, making this element a scroll
+     container — which then becomes the ViewTimeline scrollport even
+     though it never actually scrolls (the document does). `clip`
+     avoids the promotion and lets view() walk up to the document. */
+  overflow-x: clip;
 }
 
 .app-viewport--fixed {
@@ -82,7 +87,12 @@ textarea {
   width: var(--page-width);
   flex: 0 0 var(--page-width);
   margin: 0;
-  overflow: hidden;
+  /* `overflow: clip` (not hidden) clips visually the same way but does
+     NOT establish a scroll container. Required for animation-timeline:
+     view() to walk up to the document scroller — without this, every
+     below-fold element registers as "past entry" at page load and
+     scroll-driven animations complete instantly. */
+  overflow: clip;
   background: var(--color-page);
 }
 

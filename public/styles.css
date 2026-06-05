@@ -765,8 +765,8 @@ textarea {
 .product-viewport {
   position: absolute;
   top: 193.33px;
-  left: 52px;
-  width: 1228px;
+  left: 0;
+  width: 100%;
   height: 386.67px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -783,7 +783,7 @@ textarea {
   width: max-content;
   height: 386.67px;
   gap: 15.21px;
-  padding-left: 13.78px;
+  padding-left: 21.78px;
   padding-top: 0;
 }
 

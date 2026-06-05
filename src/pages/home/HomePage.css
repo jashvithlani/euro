@@ -365,3 +365,10 @@
     }
   }
 }
+
+/* Crowd Favourites — carousel arrows on tablet/mobile only (site shell ≤999px). */
+@media (min-width: 1000px) {
+  .home-page .favorites-section .slider-buttons {
+    display: none;
+  }
+}

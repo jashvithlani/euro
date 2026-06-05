@@ -238,4 +238,32 @@
     line-height: 1.5;
     content: "© 2026 Euro India Foods";
   }
+
+  .scroll-to-top {
+    position: fixed;
+    z-index: 35;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: none;
+    border-radius: 9999px;
+    background: #be004b;
+    box-shadow: 0 12px 24px -8px rgba(190, 0, 75, 0.45);
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .scroll-to-top svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .scroll-to-top:active {
+    transform: scale(0.94);
+  }
 }

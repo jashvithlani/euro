@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
 import { getShellClassName, normalizePath } from "../site-routing.js";
 import "../styles/MobileShell.css";
@@ -106,6 +107,7 @@ export default function SiteLayout() {
         <Outlet />
         <Footer />
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

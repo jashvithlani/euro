@@ -1,0 +1,267 @@
+.hangout-page {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  padding:
+    env(safe-area-inset-top, 0)
+    env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0)
+    env(safe-area-inset-left, 0);
+  background: linear-gradient(135deg, #1a0a2e 0%, #3d1a5c 35%, #be004b 100%);
+  color: #fff;
+  font-family: "Epilogue", system-ui, sans-serif;
+  transition: background 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+.hangout-page--celebrate {
+  background: linear-gradient(160deg, #00c9a7 0%, #845ef7 40%, #ff6b9d 75%, #ffd43b 100%);
+}
+
+.hangout-page__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hangout-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: hangout-float 8s ease-in-out infinite;
+}
+
+.hangout-blob--1 {
+  top: -10%;
+  left: -5%;
+  width: 45vmin;
+  height: 45vmin;
+  background: #ff6b9d;
+  animation-delay: 0s;
+}
+
+.hangout-blob--2 {
+  right: -8%;
+  bottom: 10%;
+  width: 50vmin;
+  height: 50vmin;
+  background: #845ef7;
+  animation-delay: -2s;
+}
+
+.hangout-blob--3 {
+  top: 40%;
+  left: 30%;
+  width: 35vmin;
+  height: 35vmin;
+  background: #ffd43b;
+  animation-delay: -4s;
+}
+
+.hangout-blob--4 {
+  right: 20%;
+  top: 5%;
+  width: 28vmin;
+  height: 28vmin;
+  background: #51cf66;
+  animation-delay: -6s;
+}
+
+@keyframes hangout-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3%, -4%) scale(1.06);
+  }
+  66% {
+    transform: translate(-4%, 3%) scale(0.94);
+  }
+}
+
+.hangout-page__confetti {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hangout-page__main {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(92vw, 520px);
+  max-height: 100%;
+  padding: clamp(16px, 4vw, 24px);
+  text-align: center;
+}
+
+.hangout-page__eyebrow {
+  margin: 0 0 12px;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  animation: hangout-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.hangout-page__question {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  animation: hangout-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both;
+}
+
+.hangout-page__actions {
+  margin-top: clamp(28px, 8vw, 40px);
+  animation: hangout-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.16s both;
+}
+
+.hangout-btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+}
+
+.hangout-btn--yes {
+  padding: clamp(16px, 4vw, 20px) clamp(44px, 12vw, 56px);
+  min-height: 52px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #69db7c 0%, #37b24d 55%, #2b8a3e 100%);
+  box-shadow:
+    0 8px 0 #1e6b30,
+    0 20px 40px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  touch-action: manipulation;
+}
+
+.hangout-btn--yes:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 11px 0 #1e6b30,
+    0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+.hangout-btn--yes:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 4px 0 #1e6b30,
+    0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hangout-btn--no {
+  position: fixed;
+  z-index: 10;
+  padding: 14px 32px;
+  min-height: 48px;
+  min-width: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: clamp(0.95rem, 3.5vw, 1rem);
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: auto;
+  transition:
+    left 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    top 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease;
+  user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: default;
+}
+
+.hangout-btn--no.is-ready {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .hangout-btn--no:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+}
+
+.hangout-btn--no:active {
+  transform: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.hangout-page__success {
+  animation: hangout-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.hangout-page__yay {
+  margin: 0;
+  font-size: clamp(3rem, 14vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-shadow: 0 6px 32px rgba(0, 0, 0, 0.2);
+  animation: hangout-wiggle 0.5s ease-in-out 0.4s 3;
+}
+
+.hangout-page__whatsapp {
+  margin: 24px 0 0;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: clamp(1rem, 4vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+@keyframes hangout-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hangout-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}

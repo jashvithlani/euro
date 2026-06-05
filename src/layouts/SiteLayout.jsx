@@ -11,7 +11,7 @@ const DEFAULT_HOME_HERO_HEIGHT = 720;
 const MIN_RESPONSIVE_WIDTH = 1000;
 const MAX_RESPONSIVE_WIDTH = 2000;
 const MOBILE_BREAKPOINT = 999;
-const FLUID_MOBILE_PATHS = new Set(["/", "/about", "/exports"]);
+const FLUID_MOBILE_PATHS = new Set(["/", "/about", "/exports", "/career", "/contact", "/dealers", "/achievements"]);
 
 function getViewportWidth() {
   if (typeof window === "undefined") {

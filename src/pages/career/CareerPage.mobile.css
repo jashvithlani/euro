@@ -1,0 +1,210 @@
+/* Career page mobile — desktop in public/styles.css; shell in MobileShell.css */
+
+@media (max-width: 999px) {
+  .career-page .career-main {
+    padding-top: 0;
+  }
+
+  .career-page .career-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    height: auto;
+    padding: 32px 20px 48px;
+  }
+
+  .career-page .career-hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .career-page .career-hero h1 {
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .career-page .career-hero-copy > p {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.625;
+  }
+
+  .career-page .career-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .career-page .career-hero-actions a {
+    width: 100%;
+    min-height: 48px;
+    font-size: 15px;
+  }
+
+  .career-page .career-hero-media {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .career-page .career-hero-tilt {
+    inset: -8px;
+  }
+
+  .career-page .career-hero-photo {
+    min-height: 280px;
+    border-radius: 20px;
+  }
+
+  .career-page .career-family-badge {
+    bottom: 16px;
+    left: 16px;
+    max-width: none;
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .career-page .career-values {
+    width: 100%;
+    gap: 32px;
+    padding: 48px 20px 56px;
+  }
+
+  .career-page .career-section-heading span,
+  .career-page .career-application-heading span {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .career-page .career-section-heading h2,
+  .career-page .career-application-heading h2 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .career-page .career-values-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .career-page .career-value-card {
+    min-height: 0;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .career-page .career-value-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .career-page .career-value-icon img {
+    width: 18px;
+    max-height: 18px;
+  }
+
+  .career-page .career-value-card h3 {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .career-page .career-value-card p {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .career-page .career-application {
+    width: 100%;
+    padding: 48px 20px 56px;
+  }
+
+  .career-page .career-application-heading {
+    margin-bottom: 28px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .career-page .career-application-heading p {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .career-page .career-form {
+    width: 100%;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .career-page .career-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .career-page .career-field-wide {
+    grid-column: 1;
+  }
+
+  .career-page .career-field span,
+  .career-page .career-upload span {
+    padding-left: 0;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .career-page .career-field input,
+  .career-page .career-field textarea {
+    font-size: 15px;
+  }
+
+  .career-page .career-field input {
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  .career-page .career-field textarea {
+    min-height: 120px;
+    padding: 14px 16px;
+  }
+
+  .career-page .career-upload > div {
+    min-height: 100px;
+    padding: 20px;
+  }
+
+  .career-page .career-upload p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .career-page .career-form button {
+    min-height: 54px;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .career-page .career-ready {
+    width: 100%;
+    height: auto;
+    padding: 48px 20px 56px;
+  }
+
+  .career-page .career-ready h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    text-align: center;
+  }
+}

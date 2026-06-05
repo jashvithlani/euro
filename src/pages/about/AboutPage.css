@@ -6,3 +6,139 @@
   background: url("./assets/about-pillar-bg-source.png") center / 222.57% 100%;
   content: "";
 }
+
+/* =====================================================================
+ * About page motion layer — scoped to about-* sections. CSS-only.
+ * ===================================================================== */
+
+@keyframes about-rise {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes about-rise-left {
+  from { opacity: 0; translate: -36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes about-rise-right {
+  from { opacity: 0; translate: 36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes about-pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+.about-hero-btn,
+.pillar-card,
+.pillar-icon,
+.about-hero-card,
+.about-hero-card img,
+.manufacturing-feature,
+.manufacturing-icon img,
+.button-primary {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+.about-hero-btn:hover,
+.button-primary.about-hero-btn:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+}
+
+.pillar-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
+}
+
+.pillar-card:hover .pillar-icon {
+  scale: 1.12;
+  rotate: -6deg;
+}
+
+.about-hero-card:hover {
+  scale: 1.03;
+}
+
+.about-hero-card:hover img {
+  scale: 1.04;
+}
+
+.manufacturing-feature:hover {
+  translate: 0 -4px;
+}
+
+.manufacturing-feature:hover .manufacturing-icon img {
+  scale: 1.1;
+  rotate: -4deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-hero-copy .about-kicker {
+    animation: about-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  }
+
+  .about-hero-title span {
+    animation: about-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .about-hero-title span:nth-child(1) { animation-delay: 0.1s; }
+  .about-hero-title span:nth-child(2) { animation-delay: 0.18s; }
+  .about-hero-title span:nth-child(3) { animation-delay: 0.26s; }
+  .about-hero-title span:nth-child(4) { animation-delay: 0.34s; }
+
+  .about-hero-btn {
+    animation: about-pop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both;
+  }
+
+  .about-hero-left-wrap {
+    animation: about-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  .about-hero-right-wrap {
+    animation: about-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  }
+
+  .float-tag {
+    animation: about-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .tag-trusted { animation-delay: 0.5s; }
+  .tag-loyal { animation-delay: 0.62s; }
+  .tag-experienced { animation-delay: 0.74s; }
+
+  @supports (animation-timeline: view()) {
+    .about-journey h2,
+    .about-journey p {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .pillar-card {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .pillar-card:nth-child(2) { animation-range: entry 4% entry 49%; }
+    .pillar-card:nth-child(3) { animation-range: entry 8% entry 53%; }
+    .pillar-card:nth-child(4) { animation-range: entry 12% entry 57%; }
+
+    .manufacturing-feature {
+      animation: about-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .manufacturing-feature:nth-child(2) { animation-range: entry 6% entry 51%; }
+    .manufacturing-feature:nth-child(3) { animation-range: entry 12% entry 57%; }
+  }
+}

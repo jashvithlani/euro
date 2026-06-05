@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getNavActive } from "../site-routing.js";
+import { CATEGORY_PATHS, getNavActive, normalizePath } from "../site-routing.js";
 import { sharedAsset } from '../shared/asset.js';
 
 const navItems = [
@@ -14,6 +14,18 @@ const navItems = [
   { key: "news", label: "News", href: "#" },
   { key: "achievements", label: "Achievements", href: "/achievements" },
   { key: "contact", label: "Contact", href: "/contact" },
+];
+
+const categoryTabs = [
+  { key: "chips", label: "Chips", href: "/chips" },
+  { key: "getmore", label: "Getmore", href: "/getmore" },
+  { key: "beverages", label: "Beverages", href: "/beverages" },
+  { key: "namkeen", label: "Namkeen", href: "/namkeen" },
+  { key: "farali", label: "Farali", href: "/farali" },
+  { key: "chikki", label: "Chikki", href: "/chikki" },
+  { key: "khakhra", label: "Khakhra", href: "/khakhra" },
+  { key: "bakery", label: "Bakery", href: "/bakery" },
+  { key: "fryums", label: "Fryums", href: "/fryums" },
 ];
 
 function NavItem({ item, active, onNavigate }) {
@@ -38,9 +50,22 @@ function NavItem({ item, active, onNavigate }) {
 export default function Header() {
   const { pathname } = useLocation();
   const active = getNavActive(pathname);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const onCategoryPage = CATEGORY_PATHS.has(normalizePath(pathname));
+  const activeCategoryKey = onCategoryPage ? normalizePath(pathname).slice(1) : null;
 
-  const closeMenu = () => setMenuOpen(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(onCategoryPage);
+
+  // Expand Products when the user navigates to a category page with the drawer closed.
+  useEffect(() => {
+    if (onCategoryPage) {
+      setProductsOpen(true);
+    }
+  }, [onCategoryPage, pathname]);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <header className={`site-nav${menuOpen ? " site-nav--menu-open" : ""}`}>
@@ -98,9 +123,54 @@ export default function Header() {
         aria-hidden={!menuOpen}
         data-open={menuOpen ? "true" : "false"}
       >
-        {navItems.map((item) => (
-          <NavItem key={item.key} item={item} active={active} onNavigate={closeMenu} />
-        ))}
+        {navItems.map((item) => {
+          if (item.key === "products") {
+            return (
+              <div
+                key={item.key}
+                className={`mobile-nav-group${productsOpen ? " is-open" : ""}${active === "products" ? " is-active" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="mobile-nav-group-toggle"
+                  aria-expanded={productsOpen}
+                  aria-controls="mobile-nav-products"
+                  onClick={() => setProductsOpen((open) => !open)}
+                >
+                  <span>{item.label}</span>
+                  <svg aria-hidden="true" viewBox="0 0 12 8" focusable="false">
+                    <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <div id="mobile-nav-products" className="mobile-nav-sub" hidden={!productsOpen}>
+                  {categoryTabs.map((cat) => {
+                    const isActive = cat.key === activeCategoryKey;
+                    const className = isActive ? "is-active" : undefined;
+                    if (cat.href.startsWith("/")) {
+                      return (
+                        <Link
+                          key={cat.key}
+                          className={className}
+                          to={cat.href}
+                          aria-current={isActive ? "page" : undefined}
+                          onClick={closeMenu}
+                        >
+                          {cat.label}
+                        </Link>
+                      );
+                    }
+                    return (
+                      <a key={cat.key} className={className} href={cat.href} onClick={closeMenu}>
+                        {cat.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          }
+          return <NavItem key={item.key} item={item} active={active} onNavigate={closeMenu} />;
+        })}
       </nav>
     </header>
   );

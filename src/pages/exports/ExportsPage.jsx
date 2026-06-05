@@ -1,6 +1,6 @@
 import { asset } from './asset.js';
 import { sharedAsset } from '../../shared/asset.js';
-import "./ExportsPage.mobile.css";
+import "./ExportsPage.css";
 
 export default function ExportsPage() {
   return (

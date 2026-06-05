@@ -541,3 +541,135 @@
   height: 273.33px;
   object-fit: fill;
 }
+
+/* =====================================================================
+ * Contact page motion layer — scoped to .contact-main. CSS-only.
+ * ===================================================================== */
+
+@keyframes contact-rise {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes contact-rise-left {
+  from { opacity: 0; translate: -36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes contact-rise-right {
+  from { opacity: 0; translate: 36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes contact-pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes contact-bg-grow {
+  from { opacity: 0; scale: 1.05; }
+  to { opacity: 1; scale: 1; }
+}
+
+.contact-main .contact-card,
+.contact-main .contact-card-icon,
+.contact-main .contact-hero-card,
+.contact-main .contact-map-card,
+.contact-main .contact-map-action,
+.contact-main .contact-field input,
+.contact-main .contact-field textarea,
+.contact-main .contact-field select,
+.contact-main .contact-submit {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease, border-color 0.25s ease, background 0.3s ease;
+}
+
+.contact-main .contact-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
+}
+
+.contact-main .contact-card:hover .contact-card-icon {
+  scale: 1.12;
+  rotate: -6deg;
+}
+
+.contact-main .contact-map-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+}
+
+.contact-main .contact-map-action:hover:not(.contact-map-action--solid) {
+  background: var(--color-accent-light);
+  color: #fff;
+}
+
+.contact-main .contact-map-action:hover {
+  translate: 0 -2px;
+  scale: 1.03;
+}
+
+.contact-main .contact-field input:focus,
+.contact-main .contact-field textarea:focus,
+.contact-main .contact-field select:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+.contact-main .contact-submit:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-main .contact-hero-gradient {
+    animation: contact-bg-grow 0.9s ease both;
+  }
+
+  .contact-main .contact-hero h1 {
+    animation: contact-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+
+  .contact-main .contact-hero p {
+    animation: contact-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+  }
+
+  .contact-main .contact-hero-card {
+    animation: contact-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both;
+  }
+
+  .contact-main .contact-card {
+    animation: contact-pop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .contact-main .contact-card:nth-child(1) { animation-delay: 0.4s; }
+  .contact-main .contact-card:nth-child(2) { animation-delay: 0.5s; }
+  .contact-main .contact-card:nth-child(3) { animation-delay: 0.6s; }
+
+  @supports (animation-timeline: view()) {
+    .contact-main .contact-map-card--office {
+      animation: contact-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .contact-main .contact-map-card--plant {
+      animation: contact-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .contact-main .contact-form-panel,
+    .contact-main .contact-partner,
+    .contact-main .contact-social {
+      animation: contact-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

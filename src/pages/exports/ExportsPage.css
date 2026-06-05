@@ -1,0 +1,121 @@
+@import "./ExportsPage.mobile.css";
+
+/* =====================================================================
+ * Exports page motion layer — scoped to .exports-main. CSS-only.
+ * ===================================================================== */
+
+@keyframes exports-rise {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes exports-rise-left {
+  from { opacity: 0; translate: -36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes exports-rise-right {
+  from { opacity: 0; translate: 36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes exports-pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes exports-bg-grow {
+  from { opacity: 0; scale: 1.05; }
+  to { opacity: 1; scale: 1; }
+}
+
+.exports-main .export-presence-card,
+.exports-main .export-contact-card,
+.exports-main .export-field input,
+.exports-main .export-field textarea,
+.exports-main .export-field select,
+.exports-main .export-submit,
+.exports-main a.button {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, border-color 0.25s ease, background 0.3s ease;
+}
+
+.exports-main .export-presence-card:hover,
+.exports-main .export-contact-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
+}
+
+.exports-main .export-field input:focus,
+.exports-main .export-field textarea:focus,
+.exports-main .export-field select:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+.exports-main .export-submit:hover,
+.exports-main a.button:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .exports-main .export-pill {
+    animation: exports-rise-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  }
+
+  .exports-main .export-hero h1 {
+    animation: exports-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+  }
+
+  .exports-main .export-hero-lede {
+    animation: exports-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+  }
+
+  .exports-main .export-stat {
+    animation: exports-pop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .exports-main .export-stats-row:first-of-type .export-stat:nth-child(1) {
+    animation-delay: 0.32s;
+  }
+
+  .exports-main .export-stats-row:first-of-type .export-stat:nth-child(3) {
+    animation-delay: 0.44s;
+  }
+
+  .exports-main .export-stats-row-wide .export-stat {
+    animation-delay: 0.56s;
+  }
+
+  .exports-main .export-hero-gradient {
+    animation: exports-bg-grow 0.9s ease both;
+  }
+
+  .exports-main .export-hero-media > img {
+    animation: exports-rise-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .exports-main .export-story-media,
+    .exports-main .export-story-copy {
+      animation: exports-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .exports-main .export-story-media {
+      animation-name: exports-rise-right;
+    }
+
+    .exports-main .export-inquiry {
+      animation: exports-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

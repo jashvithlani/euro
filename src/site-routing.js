@@ -1,4 +1,4 @@
-const CATEGORY_PATHS = new Set([
+export const CATEGORY_PATHS = new Set([
   "/chips",
   "/beverages",
   "/getmore",

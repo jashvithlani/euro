@@ -1,0 +1,452 @@
+/* Category pages mobile — desktop in CategoryPage.css + per-category CSS; shell in MobileShell.css */
+
+@media (max-width: 999px) {
+  /* ── Page shell ─────────────────────────────────────────────────────── */
+  .category-page .category-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto !important;
+    overflow: visible;
+    padding-bottom: 24px;
+  }
+
+  /* ── Product sub-nav: hidden on mobile (replaced by the Products
+     accordion inside the hamburger drawer — see Header.jsx). ───────── */
+  .category-page .product-subnav,
+  .category-page .product-subnav--top {
+    display: none;
+  }
+
+  /* ── Hero (mobile) ────────────────────────────────────────────────────
+     The desktop hero is an absolute-positioned 1280px arc canvas with packs
+     scattered as absolute children. Scaling that down on a 390px screen
+     spills the packs behind the title. On mobile we render a clean,
+     stacked banner: gradient background → title → copy → badge, and hide
+     the entire arc canvas. ─────────────────────────────────────────── */
+  .category-page .category-hero,
+  .category-page .category-hero--chips-top-nav,
+  .category-page .category-hero--beverages-top-nav,
+  .category-page .category-hero--getmore-top-nav,
+  .category-page .category-hero--farali-top-nav,
+  .category-page .category-hero--namkeen-top-nav,
+  .category-page .category-hero--chikki-top-nav,
+  .category-page .category-hero--khakhra-top-nav,
+  .category-page .category-hero--bakery-top-nav,
+  .category-page .category-hero--fryums-top-nav {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 32px 20px 40px;
+    overflow: hidden;
+    background: linear-gradient(168deg, #ffe9f1 0%, #fff3f6 60%, #fff8f6 100%);
+  }
+
+  /* Per-category mobile hero background tints (match each Figma palette). */
+  .category-page .category-main--chips .category-hero {
+    background: linear-gradient(168deg, #ffe0c2 0%, #fff1de 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--beverages .category-hero {
+    background: linear-gradient(168deg, #ffe2ea 0%, #fff1f4 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--getmore .category-hero {
+    background: linear-gradient(168deg, #ffe7d6 0%, #fff3eb 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--namkeen .category-hero {
+    background: linear-gradient(168deg, #ffd9d9 0%, #ffeae6 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--farali .category-hero {
+    background: linear-gradient(168deg, #f0e2ff 0%, #f7eeff 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--chikki .category-hero {
+    background: linear-gradient(168deg, #e6d9ff 0%, #f1e8ff 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--khakhra .category-hero {
+    background: linear-gradient(168deg, #fcdfec 0%, #fdeef5 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--bakery .category-hero {
+    background: linear-gradient(168deg, #d2f3e2 0%, #e9f9f0 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-main--fryums .category-hero {
+    background: linear-gradient(168deg, #fdeaf1 0%, #f6e7f4 60%, #fff8f6 100%);
+  }
+
+  .category-page .category-hero h1 {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    order: 1;
+    width: 100% !important;
+    margin: 0 !important;
+    font-size: 56px !important;
+    font-weight: 900;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    text-align: center !important;
+    transform: none !important;
+  }
+
+  .category-page .category-hero p {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    order: 2;
+    width: 100% !important;
+    max-width: 340px;
+    margin: 12px auto 0 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    transform: none !important;
+  }
+
+  .category-page .category-hero-badge {
+    position: relative;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    order: 3;
+    margin-top: 16px;
+    min-width: 0;
+    height: auto;
+    padding: 6px 14px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  /* Hide the entire desktop hero visual (arc canvas + packs + bg images)
+     so nothing spills behind the title on mobile. */
+  .category-page .category-hero-custom,
+  .category-page .category-hero-visual,
+  .category-page .category-hero-chips-wide,
+  .category-page .category-hero-beverages-wide,
+  .category-page .category-hero-getmore-wide,
+  .category-page .category-hero-farali,
+  .category-page .category-hero-namkeen,
+  .category-page .category-hero-chikki,
+  .category-page .category-hero-khakhra,
+  .category-page .category-hero-bakery,
+  .category-page .category-hero-fryums {
+    display: none !important;
+  }
+
+  /* Belt-and-braces: kill any inline-animated hero pack/ring on mobile. */
+  .category-page .chips-wide-hero-bg,
+  .category-page .chips-wide-hero-pack,
+  .category-page .chips-wide-hero-ring,
+  .category-page .khakhra-hero-pack,
+  .category-page .bakery-hero-pack,
+  .category-page .fryums-hero-pack,
+  .category-page .farali-hero-pack,
+  .category-page .namkeen-hero-pack,
+  .category-page .getmore-wide-pack,
+  .category-page .getmore-wide-line,
+  .category-page .beverages-wide-hero-bg,
+  .category-page .beverages-wide-hero-products,
+  .category-page .chikki-hero-bg,
+  .category-page .chikki-hero-products {
+    display: none !important;
+    animation: none !important;
+  }
+
+  /* ── Product cards, promos, features, newsletter ──────────────────── */
+  .category-page .category-product-card,
+  .category-page .category-promo,
+  .category-page .category-feature,
+  .category-page .category-newsletter {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: calc(100% - 40px) !important;
+    height: auto !important;
+    min-height: 0;
+    margin: 0 20px 16px;
+    overflow: hidden;
+  }
+
+  .category-page .category-side-arrow {
+    display: none;
+  }
+
+  .category-page .category-product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 280px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .category-page .category-product-cover,
+  .category-page .category-product-cover--positioned,
+  .category-page .category-product-img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    inset: auto !important;
+    width: min(100%, 240px) !important;
+    height: auto !important;
+    max-height: 200px;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  .category-page .category-product-ring {
+    width: 280px;
+    height: 280px;
+  }
+
+  .category-page .category-product-badge {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    align-self: flex-start;
+    margin-top: 12px;
+    height: auto;
+    padding: 4px 10px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .category-page .category-product-title {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    margin-top: 12px;
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important;
+    text-align: left;
+  }
+
+  .category-page .category-product-subtitle {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    margin-top: 4px;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: left;
+  }
+
+  /* Promo panels */
+  .category-page .category-promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+
+  .category-page .category-promo-ghost {
+    display: none;
+  }
+
+  .category-page .category-promo-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+  }
+
+  .category-page .category-promo h2 {
+    width: 100% !important;
+    height: auto !important;
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+
+  .category-page .category-promo p {
+    width: 100% !important;
+    margin: 12px 0 20px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .category-page .category-promo a {
+    align-self: flex-start;
+    height: auto;
+    min-height: 40px;
+    padding: 10px 20px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  /* Feature cards */
+  .category-page .category-feature {
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .category-page .category-feature-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+  }
+
+  .category-page .category-feature-copy > span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+
+  .category-page .category-feature h2 {
+    margin: 8px 0 12px;
+    font-size: 32px !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .category-page .category-feature p {
+    margin-bottom: 16px;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .category-page .category-feature a {
+    align-self: flex-start;
+    height: auto;
+    min-height: 40px;
+    padding: 10px 18px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .category-page .category-feature > img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(100%, 200px) !important;
+    height: auto !important;
+    margin: 8px auto 0;
+    object-fit: contain;
+  }
+
+  /* Spotlight strip (namkeen) */
+  .category-page .category-spotlight {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    height: auto;
+    margin: 8px 0 16px;
+    padding: 32px 20px 24px;
+    overflow: visible;
+  }
+
+  .category-page .category-spotlight-bg {
+    top: 0;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+    transform: rotate(-2deg);
+  }
+
+  .category-page .category-spotlight h2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 0 20px;
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .category-page .category-spotlight-cards {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    padding-bottom: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .category-page .category-spotlight-card {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 240px;
+    scroll-snap-align: start;
+    border-radius: 32px;
+  }
+
+  .category-page .category-spotlight-card > img:not(.category-spotlight-ring) {
+    width: 150px;
+    height: 170px;
+  }
+
+  .category-page .category-spotlight-arrow {
+    display: none;
+  }
+
+  /* Newsletter */
+  .category-page .category-newsletter {
+    width: calc(100% - 40px) !important;
+    height: auto !important;
+    margin: 8px 20px 24px;
+    padding: 32px 24px !important;
+    border-radius: 24px;
+    text-align: center;
+  }
+
+  .category-page .category-newsletter h2 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+
+  .category-page .category-newsletter p {
+    width: 100% !important;
+    margin: 12px auto 0 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .category-page .category-newsletter form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 20px !important;
+    padding-top: 0 !important;
+  }
+
+  .category-page .category-newsletter input {
+    width: 100%;
+    height: 56px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+
+  .category-page .category-newsletter button {
+    width: 100%;
+    height: 56px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+}

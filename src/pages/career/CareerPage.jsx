@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { asset } from './asset.js';
-import "./CareerPage.mobile.css";
+import "./CareerPage.css";
 
 const valueCards = [
   {

@@ -45,3 +45,152 @@
   height: 297px;
   transform: none;
 }
+
+/* =====================================================================
+ * Bakery category page motion layer
+ * Scoped to .category-main--bakery. CSS-only.
+ * ===================================================================== */
+
+@keyframes bakery-rise {
+  from { opacity: 0; translate: 0 26px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes bakery-pack-in {
+  0% { opacity: 0; scale: 0.4; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes bakery-bg-grow {
+  from { opacity: 0; scale: 1.05; }
+  to { opacity: 1; scale: 1; }
+}
+
+
+.category-main--bakery .bakery-hero-pack {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.35s ease, z-index 0s linear 0s;
+  filter: drop-shadow(0 8px 14px rgba(78, 40, 31, 0.18));
+}
+
+.category-main--bakery .bakery-hero-pack:hover {
+  translate: 0 -14px;
+  scale: 1.12 !important;
+  z-index: 3;
+  filter: drop-shadow(0 22px 28px rgba(78, 40, 31, 0.35));
+}
+
+.category-main--bakery .category-product-card--image,
+.category-main--bakery .category-product-cover,
+.category-main--bakery .category-product-card--product,
+.category-main--bakery .category-product-card--product .category-product-img,
+.category-main--bakery .category-promo .category-promo-ghost,
+.category-main--bakery .category-promo a,
+.category-main--bakery .category-feature,
+.category-main--bakery .category-feature > img,
+.category-main--bakery .category-feature a,
+.category-main--bakery .category-feature-arrow,
+.category-main--bakery .category-newsletter--bakery-compact input,
+.category-main--bakery .category-newsletter--bakery-compact button {
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.4s cubic-bezier(0.22, 1, 0.36, 1), rotate 0.4s ease,
+    box-shadow 0.4s ease, background 0.3s ease, border-color 0.25s ease;
+}
+
+.category-main--bakery .category-product-card--image:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.5);
+}
+
+.category-main--bakery .category-product-card--image:hover .category-product-cover {
+  scale: 1.07;
+}
+
+.category-main--bakery .category-product-card--product:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.5);
+}
+
+.category-main--bakery .category-product-card--product:hover .category-product-img {
+  scale: 1.07;
+}
+
+.category-main--bakery .category-promo:hover .category-promo-ghost {
+  scale: 1.06;
+  rotate: 6deg;
+}
+
+.category-main--bakery .category-promo a:hover {
+  translate: 2px 0;
+}
+
+.category-main--bakery .category-feature:hover {
+  box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
+}
+
+.category-main--bakery .category-feature:hover > img {
+  translate: 0 -8px;
+  scale: 1.04;
+  rotate: -3deg;
+}
+
+.category-main--bakery .category-feature a:hover {
+  translate: 0 -2px;
+  scale: 1.04;
+}
+
+.category-main--bakery .category-feature a:hover .category-feature-arrow {
+  translate: 4px 0;
+}
+
+.category-main--bakery .category-newsletter--bakery-compact input:focus {
+  border: 1px solid var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+.category-main--bakery .category-newsletter--bakery-compact button:hover {
+  translate: 0 -2px;
+  scale: 1.04;
+  box-shadow: 0 18px 30px -12px rgba(78, 40, 31, 0.35);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .category-main--bakery .category-hero h1 {
+    animation: bakery-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+  .category-main--bakery .category-hero p {
+    animation: bakery-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+  }
+  .category-main--bakery .category-hero-badge {
+    animation: bakery-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
+  }
+  .category-main--bakery .bakery-hero-pack {
+    animation: bakery-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .category-main--bakery .bakery-pack-plain {
+    animation-delay: 0.25s;
+  }
+  .category-main--bakery .bakery-pack-coconut {
+    animation-delay: 0.38s;
+  }
+  .category-main--bakery .bakery-pack-methi {
+    animation-delay: 0.5s;
+  }
+  @supports (animation-timeline: view()) {
+    .category-main--bakery .category-product-card,
+    .category-main--bakery .category-promo,
+    .category-main--bakery .category-feature,
+    .category-main--bakery .category-newsletter {
+      animation: bakery-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

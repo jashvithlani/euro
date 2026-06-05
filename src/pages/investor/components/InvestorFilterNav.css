@@ -52,9 +52,9 @@
 
 .investor-filter-nav__pill:hover:not(.is-active),
 .investor-filter-nav__pill:focus-visible:not(.is-active) {
-  border-color: rgba(213, 19, 87, 0.25);
-  background: rgba(213, 19, 87, 0.06);
-  color: #b81049;
+  border-color: rgba(207, 51, 111, 0.35);
+  background: var(--color-accent-light);
+  color: #fff;
 }
 
 .investor-filter-nav__pill:focus-visible {

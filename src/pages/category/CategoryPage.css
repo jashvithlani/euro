@@ -1,3 +1,5 @@
+@import "./CategoryPage.mobile.css";
+
 .category-page {
   background: var(--color-page);
 }
@@ -2185,16 +2187,6 @@
   }
 }
 
-@keyframes chips-pack-float {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -14px;
-  }
-}
-
 @keyframes chips-bg-grow {
   from {
     opacity: 0;
@@ -2206,31 +2198,39 @@
   }
 }
 
-/* The five packs sit on a shallow arc whose circle centre is ~(640, -371)
-   in the hero box. Rotating the ring about that point turns the whole arc
-   like a slow wheel — every pack orbits together. Gentle ±1.6deg sway
-   (~18px travel at r≈640) so end packs never clip out of the hero. */
-@keyframes chips-ring-spin {
-  0% {
-    transform: rotate(-1.6deg);
-  }
-  50% {
-    transform: rotate(1.6deg);
-  }
-  100% {
-    transform: rotate(-1.6deg);
-  }
-}
-
-/* Full-size positioned wrapper so packs keep their exact coordinates;
-   transform-origin is the arc's circle centre. */
+/* Full-size positioned wrapper so the five hero packs keep their exact
+   coordinates relative to the hero box. Ring itself is transparent to
+   the mouse — only individual packs receive hover. */
 .category-main--chips .chips-wide-hero-ring {
   position: absolute;
   inset: 0;
   width: 1280px;
   height: 100%;
-  transform-origin: 640px -371px;
   pointer-events: none;
+}
+
+/* Re-enable hover on each pack (base rule sets pointer-events:none).
+   Drive translate/scale (compose over the resting `transform: rotate`)
+   so each pack keeps its tilt while lifting + zooming. Pop z-index so
+   the hovered pack floats over its neighbours. drop-shadow plays nicely
+   with the transparent PNG silhouettes. */
+.category-main--chips .chips-wide-hero-pack {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.35s ease, z-index 0s linear 0s;
+  filter: drop-shadow(0 8px 14px rgba(78, 40, 31, 0.18));
+}
+
+.category-main--chips .chips-wide-hero-pack:hover {
+  translate: 0 -14px;
+  /* !important needed because chips-pack-in's animation-fill-mode:both
+     pins `scale: 1` at the keyframe's end, and animated values beat
+     regular declarations. */
+  scale: 1.12 !important;
+  z-index: 3;
+  filter: drop-shadow(0 22px 28px rgba(78, 40, 31, 0.35));
 }
 
 /* ---- Hover / focus interactions (always on) ---------------------- */
@@ -2314,12 +2314,6 @@
     animation: chips-bg-grow 0.9s ease both;
   }
 
-  /* The whole pack ring turns slowly like a wheel (the packs' own
-     float/scale animations run independently inside it). */
-  .category-main--chips .chips-wide-hero-ring {
-    animation: chips-ring-spin 16s ease-in-out 1s infinite;
-  }
-
   /* Title / copy / badge cascade up */
   .category-main--chips .category-hero h1 {
     animation: chips-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
@@ -2331,27 +2325,25 @@
     animation: chips-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
   }
 
-  /* Each pack flies in (opacity + scale, keeping its rotate), then
-     floats forever. Two animations on different properties so they
-     don't fight: pack-in drives scale, pack-float drives translate. */
+  /* Each pack flies in (opacity + scale, keeping its rotate) and then
+     comes to rest — no ambient motion after landing. */
   .category-main--chips .chips-wide-hero-pack {
-    animation: chips-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-      chips-pack-float 5.5s ease-in-out infinite;
+    animation: chips-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
   .category-main--chips .chips-wide-pack-salted {
-    animation-delay: 0.25s, 1s;
+    animation-delay: 0.25s;
   }
   .category-main--chips .chips-wide-pack-tomato {
-    animation-delay: 0.38s, 1.4s;
+    animation-delay: 0.38s;
   }
   .category-main--chips .chips-wide-pack-masti {
-    animation-delay: 0.5s, 1.2s;
+    animation-delay: 0.5s;
   }
   .category-main--chips .chips-wide-pack-onion {
-    animation-delay: 0.62s, 1.6s;
+    animation-delay: 0.62s;
   }
   .category-main--chips .chips-wide-pack-chilli {
-    animation-delay: 0.74s, 1.8s;
+    animation-delay: 0.74s;
   }
 
   /* Down-page content reveals on scroll where supported (never hides

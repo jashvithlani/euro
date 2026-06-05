@@ -1,0 +1,120 @@
+@import "./CareerPage.mobile.css";
+
+/* =====================================================================
+ * Career page motion layer — scoped to .career-main. CSS-only.
+ * ===================================================================== */
+
+@keyframes career-rise {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes career-rise-left {
+  from { opacity: 0; translate: -36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes career-rise-right {
+  from { opacity: 0; translate: 36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes career-pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes career-bg-grow {
+  from { opacity: 0; scale: 1.05; }
+  to { opacity: 1; scale: 1; }
+}
+
+.career-main .career-value-card,
+.career-main .career-value-icon,
+.career-main .career-hero-actions a,
+.career-main .career-field input,
+.career-main .career-field textarea,
+.career-main .career-field select,
+.career-main .career-submit,
+.career-main .career-ready a {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease, border-color 0.25s ease, background 0.3s ease;
+}
+
+.career-main .career-value-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
+}
+
+.career-main .career-value-card:hover .career-value-icon {
+  scale: 1.12;
+  rotate: -6deg;
+}
+
+.career-main .career-hero-actions a:hover,
+.career-main .career-submit:hover,
+.career-main .career-ready a:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+}
+
+.career-main .career-field input:focus,
+.career-main .career-field textarea:focus,
+.career-main .career-field select:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .career-main .career-hero h1 {
+    animation: career-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+
+  .career-main .career-hero-copy > p {
+    animation: career-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+  }
+
+  .career-main .career-hero-actions {
+    animation: career-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
+  }
+
+  .career-main .career-hero-gradient {
+    animation: career-bg-grow 0.9s ease both;
+  }
+
+  .career-main .career-hero-tilt {
+    animation: career-rise-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+  }
+
+  .career-main .career-hero-photo {
+    animation: career-rise-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+  }
+
+  .career-main .career-family-badge {
+    animation: career-pop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .career-main .career-value-card {
+      animation: career-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .career-main .career-value-card:nth-child(2) { animation-range: entry 4% entry 49%; }
+    .career-main .career-value-card:nth-child(3) { animation-range: entry 8% entry 53%; }
+    .career-main .career-value-card:nth-child(4) { animation-range: entry 12% entry 57%; }
+
+    .career-main .career-application,
+    .career-main .career-application-heading {
+      animation: career-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

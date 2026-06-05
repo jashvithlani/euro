@@ -143,7 +143,6 @@ export default function HomePage() {
                   <img src={asset('category-bundle.png')} alt="Euro sweet memories box" />
                   <div>
                     <h3>Can't decide?<br />Try our Mix-It-Up Boxes.</h3>
-                    <a href="#">Explore Bundles <span aria-hidden="true">-&gt;</span></a>
                   </div>
                 </article>
               </section>

@@ -12,7 +12,6 @@ const categoryTabs = [
   { key: "khakhra", label: "Khakhra", href: "/khakhra" },
   { key: "bakery", label: "Bakery", href: "/bakery" },
   { key: "fryums", label: "Fryums", href: "/fryums" },
-  { key: "celebrations", label: "Celebrations", href: "#" },
 ];
 
 export default function ProductSubNav({ active, placement = "default" }) {

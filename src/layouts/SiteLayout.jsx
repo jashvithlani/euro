@@ -4,7 +4,7 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
-import { getShellClassName, normalizePath } from "../site-routing.js";
+import { CATEGORY_PATHS, getShellClassName, normalizePath } from "../site-routing.js";
 import "../styles/MobileShell.css";
 
 const DESIGN_WIDTH = 1280;
@@ -28,7 +28,8 @@ function getViewportWidthScale(viewportWidth = getViewportWidth()) {
 }
 
 function isFluidMobileLayout(pathname, viewportWidth = getViewportWidth()) {
-  return viewportWidth <= MOBILE_BREAKPOINT && FLUID_MOBILE_PATHS.has(normalizePath(pathname));
+  const path = normalizePath(pathname);
+  return viewportWidth <= MOBILE_BREAKPOINT && (FLUID_MOBILE_PATHS.has(path) || CATEGORY_PATHS.has(path));
 }
 
 export default function SiteLayout() {

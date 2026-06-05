@@ -17,7 +17,6 @@ const beveragesAt1920 = {
       Bold flavors, smooth sips — pure satisfaction in every bottle.
     </>
   ),
-  badge: "LOREAM IPSUM",
   height: "2470.67px",
   hero: {
     mode: "beveragesWide",

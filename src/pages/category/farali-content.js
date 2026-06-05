@@ -1,3 +1,4 @@
+import "./farali.css";
 import { asset } from "./asset.js";
 import { scaleCategoryPage } from "./category-scale.js";
 
@@ -5,7 +6,6 @@ import { scaleCategoryPage } from "./category-scale.js";
 const faraliAt1920 = {
   title: "Farali",
   copy: "A delightful crunch inspired by tradition, crafted with bold flavors for every fasting moment.",
-  badge: "LOREAM IPSUM",
   /* 2871 + compact newsletter (~329) + 40px breathing room @ 1280 (60 @ 1920) */
   height: 3260,
   hero: { mode: "farali" },

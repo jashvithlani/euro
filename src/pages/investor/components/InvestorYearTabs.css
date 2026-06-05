@@ -40,8 +40,8 @@
 .investor-year-tabs__pill:focus-visible:not(.is-active),
 .investor-shareholding__year:focus-visible:not(.is-active),
 .investor-financial__year:focus-visible:not(.is-active) {
-  background: #ffe2db;
-  color: #be004b;
+  background: var(--color-accent-light);
+  color: #fff;
 }
 
 .investor-year-tabs__pill.is-active:hover,

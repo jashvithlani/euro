@@ -482,3 +482,113 @@
   line-height: 17.33px;
   color: #825348;
 }
+
+/* =====================================================================
+ * Dealers page motion layer — scoped to .dealers-main. CSS-only.
+ * ===================================================================== */
+
+@keyframes dealers-rise {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes dealers-rise-left {
+  from { opacity: 0; translate: -36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes dealers-rise-right {
+  from { opacity: 0; translate: 36px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes dealers-pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.08; }
+  100% { opacity: 1; scale: 1; }
+}
+
+.dealers-main .dealers-card,
+.dealers-main .dealers-card-icon,
+.dealers-main .dealers-upload-drop,
+.dealers-main .dealers-field input,
+.dealers-main .dealers-field textarea,
+.dealers-main .dealers-field select,
+.dealers-main .dealers-submit {
+  transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease, border-color 0.25s ease, background 0.3s ease;
+}
+
+.dealers-main .dealers-card:hover {
+  translate: 0 -8px;
+  scale: 1.025;
+  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
+}
+
+.dealers-main .dealers-card:hover .dealers-card-icon {
+  scale: 1.12;
+  rotate: -6deg;
+}
+
+.dealers-main .dealers-upload-drop:hover {
+  scale: 1.02;
+  border-color: var(--color-accent-light);
+  background: rgba(207, 51, 111, 0.06);
+}
+
+.dealers-main .dealers-field input:focus,
+.dealers-main .dealers-field textarea:focus,
+.dealers-main .dealers-field select:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(190, 0, 75, 0.12);
+}
+
+.dealers-main .dealers-submit:hover {
+  translate: 0 -3px;
+  scale: 1.03;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dealers-main .dealers-apply-hero {
+    animation: dealers-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  }
+
+  .dealers-main .dealers-apply-title {
+    animation: dealers-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+  }
+
+  .dealers-main .dealers-footprint-stat {
+    animation: dealers-pop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .dealers-main .dealers-footprint-stat:nth-child(1) { animation-delay: 0.28s; }
+  .dealers-main .dealers-footprint-stat:nth-child(2) { animation-delay: 0.4s; }
+  .dealers-main .dealers-footprint-stat:nth-child(3) { animation-delay: 0.52s; }
+
+  @supports (animation-timeline: view()) {
+    .dealers-main .dealers-card {
+      animation: dealers-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .dealers-main .dealers-card:nth-child(2) { animation-range: entry 4% entry 49%; }
+    .dealers-main .dealers-card:nth-child(3) { animation-range: entry 8% entry 53%; }
+    .dealers-main .dealers-card:nth-child(4) { animation-range: entry 12% entry 57%; }
+
+    .dealers-main .dealers-footprint-copy {
+      animation: dealers-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .dealers-main .dealers-footprint-map {
+      animation: dealers-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

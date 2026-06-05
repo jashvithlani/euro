@@ -420,12 +420,6 @@ function FeatureCard({ item }) {
           ))}
         </h2>
         <p>{item.copy}</p>
-        <a href="#" style={{ background: item.buttonColor }}>
-          {item.buttonLabel || "BUY NOW"}
-          <svg className="category-feature-arrow" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
-            <path d="M3 8h10M9 4l4 4-4 4" />
-          </svg>
-        </a>
       </div>
       <img src={item.image} alt="" style={layerStyle(item.imageStyle)} />
     </article>

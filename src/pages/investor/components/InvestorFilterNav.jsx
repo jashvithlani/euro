@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { getInvestorActiveTab, getInvestorHref } from "../investor-routing.js";
 import { investorFilterTabs } from "../investor-tabs.js";
+import InvestorSectionSelect from "./InvestorSectionSelect.jsx";
+import "./InvestorSectionSelect.css";
 import "./InvestorFilterNav.css";
 
 const FIGMA_SCALE = 1280 / 1920;
@@ -24,6 +26,7 @@ export default function InvestorFilterNav() {
 
   return (
     <section className="investor-filter-nav" aria-label="Investor document categories">
+      <InvestorSectionSelect className="investor-filter-nav__select" />
       <div className="investor-filter-nav__inner">
         {investorFilterTabs.map((tab) => {
           const isActive = tab.id === activeTab;

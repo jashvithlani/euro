@@ -1,12 +1,14 @@
 /* Composition of Board — Figma 1110:5167 @ 1920px → 1280px */
 
-.investor-board {
-  position: absolute;
-  top: 763px;
-  left: 0;
-  width: 1280px;
-  padding: 0 45px 0 44px;
-  box-sizing: border-box;
+@media (min-width: 1000px) {
+  .investor-board {
+    position: absolute;
+    top: 763px;
+    left: 0;
+    width: 1280px;
+    padding: 0 45px 0 44px;
+    box-sizing: border-box;
+  }
 }
 
 .investor-board__intro {

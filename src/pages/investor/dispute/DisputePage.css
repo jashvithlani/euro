@@ -1,18 +1,20 @@
 /* Online Dispute Resolution — Figma 1131:1994 @1920 → 1280 (× 0.6667) */
 
-.investor-main.investor-main--dispute {
-  height: auto;
-  min-height: 1680px;
-  overflow: visible;
-}
+@media (min-width: 1000px) {
+  .investor-main.investor-main--dispute {
+    height: auto;
+    min-height: 1680px;
+    overflow: visible;
+  }
 
-.investor-dispute {
-  position: absolute;
-  top: 756px;
-  left: 0;
-  width: 1280px;
-  padding: 0 45px;
-  box-sizing: border-box;
+  .investor-dispute {
+    position: absolute;
+    top: 756px;
+    left: 0;
+    width: 1280px;
+    padding: 0 45px;
+    box-sizing: border-box;
+  }
 }
 
 .investor-dispute__header {
@@ -213,14 +215,16 @@
 
 /* Trust band — 1131:2301 */
 
-.investor-dispute-trust {
-  position: absolute;
-  top: 1173px;
-  left: 0;
-  width: 1280px;
-  padding: 39px 53px 81px;
-  box-sizing: border-box;
-  background: #fff0ed;
+@media (min-width: 1000px) {
+  .investor-dispute-trust {
+    position: absolute;
+    top: 1173px;
+    left: 0;
+    width: 1280px;
+    padding: 39px 53px 81px;
+    box-sizing: border-box;
+    background: #fff0ed;
+  }
 }
 
 /* Trust band inner — Figma 1131:2302: 2-col grid, 80px gap, 520px row @1920 */

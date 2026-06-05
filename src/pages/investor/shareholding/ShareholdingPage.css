@@ -1,15 +1,17 @@
 /* Shareholding Pattern — Figma 1110:4838 @ 1920 → 1280 (× 0.6667) */
 
-.investor-main:has(.investor-shareholding),
-.investor-main--shareholding {
-  height: 1482px; /* grid ends ~1456 + 26px breathing room (was 1867) */
-}
+@media (min-width: 1000px) {
+  .investor-main:has(.investor-shareholding),
+  .investor-main--shareholding {
+    height: 1482px; /* grid ends ~1456 + 26px breathing room (was 1867) */
+  }
 
-.investor-shareholding {
-  position: absolute;
-  top: 765px;
-  left: 0;
-  width: 1280px;
+  .investor-shareholding {
+    position: absolute;
+    top: 765px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-shareholding__title {

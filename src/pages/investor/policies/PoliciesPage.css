@@ -1,10 +1,12 @@
 /* Corporate Policies outlet — Figma 1117:5551 @1920 → 1280 (× 0.6667) */
 
-.investor-policies {
-  position: absolute;
-  top: 782px;
-  left: 45px;
-  width: 1190px;
+@media (min-width: 1000px) {
+  .investor-policies {
+    position: absolute;
+    top: 782px;
+    left: 45px;
+    width: 1190px;
+  }
 }
 
 .investor-policies-header {

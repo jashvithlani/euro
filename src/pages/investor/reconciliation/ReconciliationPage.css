@@ -1,10 +1,12 @@
 /* Reconciliation — Figma 1131:1615 @ 1280px (1920 × 2/3) */
 
-.investor-reconciliation {
-  position: absolute;
-  top: 775px;
-  left: 0;
-  width: 1280px;
+@media (min-width: 1000px) {
+  .investor-reconciliation {
+    position: absolute;
+    top: 775px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-reconciliation__intro {

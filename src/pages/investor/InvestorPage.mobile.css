@@ -1,0 +1,289 @@
+/* Investor pages mobile — desktop in InvestorPage.css; shell in MobileShell.css */
+
+@media (max-width: 999px) {
+  .investor-page .investor-main,
+  .investor-page .investor-main--secretarial,
+  .investor-page .investor-main--reconciliation,
+  .investor-page .investor-main--announcements,
+  .investor-page .investor-main--updates,
+  .investor-page .investor-main--dispute,
+  .investor-page .investor-main--shareholding,
+  .investor-page .investor-main--policies,
+  .investor-page .investor-main--governance,
+  .investor-page .investor-main--grievance,
+  .investor-page .investor-main--annual,
+  .investor-page .investor-main--agm,
+  .investor-page .investor-main--financial,
+  .investor-page .investor-main--memorandum,
+  .investor-page .investor-main--kmp,
+  .investor-page .investor-main:has(.investor-board) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto !important;
+    overflow: visible;
+    padding-bottom: 32px;
+  }
+
+  /* Hero */
+  .investor-page .investor-hero {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 32px 16px 0;
+    background: #fff9f9;
+  }
+
+  .investor-page .investor-hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 345px;
+    text-align: center;
+  }
+
+  .investor-page .investor-hero-copy h1 {
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: -0.96px;
+    text-align: center;
+  }
+
+  .investor-page .investor-hero-copy p {
+    max-width: 345px;
+    margin: 24px auto 0;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .investor-page .investor-hero-media {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 344px;
+    height: 399px;
+    margin-top: 24px;
+    border-radius: 12px;
+  }
+
+  .investor-page .investor-hero-photo {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .investor-page .investor-hero-media-texture {
+    width: 100%;
+    height: 100%;
+  }
+
+  .investor-page .investor-hero-gradient {
+    height: 100%;
+  }
+
+  .investor-page .investor-hero-ticker {
+    left: 28px;
+    bottom: 28px;
+    width: auto;
+  }
+
+  .investor-page .investor-hero-ticker-label {
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+  }
+
+  .investor-page .investor-hero-ticker-value {
+    margin-top: 8px;
+    font-size: 20px;
+    line-height: 26.6px;
+  }
+
+  /* Filter nav → section select */
+  .investor-page .investor-main .investor-filter-nav {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 20;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0 16px 20px;
+    border-top: none;
+    background: #ffffff;
+    box-shadow: none;
+    backdrop-filter: none;
+    overflow: visible;
+  }
+
+  .investor-page .investor-filter-nav__inner {
+    display: none !important;
+  }
+
+  .investor-page .investor-filter-nav__select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 24px;
+  }
+
+  /* Prospectus document section */
+  .investor-page .investor-documents {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding: 32px 16px 0;
+  }
+
+  .investor-page .investor-documents > h2 {
+    font-size: 32px;
+    line-height: 38.4px;
+    letter-spacing: -0.02em;
+  }
+
+  .investor-page .investor-document-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    margin: 32px 0 0;
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  .investor-page .investor-document-icon {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  .investor-page .investor-document-icon img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .investor-page .investor-document-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 295px;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .investor-page .investor-document-copy h3 {
+    font-size: 20px;
+    line-height: 26.6px;
+  }
+
+  .investor-page .investor-document-copy p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 22.75px;
+  }
+
+  .investor-page .investor-document-download {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 295px;
+    height: 49px;
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .investor-page .investor-document-download img {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Transparency block */
+  .investor-page .investor-transparency {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: calc(100% - 32px);
+    height: auto;
+    margin: 32px 16px 0;
+  }
+
+  .investor-page .investor-transparency-layout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+
+  .investor-page .investor-transparency-visual {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 281px;
+    height: 145px;
+    margin: 0 auto;
+    border-radius: 20px;
+    background: #f7f7f7;
+    box-shadow: none;
+  }
+
+  .investor-page .investor-transparency-visual img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 115px;
+    height: 88px;
+    margin: 0;
+    object-fit: contain;
+  }
+
+  .investor-page .investor-transparency-aside {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+  }
+
+  .investor-page .investor-transparency-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    gap: 16px;
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  .investor-page .investor-transparency-copy h2 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .investor-page .investor-transparency-copy p {
+    font-size: 14px;
+    line-height: 22.75px;
+  }
+
+}

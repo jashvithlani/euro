@@ -1,13 +1,15 @@
 /* Corporate Updates — Figma 1131:2538 @ 1920 → 1280 (×2/3) */
 
 /* Outlet — title 1131:2716 @ y=1137; filter nav bottom @ y=1091 → 46px gap @1920 → 31px @1280 */
-.investor-updates {
-  position: absolute;
-  top: 758px;
-  left: 0;
-  width: 1280px;
-  padding: 0 48px;
-  box-sizing: border-box;
+@media (min-width: 1000px) {
+  .investor-updates {
+    position: absolute;
+    top: 758px;
+    left: 0;
+    width: 1280px;
+    padding: 0 48px;
+    box-sizing: border-box;
+  }
 }
 
 .investor-updates__header {
@@ -222,14 +224,16 @@
 }
 
 /* Secondary CTA — Figma 1131:2802 */
-.investor-updates-cta {
-  position: absolute;
-  top: 1443px;
-  left: 50%;
-  width: 1034px;
-  transform: translateX(-50%);
-  border-radius: 16px;
-  overflow: hidden;
+@media (min-width: 1000px) {
+  .investor-updates-cta {
+    position: absolute;
+    top: 1443px;
+    left: 50%;
+    width: 1034px;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    overflow: hidden;
+  }
 }
 
 .investor-updates-cta__backdrop {

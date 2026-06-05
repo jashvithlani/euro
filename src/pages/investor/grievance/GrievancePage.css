@@ -1,11 +1,13 @@
 /* Investor Grievance — Figma 1105:4593 @1920 → 1280 (×2/3) */
 
-.investor-grievance {
-  position: absolute;
-  top: 779px;
-  left: 0;
-  width: 1280px;
-  height: 561px;
+@media (min-width: 1000px) {
+  .investor-grievance {
+    position: absolute;
+    top: 779px;
+    left: 0;
+    width: 1280px;
+    height: 561px;
+  }
 }
 
 .investor-grievance__title {
@@ -253,8 +255,10 @@
   color: var(--color-ink, #4e281f);
 }
 
-.investor-main--grievance {
-  height: 1340px;
+@media (min-width: 1000px) {
+  .investor-main--grievance {
+    height: 1340px;
+  }
 }
 
 .investor-main--grievance .investor-transparency {

@@ -12,7 +12,7 @@
   }
 
   /* ── Product sub-nav: hidden on mobile (replaced by the Products
-     accordion inside the hamburger drawer — see Header.jsx). ───────── */
+     accordion inside the hamburger drawer — see components/header/). ─ */
   .category-page .product-subnav,
   .category-page .product-subnav--top {
     display: none;
@@ -266,6 +266,18 @@
     top: auto !important;
     left: auto !important;
     width: 100% !important;
+    transform: none !important;
+  }
+
+  .category-page .category-feature-copy {
+    transform: none !important;
+  }
+
+  /* Per-category desktop rules (beverages.css, fryums.css, etc.) can set nowrap. */
+  .category-page .category-product-title,
+  .category-page .category-product-title span {
+    white-space: normal !important;
+    word-break: break-word;
   }
 
   .category-page .category-promo h2 {

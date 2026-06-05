@@ -8,12 +8,20 @@
   backdrop-filter: blur(6px);
 }
 
-.investor-filter-nav__inner {
-  position: absolute;
-  top: 16.67px;
-  left: 48px;
-  width: 1189.33px;
-  height: 138.67px;
+@media (min-width: 1000px) {
+  .investor-filter-nav__inner {
+    position: absolute;
+    top: 16.67px;
+    left: 48px;
+    width: 1189.33px;
+    height: 138.67px;
+  }
+}
+
+@media (max-width: 999px) {
+  .investor-filter-nav__inner {
+    display: none;
+  }
 }
 
 .investor-filter-nav__pill {

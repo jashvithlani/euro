@@ -1,10 +1,12 @@
 /* Corporate Governance Reports — Figma 1117:5978 @1920 → 1280 */
 
-.investor-governance {
-  position: absolute;
-  top: 775px;
-  left: 0;
-  width: 1280px;
+@media (min-width: 1000px) {
+  .investor-governance {
+    position: absolute;
+    top: 775px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-governance > h2 {

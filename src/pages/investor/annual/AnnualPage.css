@@ -1,18 +1,20 @@
 /* Annual Reports — Figma 1130:449 @1920 → 1280 (× 0.6667) */
 
-.investor-main.investor-main--annual {
-  height: auto;
-  min-height: 2080px;
-  overflow: visible;
-}
+@media (min-width: 1000px) {
+  .investor-main.investor-main--annual {
+    height: auto;
+    min-height: 2080px;
+    overflow: visible;
+  }
 
-.investor-annual {
-  position: absolute;
-  top: 727px;
-  left: 0;
-  width: 1280px;
-  padding: 0 21px 48px;
-  box-sizing: border-box;
+  .investor-annual {
+    position: absolute;
+    top: 727px;
+    left: 0;
+    width: 1280px;
+    padding: 0 21px 48px;
+    box-sizing: border-box;
+  }
 }
 
 .investor-annual__header {

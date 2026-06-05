@@ -1,12 +1,14 @@
 /* Corporate Announcements outlet — Figma 1117:6898 @ 1920 → 1280 (×2/3) */
 
-.investor-announcements {
-  position: absolute;
-  top: 727px;
-  left: 0;
-  width: 1280px;
-  padding: 0 45px 53px;
-  box-sizing: border-box;
+@media (min-width: 1000px) {
+  .investor-announcements {
+    position: absolute;
+    top: 727px;
+    left: 0;
+    width: 1280px;
+    padding: 0 45px 53px;
+    box-sizing: border-box;
+  }
 }
 
 .investor-announcements__header {

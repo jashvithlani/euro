@@ -1,26 +1,33 @@
+@import "./InvestorPage.mobile.css";
+@import "./InvestorSubpages.mobile.css";
 @import "./components/InvestorYearTabs.css";
 
+@media (min-width: 1000px) {
+  .investor-main {
+    position: relative;
+    width: 1280px;
+    height: 1521px;
+    overflow: hidden;
+  }
+
+  /* Composition of Board — Figma 1110:5167 (no transparency block) */
+  .investor-main:has(.investor-board) {
+    height: 2100px;
+  }
+
+  .investor-main--secretarial {
+    height: 1673px;
+  }
+
+  /* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 26px bottom gap */
+  .investor-main--reconciliation {
+    height: 1904px;
+  }
+}
+
 .investor-main {
-  position: relative;
-  width: 1280px;
-  height: 1521px;
-  overflow: hidden;
   background: var(--color-page, #fff8f6);
   color: var(--color-ink, #4e281f);
-}
-
-/* Composition of Board — Figma 1110:5167 (no transparency block) */
-.investor-main:has(.investor-board) {
-  height: 2100px;
-}
-
-.investor-main--secretarial {
-  height: 1673px;
-}
-
-/* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 26px bottom gap */
-.investor-main--reconciliation {
-  height: 1904px;
 }
 
 /* Hero — Figma 1103:4510 */
@@ -155,13 +162,15 @@
   color: var(--color-ink, #4e281f);
 }
 
-/* Filter nav placement on investor canvas */
-.investor-main .investor-filter-nav {
-  position: absolute;
-  top: 537px;
-  left: 0;
-  width: 1280px;
-  height: 190px;
+/* Filter nav placement on investor canvas — desktop only */
+@media (min-width: 1000px) {
+  .investor-main .investor-filter-nav {
+    position: absolute;
+    top: 537px;
+    left: 0;
+    width: 1280px;
+    height: 190px;
+  }
 }
 
 /* Prospectus document — Figma 1103:4560–4573 */
@@ -367,39 +376,41 @@
 
 /* Corporate Announcements — Figma 1117:6898 (outlet only; no transparency block) */
 
-.investor-main--announcements {
-  height: 2198px; /* report grids end ~2172 + 26px breathing room */
-}
+@media (min-width: 1000px) {
+  .investor-main--announcements {
+    height: 2198px; /* report grids end ~2172 + 26px breathing room */
+  }
 
-/* Corporate Updates — Figma 1131:2538; +31px outlet offset vs filter nav */
-.investor-main--updates {
-  height: 1678px;
-}
+  /* Corporate Updates — Figma 1131:2538; +31px outlet offset vs filter nav */
+  .investor-main--updates {
+    height: 1678px;
+  }
 
-/* Corporate Governance Reports — Figma 1117:5978 (outlet only; no transparency block) */
+  /* Corporate Governance Reports — Figma 1117:5978 (outlet only; no transparency block) */
+  .investor-main--governance {
+    height: 1189px; /* governance outlet bottom ~1163 + 26px breathing room */
+  }
 
-.investor-main--governance {
-  height: 1189px; /* governance outlet bottom ~1163 + 26px breathing room */
-}
-
-/* Corporate Policies — Figma 1117:5551 (outlet only; no transparency block) */
-
-.investor-main--policies,
-.investor-main:has(.investor-policies) {
-  height: 1386px; /* policies bottom ~1360 + 26px breathing room */
+  /* Corporate Policies — Figma 1117:5551 (outlet only; no transparency block) */
+  .investor-main--policies,
+  .investor-main:has(.investor-policies) {
+    height: 1386px; /* policies bottom ~1360 + 26px breathing room */
+  }
 }
 
 /* KMP page — Figma 1130:1288 outlet @1920 → 1280 */
 
-.investor-main--kmp {
-  height: 1650px; /* KMP grid (1130:1517) ends ~1583 + breathing room */
-}
+@media (min-width: 1000px) {
+  .investor-main--kmp {
+    height: 1650px; /* KMP grid (1130:1517) ends ~1583 + breathing room */
+  }
 
-.investor-kmp {
-  position: absolute;
-  top: 727px;
-  left: 0;
-  width: 1280px;
+  .investor-kmp {
+    position: absolute;
+    top: 727px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-kmp-header {

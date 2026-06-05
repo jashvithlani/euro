@@ -366,6 +366,173 @@
   }
 }
 
+/* =====================================================================
+ * Borrowed patterns — inspired by balajiwafers.com competitor review
+ * ---------------------------------------------------------------------
+ * (1) Flip-style category-card hover: the photo slides off the card and
+ *     a coloured CTA panel emerges from beneath. Balaji uses two stacked
+ *     <img> elements; HomePage.jsx is protected, so we reproduce the
+ *     "back panel" with a ::before pseudo-element (no JSX edit needed).
+ *     The card's own overflow:hidden clips the leaving photo.
+ *
+ * (2) Hero hashtag-tag pulse rings: a Balaji-style "hotspot-blink" ring
+ *     drawn via ::before on each .hero-tag — pulses outward to draw the
+ *     eye to the floating tags. Composes cleanly with the existing
+ *     bob/pop animations because it lives on a pseudo-element.
+ * ===================================================================== */
+
+@keyframes home-tag-ping {
+  0%   { opacity: 0.7; scale: 1; }
+  80%  { opacity: 0; scale: 1.6; }
+  100% { opacity: 0; scale: 1.6; }
+}
+
+/* ---- (1) Flip-style category cards ---- */
+
+/* Establish a stacking context per card so our z-order is local */
+.category-card.card-chips,
+.category-card.card-juice,
+.category-card.card-namkeen {
+  isolation: isolate;
+}
+
+/* Common back-panel styling (each card overrides content + colour) */
+.card-chips::before,
+.card-juice::before,
+.card-namkeen::before {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: 0;
+  transition: opacity 0.4s ease;
+  /* Hidden until the photo slides away, so a reduced-motion user (who
+     gets no transition) still sees the original card. */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* card-chips: landscape, photo on right 65%. Slide image OUT to the
+   right; reveal a magenta "Shop Chips" panel behind it. */
+.card-chips::before {
+  content: "Explore Chips \2192";  /* → */
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  font-size: 28px;
+}
+
+.card-chips > img {
+  position: absolute;
+  z-index: 1;
+  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-chips:hover::before { opacity: 1; }
+.card-chips:hover > img {
+  translate: 100% 0;
+  scale: 1 !important; /* beat .category-card:hover img { scale: 1.06 } */
+}
+
+/* card-juice: portrait, full-bleed photo. Slide image DOWN out the
+   bottom; reveal a sunshine-orange "Sip the Range" panel. */
+.card-juice::before {
+  content: "Sip the Range \2192";
+  inset: 0;
+  background: linear-gradient(140deg, #fbbf24, #f97316);
+  font-size: 22px;
+  padding: 0 18px;
+}
+
+.card-juice > img {
+  z-index: 1;
+  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-juice:hover::before { opacity: 1; }
+.card-juice:hover > img {
+  translate: 0 110%;
+  scale: 1 !important;
+}
+
+/* card-namkeen: portrait, pink bg, photo fills card. Slide image UP
+   off the top; reveal a deep-accent "Try Namkeen" panel. The card's
+   existing pink (#fad3e0) reads as the "card colour" while the
+   ::before fills with a richer tone. */
+.card-namkeen::before {
+  content: "Try Namkeen \2192";
+  inset: 0;
+  background: linear-gradient(135deg, #d63384, var(--color-accent-dark));
+  font-size: 22px;
+  padding: 0 18px;
+}
+
+.card-namkeen > img {
+  z-index: 1;
+  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-namkeen:hover::before { opacity: 1; }
+.card-namkeen:hover > img {
+  translate: 0 -110%;
+  scale: 1 !important;
+}
+
+/* The card's <span> label should stay visible on top of either layer */
+.card-chips > div,
+.card-juice > span,
+.card-namkeen > span {
+  z-index: 2;
+}
+
+/* When the colored back panel is revealed, switch the original label
+   to white so it reads against the new background. (Chips label is
+   already white.) Smooth transition mirrors the photo-slide duration. */
+.card-juice > span,
+.card-namkeen > span {
+  transition: color 0.4s ease;
+}
+
+.card-juice:hover > span,
+.card-namkeen:hover > span {
+  color: #ffffff;
+}
+
+/* ---- (2) Hotspot-blink pulse rings on hero tags ---- */
+
+.hero-tag {
+  /* Allow the pulse ring to extend past the tag's rounded rect */
+  overflow: visible;
+}
+
+.hero-tag::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--color-accent-light);
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-tag::before {
+    animation: home-tag-ping 2.4s ease-out infinite;
+  }
+  .hero-tag-crunchy::before  { animation-delay: 0.4s; }
+  .hero-tag-delicious::before { animation-delay: 1.2s; }
+}
+
 /* Crowd Favourites — carousel arrows on tablet/mobile only (site shell ≤999px). */
 @media (min-width: 1000px) {
   .home-page .favorites-section .slider-buttons {

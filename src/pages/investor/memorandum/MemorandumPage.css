@@ -1,10 +1,12 @@
 /* Memorandum of Association — Figma 1131:2316 @1920 → 1280 (×2/3) */
 
-.investor-memorandum {
-  position: absolute;
-  top: 779px;
-  left: 0;
-  width: 1280px;
+@media (min-width: 1000px) {
+  .investor-memorandum {
+    position: absolute;
+    top: 779px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-memorandum__title {
@@ -215,8 +217,10 @@
   color: var(--color-ink, #4e281f);
 }
 
-.investor-main--memorandum {
-  height: 1400px;
+@media (min-width: 1000px) {
+  .investor-main--memorandum {
+    height: 1400px;
+  }
 }
 
 .investor-main--memorandum .investor-transparency {

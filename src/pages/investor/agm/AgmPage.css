@@ -1,14 +1,16 @@
 /* AGM/EGM — Figma 1119:7391 @1920 → 1280 (× 0.6667) */
 
-.investor-main--agm {
-  height: 1780px;
-}
+@media (min-width: 1000px) {
+  .investor-main--agm {
+    height: 1780px;
+  }
 
-.investor-agm {
-  position: absolute;
-  top: 768px;
-  left: 0;
-  width: 1280px;
+  .investor-agm {
+    position: absolute;
+    top: 768px;
+    left: 0;
+    width: 1280px;
+  }
 }
 
 .investor-agm > h2 {

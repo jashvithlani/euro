@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import Lenis from "lenis";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
@@ -29,7 +30,10 @@ function getViewportWidthScale(viewportWidth = getViewportWidth()) {
 
 function isFluidMobileLayout(pathname, viewportWidth = getViewportWidth()) {
   const path = normalizePath(pathname);
-  return viewportWidth <= MOBILE_BREAKPOINT && (FLUID_MOBILE_PATHS.has(path) || CATEGORY_PATHS.has(path));
+  return (
+    viewportWidth <= MOBILE_BREAKPOINT &&
+    (FLUID_MOBILE_PATHS.has(path) || CATEGORY_PATHS.has(path) || isInvestorPath(path))
+  );
 }
 
 export default function SiteLayout() {
@@ -56,6 +60,32 @@ export default function SiteLayout() {
 
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Page-level smooth/momentum scroll (Lenis). Opt-out when the user has
+  // a reduced-motion preference — native scroll is honoured instead.
+  React.useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.4,
+    });
+
+    let rafId;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   React.useLayoutEffect(() => {
     const updateLayout = () => {

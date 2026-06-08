@@ -2,59 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "./HangoutPage.css";
 
 const CONFETTI_COLORS = ["#be004b", "#ffdea7", "#9df197", "#ffffff", "#203679", "#ffa9b7", "#00d4aa", "#ffd700"];
-const VIEWPORT_PAD = 16;
-const DODGE_RADIUS = 120;
 
-function getViewportBounds(buttonW, buttonH) {
-  const vv = window.visualViewport;
-  const width = vv?.width ?? window.innerWidth;
-  const height = vv?.height ?? window.innerHeight;
-  const offsetLeft = vv?.offsetLeft ?? 0;
-  const offsetTop = vv?.offsetTop ?? 0;
-
+function randomPosition(buttonW = 100, buttonH = 48) {
+  const pad = 24;
+  const rangeX = Math.max(0, window.innerWidth - buttonW - pad * 2);
+  const rangeY = Math.max(0, window.innerHeight - buttonH - pad * 2);
   return {
-    minX: offsetLeft + VIEWPORT_PAD,
-    minY: offsetTop + VIEWPORT_PAD,
-    maxX: offsetLeft + width - buttonW - VIEWPORT_PAD,
-    maxY: offsetTop + height - buttonH - VIEWPORT_PAD,
+    x: pad + Math.random() * rangeX,
+    y: pad + Math.random() * rangeY,
   };
-}
-
-function clampPosition(x, y, buttonW, buttonH) {
-  const bounds = getViewportBounds(buttonW, buttonH);
-  return {
-    x: Math.min(bounds.maxX, Math.max(bounds.minX, x)),
-    y: Math.min(bounds.maxY, Math.max(bounds.minY, y)),
-  };
-}
-
-function randomPosition(buttonW, buttonH) {
-  const bounds = getViewportBounds(buttonW, buttonH);
-  const rangeX = Math.max(0, bounds.maxX - bounds.minX);
-  const rangeY = Math.max(0, bounds.maxY - bounds.minY);
-  return {
-    x: bounds.minX + Math.random() * rangeX,
-    y: bounds.minY + Math.random() * rangeY,
-  };
-}
-
-function pickDodgePosition(fromX, fromY, buttonW, buttonH) {
-  let best = randomPosition(buttonW, buttonH);
-  let bestDist = Math.hypot(fromX - (best.x + buttonW / 2), fromY - (best.y + buttonH / 2));
-
-  for (let i = 0; i < 28; i += 1) {
-    const candidate = randomPosition(buttonW, buttonH);
-    const cx = candidate.x + buttonW / 2;
-    const cy = candidate.y + buttonH / 2;
-    const dist = Math.hypot(fromX - cx, fromY - cy);
-    if (dist > bestDist) {
-      best = candidate;
-      bestDist = dist;
-    }
-    if (dist > 200) break;
-  }
-
-  return best;
 }
 
 function runConfetti(canvas) {
@@ -140,106 +96,62 @@ export default function HangoutPage() {
     };
   }, []);
 
-  const getNoSize = useCallback(() => {
-    const rect = noRef.current?.getBoundingClientRect();
-    return {
-      w: rect?.width ?? 100,
-      h: rect?.height ?? 48,
+  useEffect(() => {
+    const place = () => {
+      const w = noRef.current?.offsetWidth ?? 100;
+      const h = noRef.current?.offsetHeight ?? 48;
+      setNoPos(randomPosition(w, h));
+      setNoReady(true);
     };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
   }, []);
 
-  const placeNoButton = useCallback(() => {
-    const { w, h } = getNoSize();
-    setNoPos(randomPosition(w, h));
-    setNoReady(true);
-  }, [getNoSize]);
-
-  const moveNoAway = useCallback(
-    (clientX, clientY, { force = false } = {}) => {
+  const dodgePointer = useCallback(
+    (clientX, clientY) => {
       if (accepted || !noRef.current) return;
 
       const rect = noRef.current.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dist = Math.hypot(clientX - cx, clientY - cy);
-      const onButton =
-        clientX >= rect.left &&
-        clientX <= rect.right &&
-        clientY >= rect.top &&
-        clientY <= rect.bottom;
 
-      if (!force && !onButton && dist >= DODGE_RADIUS) return;
-
-      const { w, h } = getNoSize();
-      setNoPos(pickDodgePosition(clientX, clientY, w, h));
+      if (dist < 130) {
+        const w = rect.width;
+        const h = rect.height;
+        let next = randomPosition(w, h);
+        let tries = 0;
+        while (
+          tries < 24 &&
+          Math.hypot(clientX - (next.x + w / 2), clientY - (next.y + h / 2)) < 150
+        ) {
+          next = randomPosition(w, h);
+          tries++;
+        }
+        setNoPos(next);
+      }
     },
-    [accepted, getNoSize],
+    [accepted],
   );
-
-  useEffect(() => {
-    placeNoButton();
-
-    const onResize = () => {
-      const { w, h } = getNoSize();
-      setNoPos((prev) => clampPosition(prev.x, prev.y, w, h));
-    };
-
-    window.addEventListener("resize", onResize);
-    window.visualViewport?.addEventListener("resize", onResize);
-    window.visualViewport?.addEventListener("scroll", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.visualViewport?.removeEventListener("resize", onResize);
-      window.visualViewport?.removeEventListener("scroll", onResize);
-    };
-  }, [placeNoButton, getNoSize]);
 
   useEffect(() => {
     if (accepted) return undefined;
 
-    const onMove = (e) => moveNoAway(e.clientX, e.clientY);
-    const onTouchMove = (e) => {
+    const onMove = (e) => dodgePointer(e.clientX, e.clientY);
+    const onTouch = (e) => {
       const t = e.touches[0];
-      if (t) moveNoAway(t.clientX, t.clientY);
-    };
-    const onTouchStart = (e) => {
-      const t = e.touches[0];
-      if (!t) return;
-      const rect = noRef.current?.getBoundingClientRect();
-      if (!rect) return;
-
-      const onButton =
-        t.clientX >= rect.left &&
-        t.clientX <= rect.right &&
-        t.clientY >= rect.top &&
-        t.clientY <= rect.bottom;
-      const near =
-        Math.hypot(t.clientX - (rect.left + rect.width / 2), t.clientY - (rect.top + rect.height / 2)) <
-        DODGE_RADIUS;
-
-      if (onButton || near) {
-        e.preventDefault();
-        moveNoAway(t.clientX, t.clientY, { force: true });
-      }
+      if (t) dodgePointer(t.clientX, t.clientY);
     };
 
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchstart", onTouchStart, { passive: false, capture: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchstart", onTouchStart, { capture: true });
+      window.removeEventListener("touchmove", onTouch);
     };
-  }, [accepted, moveNoAway]);
-
-  const blockNoAction = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    moveNoAway(e.clientX, e.clientY, { force: true });
-  };
+  }, [accepted, dodgePointer]);
 
   const handleYes = () => {
     setAccepted(true);
@@ -275,21 +187,24 @@ export default function HangoutPage() {
               </button>
             </div>
 
-            <div
+            <button
               ref={noRef}
-              role="presentation"
+              type="button"
               className={`hangout-btn hangout-btn--no${noReady ? " is-ready" : ""}`}
               style={{ left: noPos.x, top: noPos.y }}
-              onPointerDown={blockNoAction}
-              onMouseEnter={(e) => moveNoAway(e.clientX, e.clientY, { force: true })}
+              onMouseEnter={(e) => dodgePointer(e.clientX, e.clientY)}
+              onTouchStart={(e) => {
+                const t = e.touches[0];
+                if (t) dodgePointer(t.clientX, t.clientY);
+              }}
               onClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation();
+                dodgePointer(e.clientX, e.clientY);
               }}
-              aria-hidden="true"
+              aria-label="No (good luck clicking this)"
             >
               No
-            </div>
+            </button>
           </>
         ) : (
           <div className="hangout-page__success">

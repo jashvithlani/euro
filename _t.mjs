@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const p = await b.newPage({ viewport:{width:1280,height:900} });
+await p.goto('http://127.0.0.1:5173/chips', { waitUntil:'networkidle' });
+await p.waitForTimeout(1500);
+const hero = await p.$('.category-hero-chips-wide');
+await hero.screenshot({ path:'/tmp/spin-t1.png' });
+await p.waitForTimeout(5000);
+await hero.screenshot({ path:'/tmp/spin-t6.png' });
+await p.waitForTimeout(5000);
+await hero.screenshot({ path:'/tmp/spin-t11.png' });
+await b.close();

@@ -10,6 +10,16 @@ import { khakhraPage } from "./khakhra-content.jsx";
 import { bakeryPage } from "./bakery-content.jsx";
 import { fryumsPage } from "./fryums-content.jsx";
 import { asset } from './asset.js';
+import { productColors } from './product-colors.js';
+
+/* Look up a card's dominant product colour from the precomputed map.
+   item.image is a fully-resolved URL (asset() uses new URL(...).href),
+   so we extract just the filename to key into productColors. */
+function getProductColor(imageUrl) {
+  if (!imageUrl) return undefined;
+  const filename = imageUrl.split('/').pop().split('?')[0];
+  return productColors[filename];
+}
 
 const originalCategoryHeroBottom = 695.37;
 
@@ -299,11 +309,28 @@ function HeroVisual({ hero }) {
       <div className="category-hero-custom category-hero-chips-wide" aria-hidden="true">
         <img className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" />
         <div className="chips-wide-hero-ring">
-          <img className="chips-wide-hero-pack chips-wide-pack-salted" src={asset('category-chips-wide-hero-salted.png')} alt="" />
-          <img className="chips-wide-hero-pack chips-wide-pack-tomato" src={asset('category-chips-wide-hero-tomato.png')} alt="" />
-          <img className="chips-wide-hero-pack chips-wide-pack-masti" src={asset('category-chips-wide-hero-masti.png')} alt="" />
-          <img className="chips-wide-hero-pack chips-wide-pack-onion" src={asset('category-chips-wide-hero-onion.png')} alt="" />
-          <img className="chips-wide-hero-pack chips-wide-pack-chilli" src={asset('category-chips-wide-hero-chilli.png')} alt="" />
+          {/* 10 slots = the 5 packs duplicated in the same order. The
+              ring rotates as a unit; the duplicates fill the loop so
+              when a pack exits visibility on one side, its twin enters
+              from the other side seamlessly. */}
+          {[0, 1, 2, 3].flatMap((copy) => [
+            { key: 'salted', img: 'category-chips-wide-hero-salted.png' },
+            { key: 'tomato', img: 'category-chips-wide-hero-tomato.png' },
+            { key: 'masti',  img: 'category-chips-wide-hero-masti.png' },
+            { key: 'onion',  img: 'category-chips-wide-hero-onion.png' },
+            { key: 'chilli', img: 'category-chips-wide-hero-chilli.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.key}-${copy}`}
+                className={`chips-wide-hero-pack chips-wide-pack-${p.key} chips-wide-slot-${slot}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
         </div>
       </div>
     );
@@ -353,8 +380,12 @@ function ProductSubtitle({ subtitle, style }) {
 }
 
 function ImageCard({ item }) {
+  const productColor = getProductColor(item.image);
   return (
-    <article className="category-product-card category-product-card--image" style={{ ...boxStyle(item), background: item.background }}>
+    <article
+      className="category-product-card category-product-card--image"
+      style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
+    >
       <img
         className={`category-product-cover ${item.imageStyle ? "category-product-cover--positioned" : ""}`}
         src={item.image}
@@ -368,10 +399,11 @@ function ImageCard({ item }) {
 }
 
 function ProductCard({ item }) {
+  const productColor = getProductColor(item.image);
   return (
     <article
       className={`category-product-card category-product-card--product${item.ring ? " category-product-card--ring" : ""}`}
-      style={{ ...boxStyle(item), background: item.background }}
+      style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
       {...(item.nodeId ? { "data-node-id": item.nodeId } : {})}
     >
       {item.ring && (

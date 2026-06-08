@@ -8,7 +8,6 @@ import ContactPage from "./pages/contact/ContactPage.jsx";
 import DealersPage from "./pages/dealers/DealersPage.jsx";
 import AchievementsPage from "./pages/achievements/AchievementsPage.jsx";
 import CategoryPage from "./pages/category/CategoryPage.jsx";
-import HangoutPage from "./pages/hangout/HangoutPage.jsx";
 import InvestorLayout from "./pages/investor/InvestorLayout.jsx";
 import {
   AgmPage,
@@ -32,8 +31,6 @@ import {
 export default function App() {
   return (
     <Routes>
-      {/* Unlisted — no nav links; URL-only access */}
-      <Route path="/vrushti-hangout" element={<HangoutPage />} />
       <Route element={<SiteLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

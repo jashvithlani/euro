@@ -28,11 +28,24 @@ export const productColors = {
   // naive dominant-colour sampling returned peach for every variant.
   // Salted / tomato / chilli came out right under saturation weighting;
   // masti + onion are hand-picked to match the pack art (saffron, green).
+  //
+  // ALIAS NOTE: the 5 category-chips-wide-card-*.png files are
+  // byte-identical to the category-chips-*.png files used elsewhere
+  // (home Mood section). Vite dedupes identical assets at build time,
+  // so in production both filenames resolve to the same hashed URL —
+  // which strips back to "category-chips-X.png" (the dedup winner),
+  // not the "wide-card" name. We register the colour under BOTH keys
+  // so the lookup hits either way.
   "category-chips-wide-card-chilli.png": "#d51a23", // chilli red
-  "category-chips-wide-card-masti.png": "#efb20a",  // saffron / gold (masala)
-  "category-chips-wide-card-onion.png": "#6ca538",  // cream'n onion green
+  "category-chips-wide-card-masti.png":  "#efb20a", // saffron / gold
+  "category-chips-wide-card-onion.png":  "#6ca538", // onion green
   "category-chips-wide-card-salted.png": "#ebca18", // bright yellow
   "category-chips-wide-card-tomato.png": "#c0392b", // tomato red
+  "category-chips-chilli.png":           "#d51a23",
+  "category-chips-masti.png":            "#efb20a",
+  "category-chips-onion.png":            "#6ca538",
+  "category-chips-salted.png":           "#ebca18",
+  "category-chips-tomato.png":           "#c0392b",
   "category-farali-chiwda-mitha.png": "#36366a",
   "category-farali-chiwda-tikha.png": "#864748",
   "category-farali-kela-chiwda-card.png": "#a7869a",

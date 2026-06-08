@@ -14,11 +14,20 @@ import { productColors } from './product-colors.js';
 
 /* Look up a card's dominant product colour from the precomputed map.
    item.image is a fully-resolved URL (asset() uses new URL(...).href),
-   so we extract just the filename to key into productColors. */
+   so we extract just the filename to key into productColors.
+
+   In dev the URL is the raw source filename (e.g. "name.png"); in the
+   production build Vite injects an 8-char content hash before the
+   extension (e.g. "name-Bxy123Zw.png"). Try the raw filename first,
+   then strip a trailing "-XXXXXXXX" hash and retry — so prod and dev
+   both hit the unhashed keys in product-colors.js. */
 function getProductColor(imageUrl) {
   if (!imageUrl) return undefined;
   const filename = imageUrl.split('/').pop().split('?')[0];
-  return productColors[filename];
+  const direct = productColors[filename];
+  if (direct) return direct;
+  const unhashed = filename.replace(/-[A-Za-z0-9_-]{8}(\.[a-z]+)$/i, '$1');
+  return productColors[unhashed];
 }
 
 const originalCategoryHeroBottom = 695.37;

@@ -2540,3 +2540,71 @@
   translate: 0 -110% !important;
   scale: 1 !important;
 }
+
+/* =====================================================================
+ * Shared orbit carousel for namkeen, farali, khakhra hero packs.
+ * Same architecture as the chips ring (chips uses its own classes for
+ * historical reasons): 5 product packs duplicated 4× → 20 slots on a
+ * virtual circle whose centre sits 354px above the hero top, radius
+ * 630px. Slot N's angle = (2 − N) × 18° from straight-down, so slots
+ * 0–4 form the visible bottom arc and 5–19 orbit hidden above. Per-pack
+ * `--slot` (set inline in JSX) drives the polar transform and the
+ * phase-shifted opacity fade.
+ * ===================================================================== */
+
+.category-orbit-ring {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 100%;
+  /* override translateX(-50%) on .namkeen-hero-products and
+     .farali-hero-products — we want the ring to fill the hero, not be
+     a half-width centred box. */
+  transform: none;
+  transform-origin: 50% -354px;
+  animation: category-orbit-rotate 80s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Pause rotation when any pack is hovered. */
+.category-orbit-ring:has(.category-orbit-pack:hover) {
+  animation-play-state: paused;
+}
+
+@keyframes category-orbit-rotate {
+  from { rotate: 0deg; }
+  to   { rotate: 360deg; }
+}
+
+/* Polar position per pack — overrides the page-specific top/left/
+   transform rules (same selector specificity, source-order later
+   so this wins). Width/height keep their per-product values. */
+.category-orbit-pack {
+  position: absolute;
+  top: -354px;
+  left: 50%;
+  pointer-events: auto;
+  /* 20 slots at 18° = 360°. Matches the original chips spacing — five
+     bottles in the visible arc with comfortable horizontal breathing
+     room (matching the Figma layout's ~270px between bottle centres). */
+  transform:
+    translate(-50%, -50%)
+    rotate(calc((2 - var(--slot, 0)) * 18deg))
+    translate(0, 630px);
+  animation: category-orbit-fade 80s linear infinite;
+  /* 80s / 20 slots = 4s per slot phase shift. */
+  animation-delay: calc((var(--slot, 0) - 2) * 4s - 80s);
+}
+
+/* Opacity by orbit phase. Progress 0% = pack at bottom of arc.
+   With 20 slots at 18°, the 0–12%/88–100% opaque window covers
+   ~5 fully-visible packs in the bottom arc (matches Figma layout). */
+@keyframes category-orbit-fade {
+  0%   { opacity: 1; }
+  12%  { opacity: 1; }
+  17%  { opacity: 0; }
+  83%  { opacity: 0; }
+  88%  { opacity: 1; }
+  100% { opacity: 1; }
+}

@@ -133,21 +133,8 @@
 }
 
 
-.category-main--khakhra .khakhra-hero-pack {
-  pointer-events: auto;
-  cursor: pointer;
-  transition: translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter 0.35s ease, z-index 0s linear 0s;
-  filter: drop-shadow(0 8px 14px rgba(78, 40, 31, 0.18));
-}
-
-.category-main--khakhra .khakhra-hero-pack:hover {
-  translate: 0 -14px;
-  scale: 1.12 !important;
-  z-index: 3;
-  filter: drop-shadow(0 22px 28px rgba(78, 40, 31, 0.35));
-}
+/* Hover-popup on hero packs removed — the orbit carousel is the motion;
+   per-pack lift/scale/shadow on hover was the "popup" the user wanted gone. */
 
 .category-main--khakhra .category-product-card--image,
 .category-main--khakhra .category-product-cover,
@@ -240,24 +227,9 @@
   .category-main--khakhra .category-hero-badge {
     animation: khakhra-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
   }
-  .category-main--khakhra .khakhra-hero-pack {
-    animation: khakhra-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  .category-main--khakhra .khakhra-pack-7grain {
-    animation-delay: 0.25s;
-  }
-  .category-main--khakhra .khakhra-pack-panipuri {
-    animation-delay: 0.38s;
-  }
-  .category-main--khakhra .khakhra-pack-fafda {
-    animation-delay: 0.5s;
-  }
-  .category-main--khakhra .khakhra-pack-jeera {
-    animation-delay: 0.62s;
-  }
-  .category-main--khakhra .khakhra-pack-masala {
-    animation-delay: 0.74s;
-  }
+  /* Per-pack entrance removed — the .category-orbit-pack rule in
+     CategoryPage.css drives a phase-shifted opacity fade tied to the
+     orbit rotation. */
   @supports (animation-timeline: view()) {
     .category-main--khakhra .category-product-card,
     .category-main--khakhra .category-promo,

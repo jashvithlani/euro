@@ -241,12 +241,25 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-farali" aria-hidden="true" data-node-id="1159:473">
         <img className="farali-hero-bg" src={asset("category-farali-hero-bg.png")} alt="" />
-        <div className="farali-hero-products">
-          <img className="farali-hero-pack farali-pack-wafer" src={asset("category-farali-kela-wafers.png")} alt="" />
-          <img className="farali-hero-pack farali-pack-kela-tikha" src={asset("category-farali-kela-chiwda-tikha.png")} alt="" />
-          <img className="farali-hero-pack farali-pack-tikha" src={asset("category-farali-chiwda-tikha.png")} alt="" />
-          <img className="farali-hero-pack farali-pack-mitha" src={asset("category-farali-chiwda-mitha.png")} alt="" />
-          <img className="farali-hero-pack farali-pack-kela-mitha" src={asset("category-farali-kela-chiwda-mitha.png")} alt="" />
+        <div className="farali-hero-products category-orbit-ring">
+          {[0, 1, 2, 3].flatMap((copy) => [
+            { cls: 'farali-pack-wafer',       img: 'category-farali-kela-wafers.png' },
+            { cls: 'farali-pack-kela-tikha',  img: 'category-farali-kela-chiwda-tikha.png' },
+            { cls: 'farali-pack-tikha',       img: 'category-farali-chiwda-tikha.png' },
+            { cls: 'farali-pack-mitha',       img: 'category-farali-chiwda-mitha.png' },
+            { cls: 'farali-pack-kela-mitha',  img: 'category-farali-kela-chiwda-mitha.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.cls}-${copy}`}
+                className={`farali-hero-pack category-orbit-pack ${p.cls}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
         </div>
       </div>
     );
@@ -256,12 +269,25 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-namkeen" aria-hidden="true" data-node-id="1206:104">
         <img className="namkeen-hero-bg" src={asset("category-namkeen-hero-bg.png")} alt="" />
-        <div className="namkeen-hero-products">
-          <img className="namkeen-hero-pack namkeen-pack-all-in-one" src={asset("category-namkeen-all-in-one.png")} alt="" />
-          <img className="namkeen-hero-pack namkeen-pack-chakhna" src={asset("category-namkeen-chakhna-mix.png")} alt="" />
-          <img className="namkeen-hero-pack namkeen-pack-papad" src={asset("category-namkeen-papad-chavana.png")} alt="" />
-          <img className="namkeen-hero-pack namkeen-pack-gathiya" src={asset("category-namkeen-bhavnagari-gathiya.png")} alt="" />
-          <img className="namkeen-hero-pack namkeen-pack-sev-mamra" src={asset("category-namkeen-masala-sev-mamra.png")} alt="" />
+        <div className="namkeen-hero-products category-orbit-ring">
+          {[0, 1, 2, 3].flatMap((copy) => [
+            { cls: 'namkeen-pack-all-in-one', img: 'category-namkeen-all-in-one.png' },
+            { cls: 'namkeen-pack-chakhna',    img: 'category-namkeen-chakhna-mix.png' },
+            { cls: 'namkeen-pack-papad',      img: 'category-namkeen-papad-chavana.png' },
+            { cls: 'namkeen-pack-gathiya',    img: 'category-namkeen-bhavnagari-gathiya.png' },
+            { cls: 'namkeen-pack-sev-mamra',  img: 'category-namkeen-masala-sev-mamra.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.cls}-${copy}`}
+                className={`namkeen-hero-pack category-orbit-pack ${p.cls}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
         </div>
       </div>
     );
@@ -280,11 +306,26 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-khakhra" aria-hidden="true">
         <img className="khakhra-hero-bg" src={asset('category-khakhra-hero-bg.svg')} alt="" />
-        <img className="khakhra-hero-pack khakhra-pack-7grain" src={asset('category-khakhra-7grain.png')} alt="" />
-        <img className="khakhra-hero-pack khakhra-pack-panipuri" src={asset('category-khakhra-panipuri.png')} alt="" />
-        <img className="khakhra-hero-pack khakhra-pack-fafda" src={asset('category-khakhra-fafda.png')} alt="" />
-        <img className="khakhra-hero-pack khakhra-pack-jeera" src={asset('category-khakhra-jeera.png')} alt="" />
-        <img className="khakhra-hero-pack khakhra-pack-masala" src={asset('category-khakhra-masala.png')} alt="" />
+        <div className="category-orbit-ring khakhra-orbit-ring">
+          {[0, 1, 2, 3].flatMap((copy) => [
+            { cls: 'khakhra-pack-7grain',   img: 'category-khakhra-7grain.png' },
+            { cls: 'khakhra-pack-panipuri', img: 'category-khakhra-panipuri.png' },
+            { cls: 'khakhra-pack-fafda',    img: 'category-khakhra-fafda.png' },
+            { cls: 'khakhra-pack-jeera',    img: 'category-khakhra-jeera.png' },
+            { cls: 'khakhra-pack-masala',   img: 'category-khakhra-masala.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.cls}-${copy}`}
+                className={`khakhra-hero-pack category-orbit-pack ${p.cls}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
+        </div>
       </div>
     );
   }
@@ -304,11 +345,26 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-fryums" aria-hidden="true">
         <img className="fryums-hero-bg" src={asset('category-fryums-hero-bg.png')} alt="" />
-        <img className="fryums-hero-pack fryums-pack-cone" src={asset('category-fryums-cone-cap.png')} alt="" />
-        <img className="fryums-hero-pack fryums-pack-magic" src={asset('category-fryums-magic-abcde.png')} alt="" />
-        <img className="fryums-hero-pack fryums-pack-noodles" src={asset('category-fryums-noodles-sticks.png')} alt="" />
-        <img className="fryums-hero-pack fryums-pack-pasta" src={asset('category-fryums-tasty-pasta.png')} alt="" />
-        <img className="fryums-hero-pack fryums-pack-cups" src={asset('category-fryums-crunchy-cups.png')} alt="" />
+        <div className="category-orbit-ring fryums-orbit-ring">
+          {[0, 1, 2, 3].flatMap((copy) => [
+            { cls: 'fryums-pack-cone',    img: 'category-fryums-cone-cap.png' },
+            { cls: 'fryums-pack-magic',   img: 'category-fryums-magic-abcde.png' },
+            { cls: 'fryums-pack-noodles', img: 'category-fryums-noodles-sticks.png' },
+            { cls: 'fryums-pack-pasta',   img: 'category-fryums-tasty-pasta.png' },
+            { cls: 'fryums-pack-cups',    img: 'category-fryums-crunchy-cups.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.cls}-${copy}`}
+                className={`fryums-hero-pack category-orbit-pack ${p.cls}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
+        </div>
       </div>
     );
   }
@@ -349,11 +405,34 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-beverages-wide" aria-hidden="true">
         <img className="beverages-wide-hero-bg" src={asset('category-beverages-hero-shape.png')} alt="" />
-        <img
-          className="beverages-wide-hero-products"
-          src={asset('category-beverages-hero-products.png')}
-          alt=""
-        />
+        <div className="beverages-orbit-ring">
+          {[0, 1, 2, 3].flatMap((copy) => [
+            /* Bottles + order from Figma frame 1131:3426 — left to right:
+               Guava, Sparker, Lemoni, Orange Tango, Mango. Assets
+               downloaded fresh from that Figma frame.
+               NOTE: beverages uses its OWN orbit classes
+               (beverages-orbit-ring / beverages-orbit-pack), separate
+               from the shared .category-orbit-* used by the other
+               carousel pages, so tweaks to bottle size, radius, or
+               centre stay isolated. */
+            { cls: 'beverages-pack-guava',   img: 'category-beverage-fig-guava.png' },
+            { cls: 'beverages-pack-sparker', img: 'category-beverage-fig-sparker.png' },
+            { cls: 'beverages-pack-lemoni',  img: 'category-beverage-fig-lemoni.png' },
+            { cls: 'beverages-pack-orange',  img: 'category-beverage-fig-orange.png' },
+            { cls: 'beverages-pack-mango',   img: 'category-beverage-fig-mango.png' },
+          ].map((p, i) => {
+            const slot = copy * 5 + i;
+            return (
+              <img
+                key={`${p.cls}-${copy}`}
+                className={`beverages-orbit-pack beverages-hero-pack ${p.cls}`}
+                src={asset(p.img)}
+                alt=""
+                style={{ '--slot': slot }}
+              />
+            );
+          }))}
+        </div>
       </div>
     );
   }

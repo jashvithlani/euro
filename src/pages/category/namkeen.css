@@ -22,21 +22,7 @@
 }
 
 
-.category-main--namkeen .namkeen-hero-pack {
-  pointer-events: auto;
-  cursor: pointer;
-  transition: translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter 0.35s ease, z-index 0s linear 0s;
-  filter: drop-shadow(0 8px 14px rgba(78, 40, 31, 0.18));
-}
-
-.category-main--namkeen .namkeen-hero-pack:hover {
-  translate: 0 -14px;
-  scale: 1.12 !important;
-  z-index: 3;
-  filter: drop-shadow(0 22px 28px rgba(78, 40, 31, 0.35));
-}
+/* Hover-popup on hero packs removed — orbit carousel is the motion. */
 
 .category-main--namkeen .category-product-card--image,
 .category-main--namkeen .category-product-cover,
@@ -149,24 +135,7 @@
   .category-main--namkeen .category-hero-badge {
     animation: namkeen-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
   }
-  .category-main--namkeen .namkeen-hero-pack {
-    animation: namkeen-pack-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  .category-main--namkeen .namkeen-pack-all-in-one {
-    animation-delay: 0.25s;
-  }
-  .category-main--namkeen .namkeen-pack-chakhna {
-    animation-delay: 0.38s;
-  }
-  .category-main--namkeen .namkeen-pack-papad {
-    animation-delay: 0.5s;
-  }
-  .category-main--namkeen .namkeen-pack-gathiya {
-    animation-delay: 0.62s;
-  }
-  .category-main--namkeen .namkeen-pack-sev-mamra {
-    animation-delay: 0.74s;
-  }
+  /* Per-pack entrance removed — orbit fade in CategoryPage.css runs instead. */
   @supports (animation-timeline: view()) {
     .category-main--namkeen .category-product-card,
     .category-main--namkeen .category-promo,

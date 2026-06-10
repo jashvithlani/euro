@@ -329,6 +329,67 @@
   scale: 1.015;
 }
 
+.timeline-product-marker {
+  position: fixed;
+  z-index: 42;
+  top: 50vh;
+  left: var(--timeline-product-left, 50vw);
+  width: 82px;
+  height: 108px;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% -50%;
+  scale: 0.86;
+  transition: opacity 0.28s ease, scale 0.28s ease;
+}
+
+.timeline-product-marker.is-visible {
+  opacity: 1;
+  scale: 1;
+}
+
+.timeline-product-marker__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  rotate: 0deg;
+  scale: 0.9;
+  filter: drop-shadow(0 18px 18px rgba(78, 40, 31, 0.22));
+  transition: opacity 0.45s ease, scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-product-marker__image.is-active {
+  opacity: 1;
+  rotate: 0deg;
+  scale: 1;
+}
+
+/* The moving product marker now carries the milestone motion, so the
+   timeline content stays readable instead of popping in at center. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .timeline-line,
+    .about-timeline > .about-section-heading,
+    .timeline-left .timeline-copy,
+    .timeline-right .timeline-copy,
+    .timeline-text-only .timeline-copy-left,
+    .timeline-text-only .timeline-copy-right,
+    .timeline-left .timeline-card,
+    .timeline-right .timeline-card,
+    .timeline-text-only .timeline-card,
+    .timeline-milestone h3,
+    .timeline-text-only h3 {
+      animation: none !important;
+      opacity: 1 !important;
+      translate: 0 0 !important;
+      rotate: none !important;
+    }
+  }
+}
+
 /* ---- Balaji-inspired flip-style hover on the two large infra cards.
    Each .infra-large already shows photo + text side-by-side; on hover
    we lift the photo and reveal an accent panel that reads "Discover

@@ -222,6 +222,10 @@
     display: none;
   }
 
+  .timeline-product-marker {
+    display: none;
+  }
+
   .about-page .timeline-milestone,
   .about-page .timeline-text-only {
     position: relative !important;

@@ -1,10 +1,134 @@
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { asset } from "./asset.js";
+import { asset as categoryAsset } from "../category/asset.js";
 import { sharedAsset } from "../../shared/asset.js";
 import "./AboutPage.css";
 
+const timelineProducts = [
+  { category: "Chips", image: categoryAsset("category-chips-wide-hero-masti.png") },
+  { category: "Beverages", image: categoryAsset("category-beverage-fig-mango.png") },
+  { category: "Getmore", image: categoryAsset("category-getmore-tomato.png") },
+  { category: "Namkeen", image: categoryAsset("category-namkeen-shahi-mixture.png") },
+  { category: "Chikki", image: categoryAsset("category-chikki-peanut.png") },
+  { category: "Khakhra", image: categoryAsset("category-khakhra-masala.png") },
+  { category: "Bakery", image: categoryAsset("category-bakery-jeera-khari.png") },
+  { category: "Fryums", image: categoryAsset("category-fryums-magic-abcde.png") },
+  { category: "Farali", image: categoryAsset("category-farali-kela-wafers.png") },
+];
+
 export default function AboutPage() {
+  const timelineRef = useRef(null);
+  const timelineProductMarkerRef = useRef(null);
+  const activeTimelineProductRef = useRef(0);
+  const showTimelineProductRef = useRef(false);
+  const timelineProductLeftRef = useRef(0);
+  const [activeTimelineProduct, setActiveTimelineProduct] = useState(0);
+  const [showTimelineProduct, setShowTimelineProduct] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    let rafId = 0;
+
+    const updateTimelineProduct = () => {
+      rafId = 0;
+
+      const timeline = timelineRef.current;
+      if (!timeline) return;
+
+      const line = timeline.querySelector(".timeline-line");
+      if (!line) return;
+
+      const viewportCenter = window.innerHeight / 2;
+      const lineRect = line.getBoundingClientRect();
+      const isProductOnLine = lineRect.top <= viewportCenter && lineRect.bottom >= viewportCenter;
+      const nextTimelineProductLeft = Math.round(lineRect.left + lineRect.width / 2);
+
+      if (showTimelineProductRef.current !== isProductOnLine) {
+        showTimelineProductRef.current = isProductOnLine;
+        setShowTimelineProduct(isProductOnLine);
+      }
+
+      if (Math.abs(timelineProductLeftRef.current - nextTimelineProductLeft) > 1) {
+        timelineProductLeftRef.current = nextTimelineProductLeft;
+        timelineProductMarkerRef.current?.style.setProperty(
+          "--timeline-product-left",
+          `${nextTimelineProductLeft}px`,
+        );
+      }
+
+      if (!isProductOnLine) return;
+
+      const milestones = [...timeline.querySelectorAll(".timeline-milestone, .timeline-text-only")];
+      let nextProductIndex = 0;
+
+      milestones.forEach((milestone, index) => {
+        const rect = milestone.getBoundingClientRect();
+        const dotStyle = window.getComputedStyle(milestone, "::after");
+        const dotTop = Number.parseFloat(dotStyle.top);
+        const dotHeight = Number.parseFloat(dotStyle.height);
+        const dotCenter = Number.isFinite(dotTop)
+          ? rect.top + dotTop + (Number.isFinite(dotHeight) ? dotHeight / 2 : 0)
+          : rect.top + rect.height / 2;
+
+        if (dotCenter <= viewportCenter) {
+          nextProductIndex = index;
+        }
+      });
+
+      const boundedProductIndex = Math.min(nextProductIndex, timelineProducts.length - 1);
+
+      if (activeTimelineProductRef.current !== boundedProductIndex) {
+        activeTimelineProductRef.current = boundedProductIndex;
+        setActiveTimelineProduct(boundedProductIndex);
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(updateTimelineProduct);
+    };
+
+    updateTimelineProduct();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, []);
+
+  const timelineProductMarker =
+    typeof document === "undefined"
+      ? null
+      : createPortal(
+          <div
+            ref={timelineProductMarkerRef}
+            className={`timeline-product-marker${showTimelineProduct ? " is-visible" : ""}`}
+            aria-hidden="true"
+          >
+            {timelineProducts.map((product, index) => (
+              <img
+                key={product.category}
+                className={`timeline-product-marker__image${
+                  index === activeTimelineProduct ? " is-active" : ""
+                }`}
+                src={product.image}
+                alt=""
+              />
+            ))}
+          </div>,
+          document.body,
+        );
+
   return (
     <>
+            {timelineProductMarker}
             <main>
               <section className="about-hero">
                 <div className="about-hero-copy">
@@ -109,7 +233,7 @@ export default function AboutPage() {
                 </div>
               </section>
 
-              <section className="about-timeline" id="milestones">
+              <section ref={timelineRef} className="about-timeline" id="milestones">
                 <div className="about-section-heading">
                   <span>The Evolution</span>
                   <h2>Our <em>Milestones</em></h2>

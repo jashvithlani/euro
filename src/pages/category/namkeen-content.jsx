@@ -132,7 +132,7 @@ const namkeenAt1920 = {
       {
         type: "productCard",
         left: 679,
-        top: 2592.55,
+        top: 2592,
         width: 555,
         height: 385,
         background: "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)",

@@ -31,8 +31,6 @@ function getProductColor(imageUrl) {
 }
 
 const originalCategoryHeroBottom = 695.37;
-/** Compact top-nav hero bottom @ 1280 — matches CategoryPage.css (152 + 372.67). */
-const COMPACT_TOP_NAV_HERO_BOTTOM = 524.67;
 
 const pages = {
   chips: {
@@ -155,26 +153,46 @@ function cssLength(value) {
   return typeof value === "number" ? `${value}px` : value;
 }
 
-/** Bake absolute tops at 1280 so layout does not drift with viewport --home-hero-height. */
-function fixedTopFromHeroLayout(value, shiftUp = 0) {
+function offsetFromHeroBottom(value) {
+  if (typeof value !== "number") return value;
+
+  const offset = Number((value - originalCategoryHeroBottom).toFixed(3));
+  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
+}
+
+function offsetFromHeroBottomNamkeen(value, shiftUp) {
   if (typeof value !== "number") return value;
 
   const offset = Number((value - originalCategoryHeroBottom - shiftUp).toFixed(3));
-  return `${Number((COMPACT_TOP_NAV_HERO_BOTTOM + offset).toFixed(3))}px`;
+  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
 }
 
 function applyTopHeroLayout(page, pageKey) {
-  const shiftUp = pageKey === "namkeen" ? (page.compactContentShift ?? 0) : 0;
+  if (pageKey !== "namkeen") {
+    return {
+      ...page,
+      height: offsetFromHeroBottom(page.height),
+      newsletter: page.newsletter
+        ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) }
+        : page.newsletter,
+      sections: page.sections.map((section) => ({
+        ...section,
+        top: offsetFromHeroBottom(section.top),
+      })),
+    };
+  }
+
+  const shiftUp = page.compactContentShift ?? 0;
 
   return {
     ...page,
-    height: fixedTopFromHeroLayout(page.height, shiftUp),
+    height: offsetFromHeroBottomNamkeen(page.height, shiftUp),
     newsletter: page.newsletter
-      ? { ...page.newsletter, top: fixedTopFromHeroLayout(page.newsletter.top, shiftUp) }
+      ? { ...page.newsletter, top: offsetFromHeroBottomNamkeen(page.newsletter.top, shiftUp) }
       : page.newsletter,
     sections: page.sections.map((section) => ({
       ...section,
-      top: fixedTopFromHeroLayout(section.top, shiftUp),
+      top: offsetFromHeroBottomNamkeen(section.top, shiftUp),
     })),
   };
 }

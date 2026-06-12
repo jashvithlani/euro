@@ -33,6 +33,13 @@ const getmoreAt1920 = {
       height: 448,
       background: "radial-gradient(circle, #f6f6f6 0%, #f8ebff 100%)",
       image: asset("category-getmore-tomato.png"),
+      decorations: [
+        {
+          image: asset("category-getmore-tomato-ring.svg"),
+          className: "getmore-tomato-ring",
+          style: { left: 14.58, top: 30.44, width: 342, height: 342 },
+        },
+      ],
       imageStyle: { left: 27.18, top: 37.93, width: 350.4, height: 405.36, transform: "rotate(-6.84deg)" },
       badge: { label: "BEST SELLER", tone: "pink", style: { left: 575.58, top: 345.56 } },
       title: "Tingling\nTomato",
@@ -47,6 +54,13 @@ const getmoreAt1920 = {
       height: 448,
       background: "radial-gradient(circle, #f6f6f6 0%, #f8ebff 100%)",
       image: asset("category-getmore-chatpata.png"),
+      decorations: [
+        {
+          image: asset("category-getmore-chatpata-ring.svg"),
+          className: "getmore-chatpata-ring",
+          style: { left: 67.83, top: 89.46, width: 338, height: 335 },
+        },
+      ],
       imageStyle: { left: 24, top: 34, width: 352.48, height: 405.92, transform: "rotate(6.84deg)" },
       title: "Chatpata\nMasala",
       titleClass: "text-indigo product-title-getmore",

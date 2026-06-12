@@ -295,36 +295,47 @@ function HeroVisual({ hero }) {
 
   if (hero.mode === "chikki") {
     return (
-      <div className="category-hero-custom category-hero-chikki" aria-hidden="true">
-        <img className="chikki-hero-bg" src={asset('category-chikki-hero-bg.svg')} alt="" />
-        <img className="chikki-hero-products" src={asset('category-chikki-hero-products.png')} alt="" />
+      <div className="category-hero-custom category-hero-chikki" aria-hidden="true" data-node-id="1217:1021">
+        <div className="chikki-hero-wave-frame">
+          <img className="chikki-hero-wave" src={asset("category-chikki-figma-wave.svg")} alt="" />
+        </div>
+        <img className="chikki-hero-accent" src={asset("category-chikki-figma-accent.svg")} alt="" />
+        <div className="chikki-hero-products">
+          <img className="chikki-hero-products-img" src={asset("category-chikki-figma-products.png")} alt="" />
+        </div>
       </div>
     );
   }
 
   if (hero.mode === "khakhra") {
+    const packs = [
+      { key: "7grain", img: "category-khakhra-figma-7grain.png" },
+      { key: "panipuri", img: "category-khakhra-figma-panipuri.png" },
+      { key: "fafda", img: "category-khakhra-figma-fafda.png" },
+      { key: "jeera", img: "category-khakhra-figma-jeera.png" },
+      { key: "masala", img: "category-khakhra-figma-masala.png" },
+    ];
+
     return (
-      <div className="category-hero-custom category-hero-khakhra" aria-hidden="true">
-        <img className="khakhra-hero-bg" src={asset('category-khakhra-hero-bg.svg')} alt="" />
-        <div className="category-orbit-ring khakhra-orbit-ring">
-          {[0, 1, 2, 3].flatMap((copy) => [
-            { cls: 'khakhra-pack-7grain',   img: 'category-khakhra-7grain.png' },
-            { cls: 'khakhra-pack-panipuri', img: 'category-khakhra-panipuri.png' },
-            { cls: 'khakhra-pack-fafda',    img: 'category-khakhra-fafda.png' },
-            { cls: 'khakhra-pack-jeera',    img: 'category-khakhra-jeera.png' },
-            { cls: 'khakhra-pack-masala',   img: 'category-khakhra-masala.png' },
-          ].map((p, i) => {
-            const slot = copy * 5 + i;
-            return (
-              <img
-                key={`${p.cls}-${copy}`}
-                className={`khakhra-hero-pack category-orbit-pack ${p.cls}`}
-                src={asset(p.img)}
-                alt=""
-                style={{ '--slot': slot }}
-              />
-            );
-          }))}
+      <div className="category-hero-custom category-hero-khakhra" aria-hidden="true" data-node-id="1218:1233">
+        <div className="khakhra-hero-wave-frame">
+          <img className="khakhra-hero-wave" src={asset("category-khakhra-figma-wave.svg")} alt="" />
+        </div>
+        <div className="khakhra-hero-ring">
+          {[0, 1, 2, 3, 4, 5].flatMap((copy) =>
+            packs.map((pack, i) => {
+              const slot = copy * packs.length + i;
+              return (
+                <span
+                  key={`${pack.key}-${copy}`}
+                  className={`khakhra-hero-pack khakhra-orbit-pack khakhra-pack-${pack.key} khakhra-art-${pack.key}`}
+                  style={{ "--slot": slot }}
+                >
+                  <img src={asset(pack.img)} alt="" />
+                </span>
+              );
+            })
+          )}
         </div>
       </div>
     );
@@ -342,28 +353,32 @@ function HeroVisual({ hero }) {
   }
 
   if (hero.mode === "fryums") {
+    const packs = [
+      { key: "cone", img: "category-fryums-cone-cap.png" },
+      { key: "magic", img: "category-fryums-magic-abcde.png" },
+      { key: "noodles", img: "category-fryums-noodles-sticks.png" },
+      { key: "pasta", img: "category-fryums-tasty-pasta.png" },
+      { key: "cups", img: "category-fryums-crunchy-cups.png" },
+    ];
+
     return (
-      <div className="category-hero-custom category-hero-fryums" aria-hidden="true">
-        <img className="fryums-hero-bg" src={asset('category-fryums-hero-bg.png')} alt="" />
-        <div className="category-orbit-ring fryums-orbit-ring">
-          {[0, 1, 2, 3].flatMap((copy) => [
-            { cls: 'fryums-pack-cone',    img: 'category-fryums-cone-cap.png' },
-            { cls: 'fryums-pack-magic',   img: 'category-fryums-magic-abcde.png' },
-            { cls: 'fryums-pack-noodles', img: 'category-fryums-noodles-sticks.png' },
-            { cls: 'fryums-pack-pasta',   img: 'category-fryums-tasty-pasta.png' },
-            { cls: 'fryums-pack-cups',    img: 'category-fryums-crunchy-cups.png' },
-          ].map((p, i) => {
-            const slot = copy * 5 + i;
-            return (
-              <img
-                key={`${p.cls}-${copy}`}
-                className={`fryums-hero-pack category-orbit-pack ${p.cls}`}
-                src={asset(p.img)}
-                alt=""
-                style={{ '--slot': slot }}
-              />
-            );
-          }))}
+      <div className="category-hero-custom category-hero-fryums" aria-hidden="true" data-node-id="1246:2362">
+        <img className="fryums-hero-bg" src={asset("category-fryums-figma-wave.png")} alt="" />
+        <div className="fryums-hero-ring">
+          {[0, 1, 2, 3, 4].flatMap((copy) =>
+            packs.map((pack, i) => {
+              const slot = copy * packs.length + i;
+              return (
+                <img
+                  key={`${pack.key}-${copy}`}
+                  className={`fryums-hero-pack fryums-orbit-pack fryums-pack-${pack.key}`}
+                  src={asset(pack.img)}
+                  alt=""
+                  style={{ "--slot": slot }}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     );
@@ -467,6 +482,33 @@ function ProductSubtitle({ subtitle, style }) {
   );
 }
 
+function DecorativeLayers({ decorations }) {
+  if (!decorations?.length) return null;
+
+  return decorations.map((decor, index) => (
+    <span
+      key={`${decor.className || "decor"}-${index}`}
+      className={`category-card-decor ${decor.className || ""}`}
+      style={layerStyle(decor.style || {})}
+      aria-hidden="true"
+    >
+      <img src={decor.image} alt="" />
+    </span>
+  ));
+}
+
+function ProductImage({ item }) {
+  if (item.imageInnerStyle) {
+    return (
+      <span className="category-product-img category-product-img-frame" style={layerStyle(item.imageStyle)}>
+        <img src={item.image} alt="" style={layerStyle(item.imageInnerStyle)} />
+      </span>
+    );
+  }
+
+  return <img className="category-product-img" src={item.image} alt="" style={layerStyle(item.imageStyle)} />;
+}
+
 function ImageCard({ item }) {
   const productColor = getProductColor(item.image);
   return (
@@ -497,7 +539,8 @@ function ProductCard({ item }) {
       {item.ring && (
         <img className="category-product-ring" src={asset('category-namkeen-royal-card-ring.svg')} alt="" aria-hidden="true" />
       )}
-      <img className="category-product-img" src={item.image} alt="" style={layerStyle(item.imageStyle)} />
+      <DecorativeLayers decorations={item.decorations} />
+      <ProductImage item={item} />
       <Badge badge={item.badge} />
       {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
       {item.subtitle ? <ProductSubtitle subtitle={item.subtitle} style={item.subtitleStyle} /> : null}
@@ -536,6 +579,7 @@ function FeatureCard({ item }) {
       className={`category-feature ${item.className || ""}`}
       style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
     >
+      <DecorativeLayers decorations={item.decorations} />
       <div className="category-feature-copy">
         <span style={{ color: item.kickerColor }}>{item.kicker}</span>
         <h2 style={{ color: item.titleColor }}>

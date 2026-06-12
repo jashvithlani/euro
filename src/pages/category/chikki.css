@@ -4,29 +4,88 @@
    CategoryPage.css — keep every chikki rule here. */
 
 /* ── Hero ─────────────────────────────────────────────────────────────────
-   Full-width soft lavender gradient band with a white wave foot, the product
-   trio image floating low-centre. The shared HeroVisual renders a scaled
-   1920px canvas (.category-hero-chikki, transform: scale(0.6667)). */
+   Figma node 1217:1021 authored at 1920×668, scaled to the app's 1280 canvas. */
+.category-main--chikki {
+  --home-hero-height: 597.33px;
+}
+
 .category-main--chikki .category-hero {
-  background: linear-gradient(180deg, #efe3fb 0%, #f3e8fc 55%, #ffffff 100%);
+  height: 445.33px;
+  background: #ffffff;
 }
 
 .category-main--chikki .category-hero-chikki {
-  background: transparent;
+  width: 1280px !important;
+  height: 445.33px !important;
+  overflow: hidden;
+  background: #ffffff;
+  transform: none !important;
 }
 
-/* Hide the legacy raster bg — use the gradient on .category-hero instead so the
-   band is full-width and never crops. */
-.category-main--chikki .chikki-hero-bg {
-  display: none;
+.category-main--chikki .category-hero h1 {
+  top: 41.33px;
+  width: 464.9px;
+  font-size: 73.33px;
+  line-height: 1;
+}
+
+.category-main--chikki .category-hero p {
+  top: 126.72px;
+  width: 276.53px;
+  color: #825348;
+  font-size: 10.67px;
+  line-height: 14px;
+}
+
+.category-main--chikki .chikki-hero-wave-frame {
+  position: absolute;
+  top: -774px;
+  left: -244.95px;
+  display: flex;
+  width: 1699.43px;
+  height: 1531.69px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-main--chikki .chikki-hero-wave {
+  flex: none;
+  width: 1389.51px;
+  height: 1034.71px;
+  max-width: none;
+  rotate: 25.47deg;
+}
+
+.category-main--chikki .chikki-hero-accent {
+  position: absolute;
+  top: 138px;
+  left: 790px;
+  width: 146px;
+  height: 144.67px;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 .category-main--chikki .chikki-hero-products {
-  top: 168px;
-  left: 571.48px;
-  width: 777.04px;
-  height: 432px;
-  object-fit: contain;
+  position: absolute;
+  top: 159.33px;
+  left: 342.67px;
+  width: 599.33px;
+  height: 286px;
+  overflow: hidden;
+}
+
+.category-main--chikki .chikki-hero-products-img {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 117.05%;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ── Product card titles (exact Figma colours + scaled type) ─────────────── */
@@ -258,7 +317,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .category-main--chikki .chikki-hero-bg {
+  .category-main--chikki .chikki-hero-wave-frame {
     transform-origin: center;
     animation: chikki-bg-grow 0.9s ease both;
   }

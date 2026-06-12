@@ -1,5 +1,17 @@
 /* Beverages body overrides — Figma 1131:3231. Scoped to .category-main--beverages. */
 
+.category-main--beverages .text-guava {
+  color: #f26d7a;
+}
+
+.category-main--beverages .text-red {
+  color: #ef1f2b;
+}
+
+.category-main--beverages .beverage-sparker-accent {
+  z-index: 2;
+}
+
 /* Mineral Water title: single line, Epilogue Black 48px in 1920 space. */
 .category-main--beverages .product-title-beverages-water {
   font-size: 32px; /* 48px @1920 × 2/3 */

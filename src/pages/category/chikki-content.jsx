@@ -7,14 +7,14 @@ import { scaleCategoryPage } from "./category-scale.js";
    1280 space (round(Figma1920_Y × 0.6667)); every other layout number stays in 1920
    space and is scaled by scaleCategoryPage. */
 
-const chikkiPurpleCard = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #f8ebff 100%)";
-const chikkiBlueCard = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #e3f7ff 100%)";
+const chikkiPurpleCard = "radial-gradient(circle, #f6f6f6 0%, #f8ebff 100%)";
+const chikkiBlueCard = "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)";
 const chikkiPromoBlue = "#246593";
 
 const chikkiAt1920 = {
   title: "Chikki",
   copy: "Crafted with the goodness of jaggery and premium nuts for an authentic treat",
-  height: "2107px",
+  height: "2123px",
   hero: { mode: "chikki" },
   heroClassName: "category-hero--chikki-top-nav",
   subnavPlacement: "top",
@@ -34,6 +34,13 @@ const chikkiAt1920 = {
       height: 448,
       background: chikkiPurpleCard,
       image: asset("category-chikki-crush-peanut.png"),
+      decorations: [
+        {
+          image: asset("category-chikki-crush-ring.svg"),
+          className: "chikki-crush-ring",
+          style: { left: 274, top: -162, width: 636, height: 633 },
+        },
+      ],
       imageStyle: { left: 512, top: 42, width: 198, height: 423 },
       badge: { label: "BEST SELLER", tone: "pink", style: { left: 21, top: 25 } },
       title: "Crush\nPeanut Chikki",
@@ -48,6 +55,13 @@ const chikkiAt1920 = {
       height: 448,
       background: chikkiPurpleCard,
       image: asset("category-chikki-peanut.png"),
+      decorations: [
+        {
+          image: asset("category-chikki-peanut-ring.svg"),
+          className: "chikki-peanut-ring",
+          style: { left: -178, top: 109, width: 661, height: 657 },
+        },
+      ],
       imageStyle: { left: 83, top: 41, width: 198, height: 423 },
       title: "Peanut\nChikki",
       titleClass: "text-chikki-peanut product-title-crush text-right",
@@ -61,7 +75,7 @@ const chikkiAt1920 = {
       top: "973px",
       width: 585,
       height: 410,
-      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #faf0ff 100%)",
+      background: "radial-gradient(circle, #f6f6f6 0%, #faf0ff 100%)",
       image: asset("category-chikki-rajgira.png"),
       imageStyle: { left: 247, top: 59, width: 116.708, height: 419.565 },
       title: "Rajgira Chikki",
@@ -90,14 +104,14 @@ const chikkiAt1920 = {
       top: "1282px",
       width: 550,
       height: 385,
-      background: chikkiBlueCard,
+      background: "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)",
       image: asset("category-chikki-dryfruit-mix.png"),
-      imageStyle: { left: 21, top: 85, width: 479, height: 360 },
+      imageStyle: { left: 67.5, top: 79, width: 479, height: 360 },
       title: "Dry Fruit\nChikki",
       titleClass: "text-chikki-blue product-title-dryfruit",
-      titleStyle: { left: 33, top: 35, width: 320 },
+      titleStyle: { left: 33, top: 18.5, width: 320 },
       subtitle: "Mix",
-      subtitleStyle: { left: 33, top: 125, width: 200 },
+      subtitleStyle: { left: 33, top: 128, width: 200 },
     },
     {
       type: "productCard",
@@ -105,12 +119,12 @@ const chikkiAt1920 = {
       top: "1282px",
       width: 550,
       height: 385,
-      background: chikkiBlueCard,
+      background: "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)",
       image: asset("category-chikki-cashew.png"),
-      imageStyle: { left: 43, top: 86, width: 469, height: 351 },
+      imageStyle: { left: 73, top: 86, width: 469, height: 351 },
       title: "Dry Fruit\nChikki",
       titleClass: "text-chikki-blue product-title-dryfruit",
-      titleStyle: { left: 34, top: 35, width: 320 },
+      titleStyle: { left: 34, top: 17, width: 320 },
       subtitle: "Cashew Nuts",
       subtitleStyle: { left: 34, top: 125, width: 280 },
     },
@@ -120,12 +134,12 @@ const chikkiAt1920 = {
       top: "1282px",
       width: 550,
       height: 385,
-      background: chikkiBlueCard,
+      background: "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)",
       image: asset("category-chikki-almond.png"),
-      imageStyle: { left: 45, top: 93, width: 461, height: 345 },
+      imageStyle: { left: 78, top: 93, width: 461, height: 345 },
       title: "Dry Fruit\nChikki",
       titleClass: "text-chikki-blue product-title-dryfruit",
-      titleStyle: { left: 36, top: 35, width: 320 },
+      titleStyle: { left: 36, top: 17, width: 320 },
       subtitle: "Almond",
       subtitleStyle: { left: 36, top: 125, width: 200 },
     },
@@ -151,7 +165,7 @@ const chikkiAt1920 = {
       top: "1575px",
       width: 585,
       height: 385,
-      background: chikkiBlueCard,
+      background: "radial-gradient(circle, #f6f6f6 0%, #e3f7ff 100%)",
       image: asset("category-chikki-murmura.png"),
       imageStyle: { left: 213, top: 64, width: 160, height: 332, transform: "rotate(-20.49deg)" },
       title: "Murmura Chikki",

@@ -207,9 +207,22 @@
     object-fit: contain;
   }
 
+  .category-page .category-product-img-frame {
+    height: 200px !important;
+  }
+
+  .category-page .category-product-img-frame > img {
+    position: absolute !important;
+    max-width: none !important;
+  }
+
   .category-page .category-product-ring {
     width: 280px;
     height: 280px;
+  }
+
+  .category-page .category-card-decor {
+    display: none !important;
   }
 
   .category-page .category-product-badge {

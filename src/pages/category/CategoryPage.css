@@ -909,6 +909,20 @@
 
 .category-product-img {
   object-fit: contain;
+  z-index: 1;
+}
+
+.category-product-img-frame {
+  display: block;
+  overflow: hidden;
+}
+
+.category-product-img-frame > img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Namkeen — product images use contain so they don't get clipped */
@@ -947,6 +961,23 @@
 
 .category-product-card--ring .category-product-title {
   z-index: 2;
+}
+
+.category-card-decor {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-card-decor > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
 }
 
 .category-product-badge {

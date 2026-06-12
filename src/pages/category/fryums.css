@@ -83,12 +83,9 @@
   white-space: nowrap;
 }
 
-/* ---- Hero: render natively full-width like the Chips hero ----
-   Overrides the scaled legacy canvas in CategoryPage.css (which only fills
-   the left 2/3 and crops packs vertically). Higher specificity so these win
-   regardless of edits to CategoryPage.css. Figma 1246:2362 (×2/3). */
+/* ---- Hero: Figma 1246:2362, scaled from 1920px to the 1280 shell. */
 .category-main--fryums .category-hero {
-  height: 430px;
+  height: 421.33px;
 }
 
 .category-main--fryums .category-hero-fryums {
@@ -98,53 +95,103 @@
   height: 100%;
   overflow: hidden;
   transform: none;
-  background: linear-gradient(168deg, #fdeaf1 0%, #f6e7f4 55%, #fdf2f7 100%);
+  background: #ffffff;
+}
+
+.category-main--fryums .category-hero h1 {
+  top: 22.67px;
+  left: 50%;
+  width: 464.9px;
+  font-size: 73.33px;
+  line-height: 1;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.category-main--fryums .category-hero p {
+  top: 107.33px;
+  left: 50%;
+  width: 260px;
+  color: #825348;
+  font-size: 10.67px;
+  line-height: 14px;
+  text-align: center;
+  transform: translateX(-50%);
 }
 
 .category-main--fryums .fryums-hero-bg {
-  display: none;
+  position: absolute;
+  top: 13.33px;
+  left: 0;
+  display: block;
+  width: 1277.33px;
+  height: 408px;
+  max-width: none;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
 }
 
-/* Packs arranged in a symmetric downward arc (fan) like the Chips hero:
-   outer packs sit high and tilt outward, the centre pack sits low and straight. */
+.category-main--fryums .fryums-hero-ring {
+  --fryums-orbit-center-x: 635.5px;
+  --fryums-orbit-center-y: -556.97px;
+  --fryums-orbit-radius: 817.76px;
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 100%;
+  transform-origin: var(--fryums-orbit-center-x) var(--fryums-orbit-center-y);
+  animation: fryums-ring-rotate 80s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.category-main--fryums .fryums-hero-ring:has(.fryums-orbit-pack:hover) {
+  animation-play-state: paused;
+}
+
+.category-main--fryums .fryums-orbit-pack {
+  position: absolute;
+  top: var(--fryums-orbit-center-y);
+  left: var(--fryums-orbit-center-x);
+  z-index: 1;
+  display: block;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: auto;
+  user-select: none;
+  transform:
+    translate(-50%, -50%)
+    rotate(calc((2 - var(--slot, 0)) * 14.4deg))
+    translate(0, var(--fryums-orbit-radius));
+  animation: fryums-orbit-fade 80s linear infinite;
+  animation-delay: calc((var(--slot, 0) - 2) * 3.2s - 80s);
+  will-change: opacity;
+}
+
 .category-main--fryums .fryums-pack-cone {
-  top: 30px;
-  left: 131px;
-  width: 238px;
-  height: 255px;
-  transform: rotate(30deg);
+  width: 152.5px;
+  height: 205.13px;
 }
 
 .category-main--fryums .fryums-pack-magic {
-  top: 100px;
-  left: 333px;
-  width: 203px;
-  height: 239px;
-  transform: rotate(15deg);
+  width: 152.5px;
+  height: 205.14px;
 }
 
 .category-main--fryums .fryums-pack-noodles {
-  top: 150px;
-  left: 559px;
   width: 162px;
-  height: 201px;
-  transform: none;
+  height: 201.33px;
 }
 
 .category-main--fryums .fryums-pack-pasta {
-  top: 100px;
-  left: 744px;
-  width: 203px;
-  height: 239px;
-  transform: rotate(-15deg);
+  width: 152.5px;
+  height: 205.14px;
 }
 
 .category-main--fryums .fryums-pack-cups {
-  top: 30px;
-  left: 911px;
-  width: 238px;
-  height: 255px;
-  transform: rotate(-30deg);
+  width: 152.5px;
+  height: 205.14px;
 }
 
 /* =====================================================================
@@ -166,6 +213,20 @@
 @keyframes fryums-bg-grow {
   from { opacity: 0; scale: 1.05; }
   to { opacity: 1; scale: 1; }
+}
+
+@keyframes fryums-ring-rotate {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes fryums-orbit-fade {
+  0% { opacity: 1; }
+  8.5% { opacity: 1; }
+  11% { opacity: 0; }
+  89% { opacity: 0; }
+  91.5% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 

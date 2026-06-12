@@ -48,11 +48,9 @@
   width: 556px;
 }
 
-/* ---- Hero: render natively full-width like the Chips hero ----
-   Overrides the scaled legacy canvas in CategoryPage.css. Higher specificity
-   so these win regardless of edits to CategoryPage.css. Figma 1218:1233 (×2/3). */
+/* ---- Hero: Figma 1218:1233, scaled from the 1926px banner to the 1280 shell. */
 .category-main--khakhra .category-hero {
-  height: 500px;
+  height: 488.67px;
 }
 
 .category-main--khakhra .category-hero-khakhra {
@@ -62,53 +60,148 @@
   height: 100%;
   overflow: hidden;
   transform: none;
-  background: linear-gradient(168deg, #fcdfec 0%, #fdeef5 52%, #ffffff 100%);
+  background: #ffffff;
 }
 
-.category-main--khakhra .khakhra-hero-bg {
-  display: none;
+.category-main--khakhra .category-hero h1 {
+  top: 24px;
+  left: calc(50% - 3px);
+  width: 464.9px;
+  font-size: 73.33px;
+  line-height: 1;
 }
 
-/* Packs arranged in a symmetric downward arc (fan) like the Chips hero:
-   outer packs sit high and tilt outward, the centre pack sits low and straight. */
+.category-main--khakhra .category-hero p {
+  top: 109.39px;
+  left: calc(50% - 3px);
+  width: 277.69px;
+  color: #825348;
+  font-size: 10.67px;
+  line-height: 14px;
+}
+
+.category-main--khakhra .khakhra-hero-wave-frame {
+  position: absolute;
+  top: -774px;
+  left: -244.95px;
+  display: flex;
+  width: 1699.43px;
+  height: 1531.69px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-main--khakhra .khakhra-hero-wave {
+  flex: none;
+  width: 1389.51px;
+  height: 1034.71px;
+  max-width: none;
+  rotate: 25.47deg;
+}
+
+.category-main--khakhra .khakhra-hero-ring {
+  --khakhra-orbit-center-y: -812.8px;
+  --khakhra-orbit-radius: 1136.7px;
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 100%;
+  transform-origin: 50% var(--khakhra-orbit-center-y);
+  animation: khakhra-ring-rotate 80s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.category-main--khakhra .khakhra-hero-ring:has(.khakhra-orbit-pack:hover) {
+  animation-play-state: paused;
+}
+
+.category-main--khakhra .khakhra-orbit-pack {
+  position: absolute;
+  top: var(--khakhra-orbit-center-y);
+  left: 50%;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  max-width: none;
+  pointer-events: auto;
+  user-select: none;
+  transform:
+    translate(-50%, -50%)
+    rotate(calc((2 - var(--slot, 0)) * 12deg))
+    translate(0, var(--khakhra-orbit-radius));
+  animation: khakhra-orbit-fade 80s linear infinite;
+  animation-delay: calc((var(--slot, 0) - 2) * 2.6666666667s - 80s);
+  will-change: opacity;
+}
+
+.category-main--khakhra .khakhra-orbit-pack > img {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
 .category-main--khakhra .khakhra-pack-7grain {
-  top: 60px;
-  left: 120px;
-  width: 260px;
-  height: 271px;
-  transform: rotate(24deg);
+  width: 192.3px;
+  height: 212.99px;
 }
 
 .category-main--khakhra .khakhra-pack-panipuri {
-  top: 130px;
-  left: 320px;
-  width: 234px;
-  height: 251px;
-  transform: rotate(12deg);
+  width: 191.43px;
+  height: 212.99px;
 }
 
 .category-main--khakhra .khakhra-pack-fafda {
-  top: 175px;
-  left: 539px;
-  width: 201px;
-  height: 213px;
-  transform: none;
+  width: 201.33px;
+  height: 213.33px;
 }
 
 .category-main--khakhra .khakhra-pack-jeera {
-  top: 130px;
-  left: 725px;
-  width: 236px;
-  height: 251px;
-  transform: rotate(-12deg);
+  width: 192.73px;
+  height: 212.99px;
 }
 
 .category-main--khakhra .khakhra-pack-masala {
-  top: 60px;
-  left: 899px;
-  width: 262px;
-  height: 272px;
-  transform: rotate(-24deg);
+  width: 193.83px;
+  height: 212.99px;
+}
+
+.category-main--khakhra .khakhra-art-7grain img {
+  top: 0;
+  left: -12.23%;
+  width: 123.79%;
+  height: 101.97%;
+}
+
+.category-main--khakhra .khakhra-art-panipuri img {
+  top: 0;
+  left: -12.78%;
+  width: 124.27%;
+  height: 101.94%;
+}
+
+.category-main--khakhra .khakhra-art-fafda img {
+  top: -2.1%;
+  left: 0;
+  width: 100%;
+  height: 104.89%;
+}
+
+.category-main--khakhra .khakhra-art-jeera img {
+  top: 0;
+  left: -11.87%;
+  width: 123.33%;
+  height: 101.82%;
+}
+
+.category-main--khakhra .khakhra-art-masala img {
+  top: 0;
+  left: -11.47%;
+  width: 122.22%;
+  height: 101.47%;
 }
 
 /* =====================================================================
@@ -130,6 +223,20 @@
 @keyframes khakhra-bg-grow {
   from { opacity: 0; scale: 1.05; }
   to { opacity: 1; scale: 1; }
+}
+
+@keyframes khakhra-ring-rotate {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes khakhra-orbit-fade {
+  0% { opacity: 1; }
+  7% { opacity: 1; }
+  10% { opacity: 0; }
+  90% { opacity: 0; }
+  93% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 
@@ -214,7 +321,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .category-main--khakhra .khakhra-hero-bg {
+  .category-main--khakhra .khakhra-hero-wave-frame {
     transform-origin: center;
     animation: khakhra-bg-grow 0.9s ease both;
   }
@@ -227,9 +334,8 @@
   .category-main--khakhra .category-hero-badge {
     animation: khakhra-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
   }
-  /* Per-pack entrance removed — the .category-orbit-pack rule in
-     CategoryPage.css drives a phase-shifted opacity fade tied to the
-     orbit rotation. */
+  /* Pack entrance removed: the orbit fade owns the animation property. */
+
   @supports (animation-timeline: view()) {
     .category-main--khakhra .category-product-card,
     .category-main--khakhra .category-promo,

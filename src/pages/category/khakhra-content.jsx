@@ -6,6 +6,14 @@ import { scaleCategoryPage } from "./category-scale.js";
 const khakhraBannerBg = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffe7e2 100%)";
 const khakhraCardBg = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #ffeee4 100%)";
 
+function khakhraDecor(prefix, width, layers = ["a", "b"]) {
+  return layers.map((layer) => ({
+    image: asset(`category-khakhra-${prefix}-vector-${layer}.png`),
+    className: "khakhra-card-vector",
+    style: { left: 0, top: 0, width, height: 385 },
+  }));
+}
+
 /**
  * Khakhra — Figma node 1218:1112 (frame 1920×3557).
  * Authored in 1920 space; scaleCategoryPage scales numeric values ×2/3 into the 1280 shell.
@@ -30,6 +38,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraBannerBg,
       image: asset("category-khakhra-masala.png"),
+      decorations: khakhraDecor("masala", 870),
       imageStyle: { left: 264.84, top: 51.19, width: 261.48, height: 285.5, transform: "rotate(2deg)" },
       badge: { label: "BEST SELLER", tone: "muted", style: { left: 35.16, top: 59.99 } },
       title: "Masala\nKhakhra",
@@ -44,6 +53,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraBannerBg,
       image: asset("category-khakhra-7grain.png"),
+      decorations: khakhraDecor("7grain", 870),
       imageStyle: { left: 113, top: 61.7, width: 258, height: 283.9, transform: "rotate(-2deg)" },
       title: "7 Grain\nKhakhra",
       titleClass: "text-khakhra-brown product-title-lg text-right",
@@ -87,6 +97,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-jeera.png"),
+      decorations: khakhraDecor("jeera", 555, ["a"]),
       imageStyle: { left: 254, top: 57, width: 246, height: 271 },
       title: "Jeera\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",
@@ -100,6 +111,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-panipuri.png"),
+      decorations: khakhraDecor("panipuri", 555, ["a"]),
       imageStyle: { left: 278, top: 55, width: 246, height: 264 },
       title: "Pani Puri\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",
@@ -113,6 +125,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-oats.png"),
+      decorations: khakhraDecor("oats", 555),
       imageStyle: { left: 278, top: 61, width: 246, height: 264 },
       title: "Oats\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",
@@ -127,6 +140,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-chorafali.png"),
+      decorations: khakhraDecor("chorafali", 560),
       imageStyle: { left: 273, top: 61, width: 246, height: 264 },
       title: "Chorafali\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",
@@ -140,6 +154,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-bajri.png"),
+      decorations: khakhraDecor("bajri", 555),
       imageStyle: { left: 263, top: 61, width: 246, height: 264 },
       title: "Bajri\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",
@@ -153,6 +168,7 @@ const khakhraAt1920 = {
       height: 385,
       background: khakhraCardBg,
       image: asset("category-khakhra-garlic.png"),
+      decorations: khakhraDecor("garlic", 555),
       imageStyle: { left: 278, top: 61, width: 246, height: 264 },
       title: "Garlic\nKhakhra",
       titleClass: "text-khakhra-red product-title-lg",

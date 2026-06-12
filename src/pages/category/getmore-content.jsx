@@ -12,7 +12,7 @@ const getmoreAt1920 = {
       Discover our gallery of signature flavors.
     </>
   ),
-  height: 1712,
+  height: 1751,
   hero: {
     mode: "getmoreWide",
   },
@@ -31,7 +31,7 @@ const getmoreAt1920 = {
       top: 885,
       width: 870,
       height: 448,
-      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #f8ebff 100%)",
+      background: "radial-gradient(circle, #f6f6f6 0%, #f8ebff 100%)",
       image: asset("category-getmore-tomato.png"),
       imageStyle: { left: 27.18, top: 37.93, width: 350.4, height: 405.36, transform: "rotate(-6.84deg)" },
       badge: { label: "BEST SELLER", tone: "pink", style: { left: 575.58, top: 345.56 } },
@@ -45,7 +45,7 @@ const getmoreAt1920 = {
       top: 885,
       width: 870,
       height: 448,
-      background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #f8ebff 100%)",
+      background: "radial-gradient(circle, #f6f6f6 0%, #f8ebff 100%)",
       image: asset("category-getmore-chatpata.png"),
       imageStyle: { left: 24, top: 34, width: 352.48, height: 405.92, transform: "rotate(6.84deg)" },
       title: "Chatpata\nMasala",

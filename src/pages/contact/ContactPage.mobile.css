@@ -260,7 +260,7 @@
   }
 
   .contact-page .contact-social-strip,
-  .contact-page .contact-social-vector {
+  .contact-page .contact-social-cards {
     position: relative;
     top: auto;
     left: auto;
@@ -272,5 +272,24 @@
 
   .contact-page .contact-social-strip {
     margin-top: 0;
+  }
+
+  .contact-page .contact-social-cards {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .contact-page .contact-social-card {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .contact-page .contact-social-card:nth-child(3),
+  .contact-page .contact-social-card:nth-child(5) {
+    grid-column: 1 / -1;
+    width: min(62%, 260px);
+    justify-self: center;
   }
 }

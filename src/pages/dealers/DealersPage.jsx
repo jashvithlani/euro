@@ -60,12 +60,14 @@ const partnerCards = [
 
 function FormField({ field }) {
   const className = `dealers-field dealers-field--${field.col}${field.wide ? " dealers-field--wide" : ""} dealers-field--row-${field.row}`;
+  const required = field.label.includes("*");
+
   return (
     <label className={className}>
       <span className="dealers-field-label">{field.label}</span>
       {field.select ? (
         <span className="dealers-field-select">
-          <select defaultValue="" aria-label={field.label}>
+          <select name={field.id} defaultValue="" aria-label={field.label} required={required}>
             <option value="" disabled>
               {field.placeholder}
             </option>
@@ -76,13 +78,18 @@ function FormField({ field }) {
           <img src={asset("dealers-select.svg")} alt="" aria-hidden="true" />
         </span>
       ) : (
-        <input type={field.type || "text"} placeholder={field.placeholder} />
+        <input type={field.type || "text"} name={field.id} placeholder={field.placeholder} required={required} />
       )}
     </label>
   );
 }
 
 export default function DealersPage() {
+  const dealerStatus =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("dealerInquiry")
+      : null;
+
   return (
     <main className="dealers-main" data-node-id="1079:3487">
       {/* Form / hero card — Figma 1079:3688 */}
@@ -99,7 +106,21 @@ export default function DealersPage() {
           Please provide the details of your established entity or proposed venture.
         </p>
 
-        <form className="dealers-form" action="#">
+        <form className="dealers-form" action="/api/dealer-inquiry.php" method="post" encType="multipart/form-data">
+          {dealerStatus === "sent" && (
+            <p className="dealers-form-status dealers-form-status--success" role="status">
+              Your dealer inquiry has been sent. Our team will get back to you shortly.
+            </p>
+          )}
+          {dealerStatus === "error" && (
+            <p className="dealers-form-status dealers-form-status--error" role="alert">
+              We could not send your inquiry right now. Please try again or email us directly.
+            </p>
+          )}
+          <label className="dealers-form-trap" aria-hidden="true">
+            <span>Website</span>
+            <input type="text" name="website" tabIndex="-1" autoComplete="off" />
+          </label>
           <div className="dealers-fields">
             {formFields.map((field) => (
               <FormField key={field.id} field={field} />
@@ -111,12 +132,13 @@ export default function DealersPage() {
             <div className="dealers-upload-drop">
               <img src={asset("dealers-upload.svg")} alt="" aria-hidden="true" />
               <p>Click to upload or drag and drop your official company GST certificate</p>
+              <input type="file" name="gst-certificate" accept="application/pdf,image/png,image/jpeg,.pdf,.png,.jpg,.jpeg" required />
             </div>
           </div>
 
           <label className="dealers-field dealers-field--message">
             <span className="dealers-field-label">Message / Additional Notes</span>
-            <textarea placeholder="Briefly describe your vision for this partnership..."></textarea>
+            <textarea name="message" placeholder="Briefly describe your vision for this partnership..."></textarea>
           </label>
 
           <div className="dealers-submit-row">

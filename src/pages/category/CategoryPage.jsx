@@ -31,6 +31,8 @@ function getProductColor(imageUrl) {
 }
 
 const originalCategoryHeroBottom = 695.37;
+/** Compact top-nav hero bottom @ 1280 — matches CategoryPage.css (152 + 372.67). */
+const COMPACT_TOP_NAV_HERO_BOTTOM = 524.67;
 
 const pages = {
   chips: {
@@ -49,7 +51,7 @@ const pages = {
     },
     heroClassName: "category-hero--chips-top-nav",
     subnavPlacement: "top",
-    newsletter: { top: 1411.33, left: 22, background: "#d8efcf", className: "category-newsletter--chips-compact" },
+    newsletter: { top: "1411.33px", left: 22, background: "#d8efcf", className: "category-newsletter--chips-compact" },
     sections: [
       {
         type: "imageCard",
@@ -57,7 +59,7 @@ const pages = {
         top: "550.67px",
         width: 370,
         height: 259.33,
-        background: "radial-gradient(circle at 50% 50%, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
+        background: "radial-gradient(circle, #fed1bc 0%, #febf94 50%, #fdac6b 100%)",
         image: asset('category-chips-wide-card-masti.png'),
         imageStyle: { left: 94.17, top: -16.83, width: 292.99, height: 292.99 },
         badge: { label: "BEST SELLER", tone: "gold", style: { left: 21.33, top: 222 } },
@@ -153,46 +155,26 @@ function cssLength(value) {
   return typeof value === "number" ? `${value}px` : value;
 }
 
-function offsetFromHeroBottom(value) {
-  if (typeof value !== "number") return value;
-
-  const offset = Number((value - originalCategoryHeroBottom).toFixed(3));
-  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
-}
-
-function offsetFromHeroBottomNamkeen(value, shiftUp) {
+/** Bake absolute tops at 1280 so layout does not drift with viewport --home-hero-height. */
+function fixedTopFromHeroLayout(value, shiftUp = 0) {
   if (typeof value !== "number") return value;
 
   const offset = Number((value - originalCategoryHeroBottom - shiftUp).toFixed(3));
-  return `calc(var(--home-hero-height, 720px) + ${offset}px)`;
+  return `${Number((COMPACT_TOP_NAV_HERO_BOTTOM + offset).toFixed(3))}px`;
 }
 
 function applyTopHeroLayout(page, pageKey) {
-  if (pageKey !== "namkeen") {
-    return {
-      ...page,
-      height: offsetFromHeroBottom(page.height),
-      newsletter: page.newsletter
-        ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) }
-        : page.newsletter,
-      sections: page.sections.map((section) => ({
-        ...section,
-        top: offsetFromHeroBottom(section.top),
-      })),
-    };
-  }
-
-  const shiftUp = page.compactContentShift ?? 0;
+  const shiftUp = pageKey === "namkeen" ? (page.compactContentShift ?? 0) : 0;
 
   return {
     ...page,
-    height: offsetFromHeroBottomNamkeen(page.height, shiftUp),
+    height: fixedTopFromHeroLayout(page.height, shiftUp),
     newsletter: page.newsletter
-      ? { ...page.newsletter, top: offsetFromHeroBottomNamkeen(page.newsletter.top, shiftUp) }
+      ? { ...page.newsletter, top: fixedTopFromHeroLayout(page.newsletter.top, shiftUp) }
       : page.newsletter,
     sections: page.sections.map((section) => ({
       ...section,
-      top: offsetFromHeroBottomNamkeen(section.top, shiftUp),
+      top: fixedTopFromHeroLayout(section.top, shiftUp),
     })),
   };
 }
@@ -530,8 +512,12 @@ function PromoPanel({ item }) {
 }
 
 function FeatureCard({ item }) {
+  const productColor = getProductColor(item.image);
   return (
-    <article className={`category-feature ${item.className || ""}`} style={{ ...boxStyle(item), background: item.background }}>
+    <article
+      className={`category-feature ${item.className || ""}`}
+      style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
+    >
       <div className="category-feature-copy">
         <span style={{ color: item.kickerColor }}>{item.kicker}</span>
         <h2 style={{ color: item.titleColor }}>
@@ -573,9 +559,6 @@ function SpotlightStrip({ item }) {
           <span key={line}>{line}</span>
         ))}
       </h2>
-      <button className="category-spotlight-arrow category-spotlight-arrow--left" type="button" aria-label="Previous Royal Crunch product">
-        <span aria-hidden="true">{"<"}</span>
-      </button>
       <div className="category-spotlight-cards">
         {item.items.map((product) => (
           <article className="category-spotlight-card" key={product.image}>
@@ -584,9 +567,6 @@ function SpotlightStrip({ item }) {
           </article>
         ))}
       </div>
-      <button className="category-spotlight-arrow category-spotlight-arrow--right" type="button" aria-label="Next Royal Crunch product">
-        <span aria-hidden="true">{">"}</span>
-      </button>
     </section>
   );
 }

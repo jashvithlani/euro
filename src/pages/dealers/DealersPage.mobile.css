@@ -38,6 +38,12 @@
     margin-top: 28px;
   }
 
+  .dealers-page .dealers-form-status {
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
   .dealers-page .dealers-fields {
     position: relative;
     display: flex;

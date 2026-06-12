@@ -3,6 +3,11 @@ import { sharedAsset } from '../../shared/asset.js';
 import "./ExportsPage.css";
 
 export default function ExportsPage() {
+  const inquiryStatus =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("exportInquiry")
+      : null;
+
   return (
     <>
             <main className="exports-main">
@@ -99,25 +104,39 @@ export default function ExportsPage() {
                     <p>Fill out the form below to initiate an export partnership. Our dedicated division will review your details and get in touch within 48 hours.</p>
                   </header>
 
-                  <form className="export-form" action="#">
+                  <form className="export-form" action="/api/export-inquiry.php" method="post">
+                    {inquiryStatus === "sent" && (
+                      <p className="export-form-status export-form-status--success" role="status">
+                        Your export inquiry has been sent. Our team will get back to you shortly.
+                      </p>
+                    )}
+                    {inquiryStatus === "error" && (
+                      <p className="export-form-status export-form-status--error" role="alert">
+                        We could not send your inquiry right now. Please try again or email us directly.
+                      </p>
+                    )}
+                    <label className="export-form-trap" aria-hidden="true">
+                      <span>Website</span>
+                      <input type="text" name="website" tabIndex="-1" autoComplete="off" />
+                    </label>
                     <fieldset>
                       <legend><span>01</span> Primary Contact Details</legend>
                       <div className="export-field-grid">
                         <label>
                           <span>Your name *</span>
-                          <input type="text" name="name" />
+                          <input type="text" name="name" required />
                         </label>
                         <label>
                           <span>Your email *</span>
-                          <input type="email" name="email" />
+                          <input type="email" name="email" required />
                         </label>
                         <label>
                           <span>Mobile No. *</span>
-                          <input type="tel" name="mobile" />
+                          <input type="tel" name="mobile" required />
                         </label>
                         <label>
                           <span>Country *</span>
-                          <input type="text" name="country" />
+                          <input type="text" name="country" required />
                         </label>
                       </div>
                     </fieldset>
@@ -127,23 +146,23 @@ export default function ExportsPage() {
                       <div className="export-field-grid">
                         <label className="export-field-full">
                           <span>Address *</span>
-                          <input type="text" name="address" />
+                          <input type="text" name="address" required />
                         </label>
                         <label>
                           <span>State *</span>
-                          <input type="text" name="state" />
+                          <input type="text" name="state" required />
                         </label>
                         <label>
                           <span>Proprietary/Partnership Firm *</span>
-                          <select name="firm-type" aria-label="Proprietary or Partnership Firm">
-                            <option></option>
+                          <select name="firm-type" aria-label="Proprietary or Partnership Firm" required>
+                            <option value=""></option>
                             <option>Proprietary</option>
                             <option>Partnership Firm</option>
                           </select>
                         </label>
                         <label>
                           <span>Name Of Proprietor *</span>
-                          <input type="text" name="proprietor" />
+                          <input type="text" name="proprietor" required />
                         </label>
                         <label>
                           <span>Operating since Years</span>

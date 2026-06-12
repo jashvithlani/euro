@@ -17,6 +17,14 @@ const timelineProducts = [
   { category: "Farali", image: categoryAsset("category-farali-kela-wafers.png") },
 ];
 
+const socialCards = [
+  { image: "social-card-1.png", alt: "Euro snack moment" },
+  { image: "social-card-2.png", alt: "Euro chips pack moment" },
+  { image: "social-card-3.png", alt: "Euro chips everywhere moment" },
+  { image: "social-card-4.png", alt: "Euro table snack moment" },
+  { image: "social-card-5.png", alt: "Fresh and tasty Euro beverages" },
+];
+
 export default function AboutPage() {
   const timelineRef = useRef(null);
   const timelineProductMarkerRef = useRef(null);
@@ -429,7 +437,17 @@ export default function AboutPage() {
                     to get featured!
                   </p>
                 </div>
-                <img className="about-social-cards" src={asset('social-cards.png')} alt="Euro India social feed" />
+                <div className="about-social-cards" aria-label="Euro India social feed">
+                  {socialCards.map((card, index) => (
+                    <img
+                      key={card.image}
+                      className="about-social-card"
+                      src={asset(card.image)}
+                      alt={card.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                  ))}
+                </div>
               </section>
             </main>
     </>

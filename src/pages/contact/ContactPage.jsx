@@ -22,6 +22,14 @@ const contactCards = [
   },
 ];
 
+const socialCards = [
+  { image: "contact-social-card-1.png", alt: "Euro snack moment" },
+  { image: "contact-social-card-2.png", alt: "Euro chips pack moment" },
+  { image: "contact-social-card-3.png", alt: "Euro chips everywhere moment" },
+  { image: "contact-social-card-4.png", alt: "Euro table snack moment" },
+  { image: "contact-social-card-5.png", alt: "Fresh and tasty Euro beverages" },
+];
+
 function ContactCard({ title, text, lines, icon, tone }) {
   return (
     <article className={`contact-card contact-card--${tone}`}>
@@ -47,6 +55,11 @@ function ContactField({ label, children, wide = false }) {
 }
 
 export default function ContactPage() {
+  const contactStatus =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("contactInquiry")
+      : null;
+
   return (
     <main className="contact-main">
       <section className="contact-hero" aria-labelledby="contact-title">
@@ -81,14 +94,28 @@ export default function ContactPage() {
 
       <section className="contact-form-band" aria-labelledby="contact-form-title">
         <div className="contact-form-panel">
-          <form className="contact-form" action="#">
+          <form className="contact-form" action="/api/contact-inquiry.php" method="post">
             <h2 id="contact-form-title">Send Us a Message</h2>
+            {contactStatus === "sent" && (
+              <p className="contact-form-status contact-form-status--success" role="status">
+                Your message has been sent. Our team will get back to you shortly.
+              </p>
+            )}
+            {contactStatus === "error" && (
+              <p className="contact-form-status contact-form-status--error" role="alert">
+                We could not send your message right now. Please try again or email us directly.
+              </p>
+            )}
+            <label className="contact-form-trap" aria-hidden="true">
+              <span>Website</span>
+              <input type="text" name="website" tabIndex="-1" autoComplete="off" />
+            </label>
             <div className="contact-form-grid">
               <ContactField label="Full Name">
-                <input type="text" name="name" placeholder="John Doe" />
+                <input type="text" name="name" placeholder="John Doe" required />
               </ContactField>
               <ContactField label="Email Address">
-                <input type="email" name="email" placeholder="john@example.com" />
+                <input type="email" name="email" placeholder="john@example.com" required />
               </ContactField>
               <ContactField label="Phone Number">
                 <input type="tel" name="phone" placeholder="+91 00000 00000" />
@@ -102,7 +129,7 @@ export default function ContactPage() {
                 </select>
               </ContactField>
               <ContactField label="Your Message" wide>
-                <textarea name="message" placeholder="How can we help you?"></textarea>
+                <textarea name="message" placeholder="How can we help you?" required></textarea>
               </ContactField>
             </div>
             <button className="contact-submit" type="submit">
@@ -150,7 +177,17 @@ export default function ContactPage() {
 
       <section className="contact-social" aria-label="Euro India social feed">
         <img className="contact-social-strip" src={asset('contact-social-strip.png')} alt="Euro India social feed" />
-        <img className="contact-social-vector" src={asset('contact-social-vector.png')} alt="" aria-hidden="true" />
+        <div className="contact-social-cards" aria-label="Euro India social moments">
+          {socialCards.map((card, index) => (
+            <img
+              key={card.image}
+              className="contact-social-card"
+              src={asset(card.image)}
+              alt={card.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          ))}
+        </div>
       </section>
     </main>
   );

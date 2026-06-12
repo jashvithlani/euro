@@ -164,8 +164,7 @@
  * ---------------------------------------------------------------------
  * Adds entrance + hover + scroll reveals for the sections the original
  * layer skipped (timeline, infrastructure, logistics, family, social),
- * plus Balaji-inspired patterns (hotspot pulse on every .float-tag and
- * a flip-style "back panel" hover on the two large .infra-large cards).
+ * plus a Balaji-inspired hotspot pulse on every .float-tag.
  *
  * Same compose-over-transform rule as elsewhere: animations drive the
  * individual `translate`/`scale`/`rotate` props so resting transforms
@@ -388,60 +387,6 @@
       rotate: none !important;
     }
   }
-}
-
-/* ---- Balaji-inspired flip-style hover on the two large infra cards.
-   Each .infra-large already shows photo + text side-by-side; on hover
-   we lift the photo and reveal an accent panel that reads "Discover
-   →" sitting beneath. ::before is the back panel; the photo is
-   z-layered above it; the text card stays on top. Card itself has
-   overflow:hidden (verified in AboutPage.mobile.css and the base
-   styles), so the leaving photo is clipped. */
-
-.infra-large {
-  isolation: isolate;
-}
-
-.infra-large::before {
-  content: "Discover \2192";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 50%; /* matches the photo footprint on these cards */
-  height: 100%;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 0;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.infra-large > img {
-  position: relative;
-  z-index: 1;
-  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.infra-large > div {
-  position: relative;
-  z-index: 2;
-}
-
-.infra-large:hover::before {
-  opacity: 1;
-}
-
-.infra-large:hover > img {
-  translate: 0 -110%;
-  scale: 1 !important; /* beat the generic .infra-card:hover > img scale */
 }
 
 /* ---- Entrance + scroll reveals for the uncovered sections.

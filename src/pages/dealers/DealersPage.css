@@ -72,6 +72,36 @@
   margin-top: 42.67px;
 }
 
+.dealers-form-status {
+  width: 1100.67px;
+  margin: 0 auto 24px;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 10.67px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.dealers-form-status--success {
+  background: rgba(26, 127, 55, 0.1);
+  color: #176832;
+}
+
+.dealers-form-status--error {
+  background: rgba(190, 0, 75, 0.1);
+  color: #be004b;
+}
+
+.dealers-form-trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* Absolutely-laid two-column field block */
 .dealers-fields {
   position: relative;
@@ -205,6 +235,7 @@
 }
 
 .dealers-upload-drop {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,6 +243,13 @@
   padding: 22.67px;
   border: 1.33px dashed rgba(222, 164, 151, 0.3);
   border-radius: 16px;
+}
+
+.dealers-upload-drop input {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  opacity: 0;
 }
 
 .dealers-upload-drop img {

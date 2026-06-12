@@ -10,13 +10,13 @@ export const productColors = {
   "category-bakery-surati-nankhatai.png": "#c99958",
   "category-beverage-guava.png": "#f38896",
   "category-beverage-jeera.png": "#c65c1a",
-  "category-beverage-lemoni.png": "#cdc4b9",
+  "category-beverage-lemoni.png": "#005c15",
   "category-beverage-litchi.png": "#e2d9cb",
   "category-beverage-mango.png": "#f18804",
   "category-beverage-onceup.png": "#d6d619",
   "category-beverage-orange.png": "#f78707",
   "category-beverage-sparker.png": "#ed1e2a",
-  "category-beverage-water.png": "#f4e4dd",
+  "category-beverage-water.png": "#221f26",
   "category-chikki-almond.png": "#b76a24",
   "category-chikki-cashew.png": "#e7dbb6",
   "category-chikki-crush-peanut.png": "#921622",
@@ -27,7 +27,7 @@ export const productColors = {
   // Chips wide-card images composite each pack onto a peach splash, so
   // naive dominant-colour sampling returned peach for every variant.
   // Salted / tomato / chilli came out right under saturation weighting;
-  // masti + onion are hand-picked to match the pack art (saffron, green).
+  // masti + onion are hand-picked to match the pack art (navy, green).
   //
   // ALIAS NOTE: the 5 category-chips-wide-card-*.png files are
   // byte-identical to the category-chips-*.png files used elsewhere
@@ -37,12 +37,12 @@ export const productColors = {
   // not the "wide-card" name. We register the colour under BOTH keys
   // so the lookup hits either way.
   "category-chips-wide-card-chilli.png": "#d51a23", // chilli red
-  "category-chips-wide-card-masti.png":  "#efb20a", // saffron / gold
+  "category-chips-wide-card-masti.png":  "#293582",
   "category-chips-wide-card-onion.png":  "#6ca538", // onion green
   "category-chips-wide-card-salted.png": "#ebca18", // bright yellow
   "category-chips-wide-card-tomato.png": "#c0392b", // tomato red
   "category-chips-chilli.png":           "#d51a23",
-  "category-chips-masti.png":            "#efb20a",
+  "category-chips-masti.png":            "#293582",
   "category-chips-onion.png":            "#6ca538",
   "category-chips-salted.png":           "#ebca18",
   "category-chips-tomato.png":           "#c0392b",

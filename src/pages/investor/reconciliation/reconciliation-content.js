@@ -1,12 +1,6 @@
-/** Figma 1131:1615 — Reconciliation @ 1920 → 1280 */
+/** Reconciliation — synced from euroindiafoods.com */
 export const reconciliationYears = [
-  "2025-26",
-  "2024-25",
-  "2023-24",
-  "2022-23",
-  "2021-22",
-  "2020-21",
-  "2019-20",
+  "2025-26"
 ];
 
 const reconciliationDocumentsByYear = {
@@ -14,42 +8,17 @@ const reconciliationDocumentsByYear = {
     {
       title: "Reconciliation of Share Capital Audit Report 30.06.2025",
       date: "June 30, 2025",
-      fileSize: "1.2 MB",
-      href: "#",
-      isNew: true,
+      fileSize: "123 KB",
+      href: "/investor-pdfs/reconciliation/RECO-30.06.2025.pdf",
+      isNew: true
     },
     {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "March 31, 2025",
-      fileSize: "840 KB",
-      href: "#",
-    },
-    {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "December 31, 2024",
-      fileSize: "920 KB",
-      href: "#",
-    },
-    {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "June 30, 2025",
-      fileSize: "1.2 MB",
-      href: "#",
-      isNew: true,
-    },
-    {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "March 31, 2025",
-      fileSize: "840 KB",
-      href: "#",
-    },
-    {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "December 31, 2024",
-      fileSize: "920 KB",
-      href: "#",
-    },
-  ],
+      title: "Reconcilliation of Share Capital Audit 31.12.2025",
+      date: "December 31, 2025",
+      fileSize: "221 KB",
+      href: "/investor-pdfs/reconciliation/Reconciliation-of-share-capital-audit.pdf"
+    }
+  ]
 };
 
 export function getReconciliationDocuments(year) {

@@ -1,38 +1,7 @@
 import { Link } from "react-router-dom";
 import { asset } from "./asset.js";
+import { complianceReports } from "./secretarial-content.js";
 import "./SecretarialPage.css";
-
-const complianceReports = [
-  {
-    id: "2024-25",
-    title: "Compliance Report 2024-25",
-    status: "Final",
-    size: "4.2 MB",
-    featured: true,
-    href: "#",
-  },
-  {
-    id: "2023-24",
-    title: "Compliance Report 2023-24",
-    status: "Archived",
-    size: "3.8 MB",
-    href: "#",
-  },
-  {
-    id: "2022-23",
-    title: "Compliance Report 2022-23",
-    status: "Archived",
-    size: "5.1 MB",
-    href: "#",
-  },
-  {
-    id: "2021-22",
-    title: "Compliance Report 2021-22",
-    status: "Archived",
-    size: "3.9 MB",
-    href: "#",
-  },
-];
 
 export default function SecretarialPage() {
   return (

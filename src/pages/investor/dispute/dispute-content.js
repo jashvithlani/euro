@@ -10,7 +10,7 @@ export const disputePageCopy = {
     eyebrow: "INTEGRATED REPORT",
     title: "Online Dispute Resolution",
     cta: "DOWNLOAD REPORT",
-    href: "#",
+    href: "/investor-pdfs/dispute/SEBI-Cicular-for-Smart-ODR.pdf",
   },
   portal: {
     titleLines: ["Smart Online", "Dispute Resolution", "Portal"],

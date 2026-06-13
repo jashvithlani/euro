@@ -4,7 +4,7 @@ import {
   calendarYearTabs,
   fyYearTabs,
   getAnnouncementGroups,
-  reportCards,
+  getCalendarAnnouncementCards,
 } from "./announcement-content.js";
 import InvestorCompactDocCard from "./components/InvestorCompactDocCard.jsx";
 import InvestorReportCard from "./components/InvestorReportCard.jsx";
@@ -14,7 +14,10 @@ import "./AnnouncementsPage.css";
 export default function AnnouncementsPage() {
   const [activeFyIndex, setActiveFyIndex] = useState(0);
   const [activeCalendarIndex, setActiveCalendarIndex] = useState(0);
-  const groups = getAnnouncementGroups();
+  const activeFyYear = fyYearTabs[activeFyIndex];
+  const activeCalendarYear = calendarYearTabs[activeCalendarIndex];
+  const groups = getAnnouncementGroups(activeFyYear);
+  const calendarCards = getCalendarAnnouncementCards(activeCalendarYear);
 
   return (
     <section className="investor-announcements" aria-labelledby="investor-announcements-title">
@@ -53,17 +56,13 @@ export default function AnnouncementsPage() {
         className="investor-announcements__calendar-tabs"
       />
 
-      <div className="investor-announcements__report-grid">
-        {reportCards.map((card) => (
-          <InvestorReportCard key={card.title} {...card} />
-        ))}
-      </div>
-
-      <div className="investor-announcements__report-grid investor-announcements__report-grid--secondary">
-        {reportCards.map((card) => (
-          <InvestorReportCard key={`secondary-${card.title}`} {...card} />
-        ))}
-      </div>
+      {calendarCards.length > 0 ? (
+        <div className="investor-announcements__report-grid">
+          {calendarCards.map((card) => (
+            <InvestorReportCard key={`${activeCalendarYear}-${card.title}`} {...card} />
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }

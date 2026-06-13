@@ -1,5 +1,4 @@
-/** Corporate Policies — Figma 1117:5551 @1920, scaled in PoliciesPage.css */
-
+/** Corporate Policies — synced from euroindiafoods.com */
 export const policiesPageCopy = {
   title: "Corporate Policies",
   subtitle: [
@@ -17,28 +16,37 @@ export const policiesDocumentGroups = [
     rows: [
       [
         {
-          title: ["Integrated Annual Report", "2024-25"],
-          meta: "PDF • 28.4 MB",
+          title: "Familarization policy of IDs",
+          meta: "PDF • 195 KB",
           icon: "report",
-          tall: true,
-          href: "#",
+          href: "/investor-pdfs/policies/Familiarization_Programme_for_ID.pdf",
+          tall: false
         },
         {
-          title: ["Notice of 15th Annual General", "Meeting"],
-          meta: "PDF • 1.2 MB • Sep 05, 2024",
-          icon: "notice",
-          tall: true,
-          href: "#",
+          title: "Code of Conduct",
+          meta: "PDF • 706 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/3._Code_of_Conduct-1.pdf",
+          tall: false
         },
         {
-          title: ["Notice of 15th Annual General", "Meeting"],
-          meta: "PDF • 1.2 MB • Sep 05, 2024",
-          icon: "notice",
-          tall: true,
-          href: "#",
-        },
+          title: "Materiality of an event Policy",
+          meta: "PDF • 779 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/2._Materiality_of_an_event_Policy-1.pdf",
+          tall: false
+        }
       ],
-    ],
+      [
+        {
+          title: "Code of Practices and procedures for fair disclosure of UPSI.",
+          meta: "PDF • 519 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/6.-COC_FD.pdf",
+          tall: false
+        }
+      ]
+    ]
   },
   {
     id: "corporate-policies",
@@ -47,66 +55,142 @@ export const policiesDocumentGroups = [
     rows: [
       [
         {
-          title: "Annual Report 2021-22",
-          meta: "PDF • 19.8 MB",
+          title: "Board Diversity Policy",
+          meta: "PDF • 202 KB",
           icon: "report",
-          href: "#",
+          href: "/investor-pdfs/policies/Board-Diversity-Policy.pdf",
+          tall: false
         },
         {
-          title: "Annual Return 2021-22",
-          meta: "PDF • 4.2 MB",
-          icon: "return",
-          href: "#",
+          title: "Familarization policy of IDs",
+          meta: "PDF • 181 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Familarization-policy-of-IDs.pdf",
+          tall: false
         },
         {
-          title: "Annual Return 2021-22",
-          meta: "PDF • 4.2 MB",
-          icon: "return",
-          href: "#",
-        },
+          title: "Materiality of an event Policy",
+          meta: "PDF • 254 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Materiality-of-an-event-Policy.pdf",
+          tall: false
+        }
       ],
       [
         {
-          title: "Annual Report 2022-23",
-          meta: "PDF • 22.1 MB",
+          title: "Performance Evaluation Policy",
+          meta: "PDF • 145 KB",
           icon: "report",
-          href: "#",
+          href: "/investor-pdfs/policies/Performance-Evaluation-Policy.pdf",
+          tall: false
         },
         {
-          title: "Annual Return 2022-23",
-          meta: "PDF • 5.4 MB",
-          icon: "return",
-          href: "#",
+          title: "Policy on Preservation of Documents",
+          meta: "PDF • 599 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Policy-on-Preservation-Of-Documents.pdf",
+          tall: false
         },
         {
-          title: "Annual Return 2022-23",
-          meta: "PDF • 5.4 MB",
-          icon: "return",
-          href: "#",
-        },
+          title: "Related Party Transaction Policy",
+          meta: "PDF • 461 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/2._Related_Party_Transaction_Policy.pdf",
+          tall: false
+        }
       ],
       [
         {
-          title: "Annual Report 2023-24",
-          meta: "PDF • 24.5 MB",
+          title: "Remuneration Committee Policy",
+          meta: "PDF • 372 KB",
           icon: "report",
-          href: "#",
+          href: "/investor-pdfs/policies/Nomination-and-Remuneration-Policy-NRC.pdf",
+          tall: false
         },
         {
-          title: ["Notice of 14th Annual General", "Meeting"],
-          meta: "PDF • 0.9 MB • Sep 06, 2023",
-          icon: "notice",
-          tall: true,
-          href: "#",
+          title: "Risk Management Policy",
+          meta: "PDF • 293 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/3.-Risk-Management-Policy.pdf",
+          tall: false
         },
         {
-          title: ["Notice of 14th Annual General", "Meeting"],
-          meta: "PDF • 0.9 MB • Sep 06, 2023",
-          icon: "notice",
-          tall: true,
-          href: "#",
-        },
+          title: "Prohibition of insider trading policy",
+          meta: "PDF • 512 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/4.-Prohibition-of-Insider-Trading-Policy.pdf",
+          tall: false
+        }
       ],
-    ],
-  },
+      [
+        {
+          title: "Vigil Mechanism Whistle Blower Policy",
+          meta: "PDF • 374 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Vigil-Mechanism-Whistle-Blower-Policy.pdf",
+          tall: false
+        },
+        {
+          title: "Archival Policy",
+          meta: "PDF • 141 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Archival_Policy-1.pdf",
+          tall: false
+        },
+        {
+          title: "Terms and condition of ID.",
+          meta: "PDF • 415 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Terms-and-condition-of-ID.pdf",
+          tall: false
+        }
+      ],
+      [
+        {
+          title: "Policy of Material Subsidiaries.",
+          meta: "PDF • 344 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Policy-on-material-subsidiary.pdf",
+          tall: false
+        },
+        {
+          title: "Policy of Payment to Non-Executive Directors.",
+          meta: "PDF • 95 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/3._Payment_to_NED.pdf",
+          tall: false
+        },
+        {
+          title: "Code of Conduct for Board of Directors",
+          meta: "PDF • 220 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/5.COC_BD.pdf",
+          tall: false
+        }
+      ],
+      [
+        {
+          title: "Unpublished Price Sensitive Information (UPSI)",
+          meta: "PDF • 360 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/UPSI.pdf",
+          tall: false
+        },
+        {
+          title: "Policy on Corporate Social Responsibility",
+          meta: "PDF • 1.3 MB",
+          icon: "report",
+          href: "/investor-pdfs/policies/CSR-Policy.pdf",
+          tall: false
+        },
+        {
+          title: "Familiarization Program for ID 2025-26",
+          meta: "PDF • 126 KB",
+          icon: "report",
+          href: "/investor-pdfs/policies/Familiarization_Programme_for_ID-2025-26.pdf",
+          tall: false
+        }
+      ]
+    ]
+  }
 ];

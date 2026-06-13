@@ -11,7 +11,7 @@ const sectionContent = {
         Review our financial foundations and strategic growth vision.
       </>
     ),
-    downloadHref: "#",
+    downloadHref: "/investor-pdfs/prospectus/Euro_Final-Prospectus.pdf",
   },
 };
 

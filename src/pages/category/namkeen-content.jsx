@@ -8,7 +8,7 @@ const namkeenCardBackground = "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #e
 const namkeenAt1920 = {
     title: "Namkeen",
     copy: "A rich blend of spices and textures crafted to satisfy every savory craving.",
-    height: 5961,
+    height: 5972,
     /* Pull grid up under compact hero (~40px below packs vs ~140px). @1920 → ×2/3 in layout. */
     compactContentShift: 156,
     hero: { mode: "namkeen" },

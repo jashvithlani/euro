@@ -43,7 +43,7 @@ const pages = {
       </>
     ),
     badge: "FRESHLY PACKED",
-    height: "1628px",
+    height: "1663px",
     hero: {
       mode: "chipsWide",
     },

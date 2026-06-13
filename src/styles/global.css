@@ -861,8 +861,9 @@ textarea {
 }
 
 .product-card--yellow .product-art img {
-  width: 184px;
+  width: auto;
   height: 184px;
+  max-width: 100%;
 }
 
 .product-badge {
@@ -1291,13 +1292,9 @@ textarea {
   background: #fff8f6;
 }
 
-.social-feed-header,
-.social-feed-cards {
+.social-feed-header {
   position: absolute;
   max-width: none;
-}
-
-.social-feed-header {
   top: 16px;
   left: 63.33px;
   width: 1092px;
@@ -1306,12 +1303,43 @@ textarea {
   object-position: top left;
 }
 
-.social-feed-cards {
+.social-feed-grid {
+  position: absolute;
   top: 296.67px;
-  left: 103.33px;
-  width: 1080px;
-  height: 273.33px;
-  object-fit: fill;
+  left: 63.33px;
+  display: grid;
+  width: 1092px;
+  grid-template-columns: 1.03fr 0.93fr 1.13fr 1.06fr 1.02fr;
+  align-items: start;
+  gap: 22px;
+}
+
+.social-feed-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: center;
+  transition:
+    translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+  will-change: transform;
+}
+
+.social-feed-card:nth-child(2) {
+  margin-top: 44px;
+}
+
+.social-feed-card:nth-child(4) {
+  margin-top: 38px;
+}
+
+.social-feed-card:hover {
+  translate: 0 -10px;
+  scale: 1.045;
+  rotate: 0deg;
+  filter: drop-shadow(0 22px 20px rgba(78, 40, 31, 0.18));
 }
 
 .footer {

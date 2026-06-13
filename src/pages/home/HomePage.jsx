@@ -191,7 +191,7 @@ export default function HomePage() {
                     <article className="product-card product-card--yellow">
                       <div className="product-art">
                         <span className="product-badge product-badge--green">Natural</span>
-                        <img src={asset('bestseller-raw-mango.png')} alt="Raw Mango Punch" />
+                        <img src={asset('bestseller-mango.png')} alt="Raw Mango Punch" />
                       </div>
                       <h3>Raw Mango Punch</h3>
                       <p>Tangy refreshment in every sip.</p>
@@ -296,7 +296,13 @@ export default function HomePage() {
 
               <section className="social-section">
                 <img className="social-feed-header" src={asset('social-feed-header-figma.png')} alt="Euro India social feed header" />
-                <img className="social-feed-cards" src={asset('social-feed-cards-figma.png')} alt="Euro India social moments" />
+                <div className="social-feed-grid" aria-label="Euro India social moments">
+                  <img className="social-feed-card" src={asset('social-card-1.png')} alt="Euro snack moment" loading="lazy" />
+                  <img className="social-feed-card" src={asset('social-card-2.png')} alt="Euro chips pack moment" loading="lazy" />
+                  <img className="social-feed-card" src={asset('social-card-3.png')} alt="Euro chips everywhere moment" loading="lazy" />
+                  <img className="social-feed-card" src={asset('social-card-4.png')} alt="Euro table snack moment" loading="lazy" />
+                  <img className="social-feed-card" src={asset('social-card-5.png')} alt="Fresh and tasty Euro beverages" loading="lazy" />
+                </div>
               </section>
             </main>
     </>

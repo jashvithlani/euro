@@ -14,7 +14,7 @@ const chikkiPromoBlue = "#246593";
 const chikkiAt1920 = {
   title: "Chikki",
   copy: "Crafted with the goodness of jaggery and premium nuts for an authentic treat",
-  height: "2123px",
+  height: "2136px",
   hero: { mode: "chikki" },
   heroClassName: "category-hero--chikki-top-nav",
   subnavPlacement: "top",

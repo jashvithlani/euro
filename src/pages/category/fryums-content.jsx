@@ -15,7 +15,7 @@ const fryumsAt1920 = {
   title: "Fryums",
   copy: "Playful snacks packed with bold flavours and irresistible crunch.",
   // Footer sits at Figma y=3283 → 3283 × 2/3 ≈ 2189px in 1280 space.
-  height: "2189px",
+  height: "2045px",
   hero: { mode: "fryums" },
   heroClassName: "category-hero--fryums-top-nav",
   subnavPlacement: "top",
@@ -85,7 +85,7 @@ const fryumsAt1920 = {
         transform: "rotate(5.65deg)",
       },
       title: "Masala Noodles\nStix",
-      titleClass: "text-fryums-purple product-title-sm",
+      titleClass: "text-fryums-purple product-title-fryums-40",
       titleStyle: { left: 33, top: 35, width: 420 },
     },
     {
@@ -178,8 +178,8 @@ const fryumsAt1920 = {
       image: asset("category-fryums-cone-cap.png"),
       imageStyle: { left: 189, top: 105, width: 183, height: 246 },
       title: "Cone Cap",
-      titleClass: "text-fryums-deepgreen product-title-lg",
-      titleStyle: { left: 81, top: 15, width: 320 },
+      titleClass: "text-fryums-deepgreen product-title-fryums-40",
+      titleStyle: { left: 39, top: 23, width: 360 },
     },
   ],
 };

@@ -17,7 +17,7 @@ const beveragesAt1920 = {
       Bold flavors, smooth sips — pure satisfaction in every bottle.
     </>
   ),
-  height: "2488.67px",
+  height: "2505px",
   hero: {
     mode: "beveragesWide",
   },

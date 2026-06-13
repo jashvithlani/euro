@@ -8,6 +8,21 @@
   height: 500px;
 }
 
+/* Row-1 Khari banner titles: the long second line ("Methi Khari" / "Plain
+   Khari") runs at 48px into the pack art / past the card edge. Drop to 42px
+   so each title sits cleanly beside its pack. */
+.category-main--bakery .bakery-title-khari {
+  font-size: 42px;
+  line-height: 42px;
+}
+
+/* Row-3 rusk / nankhatai cards: keep the three titles a consistent size that
+   sits above the pack art without crowding it. */
+.category-main--bakery .bakery-title-nankhatai {
+  font-size: 40px;
+  line-height: 40px;
+}
+
 .category-main--bakery .category-hero-bakery {
   top: 0;
   left: 0;

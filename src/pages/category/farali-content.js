@@ -6,8 +6,8 @@ import { scaleCategoryPage } from "./category-scale.js";
 const faraliAt1920 = {
   title: "Farali",
   copy: "A delightful crunch inspired by tradition, crafted with bold flavors for every fasting moment.",
-  /* 2871 + compact newsletter (~329) + 40px breathing room @ 1280 (60 @ 1920) */
-  height: 3260,
+  /* 2871 + compact newsletter (~329) + 48px breathing room @ 1280 (72 @ 1920) */
+  height: 3272,
   hero: { mode: "farali" },
   heroClassName: "category-hero--farali-top-nav",
   subnavPlacement: "top",

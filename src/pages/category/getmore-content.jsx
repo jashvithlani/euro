@@ -12,7 +12,7 @@ const getmoreAt1920 = {
       Discover our gallery of signature flavors.
     </>
   ),
-  height: 1751,
+  height: 1784,
   hero: {
     mode: "getmoreWide",
   },

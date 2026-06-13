@@ -20,6 +20,14 @@
   line-height: 32px;
 }
 
+/* Portrait flavour cards are only ~370px wide; the 48px title overruns the
+   pack art. Drop the title size so it sits cleanly left of the packs (which
+   are pushed to the card's right edge in khakhra-content.jsx). */
+.category-main--khakhra .khakhra-title-portrait {
+  font-size: 34px;
+  line-height: 33px;
+}
+
 /* Bold Crunch promo: top-anchored like the other category promos so the
    two-line title is never clipped by the banner's top edge. */
 .category-promo.category-promo--khakhra {

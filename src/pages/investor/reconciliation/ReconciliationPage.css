@@ -36,15 +36,8 @@
   color: var(--color-muted, #825348);
 }
 
-/* Year tabs — Figma 1131:1855 */
+/* Year tabs — Figma 1131:1855; scroll strip sizing in InvestorYearTabs.css */
 .investor-reconciliation .investor-year-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 713px;
-  min-height: 53px;
   margin: 39px auto 0;
   padding: 0 14px;
 }

@@ -12,7 +12,6 @@ const EXPECT = {
     "A commitment to transparency, ethical conduct, and the highest standards of culinary integrity across all global operations.",
   groupLabels: ["Financial Year 2021-22", "Corporate Policies"],
   cardCount: 12,
-  viewAll: "View All",
   activeTab: "Corporate Policies",
 };
 
@@ -54,14 +53,6 @@ async function runPass(page, pass) {
     ok: cardCount === EXPECT.cardCount,
     expected: EXPECT.cardCount,
     actual: cardCount,
-  });
-
-  const viewAll = await page.locator(".investor-policies-view-all a").textContent();
-  results.checks.push({
-    name: "view all link",
-    ok: viewAll?.trim() === EXPECT.viewAll,
-    expected: EXPECT.viewAll,
-    actual: viewAll?.trim(),
   });
 
   const activeTab = await page.locator(".investor-filter-nav__pill.is-active").textContent();

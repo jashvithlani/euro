@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InvestorDocumentGrid from "../components/InvestorDocumentGrid.jsx";
 import InvestorYearTabs from "../components/InvestorYearTabs.jsx";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import { asset } from "./asset.js";
 import { agmYears, getAgmContent } from "./agm-content.js";
 import "./AgmPage.css";
@@ -14,10 +15,13 @@ const agmCardIcons = {
 
 export default function AgmPage() {
   const [activeYear, setActiveYear] = useState("2025-26");
+  const sectionRef = useRef(null);
   const content = getAgmContent(activeYear);
 
+  useInvestorDynamicHeight(sectionRef, [activeYear]);
+
   return (
-    <section className="investor-agm" aria-labelledby="investor-agm-title">
+    <section ref={sectionRef} className="investor-agm" aria-labelledby="investor-agm-title">
       <h2 id="investor-agm-title">AGM/EGM</h2>
       <p className="investor-agm__lead">
         Transparent governance through timely disclosures and

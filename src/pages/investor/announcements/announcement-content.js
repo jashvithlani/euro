@@ -1910,7 +1910,6 @@ export const announcementsPageCopy = {
     "Transparent communication and timely disclosures regarding our operational milestones, board decisions, and strategic shifts.",
   boardMeetingsLabel: "Board Meetings",
   generalLabel: "General Announcements",
-  viewAllLabel: "View All",
 };
 
 export function getAnnouncementGroups(fyYear) {

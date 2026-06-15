@@ -1,6 +1,9 @@
+import { useScrollActiveTabIntoView } from "../../components/useScrollActiveTabIntoView.js";
 import "../../components/InvestorYearTabs.css";
 
 export default function InvestorYearTabs({ tabs, activeIndex, onChange, className = "" }) {
+  const activeRef = useScrollActiveTabIntoView(activeIndex);
+
   return (
     <div className={`investor-year-tabs ${className}`.trim()} role="tablist" aria-label="Filter by period">
       {tabs.map((label, index) => {
@@ -8,6 +11,7 @@ export default function InvestorYearTabs({ tabs, activeIndex, onChange, classNam
         return (
           <button
             key={label}
+            ref={isActive ? activeRef : undefined}
             type="button"
             role="tab"
             aria-selected={isActive}

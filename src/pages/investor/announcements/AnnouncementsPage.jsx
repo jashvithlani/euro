@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import {
   announcementsPageCopy,
   calendarYearTabs,
@@ -14,13 +15,22 @@ import "./AnnouncementsPage.css";
 export default function AnnouncementsPage() {
   const [activeFyIndex, setActiveFyIndex] = useState(0);
   const [activeCalendarIndex, setActiveCalendarIndex] = useState(0);
+  const sectionRef = useRef(null);
   const activeFyYear = fyYearTabs[activeFyIndex];
   const activeCalendarYear = calendarYearTabs[activeCalendarIndex];
-  const groups = getAnnouncementGroups(activeFyYear);
+  const groups = getAnnouncementGroups(activeFyYear).filter((group) =>
+    group.rows.some((row) => row.length > 0)
+  );
   const calendarCards = getCalendarAnnouncementCards(activeCalendarYear);
 
+  useInvestorDynamicHeight(sectionRef, [activeFyIndex, activeCalendarIndex], { bottomGap: 0 });
+
   return (
-    <section className="investor-announcements" aria-labelledby="investor-announcements-title">
+    <section
+      ref={sectionRef}
+      className="investor-announcements"
+      aria-labelledby="investor-announcements-title"
+    >
       <header className="investor-announcements__header">
         <h2 id="investor-announcements-title">{announcementsPageCopy.title}</h2>
         <p>{announcementsPageCopy.description}</p>
@@ -43,9 +53,6 @@ export default function AnnouncementsPage() {
               ))}
             </div>
           ))}
-          <button type="button" className="investor-announcements__view-all">
-            {announcementsPageCopy.viewAllLabel}
-          </button>
         </div>
       ))}
 

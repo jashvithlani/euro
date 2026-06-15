@@ -16,11 +16,101 @@
   line-height: 16px;
   white-space: nowrap;
   cursor: pointer;
+  scroll-margin-inline: 4px;
   transition:
     background 0.15s ease,
     color 0.15s ease,
     box-shadow 0.15s ease,
     transform 0.15s ease;
+}
+
+/* Scrollable year strip — show 5 tabs, scroll for the rest (desktop) */
+@media (min-width: 1000px) {
+  .investor-page .investor-year-tabs,
+  .investor-page .investor-shareholding__years,
+  .investor-page .investor-financial__years,
+  .investor-page .investor-governance .investor-year-tabs,
+  .investor-page .investor-agm .investor-year-tabs,
+  .investor-page .investor-announcements__fy-tabs,
+  .investor-page .investor-announcements__calendar-tabs,
+  .investor-page .investor-reconciliation .investor-year-tabs,
+  .investor-page .investor-updates .investor-year-tabs {
+    --investor-year-tabs-visible: 5;
+    --investor-year-tab-slot: 98px;
+    --investor-year-tab-gap: 6px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--investor-year-tab-gap);
+    width: calc(
+      var(--investor-year-tab-slot) * var(--investor-year-tabs-visible) +
+        var(--investor-year-tab-gap) * (var(--investor-year-tabs-visible) - 1)
+    );
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 53px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(190, 0, 75, 0.4) rgba(222, 164, 151, 0.2);
+  }
+
+  .investor-page .investor-shareholding__years,
+  .investor-page .investor-agm .investor-year-tabs {
+    --investor-year-tab-gap: 4px;
+  }
+
+  .investor-page .investor-financial__years,
+  .investor-page .investor-updates .investor-year-tabs {
+    --investor-year-tab-gap: 8px;
+  }
+
+  .investor-page .investor-announcements__fy-tabs,
+  .investor-page .investor-announcements__calendar-tabs {
+    --investor-year-tab-gap: 11px;
+    --investor-year-tab-slot: 102px;
+  }
+
+  .investor-page .investor-year-tabs::-webkit-scrollbar,
+  .investor-page .investor-shareholding__years::-webkit-scrollbar,
+  .investor-page .investor-financial__years::-webkit-scrollbar,
+  .investor-page .investor-governance .investor-year-tabs::-webkit-scrollbar,
+  .investor-page .investor-agm .investor-year-tabs::-webkit-scrollbar,
+  .investor-page .investor-announcements__fy-tabs::-webkit-scrollbar,
+  .investor-page .investor-announcements__calendar-tabs::-webkit-scrollbar,
+  .investor-page .investor-reconciliation .investor-year-tabs::-webkit-scrollbar,
+  .investor-page .investor-updates .investor-year-tabs::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .investor-page .investor-year-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-shareholding__years::-webkit-scrollbar-thumb,
+  .investor-page .investor-financial__years::-webkit-scrollbar-thumb,
+  .investor-page .investor-governance .investor-year-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-agm .investor-year-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-announcements__fy-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-announcements__calendar-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-reconciliation .investor-year-tabs::-webkit-scrollbar-thumb,
+  .investor-page .investor-updates .investor-year-tabs::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgba(190, 0, 75, 0.4);
+  }
+
+  .investor-page .investor-year-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-shareholding__years::-webkit-scrollbar-track,
+  .investor-page .investor-financial__years::-webkit-scrollbar-track,
+  .investor-page .investor-governance .investor-year-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-agm .investor-year-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-announcements__fy-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-announcements__calendar-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-reconciliation .investor-year-tabs::-webkit-scrollbar-track,
+  .investor-page .investor-updates .investor-year-tabs::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background: rgba(222, 164, 151, 0.2);
+  }
 }
 
 .investor-year-tabs__pill.is-active,

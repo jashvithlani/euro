@@ -5,7 +5,6 @@ export const policiesPageCopy = {
     "A commitment to transparency, ethical conduct, and the highest standards of",
     "culinary integrity across all global operations.",
   ],
-  viewAllLabel: "View All",
 };
 
 export const policiesDocumentGroups = [

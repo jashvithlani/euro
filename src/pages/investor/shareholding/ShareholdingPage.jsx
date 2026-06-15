@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
+import { useScrollActiveTabIntoView } from "../components/useScrollActiveTabIntoView.js";
 import { asset } from "./asset.js";
 import { shareholdingDocumentsByYear, shareholdingYears } from "./shareholding-data.js";
 import "./ShareholdingPage.css";
@@ -36,10 +38,14 @@ function ShareholdingDocumentCard({ doc, className = "" }) {
 
 export default function ShareholdingPage() {
   const [activeYear, setActiveYear] = useState("2025-26");
+  const sectionRef = useRef(null);
+  const activeRef = useScrollActiveTabIntoView(activeYear);
   const documents = shareholdingDocumentsByYear[activeYear] ?? [];
 
+  useInvestorDynamicHeight(sectionRef, [activeYear]);
+
   return (
-    <section className="investor-shareholding" aria-labelledby="shareholding-title">
+    <section ref={sectionRef} className="investor-shareholding" aria-labelledby="shareholding-title">
       <h2 id="shareholding-title" className="investor-shareholding__title">
         Shareholding Pattern
       </h2>
@@ -54,6 +60,7 @@ export default function ShareholdingPage() {
           return (
             <button
               key={year}
+              ref={isActive ? activeRef : undefined}
               type="button"
               role="tab"
               aria-selected={isActive}

@@ -6,7 +6,7 @@
   .investor-main {
     position: relative;
     width: 1280px;
-    height: 1521px;
+    height: 1561px;
     overflow: hidden;
   }
 
@@ -16,12 +16,12 @@
   }
 
   .investor-main--secretarial {
-    height: 1673px;
+    height: 1713px;
   }
 
-  /* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 26px bottom gap */
+  /* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 40px bottom gap */
   .investor-main--reconciliation {
-    height: 1904px;
+    height: 1918px;
   }
 }
 
@@ -378,7 +378,7 @@
 
 @media (min-width: 1000px) {
   .investor-main--announcements {
-    height: 2198px; /* report grids end ~2172 + 26px breathing room */
+    height: 2212px; /* report grids end ~2172 + 40px breathing room */
   }
 
   /* Corporate Updates — Figma 1131:2538; +31px outlet offset vs filter nav */
@@ -388,13 +388,13 @@
 
   /* Corporate Governance Reports — Figma 1117:5978 (outlet only; no transparency block) */
   .investor-main--governance {
-    height: 1189px; /* governance outlet bottom ~1163 + 26px breathing room */
+    height: 1203px; /* governance outlet bottom ~1163 + 40px breathing room */
   }
 
   /* Corporate Policies — Figma 1117:5551 (outlet only; no transparency block) */
   .investor-main--policies,
   .investor-main:has(.investor-policies) {
-    height: 1386px; /* policies bottom ~1360 + 26px breathing room */
+    height: 1720px; /* fallback only; runtime height follows policy rows + 40px */
   }
 }
 

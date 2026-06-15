@@ -161,17 +161,3 @@
   height: 11px;
   margin-top: 2px;
 }
-
-.investor-policies-view-all {
-  margin: 0;
-  text-align: center;
-}
-
-.investor-policies-view-all a {
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 10.67px;
-  font-weight: 700;
-  line-height: 16px;
-  color: #be004b;
-  text-decoration: none;
-}

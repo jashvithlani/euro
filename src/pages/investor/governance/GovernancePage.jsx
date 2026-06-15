@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InvestorDocumentGrid from "../components/InvestorDocumentGrid.jsx";
 import InvestorYearTabs from "../components/InvestorYearTabs.jsx";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import { asset } from "./asset.js";
 import { getGovernanceDocuments, governanceYears } from "./governance-content.js";
 import "./GovernancePage.css";
@@ -15,10 +16,14 @@ const governanceCardIcons = {
 /** /investor/governance — Figma frame 1117:5978 */
 export default function GovernancePage() {
   const [activeYear, setActiveYear] = useState(governanceYears[0]);
+  const sectionRef = useRef(null);
   const documents = getGovernanceDocuments(activeYear);
+
+  useInvestorDynamicHeight(sectionRef, [activeYear]);
 
   return (
     <section
+      ref={sectionRef}
       className="investor-governance"
       aria-labelledby="investor-governance-title"
       data-node-id="1117:5978"

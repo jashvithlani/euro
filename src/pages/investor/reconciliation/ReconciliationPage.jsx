@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import InvestorYearTabs from "../components/InvestorYearTabs.jsx";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import { asset } from "./asset.js";
 import {
   getReconciliationDocuments,
@@ -39,6 +40,7 @@ function ReconciliationDocumentCard({ title, date, fileSize, href, isNew = false
 /** /investor/reconciliation — Figma frame 1131:1615 */
 export default function ReconciliationPage() {
   const [activeYear, setActiveYear] = useState(reconciliationYears[0]);
+  const sectionRef = useRef(null);
   const documents = getReconciliationDocuments(activeYear);
   const documentRows = useMemo(() => {
     const rows = [];
@@ -50,8 +52,11 @@ export default function ReconciliationPage() {
     return rows;
   }, [documents]);
 
+  useInvestorDynamicHeight(sectionRef, [activeYear]);
+
   return (
     <section
+      ref={sectionRef}
       className="investor-reconciliation"
       aria-labelledby="investor-reconciliation-title"
       data-node-id="1131:1615"

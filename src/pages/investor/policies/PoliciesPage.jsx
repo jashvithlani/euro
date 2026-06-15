@@ -1,10 +1,16 @@
+import { useRef } from "react";
+import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import InvestorPolicyCard from "./InvestorPolicyCard.jsx";
 import { policiesDocumentGroups, policiesPageCopy } from "./policies-content.js";
 import "./PoliciesPage.css";
 
 export default function PoliciesPage() {
+  const sectionRef = useRef(null);
+
+  useInvestorDynamicHeight(sectionRef);
+
   return (
-    <section className="investor-policies" aria-labelledby="investor-policies-title">
+    <section ref={sectionRef} className="investor-policies" aria-labelledby="investor-policies-title">
       <header className="investor-policies-header">
         <h2 id="investor-policies-title">{policiesPageCopy.title}</h2>
         <p className="investor-policies-subtitle">
@@ -33,11 +39,6 @@ export default function PoliciesPage() {
               </div>
             ))}
 
-            {group.id === "corporate-policies" ? (
-              <p className="investor-policies-view-all">
-                <a href="#">{policiesPageCopy.viewAllLabel}</a>
-              </p>
-            ) : null}
           </section>
         ))}
       </div>

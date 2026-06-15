@@ -3,7 +3,7 @@
 @media (min-width: 1000px) {
   .investor-main:has(.investor-shareholding),
   .investor-main--shareholding {
-    height: 1482px; /* grid ends ~1456 + 26px breathing room (was 1867) */
+    height: 1496px; /* grid ends ~1456 + 40px breathing room (was 1867) */
   }
 
   .investor-shareholding {
@@ -35,15 +35,9 @@
   color: var(--color-muted, #825348);
 }
 
-/* Year tabs — 1110:5052 */
+/* Year tabs — 1110:5052; scroll strip sizing in InvestorYearTabs.css */
 .investor-shareholding__years {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  width: 713px;
-  height: 53px;
   margin: 37px auto 0;
-  overflow: hidden;
 }
 
 .investor-shareholding__year.is-active {

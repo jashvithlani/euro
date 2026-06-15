@@ -39,13 +39,6 @@
 }
 
 .investor-updates .investor-year-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 713px;
-  min-height: 53px;
   margin: 21px auto 0;
   padding: 0 14px;
 }
@@ -227,7 +220,7 @@
 @media (min-width: 1000px) {
   .investor-updates-cta {
     position: absolute;
-    top: 1443px;
+    top: var(--investor-updates-cta-top, 1443px);
     left: 50%;
     width: 1034px;
     transform: translateX(-50%);

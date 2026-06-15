@@ -6,8 +6,212 @@
     top: 727px;
     left: 0;
     width: 1280px;
-    padding: 0 45px 53px;
+    padding: 0 45px 40px;
     box-sizing: border-box;
+  }
+}
+
+@media (max-width: 999px) {
+  .investor-page .investor-main--announcements {
+    padding-bottom: 40px;
+  }
+
+  .investor-page .investor-announcements {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 32px 16px 0;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .investor-page .investor-announcements__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: calc(100% + 32px);
+    margin: 0 -16px;
+    text-align: center;
+  }
+
+  .investor-page .investor-announcements__header h2 {
+    max-width: 292px;
+    margin: 0 auto;
+    padding: 0 16px;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .investor-page .investor-announcements__header p {
+    max-width: 345px;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .investor-page .investor-announcements__fy-tabs,
+  .investor-page .investor-announcements__calendar-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 345px;
+    min-height: 52px;
+    margin: 16px auto 0;
+    padding: 0 8px 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .investor-page .investor-announcements__fy-tabs::-webkit-scrollbar,
+  .investor-page .investor-announcements__calendar-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .investor-page .investor-announcements__fy-tabs .investor-year-tabs__pill,
+  .investor-page .investor-announcements__calendar-tabs .investor-year-tabs__pill {
+    flex: 0 0 109px;
+    min-height: 44px;
+    padding: 12px 18px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .investor-page .investor-announcements__group {
+    width: 100%;
+    max-width: 345px;
+    margin: 16px auto 0;
+  }
+
+  .investor-page .investor-announcements__group-label {
+    margin: 0 0 16px;
+    padding-left: 14px;
+    border-left-width: 3px;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1px;
+  }
+
+  .investor-page .investor-announcements__compact-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 345px;
+    margin: 0 auto 8px;
+    padding: 0;
+    grid-template-columns: none !important;
+  }
+
+  .investor-page .investor-compact-doc-card {
+    width: 100%;
+    min-height: 78px;
+    padding: 18px;
+    border-radius: 10.67px;
+  }
+
+  .investor-page .investor-compact-doc-card--tall {
+    min-height: 84px;
+  }
+
+  .investor-page .investor-compact-doc-card__title {
+    font-size: 13.5px;
+    line-height: 18px;
+  }
+
+  .investor-page .investor-compact-doc-card__meta {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  .investor-page .investor-announcements__calendar-tabs {
+    margin-top: 16px;
+  }
+
+  .investor-page .investor-announcements__report-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 345px;
+    margin: 16px auto 0;
+    padding: 0;
+    grid-template-columns: none !important;
+  }
+
+  .investor-page .investor-report-card {
+    width: 100%;
+    min-height: 0;
+    gap: 16px;
+    padding: 25px;
+    border-radius: 16px;
+  }
+
+  .investor-page .investor-report-card__icon {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 14px;
+    background: rgba(190, 0, 75, 0.1);
+  }
+
+  .investor-page .investor-report-card__icon img {
+    width: 30px;
+    height: 32px;
+  }
+
+  .investor-page .investor-report-card__title {
+    padding-top: 16px;
+    font-size: 18px;
+    line-height: 22.5px;
+  }
+
+  .investor-page .investor-report-card__date {
+    gap: 8px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .investor-page .investor-report-card__date img {
+    width: 12px;
+    height: 12px;
+  }
+
+  .investor-page .investor-report-card__footer {
+    padding-top: 25px;
+  }
+
+  .investor-page .investor-report-card__size {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+  }
+
+  .investor-page .investor-report-card__link {
+    gap: 4px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .investor-page .investor-report-card__link img {
+    width: 16px;
+    height: 12px;
   }
 }
 
@@ -35,15 +239,7 @@
   color: var(--color-muted, #825348);
 }
 
-/* Year tabs — Figma 1117:7037 */
-
-.investor-year-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 11px;
-  justify-content: center;
-  margin-top: 21px;
-}
+/* Year tabs — Figma 1117:7037; scroll strip sizing in InvestorYearTabs.css */
 
 .investor-announcements__fy-tabs {
   margin-top: 21px;
@@ -160,20 +356,6 @@
   width: 11px;
   height: 11px;
   margin-top: 2px;
-}
-
-.investor-announcements__view-all {
-  display: block;
-  margin: 8px auto 0;
-  padding: 0;
-  border: none;
-  background: none;
-  color: #be004b;
-  font-family: var(--font-body, "Plus Jakarta Sans", system-ui, sans-serif);
-  font-size: 10.67px;
-  font-weight: 700;
-  line-height: 16px;
-  cursor: pointer;
 }
 
 .investor-announcements__calendar-tabs {

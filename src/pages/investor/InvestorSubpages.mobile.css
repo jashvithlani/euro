@@ -10,7 +10,6 @@
   .investor-page .investor-annual,
   .investor-page .investor-agm,
   .investor-page .investor-financial,
-  .investor-page .investor-announcements,
   .investor-page .secretarial-page,
   .investor-page .investor-dispute,
   .investor-page .investor-dispute-trust,
@@ -39,7 +38,6 @@
   .investor-page .investor-annual__header h2,
   .investor-page .investor-agm > h2,
   .investor-page .investor-financial__title,
-  .investor-page .investor-announcements__header h2,
   .investor-page .secretarial-page__title,
   .investor-page .secretarial-archive__aside h3,
   .investor-page .investor-dispute__header h2,
@@ -59,7 +57,6 @@
   .investor-page .investor-policies-subtitle,
   .investor-page .investor-agm__lead,
   .investor-page .investor-financial__lede,
-  .investor-page .investor-announcements__header p,
   .investor-page .investor-kmp-subtitle,
   .investor-page .investor-reconciliation__lede,
   .investor-page .secretarial-page__lede,
@@ -88,8 +85,6 @@
   .investor-page .investor-financial__years,
   .investor-page .investor-governance .investor-year-tabs,
   .investor-page .investor-agm .investor-year-tabs,
-  .investor-page .investor-announcements__fy-tabs,
-  .investor-page .investor-announcements__calendar-tabs,
   .investor-page .investor-reconciliation .investor-year-tabs,
   .investor-page .investor-updates .investor-year-tabs {
     display: flex;
@@ -135,8 +130,6 @@
   .investor-page .investor-governance .investor-document-grid,
   .investor-page .investor-governance__grid,
   .investor-page .investor-agm__grids .investor-document-grid,
-  .investor-page .investor-announcements__compact-grid,
-  .investor-page .investor-announcements__report-grid,
   .investor-page .investor-reconciliation__grid,
   .investor-page .investor-policies-row,
   .investor-page .investor-kmp-grid {
@@ -155,9 +148,7 @@
   .investor-page .shareholding-doc-card--4,
   .investor-page .investor-grid-card,
   .investor-page .investor-financial-card,
-  .investor-page .investor-reconciliation-card,
-  .investor-page .investor-compact-doc-card,
-  .investor-page .investor-report-card {
+  .investor-page .investor-reconciliation-card {
     width: 100%;
     min-height: 309px;
     padding: 25px;
@@ -441,20 +432,6 @@
   .investor-page .investor-governance__grid {
     margin-top: 32px;
     padding: 0;
-  }
-
-  /* ── Announcements (Figma 1320) ──────────────────────────────── */
-  .investor-page .investor-announcements__header {
-    margin-top: 0;
-  }
-
-  .investor-page .investor-announcements__group {
-    margin-top: 32px;
-  }
-
-  .investor-page .investor-announcements__group-label {
-    font-size: 12px;
-    line-height: 16px;
   }
 
   /* ── AGM (Figma 1321) ────────────────────────────────────────── */

@@ -56,19 +56,27 @@ export default function AnnouncementsPage() {
         </div>
       ))}
 
-      <InvestorYearTabs
-        tabs={calendarYearTabs}
-        activeIndex={activeCalendarIndex}
-        onChange={setActiveCalendarIndex}
-        className="investor-announcements__calendar-tabs"
-      />
+      {calendarYearTabs.length > 0 ? (
+        <section className="investor-announcements__calendar-section" aria-labelledby="general-announcements-label">
+          <h3 id="general-announcements-label" className="investor-announcements__group-label">
+            {announcementsPageCopy.generalLabel}
+          </h3>
 
-      {calendarCards.length > 0 ? (
-        <div className="investor-announcements__report-grid">
-          {calendarCards.map((card) => (
-            <InvestorReportCard key={`${activeCalendarYear}-${card.title}`} {...card} />
-          ))}
-        </div>
+          <InvestorYearTabs
+            tabs={calendarYearTabs}
+            activeIndex={activeCalendarIndex}
+            onChange={setActiveCalendarIndex}
+            className="investor-announcements__calendar-tabs"
+          />
+
+          {calendarCards.length > 0 ? (
+            <div className="investor-announcements__report-grid">
+              {calendarCards.map((card) => (
+                <InvestorReportCard key={`${activeCalendarYear}-${card.title}`} {...card} />
+              ))}
+            </div>
+          ) : null}
+        </section>
       ) : null}
     </section>
   );

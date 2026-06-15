@@ -37,7 +37,7 @@ function ShareholdingDocumentCard({ doc, className = "" }) {
 }
 
 export default function ShareholdingPage() {
-  const [activeYear, setActiveYear] = useState("2025-26");
+  const [activeYear, setActiveYear] = useState(shareholdingYears[0]);
   const sectionRef = useRef(null);
   const activeRef = useScrollActiveTabIntoView(activeYear);
   const documents = shareholdingDocumentsByYear[activeYear] ?? [];

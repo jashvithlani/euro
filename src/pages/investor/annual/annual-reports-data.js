@@ -1,4 +1,52 @@
-/** Annual Reports — synced from euroindiafoods.com */
+import { investorDocuments } from "../generated/investor-documents.generated.js";
+
+const annualSection = investorDocuments.annual ?? {
+  years: [],
+  documentsByYear: {},
+};
+
+function findDoc(year, matcher) {
+  return (annualSection.documentsByYear[year] ?? []).find((document) => matcher.test(document.title));
+}
+
+function fallbackDoc(year, index = 0) {
+  return annualSection.documentsByYear[year]?.[index] ?? {
+    title: "Annual Report",
+    meta: "PDF",
+    href: "#",
+  };
+}
+
+function noticeLines(title) {
+  const match = title.match(/^(Newspaper Advertisement for)\s+(Public Notice of .+? AGM)\s+(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})$/i);
+  if (match) {
+    return [match[1], `${match[2]} -`, match[3]];
+  }
+
+  const words = title.split(/\s+/);
+  if (words.length <= 5) return [title];
+
+  return [
+    words.slice(0, Math.ceil(words.length / 3)).join(" "),
+    words.slice(Math.ceil(words.length / 3), Math.ceil((words.length * 2) / 3)).join(" "),
+    words.slice(Math.ceil((words.length * 2) / 3)).join(" "),
+  ].filter(Boolean);
+}
+
+function archiveLinks(year) {
+  return (annualSection.documentsByYear[year] ?? []).map((document) => ({
+    label: document.title.toUpperCase(),
+    href: document.href,
+  }));
+}
+
+const [latestYear, secondYear, ...archiveYears] = annualSection.years;
+const latestReport = findDoc(latestYear, /integrated|annual report/i) ?? fallbackDoc(latestYear);
+const latestNotice = findDoc(latestYear, /newspaper|notice/i) ?? fallbackDoc(latestYear, 1);
+const latestReturn = findDoc(latestYear, /annual return|return/i) ?? fallbackDoc(latestYear, 2);
+const secondNotice = findDoc(secondYear, /newspaper|notice/i) ?? fallbackDoc(secondYear);
+const secondReport = findDoc(secondYear, /annual report|report/i) ?? fallbackDoc(secondYear, 1);
+
 export const annualReportsIntro = {
   title: "Annual Reports",
   subtitle: [
@@ -8,140 +56,60 @@ export const annualReportsIntro = {
 };
 
 export const annualFeaturedYears = [
-  {
-    id: "2024-25",
-    yearLabel: "2024-25",
-    yearAlign: "left",
-    integrated: {
-      eyebrow: "INTEGRATED REPORT",
-      title: "Integrated Annual Report 2024-25",
-      cta: "DOWNLOAD REPORT",
-      href: "/investor-pdfs/annual/Integrated-Annual-Report-05.09.2025.pdf"
-    },
-    side: {
-      notice: {
-        eyebrow: "PUBLIC NOTICE",
-        titleLines: [
-          "Newspaper Advertisement for",
-          "Public Notice of 15th AGM -",
-          "05.09.2024"
-        ],
-        cta: "DOWNLOAD PDF",
-        href: "/investor-pdfs/annual/Newspaper-4.pdf"
-      },
-      returnCard: {
-        title: "Annual Return 2024-25",
-        meta: "PDF • 405 KB",
-        href: "/investor-pdfs/annual/Annual-return-2024-25.pdf"
+  latestYear
+    ? {
+        id: latestYear,
+        yearLabel: latestYear,
+        yearAlign: "left",
+        integrated: {
+          eyebrow: /integrated/i.test(latestReport.title) ? "INTEGRATED REPORT" : "ANNUAL REPORT",
+          title: latestReport.title,
+          cta: "DOWNLOAD REPORT",
+          href: latestReport.href,
+        },
+        side: {
+          notice: {
+            eyebrow: "PUBLIC NOTICE",
+            titleLines: noticeLines(latestNotice.title),
+            cta: "DOWNLOAD PDF",
+            href: latestNotice.href,
+          },
+          returnCard: {
+            title: latestReturn.title,
+            meta: latestReturn.meta,
+            href: latestReturn.href,
+          },
+        },
       }
-    }
-  },
-  {
-    id: "2023-24",
-    yearLabel: "2023-24",
-    yearAlign: "right",
-    noticeCard: {
-      titleLines: [
-        "Newspaper Advertisement",
-        "for Public Notice of 14th AGM",
-        "- 06.09.2023"
-      ],
-      cta: "VIEW NOTICE",
-      href: "/investor-pdfs/annual/Newspaper-Advertisement-for-Public-Notice-of-14th-Annual-General-Meeting_-_06.09.2023.pdf"
-    },
-    reportCard: {
-      eyebrow: "FINANCIAL ARCHIVE",
-      title: "Annual Report 2023-24",
-      cta: "DOWNLOAD DOCUMENT",
-      href: "/investor-pdfs/annual/REVISED_ANNUAL_REPORT.pdf"
-    }
-  }
-];
+    : null,
+  secondYear
+    ? {
+        id: secondYear,
+        yearLabel: secondYear,
+        yearAlign: "right",
+        noticeCard: {
+          titleLines: noticeLines(secondNotice.title),
+          cta: "VIEW NOTICE",
+          href: secondNotice.href,
+        },
+        reportCard: {
+          eyebrow: "FINANCIAL ARCHIVE",
+          title: secondReport.title,
+          cta: "DOWNLOAD DOCUMENT",
+          href: secondReport.href,
+        },
+      }
+    : null,
+].filter(Boolean);
 
-export const annualArchiveYears = [
-  {
-    year: "2022-23",
-    links: [
-      {
-        label: "ANNUAL REPORT 2022-23",
-        href: "/investor-pdfs/annual/AnnualREport_-2022-23.pdf"
-      },
-      {
-        label: "ANNUAL RETURN 2022-23",
-        href: "/investor-pdfs/annual/Annual_Return-2022-23.pdf"
-      }
-    ],
-    compact: false
-  },
-  {
-    year: "2021-22",
-    links: [
-      {
-        label: "ANNUAL REPORT 2021-22",
-        href: "/investor-pdfs/annual/Annual_report-_2021-22-2.pdf"
-      },
-      {
-        label: "ANNUAL RETURN 2021-22",
-        href: "/investor-pdfs/annual/Annual_Return-_2021-22-1.pdf"
-      }
-    ],
-    compact: false
-  },
-  {
-    year: "2020-21",
-    links: [
-      {
-        label: "ANNUAL RETURN 2020-21",
-        href: "/investor-pdfs/annual/Annual_Return_2021.pdf"
-      },
-      {
-        label: "ANNUAL REPORT 2020-21",
-        href: "/investor-pdfs/annual/Annual_Report_2021.pdf"
-      }
-    ],
-    compact: false
-  },
-  {
-    year: "2019-20",
-    links: [
-      {
-        label: "ANNUAL REPORT 2019-20",
-        href: "/investor-pdfs/annual/5._Annual_Report.pdf"
-      }
-    ],
-    compact: true
-  },
-  {
-    year: "2018-19",
-    links: [
-      {
-        label: "ANNUAL REPORT 2018-19",
-        href: "/investor-pdfs/annual/Annual_Report-2018-19.pdf"
-      }
-    ],
-    compact: true
-  },
-  {
-    year: "2017-18",
-    links: [
-      {
-        label: "ANNUAL REPORT 2017-18",
-        href: "/investor-pdfs/annual/5._Annual_Report.pdf"
-      }
-    ],
-    compact: true
-  },
-  {
-    year: "2016-17",
-    links: [
-      {
-        label: "ANNUAL REPORT 2016-17",
-        href: "/investor-pdfs/annual/Annual-Report-2016-17.pdf"
-      }
-    ],
-    compact: true
-  }
-];
+export const annualArchiveYears = archiveYears.map((year) => {
+  const links = archiveLinks(year);
+  return {
+    year,
+    links,
+    compact: links.length === 1,
+  };
+});
 
 export const annualRequestCard = {
   title: "Request Historical Data",

@@ -1,26 +1,20 @@
-/** Reconciliation — synced from euroindiafoods.com */
-export const reconciliationYears = [
-  "2025-26"
-];
+import { investorDocuments } from "../generated/investor-documents.generated.js";
 
-const reconciliationDocumentsByYear = {
-  "2025-26": [
-    {
-      title: "Reconciliation of Share Capital Audit Report 30.06.2025",
-      date: "June 30, 2025",
-      fileSize: "123 KB",
-      href: "/investor-pdfs/reconciliation/RECO-30.06.2025.pdf",
-      isNew: true
-    },
-    {
-      title: "Reconcilliation of Share Capital Audit 31.12.2025",
-      date: "December 31, 2025",
-      fileSize: "221 KB",
-      href: "/investor-pdfs/reconciliation/Reconciliation-of-share-capital-audit.pdf"
-    }
-  ]
+const reconciliationSection = investorDocuments.reconciliation ?? {
+  years: [],
+  documentsByYear: {},
 };
 
+export const reconciliationYears = reconciliationSection.years;
+
 export function getReconciliationDocuments(year) {
-  return reconciliationDocumentsByYear[year] ?? [];
+  const documents = reconciliationSection.documentsByYear[year] ?? [];
+
+  return documents.map((document, index) => ({
+    title: document.title,
+    date: document.date,
+    fileSize: document.size,
+    href: document.href,
+    isNew: year === reconciliationYears[0] && index === 0,
+  }));
 }

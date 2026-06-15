@@ -14,7 +14,7 @@ const agmCardIcons = {
 };
 
 export default function AgmPage() {
-  const [activeYear, setActiveYear] = useState("2025-26");
+  const [activeYear, setActiveYear] = useState(agmYears[0]);
   const sectionRef = useRef(null);
   const content = getAgmContent(activeYear);
 

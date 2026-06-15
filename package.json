@@ -2,8 +2,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "generate:investor": "node scripts/generate-investor-documents.mjs",
+    "dev": "npm run generate:investor && vite --host 127.0.0.1",
+    "build": "npm run generate:investor && vite build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

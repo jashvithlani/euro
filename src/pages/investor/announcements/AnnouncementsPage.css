@@ -142,6 +142,12 @@
     margin-top: 16px;
   }
 
+  .investor-page .investor-announcements__calendar-section {
+    width: 100%;
+    max-width: 345px;
+    margin: 16px auto 0;
+  }
+
   .investor-page .investor-announcements__report-grid {
     display: flex !important;
     flex-direction: column;
@@ -359,6 +365,10 @@
 }
 
 .investor-announcements__calendar-tabs {
+  margin-top: 21px;
+}
+
+.investor-announcements__calendar-section {
   margin-top: 43px;
 }
 

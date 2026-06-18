@@ -813,7 +813,7 @@ textarea {
 }
 
 .product-card--cyan {
-  background: #dffdff;
+  background: #ffe9f3;
   transform: rotate(-1deg);
 }
 
@@ -1315,9 +1315,13 @@ textarea {
 }
 
 .social-feed-card {
+  --social-card-y: 0px;
+  --social-card-opacity: 1;
   display: block;
   width: 100%;
   height: auto;
+  opacity: var(--social-card-opacity);
+  transform: translate3d(0, var(--social-card-y), 0);
   transform-origin: center;
   transition:
     translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1340,6 +1344,13 @@ textarea {
   scale: 1.045;
   rotate: 0deg;
   filter: drop-shadow(0 22px 20px rgba(78, 40, 31, 0.18));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-feed-card {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .footer {

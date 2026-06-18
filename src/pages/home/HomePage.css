@@ -326,8 +326,7 @@
     .quality-card,
     .partner-panel,
     .inquiry-form,
-    .social-feed-header,
-    .social-feed-grid {
+    .social-feed-header {
       animation: home-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;

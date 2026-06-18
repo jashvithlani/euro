@@ -42,6 +42,85 @@ export default function HomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    const socialSection = document.querySelector(".social-section");
+    const socialGrid = document.querySelector(".social-feed-grid");
+    const socialCards = Array.from(document.querySelectorAll(".social-feed-card"));
+
+    if (!socialSection || !socialGrid || socialCards.length === 0) {
+      return undefined;
+    }
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const cardTravel = [96, 154, 74, 132, 88];
+    let rafId = 0;
+
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+
+    const updateSocialMotion = () => {
+      rafId = 0;
+
+      if (reducedMotionQuery.matches) {
+        socialCards.forEach((card) => {
+          card.style.setProperty("--social-card-y", "0px");
+          card.style.setProperty("--social-card-opacity", "1");
+        });
+        return;
+      }
+
+      const gridRect = socialGrid.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 720;
+      const start = viewportHeight * 1.04;
+      const end = viewportHeight * 0.3;
+      const progress = clamp((start - gridRect.top) / Math.max(1, start - end));
+      const mobileScale = window.innerWidth < 1000 ? 0.46 : 1;
+
+      socialCards.forEach((card, index) => {
+        const travel = (cardTravel[index] || 88) * mobileScale;
+        const y = travel * (1 - progress);
+        const opacity = 0.84 + progress * 0.16;
+        card.style.setProperty("--social-card-y", `${y.toFixed(2)}px`);
+        card.style.setProperty("--social-card-opacity", opacity.toFixed(4));
+      });
+    };
+
+    const requestUpdate = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(updateSocialMotion);
+      }
+    };
+
+    const handleMotionPreferenceChange = () => requestUpdate();
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    if (reducedMotionQuery.addEventListener) {
+      reducedMotionQuery.addEventListener("change", handleMotionPreferenceChange);
+    } else {
+      reducedMotionQuery.addListener(handleMotionPreferenceChange);
+    }
+
+    requestUpdate();
+
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+
+      if (reducedMotionQuery.removeEventListener) {
+        reducedMotionQuery.removeEventListener("change", handleMotionPreferenceChange);
+      } else {
+        reducedMotionQuery.removeListener(handleMotionPreferenceChange);
+      }
+
+      socialCards.forEach((card) => {
+        card.style.removeProperty("--social-card-y");
+        card.style.removeProperty("--social-card-opacity");
+      });
+    };
+  }, []);
+
   return (
             <>
             <main>

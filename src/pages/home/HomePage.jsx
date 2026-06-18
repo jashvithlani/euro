@@ -52,19 +52,24 @@ export default function HomePage() {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileQuery = window.matchMedia("(max-width: 999px)");
     const cardTravel = [96, 154, 74, 132, 88];
     let rafId = 0;
 
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 
+    const resetSocialCards = () => {
+      socialCards.forEach((card) => {
+        card.style.setProperty("--social-card-y", "0px");
+        card.style.setProperty("--social-card-opacity", "1");
+      });
+    };
+
     const updateSocialMotion = () => {
       rafId = 0;
 
-      if (reducedMotionQuery.matches) {
-        socialCards.forEach((card) => {
-          card.style.setProperty("--social-card-y", "0px");
-          card.style.setProperty("--social-card-opacity", "1");
-        });
+      if (reducedMotionQuery.matches || mobileQuery.matches) {
+        resetSocialCards();
         return;
       }
 
@@ -73,10 +78,9 @@ export default function HomePage() {
       const start = viewportHeight * 1.04;
       const end = viewportHeight * 0.3;
       const progress = clamp((start - gridRect.top) / Math.max(1, start - end));
-      const mobileScale = window.innerWidth < 1000 ? 0.46 : 1;
 
       socialCards.forEach((card, index) => {
-        const travel = (cardTravel[index] || 88) * mobileScale;
+        const travel = cardTravel[index] || 88;
         const y = travel * (1 - progress);
         const opacity = 0.84 + progress * 0.16;
         card.style.setProperty("--social-card-y", `${y.toFixed(2)}px`);
@@ -101,6 +105,12 @@ export default function HomePage() {
       reducedMotionQuery.addListener(handleMotionPreferenceChange);
     }
 
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener("change", handleMotionPreferenceChange);
+    } else {
+      mobileQuery.addListener(handleMotionPreferenceChange);
+    }
+
     requestUpdate();
 
     return () => {
@@ -112,6 +122,12 @@ export default function HomePage() {
         reducedMotionQuery.removeEventListener("change", handleMotionPreferenceChange);
       } else {
         reducedMotionQuery.removeListener(handleMotionPreferenceChange);
+      }
+
+      if (mobileQuery.removeEventListener) {
+        mobileQuery.removeEventListener("change", handleMotionPreferenceChange);
+      } else {
+        mobileQuery.removeListener(handleMotionPreferenceChange);
       }
 
       socialCards.forEach((card) => {

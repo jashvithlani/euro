@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import GlobalPointerCursor from "../components/GlobalPointerCursor.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
 import { EuroFlavorStagePortal } from "../pages/home/EuroFlavorStage.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
@@ -142,6 +143,7 @@ export default function SiteLayout() {
         <Footer />
       </div>
       <ScrollToTopButton />
+      <GlobalPointerCursor />
     </div>
   );
 }

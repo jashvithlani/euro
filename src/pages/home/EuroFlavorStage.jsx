@@ -183,15 +183,21 @@ function getProductStyle(index, progress) {
 function getParticleStyle(seed, index, progress) {
   const [x, y, size, rotate] = seed;
   const depth = 0.55 + (index % 5) * 0.12;
-  const orbit = progress * Math.PI * (1.2 + (index % 4) * 0.18);
+  const driftWave = progress * Math.PI * (1.2 + (index % 4) * 0.18);
   const finalFade = clamp(1 - Math.max(0, progress - 0.82) * 3.5, 0.28, 1);
+  const driftDirection = index % 2 === 0 ? 1 : -1;
 
   return {
-    "--particle-x": `${x + Math.sin(orbit + index) * 3.4}%`,
-    "--particle-y": `${y + Math.cos(orbit * 0.85 + index) * 4.2}%`,
+    "--particle-x": `${x + Math.sin(driftWave + index) * 3.4}%`,
+    "--particle-y": `${y + Math.cos(driftWave * 0.85 + index) * 4.2}%`,
     "--particle-size": `${size}px`,
     "--particle-rotate": `${rotate + progress * (index % 2 === 0 ? 80 : -80)}deg`,
     "--particle-depth": depth,
+    "--particle-drift-x": `${driftDirection * (3 + (index % 4) * 1.8)}px`,
+    "--particle-drift-y": `${-7 - (index % 5) * 1.4}px`,
+    "--particle-drift-rotate": `${driftDirection * (4 + (index % 6))}deg`,
+    "--particle-duration": `${6.6 + (index % 7) * 0.72}s`,
+    "--particle-delay": `${index * -0.37}s`,
     opacity: finalFade * (0.34 + depth * 0.48),
   };
 }
@@ -264,6 +270,191 @@ function useFlavorStageProgress(sectionRef) {
   return { progress, activeIndex };
 }
 
+function useFlavorStagePointer(sectionRef) {
+  React.useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof window === "undefined") return undefined;
+
+    const sticky = section.querySelector(".euro-flavor-stage__sticky");
+    const pointerQuery = window.matchMedia("(min-width: 1000px) and (hover: hover) and (pointer: fine)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let rafId = 0;
+    let isInside = false;
+    let isEnabled = false;
+    let cursorState = "stage";
+
+    const values = {
+      targetX: 0,
+      targetY: 0,
+      targetNX: 0,
+      targetNY: 0,
+      easedX: 0,
+      easedY: 0,
+      easedNX: 0,
+      easedNY: 0,
+    };
+
+    const getStageRect = () => (sticky || section).getBoundingClientRect();
+
+    const setCenteredTarget = () => {
+      const rect = getStageRect();
+      values.targetX = rect.width / 2;
+      values.targetY = rect.height / 2;
+      values.targetNX = 0;
+      values.targetNY = 0;
+    };
+
+    const writeVariables = () => {
+      section.style.setProperty("--pointer-x", `${values.easedX.toFixed(2)}px`);
+      section.style.setProperty("--pointer-y", `${values.easedY.toFixed(2)}px`);
+      section.style.setProperty("--pointer-nx", values.easedNX.toFixed(4));
+      section.style.setProperty("--pointer-ny", values.easedNY.toFixed(4));
+    };
+
+    const snapToCenter = () => {
+      setCenteredTarget();
+      values.easedX = values.targetX;
+      values.easedY = values.targetY;
+      values.easedNX = 0;
+      values.easedNY = 0;
+      writeVariables();
+    };
+
+    const setCursorState = (nextState, label = "") => {
+      if (cursorState !== nextState) {
+        cursorState = nextState;
+        section.setAttribute("data-cursor-state", nextState);
+      }
+
+      if (label) {
+        section.setAttribute("data-cursor-label", label);
+      } else {
+        section.removeAttribute("data-cursor-label");
+      }
+    };
+
+    const stopRaf = () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
+
+    const tick = () => {
+      values.easedX += (values.targetX - values.easedX) * 0.12;
+      values.easedY += (values.targetY - values.easedY) * 0.12;
+      values.easedNX += (values.targetNX - values.easedNX) * 0.1;
+      values.easedNY += (values.targetNY - values.easedNY) * 0.1;
+
+      writeVariables();
+
+      const distanceToRest =
+        Math.abs(values.targetX - values.easedX) +
+        Math.abs(values.targetY - values.easedY) +
+        Math.abs(values.targetNX - values.easedNX) * 100 +
+        Math.abs(values.targetNY - values.easedNY) * 100;
+
+      if (isInside || distanceToRest > 0.3) {
+        rafId = window.requestAnimationFrame(tick);
+      } else {
+        rafId = 0;
+      }
+    };
+
+    const requestTick = () => {
+      if (!rafId && isEnabled) {
+        rafId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    const updatePointerTarget = (event) => {
+      if (!isEnabled) return;
+
+      const rect = getStageRect();
+      const nextX = clamp(event.clientX - rect.left, 0, rect.width);
+      const nextY = clamp(event.clientY - rect.top, 0, rect.height);
+      values.targetX = nextX;
+      values.targetY = nextY;
+      values.targetNX = rect.width > 0 ? (nextX / rect.width - 0.5) * 2 : 0;
+      values.targetNY = rect.height > 0 ? (nextY / rect.height - 0.5) * 2 : 0;
+
+      const cursorTarget = event.target?.closest?.("[data-cursor]");
+      if (cursorTarget && section.contains(cursorTarget)) {
+        setCursorState(cursorTarget.dataset.cursor || "stage", cursorTarget.dataset.cursorLabel || "");
+      } else {
+        setCursorState("stage");
+      }
+
+      requestTick();
+    };
+
+    const handlePointerEnter = (event) => {
+      if (!isEnabled) return;
+      isInside = true;
+      section.setAttribute("data-flavor-cursor", "active");
+      updatePointerTarget(event);
+    };
+
+    const handlePointerMove = (event) => {
+      if (!isEnabled) return;
+      isInside = true;
+      updatePointerTarget(event);
+    };
+
+    const handlePointerLeave = () => {
+      if (!isEnabled) return;
+      isInside = false;
+      section.setAttribute("data-flavor-cursor", "idle");
+      setCursorState("stage");
+      setCenteredTarget();
+      requestTick();
+    };
+
+    const updateEnabledState = () => {
+      const nextEnabled = pointerQuery.matches && !reducedMotionQuery.matches;
+      isEnabled = nextEnabled;
+      section.toggleAttribute("data-flavor-pointer-ready", nextEnabled);
+
+      if (!nextEnabled) {
+        isInside = false;
+        stopRaf();
+        section.setAttribute("data-flavor-cursor", "idle");
+        section.removeAttribute("data-cursor-state");
+        section.removeAttribute("data-cursor-label");
+        snapToCenter();
+        return;
+      }
+
+      section.setAttribute("data-flavor-cursor", "idle");
+      setCursorState("stage");
+      snapToCenter();
+    };
+
+    const handleResize = () => {
+      if (!isInside) snapToCenter();
+    };
+
+    section.addEventListener("pointerenter", handlePointerEnter);
+    section.addEventListener("pointermove", handlePointerMove);
+    section.addEventListener("pointerleave", handlePointerLeave);
+    window.addEventListener("resize", handleResize);
+
+    const removePointerListener = addMediaChangeListener(pointerQuery, updateEnabledState);
+    const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, updateEnabledState);
+    updateEnabledState();
+
+    return () => {
+      stopRaf();
+      section.removeEventListener("pointerenter", handlePointerEnter);
+      section.removeEventListener("pointermove", handlePointerMove);
+      section.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("resize", handleResize);
+      removePointerListener();
+      removeReducedMotionListener();
+    };
+  }, [sectionRef]);
+}
+
 function ProductWall({ opacity, isActive }) {
   return (
     <div
@@ -276,10 +467,22 @@ function ProductWall({ opacity, isActive }) {
         <h3>{flavorScenes[5].title}</h3>
         <p>{flavorScenes[5].description}</p>
         <div className="euro-flavor-stage__actions">
-          <Link className="button button-primary euro-flavor-stage__primary" to="/chips" tabIndex={isActive ? 0 : -1}>
+          <Link
+            className="button button-primary euro-flavor-stage__primary"
+            to="/chips"
+            tabIndex={isActive ? 0 : -1}
+            data-cursor="cta"
+            data-cursor-label="Explore"
+          >
             Explore Products
           </Link>
-          <a className="euro-flavor-stage__secondary" href="#products" tabIndex={isActive ? 0 : -1}>
+          <a
+            className="euro-flavor-stage__secondary"
+            href="#products"
+            tabIndex={isActive ? 0 : -1}
+            data-cursor="cta"
+            data-cursor-label="Explore"
+          >
             Find Your Flavor
           </a>
         </div>
@@ -290,6 +493,7 @@ function ProductWall({ opacity, isActive }) {
             className="euro-flavor-stage__wall-card"
             key={product.label}
             style={{ "--wall-delay": `${index * 38}ms` }}
+            data-cursor="product"
           >
             <img src={product.src} alt={product.alt} loading="lazy" />
             <span>{product.label}</span>
@@ -320,10 +524,10 @@ function MobileFlavorStory() {
           <h3>{flavorScenes[5].title}</h3>
           <p>{flavorScenes[5].description}</p>
           <div className="euro-flavor-stage__actions">
-            <Link className="button button-primary euro-flavor-stage__primary" to="/chips">
+            <Link className="button button-primary euro-flavor-stage__primary" to="/chips" data-cursor="cta" data-cursor-label="Explore">
               Explore Products
             </Link>
-            <a className="euro-flavor-stage__secondary" href="#products">
+            <a className="euro-flavor-stage__secondary" href="#products" data-cursor="cta" data-cursor-label="Explore">
               Find Your Flavor
             </a>
           </div>
@@ -368,6 +572,7 @@ export function EuroFlavorStagePortal({ enabled }) {
 export default function EuroFlavorStage() {
   const sectionRef = React.useRef(null);
   const { progress, activeIndex } = useFlavorStageProgress(sectionRef);
+  useFlavorStagePointer(sectionRef);
   const activeScene = flavorScenes[activeIndex];
   const finalOpacity = clamp((progress - 0.78) / 0.16);
   const copyIsFinal = activeIndex === flavorScenes.length - 1;
@@ -386,6 +591,8 @@ export default function EuroFlavorStage() {
     >
       <div className="euro-flavor-stage__sticky">
         <div className="euro-flavor-stage__bg" aria-hidden="true" />
+        <div className="euro-flavor-stage__background-aura" aria-hidden="true" />
+        <div className="euro-flavor-stage__pointer-glow" aria-hidden="true" />
         <div className="euro-flavor-stage__grain" aria-hidden="true" />
         <div className="euro-flavor-stage__rings" aria-hidden="true">
           <span />
@@ -393,14 +600,18 @@ export default function EuroFlavorStage() {
           <span />
         </div>
 
-        <div className="euro-flavor-stage__particles" aria-hidden="true">
-          {particleSeeds.map((seed, index) => (
-            <span
-              className={`euro-flavor-stage__particle euro-flavor-stage__particle--${activeScene.particleType}`}
-              key={`${seed.join("-")}-${index}`}
-              style={getParticleStyle(seed, index, progress)}
-            />
-          ))}
+        <div className="euro-flavor-stage__particles" aria-hidden="true" data-cursor="flavor">
+          <div className="euro-flavor-stage__particles-parallax">
+            {particleSeeds.map((seed, index) => (
+              <span
+                className="euro-flavor-stage__particle-scroll-layer"
+                key={`${seed.join("-")}-${index}`}
+                style={getParticleStyle(seed, index, progress)}
+              >
+                <span className={`euro-flavor-stage__particle euro-flavor-stage__particle--${activeScene.particleType}`} />
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="euro-flavor-stage__scene-label">
@@ -416,15 +627,25 @@ export default function EuroFlavorStage() {
             const isVisible = productStyle.opacity > 0.06;
 
             return (
-              <img
-                className={`euro-flavor-stage__product ${scene.product.className}`}
-                src={scene.product.src}
-                alt={scene.product.alt}
+              <span
+                className={`euro-flavor-stage__product-scroll-layer ${scene.product.className}`}
                 key={scene.id}
-                loading={index < 2 ? "eager" : "lazy"}
-                style={productStyle}
+                style={{ ...productStyle, pointerEvents: isVisible ? "auto" : "none" }}
                 aria-hidden={!isVisible}
-              />
+                data-cursor="product"
+              >
+                <span className="euro-flavor-stage__product-pointer-layer">
+                  <span className="euro-flavor-stage__product-ambient-layer">
+                    <span className="euro-flavor-stage__product-shine" aria-hidden="true" />
+                    <img
+                      className="euro-flavor-stage__product"
+                      src={scene.product.src}
+                      alt={scene.product.alt}
+                      loading={index < 2 ? "eager" : "lazy"}
+                    />
+                  </span>
+                </span>
+              </span>
             );
           })}
         </div>

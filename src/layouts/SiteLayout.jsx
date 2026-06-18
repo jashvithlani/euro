@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
+import { EuroFlavorStagePortal } from "../pages/home/EuroFlavorStage.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
 import { CATEGORY_PATHS, getShellClassName, normalizePath } from "../site-routing.js";
 import "../styles/MobileShell.css";
@@ -48,6 +49,7 @@ export default function SiteLayout() {
   );
 
   const shellClassName = getShellClassName(location.pathname);
+  const isHomePath = normalizePath(location.pathname) === "/";
   const prevPathnameRef = React.useRef(location.pathname);
 
   React.useEffect(() => {
@@ -136,6 +138,7 @@ export default function SiteLayout() {
       <div ref={shellRef} className={shellClassName}>
         <Header />
         <Outlet />
+        <EuroFlavorStagePortal enabled={isHomePath} />
         <Footer />
       </div>
       <ScrollToTopButton />

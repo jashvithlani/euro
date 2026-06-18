@@ -38,6 +38,7 @@
 /* Year tabs — 1110:5052; scroll strip sizing in InvestorYearTabs.css */
 .investor-shareholding__years {
   margin: 37px auto 0;
+  padding-inline: 5px;
 }
 
 .investor-shareholding__year.is-active {

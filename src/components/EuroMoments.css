@@ -1,0 +1,15 @@
+.euro-moments-card {
+  --euro-moments-card-y: 0px;
+  --euro-moments-card-opacity: 1;
+  opacity: var(--euro-moments-card-opacity);
+  transform: translate3d(0, var(--euro-moments-card-y), 0);
+}
+
+@media (max-width: 999px), (prefers-reduced-motion: reduce) {
+  .euro-moments-card {
+    --euro-moments-card-y: 0px;
+    --euro-moments-card-opacity: 1;
+    opacity: 1;
+    transform: none;
+  }
+}

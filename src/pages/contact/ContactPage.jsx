@@ -1,4 +1,5 @@
 import "./ContactPage.css";
+import EuroMoments from "../../components/EuroMoments.jsx";
 import { asset } from './asset.js';
 
 const contactCards = [
@@ -23,11 +24,11 @@ const contactCards = [
 ];
 
 const socialCards = [
-  { image: "contact-social-card-1.png", alt: "Euro snack moment" },
-  { image: "contact-social-card-2.png", alt: "Euro chips pack moment" },
-  { image: "contact-social-card-3.png", alt: "Euro chips everywhere moment" },
-  { image: "contact-social-card-4.png", alt: "Euro table snack moment" },
-  { image: "contact-social-card-5.png", alt: "Fresh and tasty Euro beverages" },
+  { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
+  { src: asset("contact-social-card-2.png"), alt: "Euro chips pack moment" },
+  { src: asset("contact-social-card-3.png"), alt: "Euro chips everywhere moment" },
+  { src: asset("contact-social-card-4.png"), alt: "Euro table snack moment" },
+  { src: asset("contact-social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
 ];
 
 function ContactCard({ title, text, lines, icon, tone }) {
@@ -175,20 +176,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-social" aria-label="Euro India social feed">
+      <EuroMoments
+        className="contact-social"
+        gridClassName="contact-social-cards"
+        cardClassName="contact-social-card"
+        cards={socialCards}
+      >
         <img className="contact-social-strip" src={asset('contact-social-strip.png')} alt="Euro India social feed" />
-        <div className="contact-social-cards" aria-label="Euro India social moments">
-          {socialCards.map((card, index) => (
-            <img
-              key={card.image}
-              className="contact-social-card"
-              src={asset(card.image)}
-              alt={card.alt}
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          ))}
-        </div>
-      </section>
+      </EuroMoments>
     </main>
   );
 }

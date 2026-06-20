@@ -1,6 +1,15 @@
 import { useEffect } from "react";
+import EuroMoments from "../../components/EuroMoments.jsx";
 import { asset } from "./asset.js";
 import "./HomePage.css";
+
+const socialCards = [
+  { src: asset("social-card-1.png"), alt: "Euro snack moment" },
+  { src: asset("social-card-2.png"), alt: "Euro chips pack moment" },
+  { src: asset("social-card-3.png"), alt: "Euro chips everywhere moment" },
+  { src: asset("social-card-4.png"), alt: "Euro table snack moment" },
+  { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
+];
 
 export default function HomePage() {
   useEffect(() => {
@@ -39,101 +48,6 @@ export default function HomePage() {
       carouselNext.removeEventListener("click", handleNextClick);
       carouselViewport.removeEventListener("scroll", updateCarouselControls);
       window.removeEventListener("load", updateCarouselControls);
-    };
-  }, []);
-
-  useEffect(() => {
-    const socialSection = document.querySelector(".social-section");
-    const socialGrid = document.querySelector(".social-feed-grid");
-    const socialCards = Array.from(document.querySelectorAll(".social-feed-card"));
-
-    if (!socialSection || !socialGrid || socialCards.length === 0) {
-      return undefined;
-    }
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileQuery = window.matchMedia("(max-width: 999px)");
-    const cardTravel = [96, 154, 74, 132, 88];
-    let rafId = 0;
-
-    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-
-    const resetSocialCards = () => {
-      socialCards.forEach((card) => {
-        card.style.setProperty("--social-card-y", "0px");
-        card.style.setProperty("--social-card-opacity", "1");
-      });
-    };
-
-    const updateSocialMotion = () => {
-      rafId = 0;
-
-      if (reducedMotionQuery.matches || mobileQuery.matches) {
-        resetSocialCards();
-        return;
-      }
-
-      const gridRect = socialGrid.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 720;
-      const start = viewportHeight * 1.04;
-      const end = viewportHeight * 0.3;
-      const progress = clamp((start - gridRect.top) / Math.max(1, start - end));
-
-      socialCards.forEach((card, index) => {
-        const travel = cardTravel[index] || 88;
-        const y = travel * (1 - progress);
-        const opacity = 0.84 + progress * 0.16;
-        card.style.setProperty("--social-card-y", `${y.toFixed(2)}px`);
-        card.style.setProperty("--social-card-opacity", opacity.toFixed(4));
-      });
-    };
-
-    const requestUpdate = () => {
-      if (!rafId) {
-        rafId = window.requestAnimationFrame(updateSocialMotion);
-      }
-    };
-
-    const handleMotionPreferenceChange = () => requestUpdate();
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    if (reducedMotionQuery.addEventListener) {
-      reducedMotionQuery.addEventListener("change", handleMotionPreferenceChange);
-    } else {
-      reducedMotionQuery.addListener(handleMotionPreferenceChange);
-    }
-
-    if (mobileQuery.addEventListener) {
-      mobileQuery.addEventListener("change", handleMotionPreferenceChange);
-    } else {
-      mobileQuery.addListener(handleMotionPreferenceChange);
-    }
-
-    requestUpdate();
-
-    return () => {
-      if (rafId) window.cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-
-      if (reducedMotionQuery.removeEventListener) {
-        reducedMotionQuery.removeEventListener("change", handleMotionPreferenceChange);
-      } else {
-        reducedMotionQuery.removeListener(handleMotionPreferenceChange);
-      }
-
-      if (mobileQuery.removeEventListener) {
-        mobileQuery.removeEventListener("change", handleMotionPreferenceChange);
-      } else {
-        mobileQuery.removeListener(handleMotionPreferenceChange);
-      }
-
-      socialCards.forEach((card) => {
-        card.style.removeProperty("--social-card-y");
-        card.style.removeProperty("--social-card-opacity");
-      });
     };
   }, []);
 
@@ -340,16 +254,14 @@ export default function HomePage() {
 
               <div className="patch patch-yellow-slant" aria-hidden="true"></div>
 
-              <section className="social-section">
+              <EuroMoments
+                className="social-section"
+                gridClassName="social-feed-grid"
+                cardClassName="social-feed-card"
+                cards={socialCards}
+              >
                 <img className="social-feed-header" src={asset('social-feed-header-figma.png')} alt="Euro India social feed header" />
-                <div className="social-feed-grid" aria-label="Euro India social moments">
-                  <img className="social-feed-card" src={asset('social-card-1.png')} alt="Euro snack moment" loading="lazy" />
-                  <img className="social-feed-card" src={asset('social-card-2.png')} alt="Euro chips pack moment" loading="lazy" />
-                  <img className="social-feed-card" src={asset('social-card-3.png')} alt="Euro chips everywhere moment" loading="lazy" />
-                  <img className="social-feed-card" src={asset('social-card-4.png')} alt="Euro table snack moment" loading="lazy" />
-                  <img className="social-feed-card" src={asset('social-card-5.png')} alt="Fresh and tasty Euro beverages" loading="lazy" />
-                </div>
-              </section>
+              </EuroMoments>
             </main>
     </>
   );

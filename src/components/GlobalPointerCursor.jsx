@@ -8,6 +8,7 @@ const PRODUCT_SELECTOR = [
   ".category-card",
   ".euro-flavor-stage__product-scroll-layer",
   ".euro-flavor-stage__wall-card",
+  ".euro-moments-card",
   ".social-feed-card",
 ].join(", ");
 const CURSOR_COLOR_SAMPLE_INTERVAL = 90;

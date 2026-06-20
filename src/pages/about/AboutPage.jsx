@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import EuroMoments from "../../components/EuroMoments.jsx";
 import { asset } from "./asset.js";
 import { asset as categoryAsset } from "../category/asset.js";
 import { sharedAsset } from "../../shared/asset.js";
@@ -18,11 +19,11 @@ const timelineProducts = [
 ];
 
 const socialCards = [
-  { image: "social-card-1.png", alt: "Euro snack moment" },
-  { image: "social-card-2.png", alt: "Euro chips pack moment" },
-  { image: "social-card-3.png", alt: "Euro chips everywhere moment" },
-  { image: "social-card-4.png", alt: "Euro table snack moment" },
-  { image: "social-card-5.png", alt: "Fresh and tasty Euro beverages" },
+  { src: asset("social-card-1.png"), alt: "Euro snack moment" },
+  { src: asset("social-card-2.png"), alt: "Euro chips pack moment" },
+  { src: asset("social-card-3.png"), alt: "Euro chips everywhere moment" },
+  { src: asset("social-card-4.png"), alt: "Euro table snack moment" },
+  { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
 ];
 
 export default function AboutPage() {
@@ -421,7 +422,12 @@ export default function AboutPage() {
                 <span className="float-tag family-tag-three">#Happiness</span>
               </section>
 
-              <section className="about-social">
+              <EuroMoments
+                className="about-social"
+                gridClassName="about-social-cards"
+                cardClassName="about-social-card"
+                cards={socialCards}
+              >
                 <div className="about-social-header">
                   <div className="about-social-heading">
                     <span className="about-social-kicker">Social Feed</span>
@@ -437,18 +443,7 @@ export default function AboutPage() {
                     to get featured!
                   </p>
                 </div>
-                <div className="about-social-cards" aria-label="Euro India social feed">
-                  {socialCards.map((card, index) => (
-                    <img
-                      key={card.image}
-                      className="about-social-card"
-                      src={asset(card.image)}
-                      alt={card.alt}
-                      loading={index === 0 ? "eager" : "lazy"}
-                    />
-                  ))}
-                </div>
-              </section>
+              </EuroMoments>
             </main>
     </>
   );

@@ -2405,28 +2405,30 @@ textarea {
 }
 
 .timeline-2021 {
-  position: absolute;
   top: 1420px;
-  left: 100px;
-  width: 540px;
-  height: 168px;
+  left: 340px;
+  width: 600px;
+  min-height: 168px;
+  height: auto;
   margin: 0;
 }
 
 .timeline-2021::after {
   top: 78px;
-  left: 536px;
+  left: 296px;
 }
 
 .timeline-2021 .timeline-copy {
-  inset: 0 60px 0 0;
+  top: 0;
+  right: 340px;
+  width: 260px;
   text-align: right;
 }
 
 .timeline-2021-card {
   position: absolute;
   top: 30px;
-  left: 580px;
+  left: 340px;
   display: flex;
   width: 240px;
   height: 140px;
@@ -2500,28 +2502,30 @@ textarea {
 }
 
 .timeline-2026 {
-  position: absolute;
   top: 1820px;
-  left: 100px;
-  width: 540px;
-  height: 124px;
+  left: 340px;
+  width: 600px;
+  min-height: 124px;
+  height: auto;
   margin: 0;
 }
 
 .timeline-2026::after {
   top: 58px;
-  left: 536px;
+  left: 296px;
 }
 
 .timeline-2026 .timeline-copy {
-  inset: 0 60px 0 0;
+  top: 0;
+  right: 340px;
+  width: 260px;
   text-align: right;
 }
 
 .timeline-2026-card {
   position: absolute;
   top: 0;
-  left: 580px;
+  left: 340px;
   width: 240px;
   height: 140px;
   border-radius: 16px;

@@ -19,8 +19,8 @@
 /* Row-3 rusk / nankhatai cards: keep the three titles a consistent size that
    sits above the pack art without crowding it. */
 .category-main--bakery .bakery-title-nankhatai {
-  font-size: 40px;
-  line-height: 40px;
+  font-size: 23px;
+  line-height: 24px;
 }
 
 .category-main--bakery .category-hero-bakery {
@@ -59,6 +59,19 @@
   width: 348px;
   height: 297px;
   transform: none;
+}
+
+/* Jeera Khari teal promo — Figma 1246:2002 */
+.category-main--bakery .category-promo .category-promo-copy {
+  top: -76px;
+}
+
+.category-main--bakery .category-promo .category-promo-copy p {
+  color: #ffffff;
+}
+
+.category-main--bakery .category-promo a {
+  color: #00bea8;
 }
 
 /* =====================================================================

@@ -65,7 +65,7 @@ export default function HomePage() {
                   </h1>
                   <p>Redefining the snack game with premium ingredients and bold, authentic flavors that travel from our kitchen to your heart.</p>
                 </div>
-                <a className="button button-primary hero-button" href="#products">Explore <img className="hero-button-icon" src={asset('hero-explore-icon.svg')} alt="" aria-hidden="true" /></a>
+                <a className="button button-primary hero-button" href="/chips">Explore <img className="hero-button-icon" src={asset('hero-explore-icon.svg')} alt="" aria-hidden="true" /></a>
                 <h2 className="hero-deserve">You deserve.</h2>
                 <span className="hero-tag hero-tag-crunchy" aria-hidden="true">#Crunchy</span>
                 <span className="hero-tag hero-tag-delicious" aria-hidden="true">#delicious</span>

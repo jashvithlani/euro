@@ -1,5 +1,5 @@
 import { asset } from "../asset.js";
-import { kmpPersonnel } from "../kmp/kmp-data.js";
+import { kmpContactEmail, kmpContactEmailHref, kmpPersonnel } from "../kmp/kmp-data.js";
 
 function KmpProfileCard({ person }) {
   return (
@@ -14,17 +14,9 @@ function KmpProfileCard({ person }) {
       <div className="investor-kmp-card__contact">
         <div className="investor-kmp-card__contact-row">
           <img className="investor-kmp-card__icon" src={asset("investor-kmp-email-icon.svg")} alt="" aria-hidden="true" />
-          {person.emailHref ? (
-            <a className="investor-kmp-card__email" href={person.emailHref}>
-              {person.email}
-            </a>
-          ) : (
-            <span className="investor-kmp-card__email">{person.email}</span>
-          )}
-        </div>
-        <div className="investor-kmp-card__contact-row">
-          <img className="investor-kmp-card__icon investor-kmp-card__icon--phone" src={asset("investor-kmp-phone-icon.svg")} alt="" aria-hidden="true" />
-          <span className="investor-kmp-card__phone">{person.phone}</span>
+          <a className="investor-kmp-card__email" href={kmpContactEmailHref}>
+            {kmpContactEmail}
+          </a>
         </div>
       </div>
     </article>

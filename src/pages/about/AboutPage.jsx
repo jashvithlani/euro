@@ -320,7 +320,7 @@ export default function AboutPage() {
                     <p>* Received the Surat Entrepreneur and Excellence Award.</p>
                   </div>
                 </article>
-                <article className="timeline-text-only timeline-2021">
+                <article className="timeline-milestone timeline-2021 timeline-left">
                   <div className="timeline-copy timeline-copy-left">
                     <h3>2021</h3>
                     <h4>Excellence</h4>
@@ -343,7 +343,7 @@ export default function AboutPage() {
                     <p>Named as the Official Snacking Partner of Gujarat Titans IPL team, broadening visibility and strengthening consumer engagement through sports partnerships.</p>
                   </div>
                 </article>
-                <article className="timeline-text-only timeline-2026">
+                <article className="timeline-milestone timeline-2026 timeline-left">
                   <div className="timeline-copy timeline-copy-left">
                     <h3>2026</h3>
                     <h4>Manufacturing Expansion</h4>
@@ -376,28 +376,28 @@ export default function AboutPage() {
                     </div>
                   </article>
                   <article className="infra-card">
-                    <img src={asset('about-infra-line.png')} alt="Rain water harvesting" />
+                    <img src={asset('about-infra-pulp-line.jpeg')} alt="Pulp line production" />
                     <div>
-                      <h3>Rain Water Harvesting</h3>
-                      <p>Every drop counts. Our facilities are equipped with rainwater harvesting systems that conserve water and replenish groundwater, supporting long-term water sustainability.</p>
+                      <h3>Pulp Line</h3>
+                      <p>Our dedicated pulp processing line turns quality fruit into smooth, consistent pulp for beverages and allied products — built for scale, hygiene, and dependable supply across seasons.</p>
                     </div>
                   </article>
                   <article className="infra-card">
-                    <img src={asset('about-infra-line.png')} alt="Solar power generation" />
+                    <img src={asset('about-infra-solar.webp')} alt="Solar power generation" />
                     <div>
                       <h3>Solar Power Generation</h3>
                       <p>Our plants are powered by clean, renewable solar energy - reducing dependence on conventional electricity and significantly lowering carbon emissions.</p>
                     </div>
                   </article>
                   <article className="infra-card">
-                    <img src={asset('about-infra-line.png')} alt="Effluent treatment plant" />
+                    <img src={asset('about-infra-etp.jpeg')} alt="Effluent treatment plant" />
                     <div>
                       <h3>Effluent Treatment Plant (ETP) - Zero Liquid Discharge</h3>
                       <p>We treat 100% of our wastewater through our in-house ETP, achieving Zero Liquid Discharge. Not a single drop of untreated water leaves our premises.</p>
                     </div>
                   </article>
                   <article className="infra-card">
-                    <img src={asset('about-infra-line.png')} alt="Bio gas plant" />
+                    <img src={asset('about-infra-biogas.jpeg')} alt="Bio gas plant" />
                     <div>
                       <h3>Bio-Gas Plant - Agro Waste to Energy</h3>
                       <p>Agricultural waste from our processes is converted into clean bio-gas through our dedicated bio-gas plant - turning waste into a valuable energy resource.</p>

@@ -37,9 +37,9 @@ export default function ExportsPage() {
                     <aside className="export-presence-card">
                       <h2>International Presence</h2>
                       <ul>
+                        <li>United States of America</li>
                         <li>United Kingdom</li>
                         <li>Australia</li>
-                        <li>United States of America</li>
                         <li>New Zealand</li>
                         <li>Asia</li>
                         <li>Multiple countries across Europe</li>

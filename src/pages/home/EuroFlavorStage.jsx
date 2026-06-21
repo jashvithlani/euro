@@ -478,7 +478,7 @@ function ProductWall({ opacity, isActive }) {
           </Link>
           <a
             className="euro-flavor-stage__secondary"
-            href="#products"
+            href="/beverages"
             tabIndex={isActive ? 0 : -1}
             data-cursor="cta"
             data-cursor-label="Explore"

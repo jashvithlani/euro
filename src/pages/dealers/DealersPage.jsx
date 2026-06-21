@@ -52,7 +52,7 @@ const partnerCards = [
   },
   {
     title: "Premium Products",
-    copy: "Diverse range of over 200+ SKUs across snacks, sweets, and gourmet staples.",
+    copy: "Extensive Range of 500+ SKU across snacks, sweets, and gourmet staples.",
     icon: "dealers-icon-premium.svg",
     tone: "pink",
   },

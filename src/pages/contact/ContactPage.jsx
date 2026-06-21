@@ -27,8 +27,8 @@ const socialCards = [
   { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
   { src: asset("contact-social-card-2.png"), alt: "Euro chips pack moment" },
   { src: asset("contact-social-card-3.png"), alt: "Euro chips everywhere moment" },
-  { src: asset("contact-social-card-4.png"), alt: "Euro table snack moment" },
-  { src: asset("contact-social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
+  { src: asset("contact-social-card-4.jpeg"), alt: "Euro table snack moment" },
+  { src: asset("contact-social-card-5.jpeg"), alt: "Fresh and tasty Euro beverages" },
 ];
 
 function ContactCard({ title, text, lines, icon, tone }) {
@@ -82,7 +82,7 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="contact-hero-card" aria-hidden="true">
-            <img src={asset('contact-hero.png')} alt="" />
+            <img src={asset('contact-hero.jpeg')} alt="" />
           </div>
         </div>
       </section>

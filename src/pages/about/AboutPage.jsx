@@ -26,6 +26,37 @@ const socialCards = [
   { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
 ];
 
+const pillars = [
+  {
+    title: "Quality",
+    icon: "about-icon-quality.svg",
+    iconClass: "pillar-icon-quality",
+    image: categoryAsset("category-chips-wide-hero-masti.png"),
+    copy: "Sourcing only the finest ingredients from local Indian farms to ensure every bite is a premium experience.",
+  },
+  {
+    title: "Innovation",
+    icon: "about-icon-innovation.svg",
+    iconClass: "pillar-icon-innovation",
+    image: categoryAsset("category-fryums-magic-abcde.png"),
+    copy: "Reimagining traditional textures and shapes for a youthful, modern snacking aesthetic.",
+  },
+  {
+    title: "Community",
+    icon: "about-icon-community.svg",
+    iconClass: "pillar-icon-community",
+    image: categoryAsset("category-beverages-hero-products.png"),
+    copy: "Building a sustainable ecosystem that supports our farmers and delights our consumers worldwide.",
+  },
+  {
+    title: "Taste",
+    icon: "about-icon-taste.svg",
+    iconClass: "pillar-icon-taste",
+    image: categoryAsset("category-chips-wide-hero-tomato.png"),
+    copy: "An uncompromising commitment to bold, authentic, and memorable flavor profiles.",
+  },
+];
+
 export default function AboutPage() {
   const timelineRef = useRef(null);
   const timelineProductMarkerRef = useRef(null);
@@ -179,26 +210,19 @@ export default function AboutPage() {
                   <h2>Pillars of Excellence</h2>
                 </div>
                 <div className="pillar-grid">
-                  <article className="pillar-card">
-                    <div className="pillar-icon"><img className="pillar-icon-quality" src={asset('about-icon-quality.svg')} alt="" /></div>
-                    <h3>Quality</h3>
-                    <p>Sourcing only the finest ingredients from local Indian farms to ensure every bite is a premium experience.</p>
-                  </article>
-                  <article className="pillar-card">
-                    <div className="pillar-icon"><img className="pillar-icon-innovation" src={asset('about-icon-innovation.svg')} alt="" /></div>
-                    <h3>Innovation</h3>
-                    <p>Reimagining traditional textures and shapes for a youthful, modern snacking aesthetic.</p>
-                  </article>
-                  <article className="pillar-card">
-                    <div className="pillar-icon"><img className="pillar-icon-community" src={asset('about-icon-community.svg')} alt="" /></div>
-                    <h3>Community</h3>
-                    <p>Building a sustainable ecosystem that supports our farmers and delights our consumers worldwide.</p>
-                  </article>
-                  <article className="pillar-card">
-                    <div className="pillar-icon"><img className="pillar-icon-taste" src={asset('about-icon-taste.svg')} alt="" /></div>
-                    <h3>Taste</h3>
-                    <p>An uncompromising commitment to bold, authentic, and memorable flavor profiles.</p>
-                  </article>
+                  {pillars.map((pillar) => (
+                    <article
+                      key={pillar.title}
+                      className="pillar-card"
+                      style={{ "--pillar-image": `url(${pillar.image})` }}
+                    >
+                      <div className="pillar-icon">
+                        <img className={pillar.iconClass} src={asset(pillar.icon)} alt="" />
+                      </div>
+                      <h3>{pillar.title}</h3>
+                      <p>{pillar.copy}</p>
+                    </article>
+                  ))}
                 </div>
               </section>
 
@@ -260,7 +284,7 @@ export default function AboutPage() {
                 </article>
                 <article className="timeline-milestone timeline-2012 timeline-right">
                   <div className="timeline-card timeline-2012-card" aria-label="Scaling Up production">
-                    <img src={asset('about-timeline-2012.png')} alt="" />
+                    <img src={asset('about-timeline-2012.jpeg')} alt="" />
                   </div>
                   <div className="timeline-copy timeline-copy-right">
                     <h3>2012</h3>
@@ -347,7 +371,7 @@ export default function AboutPage() {
                   <div className="timeline-copy timeline-copy-left">
                     <h3>2026</h3>
                     <h4>Manufacturing Expansion</h4>
-                    <p>28.57 Acres manufacturing plant development at Chikhli, sized huge &amp; production capacity to next level.</p>
+                    <p>30 Acres state of art manufacturing facilities & development at Chikhli, sized huge & production capacity to next level.</p>
                   </div>
                   <div className="timeline-card timeline-2026-card" aria-label="Euro Food Park">
                     <img src={asset('about-timeline-2026-source.png')} alt="" />
@@ -372,7 +396,7 @@ export default function AboutPage() {
                     <img src={asset('about-infra-chikhli.png')} alt="Chikhli plant" />
                     <div>
                       <h3>Chikhli Plant</h3>
-                      <p>Spread across <strong>28.57 acres of land</strong>, our Chikhli plant is built for the future. With expansive infrastructure and modern processing capabilities, it enables us to meet growing demand while maintaining the highest standards of hygiene and quality.</p>
+                      <p>Spread across <strong>30 acres of land</strong>, our Chikhli plant is built for the future. With expansive infrastructure and modern processing capabilities, it enables us to meet growing demand while maintaining the highest standards of hygiene and quality.</p>
                     </div>
                   </article>
                   <article className="infra-card">
@@ -411,11 +435,11 @@ export default function AboutPage() {
               <section className="about-logistics">
                 <h2>Logistics</h2>
                 <p>Getting our products from the plant to your shelf is just as important as making them. With a robust in-house logistics network of <strong>40+ fleets</strong>, we ensure timely, efficient, and reliable delivery across the country.</p>
-                <img src={asset('about-logistics.png')} alt="Euro logistics fleet" />
+                <img src={asset('about-logistics.jpeg')} alt="Euro logistics fleet" />
               </section>
 
               <section className="about-family">
-                <h2>The Euro India Family</h2>
+                <h2>The Euro Family</h2>
                 <img src={asset('about-family.png')} alt="Euro India Foods team" />
                 <span className="float-tag family-tag-one">#Teamwork</span>
                 <span className="float-tag family-tag-two">#Innovative</span>

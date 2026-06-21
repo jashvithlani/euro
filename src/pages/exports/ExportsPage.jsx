@@ -29,18 +29,6 @@ export default function ExportsPage() {
                         <span>Export Destinations</span>
                       </div>
                     </div>
-
-                    <div className="export-stats-row export-stats-row-wide">
-                      <div className="export-stat export-stat-long">
-                        <strong>100+</strong>
-                        <span>Super-stockists anchor state-level clusters and serve as primary distributors across key markets.</span>
-                      </div>
-                      <div className="export-stat-divider"></div>
-                      <div className="export-stat export-stat-long">
-                        <strong>200+</strong>
-                        <span>Distributors extend the Company's reach into direct and indirect retail outlets.</span>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="export-hero-media">
@@ -50,9 +38,9 @@ export default function ExportsPage() {
                       <h2>International Presence</h2>
                       <ul>
                         <li>United Kingdom</li>
-                        <li>Latvia</li>
-                        <li>United States of America</li>
                         <li>Australia</li>
+                        <li>United States of America</li>
+                        <li>New Zealand</li>
                         <li>Asia</li>
                         <li>Multiple countries across Europe</li>
                       </ul>

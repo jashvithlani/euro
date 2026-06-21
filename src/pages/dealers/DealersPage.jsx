@@ -45,8 +45,8 @@ const partnerCards = [
     tone: "gold",
   },
   {
-    title: "High ROI",
-    copy: "Our optimised supply chain and high-demand products drive consistent, rapid returns.",
+    title: "Scalable Business Model",
+    copy: "A proven framework designed to support growth across multiple locations and markets.",
     icon: "dealers-icon-high-roi.svg",
     tone: "green",
   },

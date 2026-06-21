@@ -196,8 +196,6 @@ const beveragesAt1920 = {
       height: 360,
       className: "category-feature--beverages-wide",
       background: "radial-gradient(circle, #f6f6f6 0%, #ffece4 100%)",
-      kicker: "LIMITED EDITION",
-      kickerColor: "#be004b",
       title: "Fresho\nLitchi",
       titleColor: "#be004b",
       copy: "Extra thick, extra crunchy,\nextra flavor.",

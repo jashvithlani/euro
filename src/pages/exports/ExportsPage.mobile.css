@@ -46,24 +46,22 @@
   }
 
   .exports-page .export-stats-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
     margin-top: 24px;
     padding-top: 0;
   }
 
-  .exports-page .export-stats-row-wide {
-    margin-top: 8px;
-  }
-
   .exports-page .export-stat-divider {
-    display: none;
+    display: block;
+    height: 32px;
   }
 
-  .exports-page .export-stat,
-  .exports-page .export-stat-long {
-    width: 100%;
+  .exports-page .export-stat {
+    width: auto;
+    flex: 0 1 auto;
   }
 
   .exports-page .export-stat strong {

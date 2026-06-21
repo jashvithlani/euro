@@ -224,7 +224,7 @@ export default function HomePage() {
                 <aside className="partner-panel">
                   <span className="kicker">Partner with Us</span>
                   <h2>Let's grow<br />together.</h2>
-                  <p>Join the Euro India family and bring the crunch to your city.</p>
+                  <p>Join the Euro family and bring the crunch to your city.</p>
                   <ul>
                     <li>Fat margins for you</li>
                     <li>Marketing and ads support</li>

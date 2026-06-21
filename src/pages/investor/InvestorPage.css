@@ -73,13 +73,13 @@
   color: var(--color-muted, #825348);
 }
 
-/* Media card — 802×543 @1920 → 535×362 @1280 */
+/* Media card — 802×543 @1920 → 535×357 @1280 */
 .investor-hero-media {
   position: absolute;
   top: 43px;
   right: 0;
   width: 535px;
-  height: 362px;
+  height: 357px;
   overflow: hidden;
   border-radius: 8px;
   background: #ffe2db;

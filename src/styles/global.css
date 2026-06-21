@@ -1902,6 +1902,9 @@ textarea {
 
 .pillar-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   height: 325.51px;
   overflow: hidden;
   border-radius: 24px;
@@ -1916,6 +1919,9 @@ textarea {
 }
 
 .pillar-icon {
+  position: absolute;
+  top: 33.95px;
+  left: 26.67px;
   display: grid;
   width: 60.02px;
   height: 60.02px;
@@ -1955,7 +1961,7 @@ textarea {
 }
 
 .pillar-card h3 {
-  margin: 61.43px 0 30.67px;
+  margin: 0 0 12px;
   font-family: var(--font-body);
   font-size: 21.33px;
   font-weight: 700;
@@ -1963,7 +1969,8 @@ textarea {
 }
 
 .pillar-card p {
-  width: 223.33px;
+  width: 100%;
+  max-width: 223.33px;
   margin: 0;
   font-family: var(--font-body);
   font-size: 10.67px;
@@ -3366,8 +3373,12 @@ textarea {
 }
 
 .export-stat {
-  /* Figma stat container w=118 (Commercial Start) */
+  flex: 0 0 auto;
   width: 78.67px;
+}
+
+.export-stats-row .export-stat:last-child {
+  width: 106.67px;
 }
 
 .export-stat-long {
@@ -3386,12 +3397,11 @@ textarea {
 }
 
 .export-stat span {
-  /* Figma node 1079:2108 etc: PJS Bold 10/15 tracking 1 uppercase #4e281f opacity 0.6 */
   display: block;
-  margin-top: 0;
+  margin-top: 5px;
   color: rgba(78, 40, 31, 0.6);
   font-family: var(--font-body);
-  font-size: 6.67px;
+  font-size: 11.67px;
   font-weight: 700;
   letter-spacing: 0.67px;
   line-height: 10px;

@@ -16,7 +16,7 @@ export default function InvestorHero() {
       <div className="investor-hero-media">
         <img
           className="investor-hero-photo"
-          src={asset("investor-hero-photo.png")}
+          src={asset("investor-hero-photo.jpeg")}
           alt="Corporate team reviewing market performance"
         />
         <div className="investor-hero-media-texture" aria-hidden="true">

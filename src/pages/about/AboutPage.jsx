@@ -26,33 +26,31 @@ const socialCards = [
   { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
 ];
 
+const pillarBackgroundVideo = asset("about-pillars-excellence.mp4");
+
 const pillars = [
   {
     title: "Quality",
     icon: "about-icon-quality.svg",
     iconClass: "pillar-icon-quality",
-    image: categoryAsset("category-chips-wide-hero-masti.png"),
     copy: "Sourcing only the finest ingredients from local Indian farms to ensure every bite is a premium experience.",
   },
   {
     title: "Innovation",
     icon: "about-icon-innovation.svg",
     iconClass: "pillar-icon-innovation",
-    image: categoryAsset("category-fryums-magic-abcde.png"),
     copy: "Reimagining traditional textures and shapes for a youthful, modern snacking aesthetic.",
   },
   {
     title: "Community",
     icon: "about-icon-community.svg",
     iconClass: "pillar-icon-community",
-    image: categoryAsset("category-beverages-hero-products.png"),
     copy: "Building a sustainable ecosystem that supports our farmers and delights our consumers worldwide.",
   },
   {
     title: "Taste",
     icon: "about-icon-taste.svg",
     iconClass: "pillar-icon-taste",
-    image: categoryAsset("category-chips-wide-hero-tomato.png"),
     copy: "An uncompromising commitment to bold, authentic, and memorable flavor profiles.",
   },
 ];
@@ -211,11 +209,18 @@ export default function AboutPage() {
                 </div>
                 <div className="pillar-grid">
                   {pillars.map((pillar) => (
-                    <article
-                      key={pillar.title}
-                      className="pillar-card"
-                      style={{ "--pillar-image": `url(${pillar.image})` }}
-                    >
+                    <article key={pillar.title} className="pillar-card">
+                      <video
+                        className="pillar-card__video"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-hidden="true"
+                      >
+                        <source src={pillarBackgroundVideo} type="video/mp4" />
+                      </video>
                       <div className="pillar-icon">
                         <img className={pillar.iconClass} src={asset(pillar.icon)} alt="" />
                       </div>

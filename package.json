@@ -3,6 +3,7 @@
   "type": "module",
   "scripts": {
     "generate:investor": "node scripts/generate-investor-documents.mjs",
+    "compress:images": "node scripts/compress-images.mjs",
     "dev": "npm run generate:investor && vite --host 127.0.0.1",
     "build": "npm run generate:investor && vite build",
     "preview": "vite preview --host 127.0.0.1"
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "4.3.4",
     "playwright": "^1.44.1",
+    "sharp": "^0.35.2",
     "vite": "5.4.19"
   }
 }

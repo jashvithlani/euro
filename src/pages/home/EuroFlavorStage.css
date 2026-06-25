@@ -826,7 +826,7 @@
   .euro-flavor-stage {
     height: auto;
     margin-top: 0;
-    padding: 48px 20px 56px;
+    padding: 48px 0 56px;
     background:
       radial-gradient(circle at 50% 0%, rgba(255, 222, 167, 0.36), transparent 46%),
       var(--color-page);
@@ -838,19 +838,112 @@
   }
 
   .euro-flavor-stage__mobile-story {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: block;
+  }
+
+  .euro-flavor-stage__mobile-carousel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 16px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+
+  .euro-flavor-stage__mobile-carousel-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .euro-flavor-stage__mobile-carousel-label span {
+    flex: 0 0 auto;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .euro-flavor-stage__mobile-carousel-label strong {
+    overflow: hidden;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .euro-flavor-stage__mobile-carousel-nav {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 10px;
+  }
+
+  .euro-flavor-stage__mobile-carousel-btn {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 12px 24px -12px rgba(78, 40, 31, 0.28);
+    padding: 0;
+    transition: scale 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .euro-flavor-stage__mobile-carousel-btn img {
+    width: 7px;
+    height: 12px;
+    display: block;
+  }
+
+  .euro-flavor-stage__mobile-carousel-btn:not(:disabled):active {
+    scale: 0.94;
+  }
+
+  .euro-flavor-stage__mobile-carousel-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .euro-flavor-stage__mobile-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 20px;
+  }
+
+  .euro-flavor-stage__mobile-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .euro-flavor-stage__mobile-track {
+    display: flex;
+    gap: 14px;
   }
 
   .euro-flavor-stage__mobile-card {
     position: relative;
+    flex: 0 0 86%;
+    display: flex;
+    flex-direction: column;
     min-height: 348px;
     overflow: hidden;
     border: 1px solid rgba(255, 222, 167, 0.18);
     border-radius: 8px;
     padding: 24px;
     color: #fff8ef;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
     background: radial-gradient(circle at 70% 28%, rgba(255, 222, 167, 0.2), transparent 52%), #3b090d;
     box-shadow: 0 24px 46px rgba(0, 0, 0, 0.22);
   }
@@ -892,7 +985,6 @@
   }
 
   .euro-flavor-stage__mobile-card--final {
-    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     gap: 20px;
@@ -904,9 +996,33 @@
     box-shadow: 0 22px 42px rgba(78, 40, 31, 0.12);
   }
 
+  .euro-flavor-stage__mobile-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 0 20px;
+  }
+
+  .euro-flavor-stage__mobile-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(190, 0, 75, 0.22);
+    padding: 0;
+    transition: width 0.25s ease, background 0.25s ease;
+  }
+
+  .euro-flavor-stage__mobile-dot.is-active {
+    width: 24px;
+    background: var(--color-accent);
+  }
+
   .euro-flavor-stage__mobile-card-copy {
     position: relative;
     z-index: 2;
+    flex: 0 0 auto;
     max-width: 340px;
   }
 
@@ -946,24 +1062,32 @@
   }
 
   .euro-flavor-stage__mobile-card > img {
-    position: absolute;
-    right: 18px;
-    bottom: -18px;
-    width: 46%;
-    max-height: 72%;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    align-self: center;
+    width: min(54%, 240px);
+    max-height: min(48%, 220px);
+    margin: 16px auto 12px;
     object-fit: contain;
+    object-position: center;
     filter: drop-shadow(0 26px 28px rgba(0, 0, 0, 0.35));
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    right: -12px;
-    bottom: 12px;
-    width: 62%;
+    width: min(72%, 280px);
+    max-height: min(44%, 200px);
+  }
+
+  .euro-flavor-stage__mobile-card--getmore > img,
+  .euro-flavor-stage__mobile-card--namkeen > img {
+    width: min(46%, 220px);
+    max-height: min(50%, 220px);
   }
 
   .euro-flavor-stage__mobile-card--beverages > img {
-    width: 30%;
-    right: 52px;
+    width: min(30%, 120px);
+    max-height: min(56%, 240px);
   }
 
   .euro-flavor-stage__mobile-card--final > img {
@@ -989,11 +1113,12 @@
 
 @media (max-width: 999px) {
   .home-page .euro-flavor-stage {
-    padding: 40px 20px 48px;
+    padding: 40px 0 48px;
   }
 
-  .euro-flavor-stage__mobile-story {
-    grid-template-columns: 1fr;
+  .euro-flavor-stage__mobile-carousel-head {
+    margin-bottom: 18px;
+    padding: 0 20px;
   }
 
   .euro-flavor-stage__mobile-card {
@@ -1010,23 +1135,23 @@
   }
 
   .euro-flavor-stage__mobile-card > img {
-    width: 54%;
-    max-height: 64%;
+    width: min(58%, 250px);
+    max-height: min(46%, 210px);
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    width: 76%;
-    max-height: 52%;
+    width: min(78%, 290px);
+    max-height: min(42%, 190px);
   }
 
   .euro-flavor-stage__mobile-card--getmore > img,
   .euro-flavor-stage__mobile-card--namkeen > img {
-    width: 42%;
+    width: min(48%, 220px);
   }
 
   .euro-flavor-stage__mobile-card--beverages > img {
-    width: 24%;
-    right: 42px;
+    width: min(28%, 110px);
+    max-height: min(54%, 230px);
   }
 
   .euro-flavor-stage__mobile-card--final {
@@ -1068,10 +1193,12 @@
   }
 
   .euro-flavor-stage__mobile-card > img {
-    width: 58%;
+    width: min(60%, 250px);
+    max-height: min(44%, 200px);
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    width: 82%;
+    width: min(82%, 300px);
+    max-height: min(40%, 180px);
   }
 }

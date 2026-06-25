@@ -504,40 +504,293 @@ function ProductWall({ opacity, isActive }) {
   );
 }
 
-function MobileFlavorStory() {
-  return (
-    <div className="euro-flavor-stage__mobile-story" aria-label="Euro Flavor Stage scenes">
-      {flavorScenes.slice(0, 5).map((scene) => (
-        <article className={`euro-flavor-stage__mobile-card euro-flavor-stage__mobile-card--${scene.id}`} key={scene.id}>
-          <div className="euro-flavor-stage__mobile-card-copy">
-            <span>{scene.eyebrow}</span>
-            <h3>{scene.title}</h3>
-            <p>{scene.description}</p>
-          </div>
-          <img src={scene.product.src} alt={scene.product.alt} loading={scene.id === "intro" ? "eager" : "lazy"} />
-        </article>
-      ))}
+const MOBILE_CAROUSEL_AUTOPLAY_MS = 4500;
+const MOBILE_CAROUSEL_RESUME_MS = 5000;
 
-      <article className="euro-flavor-stage__mobile-card euro-flavor-stage__mobile-card--final">
-        <div className="euro-flavor-stage__mobile-card-copy">
-          <span>{flavorScenes[5].eyebrow}</span>
-          <h3>{flavorScenes[5].title}</h3>
-          <p>{flavorScenes[5].description}</p>
-          <div className="euro-flavor-stage__actions">
-            <Link className="button button-primary euro-flavor-stage__primary" to="/chips" data-cursor="cta" data-cursor-label="Explore">
-              Explore Products
-            </Link>
-            <a className="euro-flavor-stage__secondary" href="#products" data-cursor="cta" data-cursor-label="Explore">
-              Find Your Flavor
-            </a>
-          </div>
+function useMobileFlavorCarousel(slideCount) {
+  const viewportRef = React.useRef(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const activeIndexRef = React.useRef(0);
+  const autoplayPausedRef = React.useRef(false);
+  const autoplayTimerRef = React.useRef(null);
+  const resumeTimerRef = React.useRef(null);
+  const isProgrammaticScrollRef = React.useRef(false);
+
+  React.useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  const pauseAutoplay = React.useCallback(() => {
+    autoplayPausedRef.current = true;
+
+    if (resumeTimerRef.current) {
+      window.clearTimeout(resumeTimerRef.current);
+    }
+
+    resumeTimerRef.current = window.setTimeout(() => {
+      autoplayPausedRef.current = false;
+      resumeTimerRef.current = null;
+    }, MOBILE_CAROUSEL_RESUME_MS);
+  }, []);
+
+  const scrollToIndex = React.useCallback((index, { userInitiated = true } = {}) => {
+    if (userInitiated) {
+      pauseAutoplay();
+    }
+
+    const clamped = Math.min(slideCount - 1, Math.max(0, index));
+    isProgrammaticScrollRef.current = !userInitiated;
+
+    document.getElementById(`euro-flavor-mobile-slide-${clamped}`)?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+    setActiveIndex(clamped);
+
+    if (!userInitiated) {
+      window.setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+      }, 800);
+    }
+  }, [pauseAutoplay, slideCount]);
+
+  React.useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport || slideCount === 0) return undefined;
+
+    const slides = viewport.querySelectorAll(".euro-flavor-stage__mobile-card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.55) return;
+
+          const index = Number(entry.target.getAttribute("data-slide-index"));
+          if (!Number.isNaN(index)) {
+            setActiveIndex(index);
+          }
+        });
+      },
+      { root: viewport, threshold: [0.55, 0.75] },
+    );
+
+    slides.forEach((slide, index) => {
+      slide.setAttribute("data-slide-index", String(index));
+      observer.observe(slide);
+    });
+
+    const handleUserScroll = () => {
+      if (!isProgrammaticScrollRef.current) {
+        pauseAutoplay();
+      }
+    };
+
+    viewport.addEventListener("pointerdown", pauseAutoplay);
+    viewport.addEventListener("scroll", handleUserScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      viewport.removeEventListener("pointerdown", pauseAutoplay);
+      viewport.removeEventListener("scroll", handleUserScroll);
+    };
+  }, [pauseAutoplay, slideCount]);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || slideCount <= 1) return undefined;
+
+    const mobileQuery = window.matchMedia("(max-width: 999px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const clearAutoplay = () => {
+      if (autoplayTimerRef.current) {
+        window.clearInterval(autoplayTimerRef.current);
+        autoplayTimerRef.current = null;
+      }
+    };
+
+    const advanceSlide = () => {
+      if (autoplayPausedRef.current) return;
+
+      const next = (activeIndexRef.current + 1) % slideCount;
+      scrollToIndex(next, { userInitiated: false });
+    };
+
+    const startAutoplay = () => {
+      clearAutoplay();
+
+      if (!mobileQuery.matches || reducedMotionQuery.matches) return;
+
+      autoplayTimerRef.current = window.setInterval(advanceSlide, MOBILE_CAROUSEL_AUTOPLAY_MS);
+    };
+
+    const handleMediaChange = () => {
+      clearAutoplay();
+      startAutoplay();
+    };
+
+    startAutoplay();
+
+    const removeMobileListener = addMediaChangeListener(mobileQuery, handleMediaChange);
+    const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, handleMediaChange);
+
+    return () => {
+      clearAutoplay();
+      if (resumeTimerRef.current) {
+        window.clearTimeout(resumeTimerRef.current);
+        resumeTimerRef.current = null;
+      }
+      removeMobileListener();
+      removeReducedMotionListener();
+    };
+  }, [scrollToIndex, slideCount]);
+
+  const scrollFromViewport = React.useCallback(
+    (direction) => {
+      const viewport = viewportRef.current;
+      if (!viewport) return;
+
+      const slides = [...viewport.querySelectorAll(".euro-flavor-stage__mobile-card")];
+      const centered = slides.findIndex((slide) => {
+        const rect = slide.getBoundingClientRect();
+        const viewportRect = viewport.getBoundingClientRect();
+        const slideCenter = rect.left + rect.width / 2;
+        const viewportCenter = viewportRect.left + viewportRect.width / 2;
+        return Math.abs(slideCenter - viewportCenter) < rect.width * 0.35;
+      });
+
+      const current = centered >= 0 ? centered : activeIndexRef.current;
+      scrollToIndex(current + direction);
+    },
+    [scrollToIndex],
+  );
+
+  return {
+    viewportRef,
+    activeIndex,
+    scrollPrev: () => scrollFromViewport(-1),
+    scrollNext: () => scrollFromViewport(1),
+    scrollToIndex,
+    pauseAutoplay,
+    canScrollPrev: activeIndex > 0,
+    canScrollNext: activeIndex < slideCount - 1,
+  };
+}
+
+function MobileFlavorStory() {
+  const mobileScenes = flavorScenes.slice(0, 5);
+  const finalScene = flavorScenes[5];
+  const slideCount = mobileScenes.length + 1;
+  const {
+    viewportRef,
+    activeIndex,
+    scrollPrev,
+    scrollNext,
+    scrollToIndex,
+    pauseAutoplay,
+    canScrollPrev,
+    canScrollNext,
+  } = useMobileFlavorCarousel(slideCount);
+  const activeLabel = activeIndex < mobileScenes.length ? mobileScenes[activeIndex].eyebrow : finalScene.eyebrow;
+
+  return (
+    <div className="euro-flavor-stage__mobile-story">
+      <div className="euro-flavor-stage__mobile-carousel-head">
+        <div className="euro-flavor-stage__mobile-carousel-label" aria-live="polite">
+          <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+          <strong>{activeLabel}</strong>
         </div>
-        <div className="euro-flavor-stage__mobile-wall">
-          {productWall.slice(0, 6).map((product) => (
-            <img src={product.src} alt={product.alt} key={product.label} loading="lazy" />
+        <div className="euro-flavor-stage__mobile-carousel-nav" aria-label="Flavor stage carousel controls">
+          <button
+            type="button"
+            className="euro-flavor-stage__mobile-carousel-btn"
+            onClick={() => {
+              pauseAutoplay();
+              scrollPrev();
+            }}
+            disabled={!canScrollPrev}
+            aria-label="Previous flavor"
+          >
+            <img src={homeAsset("arrow-prev.svg")} alt="" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            className="euro-flavor-stage__mobile-carousel-btn"
+            onClick={() => {
+              pauseAutoplay();
+              scrollNext();
+            }}
+            disabled={!canScrollNext}
+            aria-label="Next flavor"
+          >
+            <img src={homeAsset("arrow-next.svg")} alt="" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="euro-flavor-stage__mobile-viewport"
+        ref={viewportRef}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Euro Flavor Stage scenes"
+      >
+        <div className="euro-flavor-stage__mobile-track">
+          {mobileScenes.map((scene, index) => (
+            <article
+              className={`euro-flavor-stage__mobile-card euro-flavor-stage__mobile-card--${scene.id}`}
+              key={scene.id}
+              id={`euro-flavor-mobile-slide-${index}`}
+              aria-hidden={activeIndex !== index}
+            >
+              <div className="euro-flavor-stage__mobile-card-copy">
+                <span>{scene.eyebrow}</span>
+                <h3>{scene.title}</h3>
+                <p>{scene.description}</p>
+              </div>
+              <img src={scene.product.src} alt={scene.product.alt} loading={scene.id === "intro" ? "eager" : "lazy"} />
+            </article>
           ))}
+
+          <article
+            className="euro-flavor-stage__mobile-card euro-flavor-stage__mobile-card--final"
+            id={`euro-flavor-mobile-slide-${mobileScenes.length}`}
+            aria-hidden={activeIndex !== mobileScenes.length}
+          >
+            <div className="euro-flavor-stage__mobile-card-copy">
+              <span>{finalScene.eyebrow}</span>
+              <h3>{finalScene.title}</h3>
+              <p>{finalScene.description}</p>
+              <div className="euro-flavor-stage__actions">
+                <Link className="button button-primary euro-flavor-stage__primary" to="/chips" data-cursor="cta" data-cursor-label="Explore">
+                  Explore Products
+                </Link>
+                <a className="euro-flavor-stage__secondary" href="#products" data-cursor="cta" data-cursor-label="Explore">
+                  Find Your Flavor
+                </a>
+              </div>
+            </div>
+            <div className="euro-flavor-stage__mobile-wall">
+              {productWall.map((product) => (
+                <img src={product.src} alt={product.alt} key={product.label} loading="lazy" />
+              ))}
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+
+      <div className="euro-flavor-stage__mobile-dots" role="tablist" aria-label="Flavor stage slides">
+        {Array.from({ length: slideCount }, (_, index) => (
+          <button
+            key={index}
+            type="button"
+            role="tab"
+            className={`euro-flavor-stage__mobile-dot${index === activeIndex ? " is-active" : ""}`}
+            onClick={() => scrollToIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            aria-selected={index === activeIndex}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./AchievementsPage.css";
-import { asset } from './asset.js';
+import { asset } from "./asset.js";
 
 const stats = [
   { value: "4+", label: "National Awards" },
@@ -8,40 +8,91 @@ const stats = [
   { value: "4", label: "Quality Recognition" },
 ];
 
-const awards = [
+const recognitions = [
   {
-    className: "achievements-award-excellence",
-    title: "eXCELLENCE AWARDS - 2011",
-    label: "VCCI Leaders Summit excellence award",
-    ellipse: "achievements-ellipse-1.svg",
+    id: "vibrant-gujarat",
+    ghost: "2017",
+    kicker: "Featured Recognition",
+    title: "Vibrant Gujarat Summit",
+    label: "Best Entrepreneur Award",
+    heading: "Vibrant Gujarat Summit 2017",
+    description:
+      "Recognised by the Government of Gujarat for outstanding entrepreneurial contribution to the food processing industry, setting a benchmark for quality, innovation, and regional economic growth.",
+    presented: "Presented by · Government of Gujarat, India",
+    image: asset("achievements-vibrant-gujarat.png"),
+    imageAlt: "Vibrant Gujarat Summit 2017 Best Entrepreneur Award",
   },
   {
-    className: "achievements-award-quality",
-    title: "BEST QUALITY CHOICE - 2014",
-    label: "ESQR Quality Choice Prize trophy",
-    ellipse: "achievements-ellipse-2.svg",
+    id: "excellence-2011",
+    ghost: "2011",
+    kicker: "Industry Recognition",
+    title: "eXCELLENCE Awards",
+    label: "VCCI Leaders Summit",
+    heading: "eXCELLENCE AWARDS - 2011",
+    description:
+      "Honoured at the VCCI Leaders Summit for business excellence and sustained leadership in Gujarat's food manufacturing sector.",
+    presented: "Presented by · VCCI Leaders Summit",
+    cropClass: "achievements-award-excellence",
+    imageAlt: "VCCI Leaders Summit excellence award",
   },
   {
-    className: "achievements-award-star",
-    title: "NATIONAL STAR FOR QUALITY",
-    label: "International Star for Quality trophy",
-    ellipse: "achievements-ellipse-3.svg",
+    id: "quality-2014",
+    ghost: "2014",
+    kicker: "Quality Recognition",
+    title: "Best Quality Choice",
+    label: "ESQR Quality Choice Prize",
+    heading: "BEST QUALITY CHOICE - 2014",
+    description:
+      "Awarded the ESQR Quality Choice Prize for consistent product quality, process discipline, and international manufacturing standards.",
+    presented: "Presented by · ESQR",
+    cropClass: "achievements-award-quality",
+    imageAlt: "ESQR Quality Choice Prize trophy",
+  },
+  {
+    id: "national-star",
+    ghost: "STAR",
+    kicker: "Global Recognition",
+    title: "National Star for Quality",
+    label: "International Star for Quality",
+    heading: "NATIONAL STAR FOR QUALITY",
+    description:
+      "Recognised with the International Star for Quality for maintaining excellence across production, packaging, and consumer trust.",
+    presented: "Presented by · International Star for Quality",
+    cropClass: "achievements-award-star",
+    imageAlt: "International Star for Quality trophy",
   },
 ];
+
+const sheetImage = asset("achievements-awards-sheet.png");
+
+function RecognitionMedia({ recognition }) {
+  return (
+    <div className="achievements-featured-media">
+      <div className="achievements-featured-shadow" aria-hidden="true"></div>
+      {recognition.image ? (
+        <img src={recognition.image} alt={recognition.imageAlt} />
+      ) : (
+        <div className={`achievements-featured-crop ${recognition.cropClass}`}>
+          <img src={sheetImage} alt={recognition.imageAlt} />
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function AchievementsPage() {
   return (
     <main className="achievements-main" aria-labelledby="achievements-title">
       <section className="achievements-hero" aria-labelledby="achievements-title">
         <div className="achievements-hero-texture" aria-hidden="true">
-          <img src={asset('achievements-hero-texture.png')} alt="" />
+          <img src={asset("achievements-hero-texture.png")} alt="" />
         </div>
         <p className="achievements-hero-kicker">Recognition &amp; Honours</p>
         <h1 id="achievements-title">A Legacy of Excellence</h1>
       </section>
 
       <section className="achievements-stats" aria-label="Achievement statistics">
-        <img className="achievements-stats-texture" src={asset('achievements-stats-texture.png')} alt="" aria-hidden="true" />
+        <img className="achievements-stats-texture" src={asset("achievements-stats-texture.png")} alt="" aria-hidden="true" />
         <div className="achievements-stats-list">
           {stats.map((stat) => (
             <div className="achievements-stat" key={stat.label}>
@@ -52,54 +103,34 @@ export default function AchievementsPage() {
         </div>
       </section>
 
-      <section className="achievements-featured" aria-labelledby="achievements-featured-title">
-        <div className="achievements-section-heading achievements-featured-heading">
-          <span className="achievements-ghost">2017</span>
-          <p>Featured Recognition</p>
-          <h2 id="achievements-featured-title">Vibrant Gujarat Summit</h2>
-        </div>
-
-        <article className="achievements-featured-card">
-          <div className="achievements-featured-media">
-            <div className="achievements-featured-shadow" aria-hidden="true"></div>
-            <img src={asset('achievements-vibrant-gujarat.png')} alt="Vibrant Gujarat Summit 2017 Best Entrepreneur Award" />
-          </div>
-          <div className="achievements-featured-copy">
-            <div className="achievements-award-label">
-              <span aria-hidden="true"></span>
-              Best Entrepreneur Award
+      <div className="achievements-recognitions">
+        {recognitions.map((recognition) => (
+          <section
+            className="achievements-recognition"
+            key={recognition.id}
+            aria-labelledby={`recognition-${recognition.id}`}
+          >
+            <div className="achievements-section-heading achievements-recognition-heading">
+              <span className="achievements-ghost">{recognition.ghost}</span>
+              <p>{recognition.kicker}</p>
+              <h2 id={`recognition-${recognition.id}`}>{recognition.title}</h2>
             </div>
-            <h3>Vibrant Gujarat Summit 2017</h3>
-            <p>
-              Recognised by the Government of Gujarat for outstanding entrepreneurial contribution to the food
-              processing industry, setting a benchmark for quality, innovation, and regional economic growth.
-            </p>
-            <div className="achievements-presented">Presented by <span>&middot;</span> Government of Gujarat, India</div>
-          </div>
-        </article>
-      </section>
 
-      <section className="achievements-awards" aria-labelledby="achievements-awards-title">
-        <div className="achievements-section-heading achievements-awards-heading">
-          <span className="achievements-ghost">ALL</span>
-          <p>Other</p>
-          <h2 id="achievements-awards-title">Awards &amp; Recognitions</h2>
-        </div>
-
-        <div className="achievements-awards-grid">
-          {awards.map((award) => (
-            <article className="achievements-award" key={award.title}>
-              <div className="achievements-award-card">
-                <img className="achievements-award-ellipse" src={asset(award.ellipse)} alt="" aria-hidden="true" />
-                <div className={`achievements-award-crop ${award.className}`}>
-                  <img src={asset('achievements-awards-sheet.png')} alt={award.label} />
+            <article className="achievements-featured-card">
+              <RecognitionMedia recognition={recognition} />
+              <div className="achievements-featured-copy">
+                <div className="achievements-award-label">
+                  <span aria-hidden="true"></span>
+                  {recognition.label}
                 </div>
+                <h3>{recognition.heading}</h3>
+                <p>{recognition.description}</p>
+                <div className="achievements-presented">{recognition.presented}</div>
               </div>
-              <h3>{award.title}</h3>
             </article>
-          ))}
-        </div>
-      </section>
+          </section>
+        ))}
+      </div>
 
       <section className="achievements-cta" aria-labelledby="achievements-cta-title">
         <div className="achievements-cta-bg" aria-hidden="true"></div>
@@ -114,7 +145,9 @@ export default function AchievementsPage() {
             delivers a product your customers will trust.
           </p>
         </div>
-        <Link className="achievements-cta-button" to="/dealers">Explore Dealership</Link>
+        <Link className="achievements-cta-button" to="/dealers">
+          Explore Dealership
+        </Link>
       </section>
     </main>
   );

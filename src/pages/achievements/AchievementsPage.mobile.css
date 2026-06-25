@@ -93,21 +93,29 @@
     letter-spacing: -1.12px;
   }
 
-  /* Featured section */
-  .achievements-page .achievements-featured {
+  /* Recognition sections */
+  .achievements-page .achievements-recognitions {
     position: relative;
     top: auto;
     left: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 24px;
+    gap: 48px;
     width: 100%;
-    height: auto;
+    margin-top: 0;
     padding: 48px 20px;
   }
 
-  .achievements-page .achievements-featured-heading {
+  .achievements-page .achievements-recognition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .achievements-page .achievements-recognition-heading {
     position: relative;
     top: auto;
     left: auto;
@@ -117,13 +125,14 @@
     gap: 8px;
     width: 100%;
     height: auto;
+    margin-bottom: 0;
   }
 
-  .achievements-page .achievements-featured-heading .achievements-ghost {
+  .achievements-page .achievements-recognition-heading .achievements-ghost {
     display: none;
   }
 
-  .achievements-page .achievements-featured-heading p {
+  .achievements-page .achievements-recognition-heading p {
     position: relative;
     top: auto;
     left: auto;
@@ -132,7 +141,7 @@
     letter-spacing: -1.12px;
   }
 
-  .achievements-page .achievements-featured-heading h2 {
+  .achievements-page .achievements-recognition-heading h2 {
     position: relative;
     top: auto;
     left: auto;
@@ -170,14 +179,38 @@
     display: none;
   }
 
-  .achievements-page .achievements-featured-media img {
+  .achievements-page .achievements-featured-media > img,
+  .achievements-page .achievements-featured-crop {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
     height: 100%;
     border-radius: 20px;
+    transform: none;
+  }
+
+  .achievements-page .achievements-featured-media > img {
     object-fit: cover;
+  }
+
+  .achievements-page .achievements-featured-crop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .achievements-page .achievements-featured-crop img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    max-width: 88%;
+    height: auto;
+    max-height: 88%;
+    object-fit: contain;
   }
 
   .achievements-page .achievements-featured-copy {
@@ -222,123 +255,6 @@
     padding-top: 0;
     font-size: 14px;
     text-align: center;
-  }
-
-  /* Awards grid */
-  .achievements-page .achievements-awards {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    padding: 32px 16px 48px;
-  }
-
-  .achievements-page .achievements-awards-heading {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
-    min-height: 128px;
-    padding-top: 0;
-  }
-
-  .achievements-page .achievements-awards-heading .achievements-ghost {
-    top: -31px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 60px;
-    line-height: 80px;
-  }
-
-  .achievements-page .achievements-awards-heading p {
-    display: none;
-  }
-
-  .achievements-page .achievements-awards-heading h2 {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin-top: 30px;
-    font-size: 32px;
-    line-height: 1.5;
-    letter-spacing: -0.64px;
-  }
-
-  .achievements-page .achievements-awards-grid {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    width: 100%;
-    margin-top: 48px;
-  }
-
-  .achievements-page .achievements-award {
-    width: 100%;
-  }
-
-  .achievements-page .achievements-award-card {
-    width: 100%;
-    height: 280px;
-    border-radius: 12px;
-    border-width: 1px;
-    box-shadow: 0 24px 48px -12px rgba(78, 40, 31, 0.08);
-  }
-
-  .achievements-page .achievements-award-ellipse {
-    top: 128px !important;
-    width: 100%;
-    height: 150px;
-  }
-
-  .achievements-page .achievements-award-excellence {
-    top: 46px;
-    left: 50px;
-    width: 243px;
-    height: 186px;
-  }
-
-  .achievements-page .achievements-award-excellence img {
-    top: -266px;
-    left: -472px;
-    width: 934px;
-  }
-
-  .achievements-page .achievements-award-quality {
-    top: 49px;
-    left: 119px;
-    width: 105px;
-    height: 180px;
-  }
-
-  .achievements-page .achievements-award-quality img {
-    top: -98px;
-    left: -674px;
-    width: 822px;
-  }
-
-  .achievements-page .achievements-award-star {
-    top: 51px;
-    left: 117px;
-    width: 108px;
-    height: 175px;
-  }
-
-  .achievements-page .achievements-award-star img {
-    top: -339px;
-    left: -637px;
-    width: 791px;
-  }
-
-  .achievements-page .achievements-award h3 {
-    margin-top: 24px;
-    font-size: 14px;
-    line-height: 1.5;
-    letter-spacing: 1.4px;
   }
 
   /* CTA */

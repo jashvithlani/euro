@@ -5,7 +5,8 @@
 .achievements-main {
   position: relative;
   width: 1280px;
-  height: 1818px;
+  min-height: 1818px;
+  height: auto;
   overflow: hidden;
   background: var(--color-page, #fff8f6);
   color: #434343;
@@ -173,42 +174,85 @@
   line-height: 41px;
 }
 
-/* Featured section — Figma: heading at y=895→597px, card at y=1026→684px */
-.achievements-featured {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Recognition sections — full-width cards like Vibrant Gujarat */
+.achievements-recognitions {
+  position: relative;
+  margin-top: 597px;
+  padding-bottom: 64px;
+}
+
+.achievements-recognition {
   width: 1280px;
-  height: 1000px;
+  margin-bottom: 113px;
 }
 
-.achievements-featured-heading {
-  top: 597px;
+.achievements-recognition:last-child {
+  margin-bottom: 72px;
+}
+
+.achievements-recognition-heading {
+  position: relative;
   height: 75px;
+  margin-bottom: 12px;
 }
 
-.achievements-featured-heading .achievements-ghost {
+.achievements-recognition-heading .achievements-ghost {
   top: 19px;
   left: 47px;
 }
 
-.achievements-featured-heading p {
+.achievements-recognition-heading p {
   top: 0;
   left: 400px;
 }
 
-.achievements-featured-heading h2 {
+.achievements-recognition-heading h2 {
   top: 34px;
   left: 410px;
 }
 
-/* Featured card — Figma: y=1026 → 684px at 1280; centered */
+.achievements-recognition:nth-child(2) .achievements-ghost {
+  left: 56px;
+}
+
+.achievements-recognition:nth-child(2) .achievements-recognition-heading p {
+  left: 285px;
+}
+
+.achievements-recognition:nth-child(2) .achievements-recognition-heading h2 {
+  left: 276px;
+}
+
+.achievements-recognition:nth-child(3) .achievements-ghost {
+  left: 56px;
+}
+
+.achievements-recognition:nth-child(3) .achievements-recognition-heading p {
+  left: 300px;
+}
+
+.achievements-recognition:nth-child(3) .achievements-recognition-heading h2 {
+  left: 292px;
+}
+
+.achievements-recognition:nth-child(4) .achievements-ghost {
+  left: 40px;
+}
+
+.achievements-recognition:nth-child(4) .achievements-recognition-heading p {
+  left: 268px;
+}
+
+.achievements-recognition:nth-child(4) .achievements-recognition-heading h2 {
+  left: 214px;
+}
+
+/* Featured card — full horizontal band */
 .achievements-featured-card {
-  position: absolute;
-  top: 684px;
-  left: calc(50% - 592px);
+  position: relative;
   width: 1185px;
   height: 305px;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 13px;
   background: rgba(255, 207, 226, 0.2);
@@ -232,7 +276,7 @@
   background: #be004b;
 }
 
-.achievements-featured-media img {
+.achievements-featured-media > img {
   position: absolute;
   top: 3px;
   left: 0;
@@ -240,6 +284,64 @@
   height: 257px;
   border-radius: 19px;
   object-fit: cover;
+}
+
+.achievements-featured-crop {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 257px;
+  height: 257px;
+  overflow: hidden;
+  border-radius: 19px;
+  background: #ffffff;
+}
+
+.achievements-featured-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+.achievements-featured-crop.achievements-award-excellence {
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 154px;
+  transform: translate(-50%, -50%);
+}
+
+.achievements-featured-crop.achievements-award-excellence img {
+  top: -218px;
+  left: -388px;
+  width: 767px;
+}
+
+.achievements-featured-crop.achievements-award-quality {
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 206px;
+  transform: translate(-50%, -50%);
+}
+
+.achievements-featured-crop.achievements-award-quality img {
+  top: -112px;
+  left: -771px;
+  width: 940px;
+}
+
+.achievements-featured-crop.achievements-award-star {
+  top: 50%;
+  left: 50%;
+  width: 122px;
+  height: 198px;
+  transform: translate(-50%, -50%);
+}
+
+.achievements-featured-crop.achievements-award-star img {
+  top: -383px;
+  left: -722px;
+  width: 896px;
 }
 
 .achievements-featured-copy {
@@ -300,153 +402,12 @@
   padding: 0 8px;
 }
 
-/* Awards section — headings: y=1576→1051px at 1280 */
-.achievements-awards {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1280px;
-  height: 1600px;
-}
-
-.achievements-awards-heading {
-  top: 1051px;
-  height: 75px;
-}
-
-.achievements-awards-heading .achievements-ghost {
-  top: 18px;
-  left: 56px;
-}
-
-.achievements-awards-heading p {
-  top: 0;
-  left: 285px;
-}
-
-.achievements-awards-heading h2 {
-  top: 34px;
-  left: 276px;
-}
-
-/* Awards grid — Figma: y=1800.94→1200px, x=66→44px; cards 527.769×307.062 → 352×205px; gap ~67px */
-.achievements-awards-grid {
-  position: absolute;
-  top: 1200px;
-  left: 44px;
-  display: grid;
-  width: 1192px;
-  grid-template-columns: repeat(3, 352px);
-  gap: 67px;
-}
-
-.achievements-award {
-  width: 352px;
-}
-
-.achievements-award-card {
-  position: relative;
-  width: 352px;
-  height: 205px;
-  overflow: hidden;
-  border: 1px solid rgba(190, 0, 75, 0.3);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 16px 32px -8px rgba(78, 40, 31, 0.08);
-}
-
-/* Ellipses: centered horizontally, positioned per Figma top values (×2/3) */
-.achievements-award-ellipse {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 352px;
-  height: 133px;
-  max-width: none;
-}
-
-.achievements-award:nth-child(1) .achievements-award-ellipse {
-  top: 122px; /* 184 × 2/3 */
-}
-
-.achievements-award:nth-child(2) .achievements-award-ellipse {
-  top: 106px; /* 159 × 2/3 */
-}
-
-.achievements-award:nth-child(3) .achievements-award-ellipse {
-  top: 102px; /* 153 × 2/3 */
-}
-
-.achievements-award-crop {
-  position: absolute;
-  overflow: hidden;
-}
-
-.achievements-award-crop img {
-  position: absolute;
-  max-width: none;
-}
-
-/* Card 1: wrapper 162×124 at top=29, left=94 (243×186 × 2/3) */
-.achievements-award-excellence {
-  top: 29px;
-  left: 94px;
-  width: 162px;
-  height: 124px;
-}
-
-.achievements-award-excellence img {
-  top: -177px;
-  left: -315px;
-  width: 623px;
-}
-
-/* Card 2: wrapper 85×146 at top=9, left=134px (Figma x=200.88 × 2/3 → centered in 352px card) */
-.achievements-award-quality {
-  top: 9px;
-  left: 134px;
-  width: 85px;
-  height: 146px;
-}
-
-.achievements-award-quality img {
-  top: -79px;
-  left: -546px;
-  width: 666px;
-}
-
-/* Card 3: wrapper 87×141 at top=19, left=132 (131×212 × 2/3) */
-.achievements-award-star {
-  top: 19px;
-  left: 132px;
-  width: 87px;
-  height: 141px;
-}
-
-.achievements-award-star img {
-  top: -273px;
-  left: -515px;
-  width: 639px;
-}
-
-.achievements-award h3 {
-  margin: 24px 0 0;
-  color: #be004b;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.93px;
-  line-height: 14px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* CTA section — Figma y=2307→1538px at 1280; x=66→44; w=1784→1189px; h=352→235px */
+/* CTA section */
 .achievements-cta {
-  position: absolute;
-  top: 1538px;
-  left: 44px;
+  position: relative;
   width: 1189px;
   height: 235px;
+  margin: 0 auto 80px;
   overflow: hidden;
   border-radius: 16px;
   background: #fff8f6;
@@ -536,29 +497,22 @@
   to { opacity: 1; scale: 1; }
 }
 
-.achievements-main .achievements-award,
-.achievements-main .achievements-award-crop img,
 .achievements-main .achievements-featured-card,
+.achievements-main .achievements-featured-crop img,
 .achievements-main .achievements-cta-button {
   transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s ease;
 }
 
-.achievements-main .achievements-award:hover {
-  translate: 0 -8px;
-  scale: 1.025;
-  box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.35);
-}
-
-.achievements-main .achievements-award:hover .achievements-award-crop img {
-  scale: 1.05;
-}
-
 .achievements-main .achievements-featured-card:hover {
   translate: 0 -6px;
   scale: 1.015;
   box-shadow: 0 36px 60px -24px rgba(78, 40, 31, 0.4);
+}
+
+.achievements-main .achievements-featured-card:hover .achievements-featured-crop img {
+  scale: 1.05;
 }
 
 .achievements-main .achievements-cta-button:hover {
@@ -588,15 +542,15 @@
   }
 
   @supports (animation-timeline: view()) {
-    .achievements-main .achievements-award {
+    .achievements-main .achievements-recognition {
       animation: achievements-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% entry 45%;
     }
 
-    .achievements-main .achievements-award:nth-child(2) { animation-range: entry 4% entry 49%; }
-    .achievements-main .achievements-award:nth-child(3) { animation-range: entry 8% entry 53%; }
-    .achievements-main .achievements-award:nth-child(4) { animation-range: entry 12% entry 57%; }
+    .achievements-main .achievements-recognition:nth-child(2) { animation-range: entry 4% entry 49%; }
+    .achievements-main .achievements-recognition:nth-child(3) { animation-range: entry 8% entry 53%; }
+    .achievements-main .achievements-recognition:nth-child(4) { animation-range: entry 12% entry 57%; }
 
     .achievements-main .achievements-cta-copy {
       animation: achievements-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;

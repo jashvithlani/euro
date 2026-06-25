@@ -9,7 +9,6 @@ const PRODUCT_SELECTOR = [
   ".euro-flavor-stage__product-scroll-layer",
   ".euro-flavor-stage__wall-card",
   ".euro-moments-card",
-  ".social-feed-card",
 ].join(", ");
 const CURSOR_COLOR_SAMPLE_INTERVAL = 90;
 const LIGHT_PINK_CURSOR_ACCENT = { r: 255, g: 178, b: 205 };

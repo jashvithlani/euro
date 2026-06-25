@@ -3,14 +3,6 @@ import EuroMoments from "../../components/EuroMoments.jsx";
 import { asset } from "./asset.js";
 import "./HomePage.css";
 
-const socialCards = [
-  { src: asset("social-card-1.png"), alt: "Euro snack moment" },
-  { src: asset("social-card-2.png"), alt: "Euro chips pack moment" },
-  { src: asset("social-card-3.png"), alt: "Euro chips everywhere moment" },
-  { src: asset("social-card-4.png"), alt: "Euro table snack moment" },
-  { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
-];
-
 export default function HomePage() {
   useEffect(() => {
     const carouselViewport = document.querySelector("[data-carousel-viewport]");
@@ -254,14 +246,7 @@ export default function HomePage() {
 
               <div className="patch patch-yellow-slant" aria-hidden="true"></div>
 
-              <EuroMoments
-                className="social-section"
-                gridClassName="social-feed-grid"
-                cardClassName="social-feed-card"
-                cards={socialCards}
-              >
-                <img className="social-feed-header" src={asset('social-feed-header-figma.png')} alt="Euro India social feed header" />
-              </EuroMoments>
+              <EuroMoments className="euro-moments--home" />
             </main>
     </>
   );

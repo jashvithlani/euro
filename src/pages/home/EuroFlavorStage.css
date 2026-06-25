@@ -401,6 +401,26 @@
   line-height: 1.65;
 }
 
+.euro-flavor-stage__copy--intro {
+  right: 18px;
+  bottom: 58px;
+}
+
+.euro-flavor-stage__copy--intro span {
+  margin-bottom: 8px;
+  font-size: 9px;
+  letter-spacing: 1.35px;
+}
+
+.euro-flavor-stage__copy--intro h2 {
+  font-size: 41px;
+}
+
+.euro-flavor-stage__copy--intro p {
+  margin-top: 14px;
+  font-size: 10.5px;
+}
+
 .euro-flavor-stage.is-light-scene {
   color: var(--color-ink);
   background: var(--color-page);
@@ -843,6 +863,16 @@
 
   .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy p {
     color: rgba(78, 40, 31, 0.72);
+    font-size: 10.5px;
+  }
+
+  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy span {
+    font-size: 9px;
+    letter-spacing: 1.35px;
+  }
+
+  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy h3 {
+    font-size: 25.5px;
   }
 
   .euro-flavor-stage__mobile-card--chips {

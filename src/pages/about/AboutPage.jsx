@@ -18,14 +18,6 @@ const timelineProducts = [
   { category: "Farali", image: categoryAsset("category-farali-kela-wafers.png") },
 ];
 
-const socialCards = [
-  { src: asset("social-card-1.png"), alt: "Euro snack moment" },
-  { src: asset("social-card-2.png"), alt: "Euro chips pack moment" },
-  { src: asset("social-card-3.png"), alt: "Euro chips everywhere moment" },
-  { src: asset("social-card-4.png"), alt: "Euro table snack moment" },
-  { src: asset("social-card-5.png"), alt: "Fresh and tasty Euro beverages" },
-];
-
 const pillarBackgroundVideo = asset("about-pillars-excellence.mp4");
 
 const pillars = [
@@ -451,28 +443,7 @@ export default function AboutPage() {
                 <span className="float-tag family-tag-three">#Happiness</span>
               </section>
 
-              <EuroMoments
-                className="about-social"
-                gridClassName="about-social-cards"
-                cardClassName="about-social-card"
-                cards={socialCards}
-              >
-                <div className="about-social-header">
-                  <div className="about-social-heading">
-                    <span className="about-social-kicker">Social Feed</span>
-                    <h2>
-                      #EuroIndia
-                      <br />
-                      Moments
-                    </h2>
-                  </div>
-                  <p className="about-social-tagline">
-                    Tag us in your snack selfies for a chance
-                    <br />
-                    to get featured!
-                  </p>
-                </div>
-              </EuroMoments>
+              <EuroMoments className="euro-moments--about" />
             </main>
     </>
   );

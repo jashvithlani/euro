@@ -1,8 +1,82 @@
+.euro-moments {
+  position: relative;
+  width: 1280px;
+  height: 594px;
+  overflow: hidden;
+  background: #fef8f6;
+}
+
+.euro-moments--contact {
+  margin-top: 46.67px;
+}
+
+.euro-moments--home {
+  z-index: 4;
+}
+
+.euro-moments__strip {
+  position: absolute;
+  top: 0;
+  left: 63.33px;
+  width: 1092px;
+  height: 246px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.euro-moments__grid {
+  position: absolute;
+  top: 280.67px;
+  left: 103.33px;
+  width: 1080px;
+  min-height: 273.33px;
+  display: grid;
+  grid-template-columns: 1.03fr 0.93fr 1.13fr 1.06fr 1.02fr;
+  align-items: start;
+  gap: 20.67px;
+}
+
 .euro-moments-card {
   --euro-moments-card-y: 0px;
   --euro-moments-card-opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
   opacity: var(--euro-moments-card-opacity);
   transform: translate3d(0, var(--euro-moments-card-y), 0);
+  transform-origin: center;
+  transition:
+    translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+  will-change: transform;
+}
+
+.euro-moments-card:nth-child(2) {
+  margin-top: 41.33px;
+}
+
+.euro-moments-card:nth-child(4) {
+  margin-top: 36px;
+  border-radius: 8.5%;
+  rotate: 5deg;
+}
+
+.euro-moments-card:nth-child(5) {
+  border-radius: 8.5%;
+  rotate: -5deg;
+}
+
+.euro-moments-card:nth-child(4):hover,
+.euro-moments-card:nth-child(5):hover {
+  rotate: 0deg;
+}
+
+.euro-moments-card:hover {
+  translate: 0 -10px;
+  scale: 1.045;
+  filter: drop-shadow(0 22px 20px rgba(78, 40, 31, 0.18));
 }
 
 @media (max-width: 999px), (prefers-reduced-motion: reduce) {
@@ -11,5 +85,58 @@
     --euro-moments-card-opacity: 1;
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (max-width: 999px) {
+  .euro-moments {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0 20px 48px;
+  }
+
+  .euro-moments--contact {
+    margin-top: 32px;
+  }
+
+  .euro-moments--home,
+  .euro-moments--about {
+    padding: 48px 20px 64px;
+    background: #f9f9f9;
+  }
+
+  .euro-moments__strip,
+  .euro-moments__grid {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+    object-fit: contain;
+  }
+
+  .euro-moments__strip {
+    margin-top: 0;
+  }
+
+  .euro-moments__grid {
+    min-height: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .euro-moments-card {
+    width: 100%;
+    margin-top: 0;
+    rotate: 0deg;
+  }
+
+  .euro-moments-card:nth-child(3),
+  .euro-moments-card:nth-child(5) {
+    grid-column: 1 / -1;
+    width: min(62%, 260px);
+    justify-self: center;
   }
 }

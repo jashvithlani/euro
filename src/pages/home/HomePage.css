@@ -109,7 +109,7 @@
 .partner-panel li,
 .inquiry-form input,
 .inquiry-form textarea,
-.social-feed-header {
+.euro-moments__strip {
   transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s ease, background 0.3s ease, border-color 0.25s ease;
@@ -250,7 +250,7 @@
 }
 
 /* Social collage — subtle lift */
-.social-feed-header:hover {
+.euro-moments__strip:hover {
   translate: 0 -5px;
 }
 
@@ -326,7 +326,7 @@
     .quality-card,
     .partner-panel,
     .inquiry-form,
-    .social-feed-header {
+    .euro-moments {
       animation: home-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;

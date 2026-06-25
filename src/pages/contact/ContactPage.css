@@ -540,66 +540,6 @@
   line-height: 16px;
 }
 
-/* ----- Social grid (Figma 1079:3419) ---------------------------- */
-.contact-social {
-  position: relative;
-  width: 1280px;
-  height: 594px;
-  margin-top: 46.67px;
-  overflow: hidden;
-  background: #fef8f6;
-}
-
-.contact-social-strip {
-  /* Figma 1079:3420: 1638 × 369 at x=95, top=0 */
-  position: absolute;
-  top: 0;
-  left: 63.33px;
-  width: 1092px;
-  height: 246px;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.contact-social-cards {
-  /* Figma 1079:3421: 1620 × 410 at x=155, top=421 */
-  position: absolute;
-  top: 280.67px;
-  left: 103.33px;
-  width: 1080px;
-  min-height: 273.33px;
-  display: grid;
-  grid-template-columns: 1.03fr 0.93fr 1.13fr 1.06fr 1.02fr;
-  align-items: start;
-  gap: 20.67px;
-}
-
-.contact-social-card {
-  display: block;
-  width: 100%;
-  height: auto;
-  transform-origin: center;
-  transition:
-    translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.35s ease;
-  will-change: transform;
-}
-
-.contact-social-card:nth-child(2) {
-  margin-top: 41.33px;
-}
-
-.contact-social-card:nth-child(4) {
-  margin-top: 36px;
-}
-
-.contact-social-card:hover {
-  translate: 0 -10px;
-  scale: 1.045;
-  filter: drop-shadow(0 22px 20px rgba(78, 40, 31, 0.18));
-}
-
 /* =====================================================================
  * Contact page motion layer — scoped to .contact-main. CSS-only.
  * ===================================================================== */

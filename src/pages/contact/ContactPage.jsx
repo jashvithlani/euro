@@ -23,14 +23,6 @@ const contactCards = [
   },
 ];
 
-const socialCards = [
-  { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
-  { src: asset("contact-social-card-2.png"), alt: "Euro chips pack moment" },
-  { src: asset("contact-social-card-3.png"), alt: "Euro chips everywhere moment" },
-  { src: asset("contact-social-card-4.jpeg"), alt: "Euro table snack moment" },
-  { src: asset("contact-social-card-5.jpeg"), alt: "Fresh and tasty Euro beverages" },
-];
-
 function ContactCard({ title, text, lines, icon, tone }) {
   return (
     <article className={`contact-card contact-card--${tone}`}>
@@ -176,14 +168,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <EuroMoments
-        className="contact-social"
-        gridClassName="contact-social-cards"
-        cardClassName="contact-social-card"
-        cards={socialCards}
-      >
-        <img className="contact-social-strip" src={asset('contact-social-strip.png')} alt="Euro India social feed" />
-      </EuroMoments>
+      <EuroMoments className="euro-moments--contact" />
     </main>
   );
 }

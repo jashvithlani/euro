@@ -1,7 +1,16 @@
 import { useEffect, useRef } from "react";
+import { asset } from "./EuroMoments/asset.js";
 import "./EuroMoments.css";
 
-const DEFAULT_CARD_TRAVEL = [96, 154, 74, 132, 88];
+const CARD_TRAVEL = [96, 154, 74, 132, 88];
+
+const SOCIAL_CARDS = [
+  { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
+  { src: asset("contact-social-card-2.png"), alt: "Euro chips pack moment" },
+  { src: asset("contact-social-card-3.png"), alt: "Euro chips everywhere moment" },
+  { src: asset("contact-social-card-4.jpeg"), alt: "Euro table snack moment" },
+  { src: asset("contact-social-card-5.jpeg"), alt: "Fresh and tasty Euro beverages" },
+];
 
 function addMediaChangeListener(mediaQuery, listener) {
   if (mediaQuery.addEventListener) {
@@ -17,16 +26,7 @@ function clamp(value, min = 0, max = 1) {
   return Math.min(max, Math.max(min, value));
 }
 
-export default function EuroMoments({
-  ariaLabel = "Euro India social feed",
-  cardAriaLabel = "Euro India social moments",
-  cards,
-  cardClassName = "",
-  cardTravel = DEFAULT_CARD_TRAVEL,
-  children,
-  className = "",
-  gridClassName = "",
-}) {
+export default function EuroMoments({ className = "" }) {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
 
@@ -65,7 +65,7 @@ export default function EuroMoments({
       const progress = clamp((start - gridRect.top) / Math.max(1, start - end));
 
       momentCards.forEach((card, index) => {
-        const travel = cardTravel[index] || DEFAULT_CARD_TRAVEL[index] || 88;
+        const travel = CARD_TRAVEL[index] || 88;
         const y = travel * (1 - progress);
         const opacity = 0.84 + progress * 0.16;
 
@@ -99,16 +99,24 @@ export default function EuroMoments({
         card.style.removeProperty("--euro-moments-card-opacity");
       });
     };
-  }, [cardTravel]);
+  }, []);
 
   return (
-    <section className={`euro-moments ${className}`.trim()} ref={sectionRef} aria-label={ariaLabel}>
-      {children}
-      <div className={`euro-moments-grid ${gridClassName}`.trim()} ref={gridRef} aria-label={cardAriaLabel}>
-        {cards.map((card, index) => (
+    <section
+      className={`euro-moments ${className}`.trim()}
+      ref={sectionRef}
+      aria-label="Euro India social feed"
+    >
+      <img
+        className="euro-moments__strip"
+        src={asset("contact-social-strip.png")}
+        alt="Euro India social feed"
+      />
+      <div className="euro-moments__grid" ref={gridRef} aria-label="Euro India social moments">
+        {SOCIAL_CARDS.map((card, index) => (
           <img
             key={card.src}
-            className={`euro-moments-card ${cardClassName}`.trim()}
+            className="euro-moments-card"
             src={card.src}
             alt={card.alt}
             loading={index === 0 ? "eager" : "lazy"}

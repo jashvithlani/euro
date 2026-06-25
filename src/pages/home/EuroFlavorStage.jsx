@@ -651,7 +651,10 @@ export default function EuroFlavorStage() {
         </div>
 
         {showSceneCopy ? (
-          <div className="euro-flavor-stage__copy" key={activeScene.id}>
+          <div
+            className={`euro-flavor-stage__copy${activeScene.id === "intro" ? " euro-flavor-stage__copy--intro" : ""}`}
+            key={activeScene.id}
+          >
             <span>{activeScene.eyebrow}</span>
             <h2 id="euro-flavor-stage-title">{activeScene.title}</h2>
             <p>{activeScene.description}</p>

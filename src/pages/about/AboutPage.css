@@ -550,12 +550,5 @@
       animation-range: cover 0% cover 25%;
     }
     .about-family > img { animation-range: cover 2% cover 27%; }
-
-    /* ---- Social feed ---- */
-    .about-social-header {
-      animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 25%;
-    }
   }
 }

@@ -5,9 +5,13 @@
   --pointer-y: 50%;
   --pointer-nx: 0;
   --pointer-ny: 0;
+  --flavor-scene-count: 6;
+  --flavor-stage-viewport: var(--home-hero-height, 100dvh);
   position: relative;
   z-index: 4;
-  height: calc(var(--home-hero-height, 720px) * 3.65);
+  /* One viewport for the pinned stage + one scroll segment per scene
+     (incl. a full hold on the final slide before the section releases). */
+  height: calc(var(--flavor-stage-viewport) * (var(--flavor-scene-count) + 1));
   margin-top: -1px;
   color: #fff8ef;
   background: #180508;
@@ -17,7 +21,7 @@
 .euro-flavor-stage__sticky {
   position: sticky;
   top: 0;
-  height: var(--home-hero-height, 720px);
+  height: var(--flavor-stage-viewport, var(--home-hero-height, 100dvh));
   min-height: 560px;
   overflow: hidden;
   isolation: isolate;
@@ -372,8 +376,7 @@
 }
 
 .euro-flavor-stage__copy span,
-.euro-flavor-stage__wall-copy span,
-.euro-flavor-stage__mobile-card-copy span {
+.euro-flavor-stage__wall-copy span {
   display: block;
   margin-bottom: 11px;
   color: var(--scene-accent);
@@ -675,10 +678,6 @@
   color: rgba(78, 40, 31, 0.88);
 }
 
-.euro-flavor-stage__mobile-story {
-  display: none;
-}
-
 .euro-flavor-stage__sr-title {
   position: absolute;
   width: 1px;
@@ -822,383 +821,190 @@
   }
 }
 
-@media (max-width: 999px), (prefers-reduced-motion: reduce) {
+@media (max-width: 999px) {
   .euro-flavor-stage {
-    height: auto;
-    margin-top: 0;
-    padding: 48px 0 56px;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(255, 222, 167, 0.36), transparent 46%),
-      var(--color-page);
-    overflow: hidden;
+    margin-top: -1px;
+    padding: 0;
+    background: #180508;
+    overflow: visible;
   }
 
   .euro-flavor-stage__sticky {
-    display: none;
-  }
-
-  .euro-flavor-stage__mobile-story {
     display: block;
+    top: 76px;
+    min-height: 440px;
   }
 
-  .euro-flavor-stage__mobile-carousel-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding: 0 20px;
+  .euro-flavor-stage__bg::before {
+    width: min(92vw, 420px);
+    height: min(92vw, 420px);
   }
 
-  .euro-flavor-stage__mobile-carousel-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
+  .euro-flavor-stage__scene-label {
+    top: 22px;
+    left: 18px;
+    gap: 10px;
+    font-size: 10px;
   }
 
-  .euro-flavor-stage__mobile-carousel-label span {
-    flex: 0 0 auto;
-    color: var(--color-accent);
-    font-family: var(--font-display);
+  .euro-flavor-stage__scene-label span {
+    width: 34px;
+    height: 34px;
+    font-size: 11px;
+  }
+
+  .euro-flavor-stage__product-wrap {
+    top: 44%;
+    width: min(94vw, 380px);
+    height: min(52vh, 340px);
+    transform: translate(-50%, -50%) scale(0.58);
+  }
+
+  .euro-flavor-stage__spotlight {
+    top: 36px;
+    width: 280px;
+    height: 280px;
+  }
+
+  .euro-flavor-stage__pedestal {
+    bottom: 18px;
+    width: 250px;
+    height: 54px;
+  }
+
+  .euro-flavor-stage__product {
+    max-height: 320px;
+  }
+
+  .euro-flavor-stage__copy {
+    right: auto;
+    left: 18px;
+    bottom: 72px;
+    width: calc(100% - 36px);
+    max-width: none;
+  }
+
+  .euro-flavor-stage__copy h2 {
+    font-size: clamp(28px, 8.4vw, 36px);
+    line-height: 1.02;
+  }
+
+  .euro-flavor-stage__copy p {
+    width: auto;
+    max-width: 300px;
+    margin-top: 12px;
     font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    line-height: 1.55;
   }
 
-  .euro-flavor-stage__mobile-carousel-label strong {
-    overflow: hidden;
-    color: var(--color-ink);
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .euro-flavor-stage__copy--intro {
+    right: auto;
+    left: 18px;
+    bottom: 64px;
   }
 
-  .euro-flavor-stage__mobile-carousel-nav {
-    display: flex;
-    flex: 0 0 auto;
-    gap: 10px;
-  }
-
-  .euro-flavor-stage__mobile-carousel-btn {
-    display: grid;
-    width: 40px;
-    height: 40px;
-    place-items: center;
-    border: 0;
-    border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 12px 24px -12px rgba(78, 40, 31, 0.28);
-    padding: 0;
-    transition: scale 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .euro-flavor-stage__mobile-carousel-btn img {
-    width: 7px;
-    height: 12px;
-    display: block;
-  }
-
-  .euro-flavor-stage__mobile-carousel-btn:not(:disabled):active {
-    scale: 0.94;
-  }
-
-  .euro-flavor-stage__mobile-carousel-btn:disabled {
-    opacity: 0.35;
-    cursor: default;
-  }
-
-  .euro-flavor-stage__mobile-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 20px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 20px;
-  }
-
-  .euro-flavor-stage__mobile-viewport::-webkit-scrollbar {
-    display: none;
-  }
-
-  .euro-flavor-stage__mobile-track {
-    display: flex;
-    gap: 14px;
-  }
-
-  .euro-flavor-stage__mobile-card {
-    position: relative;
-    flex: 0 0 86%;
-    display: flex;
-    flex-direction: column;
-    min-height: 348px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 222, 167, 0.18);
-    border-radius: 8px;
-    padding: 24px;
-    color: #fff8ef;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    background: radial-gradient(circle at 70% 28%, rgba(255, 222, 167, 0.2), transparent 52%), #3b090d;
-    box-shadow: 0 24px 46px rgba(0, 0, 0, 0.22);
-  }
-
-  .euro-flavor-stage__mobile-card--intro {
-    color: var(--color-ink);
-    background: radial-gradient(circle at 72% 30%, rgba(255, 222, 167, 0.5), transparent 54%), #ffffff;
-    box-shadow: 0 22px 42px rgba(78, 40, 31, 0.12);
-  }
-
-  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy p {
-    color: rgba(78, 40, 31, 0.72);
-    font-size: 10.5px;
-  }
-
-  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy span {
+  .euro-flavor-stage__copy--intro span {
     font-size: 9px;
-    letter-spacing: 1.35px;
+    letter-spacing: 1.2px;
   }
 
-  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy h3 {
-    font-size: 25.5px;
+  .euro-flavor-stage__copy--intro h2 {
+    font-size: clamp(24px, 7.2vw, 30px);
   }
 
-  .euro-flavor-stage__mobile-card--chips {
-    background: radial-gradient(circle at 72% 30%, rgba(255, 182, 0, 0.2), transparent 54%), #661914;
+  .euro-flavor-stage__copy--intro p {
+    max-width: 220px;
+    font-size: 11px;
   }
 
-  .euro-flavor-stage__mobile-card--getmore {
-    background: radial-gradient(circle at 74% 30%, rgba(255, 122, 26, 0.2), transparent 54%), #251352;
+  .euro-flavor-stage__progress {
+    left: 18px;
+    bottom: 34px;
+    gap: 6px;
   }
 
-  .euro-flavor-stage__mobile-card--namkeen {
-    background: radial-gradient(circle at 74% 30%, rgba(255, 211, 106, 0.22), transparent 54%), #142d60;
+  .euro-flavor-stage__progress span.is-active {
+    width: 26px;
   }
 
-  .euro-flavor-stage__mobile-card--beverages {
-    background: radial-gradient(circle at 74% 30%, rgba(255, 77, 50, 0.22), transparent 54%), #831020;
-  }
-
-  .euro-flavor-stage__mobile-card--final {
-    display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    gap: 20px;
-    min-height: 360px;
-    color: var(--color-ink);
-    background:
-      radial-gradient(circle at 70% 30%, rgba(255, 222, 167, 0.48), transparent 58%),
-      linear-gradient(135deg, #ffffff, #fff8f6);
-    box-shadow: 0 22px 42px rgba(78, 40, 31, 0.12);
-  }
-
-  .euro-flavor-stage__mobile-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 18px;
-    padding: 0 20px;
-  }
-
-  .euro-flavor-stage__mobile-dot {
-    width: 8px;
-    height: 8px;
-    border: 0;
-    border-radius: 999px;
-    background: rgba(190, 0, 75, 0.22);
-    padding: 0;
-    transition: width 0.25s ease, background 0.25s ease;
-  }
-
-  .euro-flavor-stage__mobile-dot.is-active {
-    width: 24px;
-    background: var(--color-accent);
-  }
-
-  .euro-flavor-stage__mobile-card-copy {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 auto;
-    max-width: 340px;
-  }
-
-  .euro-flavor-stage__mobile-card-copy span {
-    color: #ffdea7;
-  }
-
-  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__mobile-card-copy span,
-  .euro-flavor-stage__mobile-card--final .euro-flavor-stage__mobile-card-copy span {
-    color: var(--color-accent);
-  }
-
-  .euro-flavor-stage__mobile-card-copy h3 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 34px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-  }
-
-  .euro-flavor-stage__mobile-card-copy p {
-    margin: 13px 0 0;
-    color: rgba(255, 248, 239, 0.75);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.58;
-  }
-
-  .euro-flavor-stage__mobile-card--final .euro-flavor-stage__mobile-card-copy p {
-    color: rgba(78, 40, 31, 0.72);
-  }
-
-  .euro-flavor-stage__mobile-card--intro .euro-flavor-stage__secondary,
-  .euro-flavor-stage__mobile-card--final .euro-flavor-stage__secondary {
-    color: var(--color-ink);
-  }
-
-  .euro-flavor-stage__mobile-card > img {
-    position: relative;
-    z-index: 1;
-    flex: 1 1 auto;
-    align-self: center;
-    width: min(54%, 240px);
-    max-height: min(48%, 220px);
-    margin: 16px auto 12px;
-    object-fit: contain;
-    object-position: center;
-    filter: drop-shadow(0 26px 28px rgba(0, 0, 0, 0.35));
-  }
-
-  .euro-flavor-stage__mobile-card--intro > img {
-    width: min(72%, 280px);
-    max-height: min(44%, 200px);
-  }
-
-  .euro-flavor-stage__mobile-card--getmore > img,
-  .euro-flavor-stage__mobile-card--namkeen > img {
-    width: min(46%, 220px);
-    max-height: min(50%, 220px);
-  }
-
-  .euro-flavor-stage__mobile-card--beverages > img {
-    width: min(30%, 120px);
-    max-height: min(56%, 240px);
-  }
-
-  .euro-flavor-stage__mobile-card--final > img {
-    display: none;
-  }
-
-  .euro-flavor-stage__mobile-wall {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: end;
-    gap: 10px;
-  }
-
-  .euro-flavor-stage__mobile-wall img {
-    width: 100%;
-    height: 112px;
-    object-fit: contain;
-    filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.3));
-  }
-}
-
-@media (max-width: 999px) {
-  .home-page .euro-flavor-stage {
-    padding: 40px 0 48px;
-  }
-
-  .euro-flavor-stage__mobile-carousel-head {
-    margin-bottom: 18px;
-    padding: 0 20px;
-  }
-
-  .euro-flavor-stage__mobile-card {
-    min-height: 352px;
-    padding: 22px;
-  }
-
-  .euro-flavor-stage__mobile-card-copy h3 {
-    font-size: 32px;
-  }
-
-  .euro-flavor-stage__mobile-card-copy p {
-    max-width: 250px;
-  }
-
-  .euro-flavor-stage__mobile-card > img {
-    width: min(58%, 250px);
-    max-height: min(46%, 210px);
-  }
-
-  .euro-flavor-stage__mobile-card--intro > img {
-    width: min(78%, 290px);
-    max-height: min(42%, 190px);
-  }
-
-  .euro-flavor-stage__mobile-card--getmore > img,
-  .euro-flavor-stage__mobile-card--namkeen > img {
-    width: min(48%, 220px);
-  }
-
-  .euro-flavor-stage__mobile-card--beverages > img {
-    width: min(28%, 110px);
-    max-height: min(54%, 230px);
-  }
-
-  .euro-flavor-stage__mobile-card--final {
+  .euro-flavor-stage__wall {
     grid-template-columns: 1fr;
+    align-items: start;
+    gap: 18px;
+    padding: 22px 18px 28px;
+    overflow-y: auto;
+  }
+
+  .euro-flavor-stage__wall-copy h3 {
+    font-size: clamp(26px, 7.8vw, 32px);
+  }
+
+  .euro-flavor-stage__wall-copy p {
+    font-size: 13px;
   }
 
   .euro-flavor-stage__actions {
     flex-wrap: wrap;
     gap: 12px;
+    margin-top: 18px;
   }
 
   .euro-flavor-stage__primary {
-    min-height: 50px;
-    padding: 0 22px;
+    min-height: 48px;
+    padding: 0 20px;
     font-size: 13px;
   }
 
   .euro-flavor-stage__secondary {
-    min-height: 42px;
+    min-height: 40px;
     font-size: 13px;
   }
 
-  .euro-flavor-stage__mobile-wall {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .euro-flavor-stage__wall-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  .euro-flavor-stage__mobile-wall img {
-    height: 96px;
+  .euro-flavor-stage__wall-card img {
+    height: 108px;
   }
 }
 
-@media (max-width: 420px) {
-  .euro-flavor-stage__mobile-card {
-    min-height: 378px;
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  .euro-flavor-stage__background-aura {
+    animation: euro-stage-glow-breath 9.6s ease-in-out infinite;
   }
 
-  .euro-flavor-stage__mobile-card-copy h3 {
-    font-size: 29px;
+  .euro-flavor-stage__rings {
+    animation: euro-stage-rings 14s ease-in-out infinite;
   }
 
-  .euro-flavor-stage__mobile-card > img {
-    width: min(60%, 250px);
-    max-height: min(44%, 200px);
+  .euro-flavor-stage__spotlight {
+    animation: euro-stage-spotlight-breath 7.8s ease-in-out infinite;
   }
 
-  .euro-flavor-stage__mobile-card--intro > img {
-    width: min(82%, 300px);
-    max-height: min(40%, 180px);
+  .euro-flavor-stage__pedestal {
+    animation: euro-stage-pedestal-breath 8.2s ease-in-out infinite;
+  }
+
+  .euro-flavor-stage__product-ambient-layer {
+    animation: euro-stage-product-float 5.8s ease-in-out infinite;
+  }
+
+  .euro-flavor-stage__particle {
+    animation: euro-stage-particle-drift var(--particle-duration) ease-in-out var(--particle-delay) infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .euro-flavor-stage {
+    height: auto;
+    min-height: var(--home-hero-height, 100dvh);
+  }
+
+  .euro-flavor-stage__sticky {
+    position: relative;
+    height: auto;
+    min-height: var(--home-hero-height, 100dvh);
   }
 }

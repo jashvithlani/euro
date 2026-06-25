@@ -2453,7 +2453,7 @@
  * Photo slides up off the card; the card's OWN background (a radial
  * gradient already coloured to match each product's palette — chips
  * = orange/peach, namkeen = plum, beverages = cream, etc.) is revealed
- * with an "Explore →" CTA. Title/badge stay layered on top so the user
+ * with a "Shop Now" CTA. Title/badge stay layered on top so the user
  * still knows which product they're hovering.
  *
  * Composition: ::before is the back panel (z:0), photo is z:1, title
@@ -2493,19 +2493,17 @@
   opacity: 1;
 }
 
-/* "Explore →" CTA — self-contained accent pill that reads against ANY
+/* "Shop Now" CTA — self-contained accent pill that reads against ANY
    card background (chips orange, namkeen cream, beverages pastel, …).
    The card's own gradient becomes the back panel; the pill is the
    call-to-action. Centred via individual translate so the hover scale
    composes cleanly. */
-.category-product-card--image::before,
-.category-product-card--product::before {
-  content: "Explore \2192";
+.category-product-shop {
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  z-index: 2; /* above photo (z:1) and back panel ::after (z:0) */
+  z-index: 4;
   padding: 11px 26px;
   border-radius: 999px;
   background: var(--color-accent);
@@ -2515,6 +2513,7 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   white-space: nowrap;
+  text-decoration: none;
   opacity: 0;
   scale: 0.85;
   transition: opacity 0.4s ease,
@@ -2523,17 +2522,19 @@
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.3);
 }
 
+.category-product-card--image:hover .category-product-shop,
+.category-product-card--product:hover .category-product-shop {
+  opacity: 1;
+  scale: 1;
+  pointer-events: auto;
+}
+
 /* Photo sits above the back panel and slides up on hover */
 .category-product-cover,
 .category-product-img {
   z-index: 1;
   transition: translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
               scale 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.category-product-card--image:hover::before,
-.category-product-card--product:hover::before {
-  opacity: 1;
 }
 
 .category-product-card--image:hover,
@@ -2595,31 +2596,6 @@
   pointer-events: none;
 }
 
-.category-feature--chips-wide::before,
-.category-feature--beverages-wide::before {
-  content: "Explore \2192";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: 3;
-  padding: 11px 26px;
-  border-radius: 999px;
-  background: var(--color-accent);
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  opacity: 0;
-  scale: 0.85;
-  transition: opacity 0.4s ease,
-              scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.3);
-}
-
 .category-feature--chips-wide .category-feature-copy,
 .category-feature--beverages-wide .category-feature-copy {
   transition: opacity 0.35s ease;
@@ -2632,10 +2608,15 @@
 }
 
 .category-feature--chips-wide:hover::after,
-.category-feature--beverages-wide:hover::after,
-.category-feature--chips-wide:hover::before,
-.category-feature--beverages-wide:hover::before {
+.category-feature--beverages-wide:hover::after {
   opacity: 1;
+}
+
+.category-feature--chips-wide:hover .category-product-shop,
+.category-feature--beverages-wide:hover .category-product-shop {
+  opacity: 1;
+  scale: 1;
+  pointer-events: auto;
 }
 
 .category-feature--chips-wide:hover .category-feature-copy,

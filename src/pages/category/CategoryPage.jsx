@@ -30,6 +30,22 @@ function getProductColor(imageUrl) {
   return productColors[unhashed];
 }
 
+const CATEGORY_SHOP_URL =
+  "https://www.amazon.in/stores/EuroIndiaFreshFoodsPvtLtd/page/B6C6B387-3B3E-495A-957A-EDE91567671E?lp_asin=B0CWLDDWJ9&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto";
+
+function ProductShopLink() {
+  return (
+    <a
+      className="category-product-shop"
+      href={CATEGORY_SHOP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Shop Now
+    </a>
+  );
+}
+
 const originalCategoryHeroBottom = 695.37;
 
 const pages = {
@@ -524,6 +540,7 @@ function ImageCard({ item }) {
       />
       <Badge badge={item.badge} />
       {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
+      <ProductShopLink />
     </article>
   );
 }
@@ -544,6 +561,7 @@ function ProductCard({ item }) {
       <Badge badge={item.badge} />
       {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
       {item.subtitle ? <ProductSubtitle subtitle={item.subtitle} style={item.subtitleStyle} /> : null}
+      <ProductShopLink />
     </article>
   );
 }
@@ -590,6 +608,7 @@ function FeatureCard({ item }) {
         <p>{item.copy}</p>
       </div>
       <img src={item.image} alt="" style={layerStyle(item.imageStyle)} />
+      {item.image ? <ProductShopLink /> : null}
     </article>
   );
 }

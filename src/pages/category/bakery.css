@@ -12,8 +12,8 @@
    Khari") runs at 48px into the pack art / past the card edge. Drop to 42px
    so each title sits cleanly beside its pack. */
 .category-main--bakery .bakery-title-khari {
-  font-size: 42px;
-  line-height: 42px;
+  font-size: 35px;
+  line-height: 39px;
 }
 
 /* Row-3 rusk / nankhatai cards: keep the three titles a consistent size that
@@ -21,6 +21,25 @@
 .category-main--bakery .bakery-title-nankhatai {
   font-size: 23px;
   line-height: 24px;
+}
+
+.category-main--bakery .category-promo h2 {
+  width: 576px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 39px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 41px;
+}
+
+.category-main--bakery .category-promo p {
+  width: 630px;
+  margin: 23px 0 32px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 32.5px;
+  white-space: pre-line;
 }
 
 .category-main--bakery .category-hero-bakery {
@@ -71,7 +90,17 @@
 }
 
 .category-main--bakery .category-promo a {
+  display: inline-flex;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 22px;
+  background: #ffffff;
   color: #00bea8;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 28px;
 }
 
 /* =====================================================================

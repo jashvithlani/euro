@@ -1070,11 +1070,11 @@
 .product-title-md,
 .product-title-sm {
   font-size: 48px;
-  line-height: 45px;
+  line-height: 25px;
 }
 
 .product-title-sm {
-  font-size: 38px;
+  font-size: 23px;
 }
 
 .text-right {

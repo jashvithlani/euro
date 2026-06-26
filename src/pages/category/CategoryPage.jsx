@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./CategoryPage.css";
 import ProductSubNav from "../../components/ProductSubNav.jsx";
@@ -480,9 +481,32 @@ function Badge({ badge }) {
   );
 }
 
-function ProductTitle({ title, className, style }) {
+function applyImportantStyle(el, importantStyle) {
+  if (!el || !importantStyle) return;
+
+  for (const [key, value] of Object.entries(importantStyle)) {
+    if (value == null) {
+      el.style.removeProperty(key);
+      continue;
+    }
+
+    el.style.setProperty(key, cssLength(value), "important");
+  }
+}
+
+function ProductTitle({ title, className, style, importantStyle }) {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    applyImportantStyle(ref.current, importantStyle);
+  }, [importantStyle, style]);
+
   return (
-    <h2 className={`category-product-title ${className || ""}`} style={layerStyle(style || {})}>
+    <h2
+      ref={ref}
+      className={`category-product-title ${className || ""}`}
+      style={layerStyle(style || {})}
+    >
       {title.split("\n").map((line, index) => (
         <span key={`${line}-${index}`}>{line}</span>
       ))}
@@ -551,7 +575,14 @@ function ImageCard({ item }) {
         style={item.imageStyle ? layerStyle(item.imageStyle) : undefined}
       />
       <Badge badge={item.badge} />
-      {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
+      {item.title ? (
+        <ProductTitle
+          title={item.title}
+          className={item.titleClass}
+          style={item.titleStyle}
+          importantStyle={item.titleImportantStyle}
+        />
+      ) : null}
       <ProductShopLink />
     </article>
   );
@@ -571,7 +602,14 @@ function ProductCard({ item }) {
       <DecorativeLayers decorations={item.decorations} />
       <ProductImage item={item} />
       <Badge badge={item.badge} />
-      {item.title ? <ProductTitle title={item.title} className={item.titleClass} style={item.titleStyle} /> : null}
+      {item.title ? (
+        <ProductTitle
+          title={item.title}
+          className={item.titleClass}
+          style={item.titleStyle}
+          importantStyle={item.titleImportantStyle}
+        />
+      ) : null}
       {item.subtitle ? <ProductSubtitle subtitle={item.subtitle} style={item.subtitleStyle} /> : null}
       <ProductShopLink />
     </article>

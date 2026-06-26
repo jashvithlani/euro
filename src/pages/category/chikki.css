@@ -164,6 +164,8 @@
   top: 50%;
   left: 42.67px;
   width: 384px;
+  padding: 19px;
+  box-sizing: border-box;
   transform: translateY(-50%);
 }
 
@@ -177,6 +179,7 @@
 .category-main--chikki .category-promo.category-promo--chikki-compact p {
   width: 384px;
   margin: 15.33px 0 21.33px;
+  color: #ffffff;
   font-size: 13.33px;
   line-height: 21.67px;
   white-space: pre-line;
@@ -185,6 +188,7 @@
 .category-main--chikki .category-promo.category-promo--chikki-compact a {
   height: 40px;
   padding: 0 26.67px;
+  color: #246593;
   font-size: 12px;
   line-height: 18.67px;
 }

@@ -29,6 +29,7 @@ const SKIP_KEYS = new Set([
   "transform",
   "textureOpacity",
   "nodeId",
+  "titleImportantStyle",
 ]);
 
 export function scaleLayout(value) {

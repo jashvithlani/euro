@@ -371,11 +371,17 @@
 
   .home-page .product-card--lavender .product-art img,
   .home-page .product-card--cyan .product-art img,
-  .home-page .product-card--rose .product-art img,
-  .home-page .product-card--yellow .product-art img {
+  .home-page .product-card--rose .product-art img {
     width: 100%;
     height: 100%;
     max-width: none;
+  }
+
+  .home-page .product-card--yellow .product-art img {
+    width: auto;
+    height: auto;
+    max-width: 61px;
+    max-height: 100%;
   }
 
   .home-page .product-badge {

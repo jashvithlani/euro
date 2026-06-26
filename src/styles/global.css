@@ -862,8 +862,9 @@ textarea {
 
 .product-card--yellow .product-art img {
   width: auto;
-  height: 184px;
-  max-width: 100%;
+  height: auto;
+  max-width: 61px;
+  max-height: 184px;
 }
 
 .product-badge {

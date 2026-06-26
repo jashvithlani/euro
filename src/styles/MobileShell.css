@@ -13,7 +13,7 @@
 
   .app-viewport--fluid {
     min-width: 0;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   .app-viewport--fluid .page-shell {

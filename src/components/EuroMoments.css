@@ -14,6 +14,10 @@
   z-index: 4;
 }
 
+.euro-moments__intro {
+  display: none;
+}
+
 .euro-moments__strip {
   position: absolute;
   top: 0;
@@ -80,7 +84,7 @@
 }
 
 @media (max-width: 999px), (prefers-reduced-motion: reduce) {
-  .euro-moments-card {
+  .euro-moments__grid .euro-moments-card {
     --euro-moments-card-y: 0px;
     --euro-moments-card-opacity: 1;
     opacity: 1;
@@ -106,32 +110,148 @@
     background: #f9f9f9;
   }
 
+  /* Figma 684:1906 — mobile intro */
+  .euro-moments__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    max-width: 336.656px;
+    margin-bottom: 32px;
+  }
+
+  .euro-moments__intro-top {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .euro-moments__kicker {
+    margin: 0;
+    padding-left: 8px;
+    color: var(--color-muted, #825348);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .euro-moments__title {
+    margin: 0;
+    padding-left: 8px;
+    color: var(--color-ink, #4e281f);
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 45px;
+    letter-spacing: 0;
+  }
+
+  .euro-moments__title span {
+    display: block;
+  }
+
+  .euro-moments__lede {
+    margin: 0;
+    padding-left: 8px;
+    max-width: 240px;
+    color: var(--color-muted, #825348);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.25px;
+    letter-spacing: 0;
+  }
+
   .euro-moments__strip {
     display: none;
   }
 
-  .euro-moments__grid {
-    position: relative;
-    top: auto;
-    left: auto;
+  .euro-moments__carousel {
     width: 100%;
+  }
+
+  .euro-moments__carousel-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 370px;
+    overflow: hidden;
+  }
+
+  .euro-moments-card--carousel {
+    --card-rotate: 0deg;
+    width: min(72vw, 280px);
     height: auto;
-    min-height: 0;
-    margin-top: 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    margin: 0;
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(var(--card-rotate));
+    transition: none;
+    will-change: transform, opacity;
   }
 
-  .euro-moments-card {
-    width: 100%;
-    margin-top: 0;
-    rotate: 0deg;
+  .euro-moments-card--carousel:hover {
+    translate: none;
+    scale: none;
+    filter: none;
   }
 
-  .euro-moments-card:nth-child(3),
-  .euro-moments-card:nth-child(5) {
-    grid-column: 1 / -1;
-    width: min(62%, 260px);
-    justify-self: center;
+  .euro-moments-card--index-4,
+  .euro-moments-card--index-5 {
+    border-radius: 8.5%;
+  }
+
+  .euro-moments-card--carousel-enter {
+    animation: euro-moments-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .euro-moments-card--carousel-hold {
+    transform: translateX(0) scale(1) rotate(var(--card-rotate));
+    opacity: 1;
+  }
+
+  .euro-moments-card--carousel-exit {
+    animation: euro-moments-exit 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes euro-moments-enter {
+    from {
+      transform: translateX(60%) scale(0.55) rotate(var(--card-rotate));
+      opacity: 0.65;
+    }
+
+    to {
+      transform: translateX(0) scale(1) rotate(var(--card-rotate));
+      opacity: 1;
+    }
+  }
+
+  @keyframes euro-moments-exit {
+    from {
+      transform: translateX(0) scale(1) rotate(var(--card-rotate));
+      opacity: 1;
+    }
+
+    to {
+      transform: translateX(-60%) scale(0.55) rotate(var(--card-rotate));
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 999px) and (prefers-reduced-motion: reduce) {
+  .euro-moments-card--carousel-enter,
+  .euro-moments-card--carousel-exit {
+    animation: none;
+  }
+
+  .euro-moments-card--carousel {
+    transform: translateX(0) scale(1) rotate(var(--card-rotate));
+    opacity: 1;
   }
 }

@@ -294,37 +294,36 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    gap: clamp(4px, 1.75vw, 12px);
     width: 100%;
     height: auto;
     min-height: 64px;
-    padding: 12px 14px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .app-viewport--fluid .footer-certificate-strip::-webkit-scrollbar {
-    display: none;
+    padding: 12px clamp(8px, 2.5vw, 14px);
+    overflow: visible;
+    box-sizing: border-box;
   }
 
   .app-viewport--fluid .footer-certificate-strip img {
     position: static;
     top: auto;
     left: auto;
-    flex: 0 0 auto;
-    width: 52px;
-    height: 40px;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    max-width: 52px;
+    height: auto;
+    max-height: clamp(28px, 9vw, 40px);
     object-fit: contain;
     object-position: center;
   }
 
-  /* GHP badge — square artwork reads smaller inside the shared box. */
+  /* GHP badge — square artwork; scales down with the row, no transform clip */
   .app-viewport--fluid .footer-certificate-strip img:nth-child(3) {
-    width: 56px;
-    height: 56px;
-    transform: scale(1.35);
-    transform-origin: center;
+    max-width: clamp(36px, 12vw, 56px);
+    max-height: clamp(36px, 12vw, 56px);
+    flex: 1.15 1 0;
+    transform: none;
   }
 
   .app-viewport--fluid .footer-availability {

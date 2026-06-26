@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { asset } from "./EuroMoments/asset.js";
 import "./EuroMoments.css";
 
 const CARD_TRAVEL = [96, 154, 74, 132, 88];
+const CARD_ROTATE = [0, 0, 0, 5, -5];
+const CAROUSEL_ENTER_MS = 550;
+const CAROUSEL_HOLD_MS = 3000;
+const CAROUSEL_EXIT_MS = 550;
 
 const SOCIAL_CARDS = [
   { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
@@ -29,11 +33,77 @@ function clamp(value, min = 0, max = 1) {
 export default function EuroMoments({ className = "" }) {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [phase, setPhase] = useState("hold");
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
+    const mobileQuery = window.matchMedia("(max-width: 999px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncViewport = () => {
+      setIsMobile(mobileQuery.matches);
+      setReduceMotion(reducedMotionQuery.matches);
+    };
+
+    syncViewport();
+
+    const removeMobileListener = addMediaChangeListener(mobileQuery, syncViewport);
+    const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, syncViewport);
+
+    return () => {
+      removeMobileListener();
+      removeReducedMotionListener();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile || reduceMotion) {
+      setActiveIndex(0);
+      setPhase("hold");
+      return undefined;
+    }
+
+    const timeoutIds = [];
+
+    const schedule = (callback, delay) => {
+      const id = window.setTimeout(callback, delay);
+      timeoutIds.push(id);
+    };
+
+    const startCycle = (index) => {
+      setActiveIndex(index);
+      setPhase("enter");
+
+      schedule(() => {
+        setPhase("hold");
+
+        schedule(() => {
+          setPhase("exit");
+
+          schedule(() => {
+            startCycle((index + 1) % SOCIAL_CARDS.length);
+          }, CAROUSEL_EXIT_MS);
+        }, CAROUSEL_HOLD_MS);
+      }, CAROUSEL_ENTER_MS);
+    };
+
+    startCycle(0);
+
+    return () => {
+      timeoutIds.forEach((id) => window.clearTimeout(id));
+    };
+  }, [isMobile, reduceMotion]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const grid = gridRef.current;
-    const momentCards = section ? Array.from(section.querySelectorAll(".euro-moments-card")) : [];
+    const momentCards = grid ? Array.from(grid.querySelectorAll(".euro-moments-card")) : [];
 
     if (!section || !grid || momentCards.length === 0 || typeof window === "undefined") {
       return undefined;
@@ -99,7 +169,9 @@ export default function EuroMoments({ className = "" }) {
         card.style.removeProperty("--euro-moments-card-opacity");
       });
     };
-  }, []);
+  }, [isMobile]);
+
+  const activeCard = SOCIAL_CARDS[activeIndex];
 
   return (
     <section
@@ -107,22 +179,51 @@ export default function EuroMoments({ className = "" }) {
       ref={sectionRef}
       aria-label="Euro India social feed"
     >
+      <header className="euro-moments__intro">
+        <div className="euro-moments__intro-top">
+          <p className="euro-moments__kicker">Social Feed</p>
+          <h2 className="euro-moments__title">
+            <span>#EuroIndia</span>
+            <span>Moments</span>
+          </h2>
+        </div>
+        <p className="euro-moments__lede">
+          Tag us in your snack selfies for a chance to get featured!
+        </p>
+      </header>
+
       <img
         className="euro-moments__strip"
         src={asset("contact-social-strip.png")}
         alt="Euro India social feed"
       />
-      <div className="euro-moments__grid" ref={gridRef} aria-label="Euro India social moments">
-        {SOCIAL_CARDS.map((card, index) => (
-          <img
-            key={card.src}
-            className="euro-moments-card"
-            src={card.src}
-            alt={card.alt}
-            loading={index === 0 ? "eager" : "lazy"}
-          />
-        ))}
-      </div>
+
+      {isMobile ? (
+        <div className="euro-moments__carousel" aria-live="polite">
+          <div className="euro-moments__carousel-stage">
+            <img
+              key={activeIndex}
+              className={`euro-moments-card euro-moments-card--carousel euro-moments-card--carousel-${phase} euro-moments-card--index-${activeIndex + 1}`}
+              src={activeCard.src}
+              alt={activeCard.alt}
+              loading="eager"
+              style={{ "--card-rotate": `${CARD_ROTATE[activeIndex]}deg` }}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="euro-moments__grid" ref={gridRef} aria-label="Euro India social moments">
+          {SOCIAL_CARDS.map((card, index) => (
+            <img
+              key={card.src}
+              className="euro-moments-card"
+              src={card.src}
+              alt={card.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

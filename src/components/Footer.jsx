@@ -12,6 +12,8 @@ const supportItems = [
   {
     icon: sharedAsset('exports-icon-location.svg'),
     label: "Plot 12, GIDC, Surat, Gujarat",
+    href: "https://maps.google.com/?q=Plot+12,+GIDC,+Surat,+Gujarat",
+    external: true,
     exportsLabel: (
       <>
         Plot 12, GIDC, Surat,
@@ -20,8 +22,16 @@ const supportItems = [
       </>
     ),
   },
-  { icon: sharedAsset('exports-icon-phone.svg'), label: "+91 261 2400000" },
-  { icon: sharedAsset('exports-icon-mail.svg'), label: "hello@euroindia.com" },
+  {
+    icon: sharedAsset('exports-icon-phone.svg'),
+    label: "+91 261 2400000",
+    href: "tel:+912612400000",
+  },
+  {
+    icon: sharedAsset('exports-icon-mail.svg'),
+    label: "hello@euroindia.com",
+    href: "mailto:hello@euroindia.com",
+  },
 ];
 
 const certificateLogos = [
@@ -56,10 +66,15 @@ export default function Footer() {
           <div className="footer-support">
             <h2>Support</h2>
             {supportItems.map((item) => (
-              <p key={item.icon}>
+              <a
+                key={item.href}
+                className="footer-support-item"
+                href={item.href}
+                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 <img src={item.icon} alt="" />
                 {item.exportsLabel || item.label}
-              </p>
+              </a>
             ))}
           </div>
         </div>

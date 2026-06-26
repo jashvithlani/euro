@@ -522,7 +522,19 @@ function ProductImage({ item }) {
     );
   }
 
-  return <img className="category-product-img" src={item.image} alt="" style={layerStyle(item.imageStyle)} />;
+  return (
+    <>
+      <img
+        className="category-product-img category-product-img--desktop"
+        src={item.image}
+        alt=""
+        style={layerStyle(item.imageStyle)}
+      />
+      {item.mobileImage ? (
+        <img className="category-product-img category-product-img--mobile" src={item.mobileImage} alt="" />
+      ) : null}
+    </>
+  );
 }
 
 function ImageCard({ item }) {
@@ -607,7 +619,15 @@ function FeatureCard({ item }) {
         </h2>
         <p>{item.copy}</p>
       </div>
-      <img src={item.image} alt="" style={layerStyle(item.imageStyle)} />
+      <img
+        className="category-feature-img category-feature-img--desktop"
+        src={item.image}
+        alt=""
+        style={layerStyle(item.imageStyle)}
+      />
+      {item.mobileImage ? (
+        <img className="category-feature-img category-feature-img--mobile" src={item.mobileImage} alt="" />
+      ) : null}
       {item.image ? <ProductShopLink /> : null}
     </article>
   );

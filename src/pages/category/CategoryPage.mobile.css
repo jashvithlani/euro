@@ -240,6 +240,8 @@
   .category-page .category-product-title {
     position: relative !important;
     top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
     left: auto !important;
     width: auto !important;
     margin-top: 12px;
@@ -249,9 +251,16 @@
     text-align: left;
   }
 
+  .category-page .category-product-title.text-right {
+    align-self: stretch;
+    text-align: right !important;
+  }
+
   .category-page .category-product-subtitle {
     position: relative !important;
     top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
     left: auto !important;
     width: auto !important;
     margin-top: 4px;
@@ -285,6 +294,51 @@
     margin-bottom: 0;
     align-self: center;
     transform: translateY(8px);
+  }
+
+  /* Beverages product cards — title/badge above bottle art; image 25% larger, anchored low. */
+  .category-page .category-main--beverages .category-product-card--product {
+    min-height: 320px;
+    padding-bottom: 8px;
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-title {
+    order: 1;
+    margin-top: 0;
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-badge {
+    order: 2;
+    margin-top: 10px;
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-subtitle {
+    order: 3;
+    margin-top: 4px;
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-img,
+  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame {
+    order: 4;
+    width: min(100%, 300px) !important;
+    max-height: 250px !important;
+    height: auto !important;
+    margin-top: auto;
+    margin-bottom: 0;
+    align-self: center;
+    transform: translateY(8px);
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame {
+    height: 250px !important;
+  }
+
+  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame > img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 250px;
+    object-fit: contain;
   }
 
   /* Promo panels */

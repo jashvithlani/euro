@@ -81,6 +81,9 @@ const faraliAt1920 = {
       background: "radial-gradient(circle at 50% 50%, #f6f6f6 0%, #faf0ff 100%)",
       image: asset("category-farali-kela-chiwda-card.png"),
       imageStyle: { left: 0, top: -12, width: 385, height: 408 },
+      title: "Farali Kela\nChiwda",
+      titleClass: "text-indigo product-title-farali-md",
+      titleStyle: { left: 34, top: 25, width: 143 },
     },
     {
       type: "feature",

@@ -24,6 +24,10 @@
 
 /* Hover-popup on hero packs removed — orbit carousel is the motion. */
 
+.category-main--farali .category-product-title {
+  z-index: 3;
+}
+
 .category-main--farali .category-product-card--image,
 .category-main--farali .category-product-cover,
 .category-main--farali .category-product-card--product,

@@ -242,13 +242,21 @@
     line-height: 1.5;
   }
 
-  .app-viewport--fluid .footer-support p {
+  .app-viewport--fluid .footer-support p,
+  .app-viewport--fluid .footer-support .footer-support-item {
     margin-bottom: 20px;
     font-size: 14px;
     line-height: 1.37;
+    color: #d6d3d1;
+    text-decoration: none;
   }
 
-  .app-viewport--fluid .footer-support p img {
+  .app-viewport--fluid .footer-support .footer-support-item:hover {
+    color: #ffffff;
+  }
+
+  .app-viewport--fluid .footer-support p img,
+  .app-viewport--fluid .footer-support .footer-support-item img {
     width: 18px;
     height: 18px;
   }
@@ -286,10 +294,10 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     height: auto;
-    min-height: 56px;
+    min-height: 64px;
     padding: 12px 14px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -300,29 +308,23 @@
     display: none;
   }
 
-  .app-viewport--fluid .footer-certificate-strip img,
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(1),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(2),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(3),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(4),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(5),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(6),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(7) {
+  .app-viewport--fluid .footer-certificate-strip img {
     position: static;
     top: auto;
     left: auto;
     flex: 0 0 auto;
-    width: auto;
-    height: 30px;
-    max-width: 56px;
+    width: 52px;
+    height: 40px;
     object-fit: contain;
+    object-position: center;
   }
 
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(3),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(4),
-  .app-viewport--fluid .footer-certificate-strip img:nth-child(5) {
-    height: 36px;
-    max-width: 44px;
+  /* GHP badge — square artwork reads smaller inside the shared box. */
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(3) {
+    width: 56px;
+    height: 56px;
+    transform: scale(1.35);
+    transform-origin: center;
   }
 
   .app-viewport--fluid .footer-availability {

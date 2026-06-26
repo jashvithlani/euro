@@ -254,7 +254,7 @@ const namkeenAt1920 = {
         imageStyle: { left: 305, top: 166, width: 250, height: 306.605 },
         title: "Methi Puri",
         titleClass: "text-namkeen-blue product-title-namkeen-lg text-right",
-        titleStyle: { right: 288.5, top: 49, width: 480 },
+        titleStyle: { right: 336.5, top: 49, width: 480 },
         nodeId: "1210:584",
       },
       {
@@ -282,7 +282,7 @@ const namkeenAt1920 = {
         imageStyle: { left: 305, top: 22, width: 250, height: 404.591 },
         title: "Papad Chavana",
         titleClass: "text-namkeen-blue product-title-namkeen-lg text-right",
-        titleStyle: { right: 224.5, top: 430, width: 632 },
+        titleStyle: { right: 239.5, top: 430, width: 632 },
         nodeId: "1210:598",
       },
       {

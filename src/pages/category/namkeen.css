@@ -148,3 +148,20 @@
     }
   }
 }
+
+/* Namkeen title locks — Figma paste; only `right` is !important. */
+@media (min-width: 1000px) {
+  .category-main--namkeen .category-product-card--product[data-node-id="1210:584"] .category-product-title {
+    top: 32.667px;
+    width: 320px;
+    left: auto;
+    right: 224.333px !important;
+  }
+
+  .category-main--namkeen .category-product-card--product[data-node-id="1210:598"] .category-product-title {
+    top: 286.667px;
+    width: 421.333px;
+    left: auto;
+    right: 159.667px !important;
+  }
+}

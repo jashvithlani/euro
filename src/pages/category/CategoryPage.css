@@ -937,7 +937,7 @@
 }
 
 .category-main--namkeen .category-product-title {
-  z-index: 2;
+  z-index: 3;
 }
 
 /* Ring overlay on large paired cards */
@@ -2559,13 +2559,15 @@
   transition: opacity 0.35s ease;
 }
 
-.category-product-card--image:hover .category-product-title,
-.category-product-card--product:hover .category-product-title,
-.category-product-card--image:hover .category-product-badge,
-.category-product-card--product:hover .category-product-badge,
-.category-product-card--image:hover .category-product-subtitle,
-.category-product-card--product:hover .category-product-subtitle {
-  opacity: 0;
+@media (hover: hover) {
+  .category-product-card--image:hover .category-product-title,
+  .category-product-card--product:hover .category-product-title,
+  .category-product-card--image:hover .category-product-badge,
+  .category-product-card--product:hover .category-product-badge,
+  .category-product-card--image:hover .category-product-subtitle,
+  .category-product-card--product:hover .category-product-subtitle {
+    opacity: 0;
+  }
 }
 
 /* Slide the photo upward off the card. `!important` defeats the

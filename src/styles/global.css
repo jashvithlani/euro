@@ -1317,6 +1317,7 @@ textarea {
 .footer-primary {
   position: absolute;
   inset: 0;
+  z-index: 1;
   min-height: 0;
 }
 
@@ -1366,8 +1367,7 @@ textarea {
 }
 
 .footer-links,
-.footer-support,
-.footer-newsletter {
+.footer-support {
   position: absolute;
   width: 165.33px;
   padding-top: 0;
@@ -1381,11 +1381,6 @@ textarea {
 .footer-support {
   top: 24.67px;
   left: 746.67px;
-}
-
-.footer-newsletter {
-  top: 20.31px;
-  left: 953.33px;
 }
 
 .footer-links a {
@@ -1422,68 +1417,15 @@ textarea {
   margin-top: 3.33px;
 }
 
-.footer-newsletter h2 {
-  margin-bottom: 26.67px;
-}
-
-.footer-newsletter p {
-  margin: 0 0 21.33px;
-  color: #78716c;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18.67px;
-}
-
-.newsletter {
-  position: relative;
-  width: 165.33px;
-}
-
-.newsletter input {
-  width: 165.33px;
-  height: 52.67px;
-  border: 2.67px solid transparent;
-  border-radius: 21.33px;
-  padding: 0 52px 0 13.33px;
-  background: #1c1917;
-  color: #d6d3d1;
-  font-size: 10.67px;
-  font-weight: 700;
-  outline: none;
-}
-
-.newsletter input::placeholder {
-  color: #6b7280;
-  opacity: 1;
-}
-
-.newsletter button {
-  position: absolute;
-  top: 5.33px;
-  right: 5.33px;
-  display: grid;
-  width: 37.33px;
-  height: 37.33px;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: var(--color-accent);
-  color: white;
-  cursor: pointer;
-}
-
-.newsletter button img {
-  width: 12.67px;
-  height: 10.67px;
-}
-
 .footer-secondary {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 0;
   width: 1280px;
   height: 276.67px;
   margin-top: 0;
+  pointer-events: none;
 }
 
 .footer-certificates {
@@ -1562,6 +1504,13 @@ textarea {
   left: 314.14px;
   width: 48px;
   height: 26.67px;
+}
+
+@media (min-width: 1000px) {
+  .footer-certificate-strip {
+    transform: scale(1.15);
+    transform-origin: left center;
+  }
 }
 
 .footer-availability {

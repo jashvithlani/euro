@@ -6,7 +6,6 @@ export const navItems = [
   { key: "exports", label: "Exports", href: "/exports" },
   { key: "career", label: "Career", href: "/career" },
   { key: "partner", label: "Dealership", href: "/dealers" },
-  { key: "news", label: "News", href: "#" },
   { key: "achievements", label: "Achievements", href: "/achievements" },
   { key: "contact", label: "Contact", href: "/contact" },
 ];

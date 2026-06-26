@@ -34,17 +34,6 @@ const certificateLogos = [
   { src: sharedAsset('footer-cert-member.png'), alt: "Member certification" },
 ];
 
-function Newsletter() {
-  return (
-    <form className="newsletter" action="#">
-      <input type="email" placeholder="Email Address" aria-label="Email Address" />
-      <button type="submit" aria-label="Subscribe">
-        <img src={sharedAsset('exports-icon-arrow.svg')} alt="" />
-      </button>
-    </form>
-  );
-}
-
 export default function Footer() {
   return (
     <footer className="footer" id="contact">
@@ -72,12 +61,6 @@ export default function Footer() {
                 {item.exportsLabel || item.label}
               </p>
             ))}
-          </div>
-
-          <div className="footer-newsletter">
-            <h2>Newsletter</h2>
-            <p>Get the latest snack drops!</p>
-            <Newsletter />
           </div>
         </div>
 

@@ -205,18 +205,13 @@
   }
 
   .app-viewport--fluid .footer-links,
-  .app-viewport--fluid .footer-support,
-  .app-viewport--fluid .footer-newsletter {
+  .app-viewport--fluid .footer-support {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
     height: auto;
     padding: 0;
-  }
-
-  .app-viewport--fluid .footer-newsletter {
-    grid-column: 1 / -1;
   }
 
   .app-viewport--fluid .footer-about img {
@@ -258,39 +253,100 @@
     height: 18px;
   }
 
-  .app-viewport--fluid .footer-newsletter p {
-    font-size: 14px;
-  }
-
-  .app-viewport--fluid .newsletter {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .app-viewport--fluid .newsletter input {
-    width: 100%;
-    height: 58px;
-    padding: 0 60px 0 18px;
-    border-radius: 32px;
-    font-size: 15px;
-  }
-
-  .app-viewport--fluid .newsletter button {
-    top: 7px;
-    right: 7px;
-    width: 44px;
-    height: 44px;
-  }
-
-  .app-viewport--fluid .footer-secondary {
+  .app-viewport--fluid .footer-primary::after {
     display: none;
   }
 
-  .app-viewport--fluid .footer-primary::after {
+  .app-viewport--fluid .footer-secondary {
     display: block;
-    grid-column: 1 / -1;
-    margin-top: 8px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 32px;
     padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .app-viewport--fluid .footer-certificates {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .app-viewport--fluid .footer-certificates h2 {
+    margin-bottom: 16px;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .app-viewport--fluid .footer-certificate-strip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    min-height: 56px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .app-viewport--fluid .footer-certificate-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app-viewport--fluid .footer-certificate-strip img,
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(1),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(2),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(3),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(4),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(5),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(6),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(7) {
+    position: static;
+    top: auto;
+    left: auto;
+    flex: 0 0 auto;
+    width: auto;
+    height: 30px;
+    max-width: 56px;
+    object-fit: contain;
+  }
+
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(3),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(4),
+  .app-viewport--fluid .footer-certificate-strip img:nth-child(5) {
+    height: 36px;
+    max-width: 44px;
+  }
+
+  .app-viewport--fluid .footer-availability {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 28px;
+    justify-content: flex-start;
+  }
+
+  .app-viewport--fluid .footer-availability span {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .app-viewport--fluid .footer-availability img {
+    width: 78px;
+    height: auto;
+  }
+
+  .app-viewport--fluid .footer-inner::after {
+    display: block;
+    margin-top: 32px;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     color: #78716c;
     font-size: 12px;

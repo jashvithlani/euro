@@ -509,9 +509,11 @@ const MOBILE_CAROUSEL_RESUME_MS = 5000;
 
 function useMobileFlavorCarousel(slideCount) {
   const viewportRef = React.useRef(null);
+  const storyRef = React.useRef(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeIndexRef = React.useRef(0);
   const autoplayPausedRef = React.useRef(false);
+  const isInViewportRef = React.useRef(false);
   const autoplayTimerRef = React.useRef(null);
   const resumeTimerRef = React.useRef(null);
   const isProgrammaticScrollRef = React.useRef(false);
@@ -528,23 +530,35 @@ function useMobileFlavorCarousel(slideCount) {
     }
 
     resumeTimerRef.current = window.setTimeout(() => {
-      autoplayPausedRef.current = false;
+      if (isInViewportRef.current) {
+        autoplayPausedRef.current = false;
+      }
       resumeTimerRef.current = null;
     }, MOBILE_CAROUSEL_RESUME_MS);
   }, []);
 
   const scrollToIndex = React.useCallback((index, { userInitiated = true } = {}) => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    if (!userInitiated && !isInViewportRef.current) return;
+
     if (userInitiated) {
       pauseAutoplay();
     }
 
     const clamped = Math.min(slideCount - 1, Math.max(0, index));
+    const slide = viewport.querySelector(`#euro-flavor-mobile-slide-${clamped}`);
+    if (!slide) return;
+
     isProgrammaticScrollRef.current = !userInitiated;
 
-    document.getElementById(`euro-flavor-mobile-slide-${clamped}`)?.scrollIntoView({
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const targetLeft = slide.offsetLeft - (viewport.clientWidth - slide.offsetWidth) / 2;
+
+    viewport.scrollTo({
+      left: Math.min(maxScroll, Math.max(0, targetLeft)),
       behavior: "smooth",
-      inline: "center",
-      block: "nearest",
     });
     setActiveIndex(clamped);
 
@@ -609,7 +623,7 @@ function useMobileFlavorCarousel(slideCount) {
     };
 
     const advanceSlide = () => {
-      if (autoplayPausedRef.current) return;
+      if (autoplayPausedRef.current || !isInViewportRef.current) return;
 
       const next = (activeIndexRef.current + 1) % slideCount;
       scrollToIndex(next, { userInitiated: false });
@@ -618,7 +632,7 @@ function useMobileFlavorCarousel(slideCount) {
     const startAutoplay = () => {
       clearAutoplay();
 
-      if (!mobileQuery.matches || reducedMotionQuery.matches) return;
+      if (!mobileQuery.matches || reducedMotionQuery.matches || !isInViewportRef.current) return;
 
       autoplayTimerRef.current = window.setInterval(advanceSlide, MOBILE_CAROUSEL_AUTOPLAY_MS);
     };
@@ -628,10 +642,34 @@ function useMobileFlavorCarousel(slideCount) {
       startAutoplay();
     };
 
+    const handleVisibilityChange = () => {
+      clearAutoplay();
+      if (isInViewportRef.current) {
+        startAutoplay();
+      }
+    };
+
     startAutoplay();
 
     const removeMobileListener = addMediaChangeListener(mobileQuery, handleMediaChange);
     const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, handleMediaChange);
+
+    const story = storyRef.current;
+    const visibilityObserver =
+      story &&
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isInViewportRef.current = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+            handleVisibilityChange();
+          });
+        },
+        { threshold: [0, 0.2, 0.45] },
+      );
+
+    if (story && visibilityObserver) {
+      visibilityObserver.observe(story);
+    }
 
     return () => {
       clearAutoplay();
@@ -641,6 +679,7 @@ function useMobileFlavorCarousel(slideCount) {
       }
       removeMobileListener();
       removeReducedMotionListener();
+      visibilityObserver?.disconnect();
     };
   }, [scrollToIndex, slideCount]);
 
@@ -666,6 +705,7 @@ function useMobileFlavorCarousel(slideCount) {
 
   return {
     viewportRef,
+    storyRef,
     activeIndex,
     scrollPrev: () => scrollFromViewport(-1),
     scrollNext: () => scrollFromViewport(1),
@@ -682,6 +722,7 @@ function MobileFlavorStory() {
   const slideCount = mobileScenes.length + 1;
   const {
     viewportRef,
+    storyRef,
     activeIndex,
     scrollPrev,
     scrollNext,
@@ -693,7 +734,7 @@ function MobileFlavorStory() {
   const activeLabel = activeIndex < mobileScenes.length ? mobileScenes[activeIndex].eyebrow : finalScene.eyebrow;
 
   return (
-    <div className="euro-flavor-stage__mobile-story">
+    <div className="euro-flavor-stage__mobile-story" ref={storyRef}>
       <div className="euro-flavor-stage__mobile-carousel-head">
         <div className="euro-flavor-stage__mobile-carousel-label" aria-live="polite">
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>

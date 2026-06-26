@@ -77,26 +77,27 @@
 }
 
 /* Crop offsets derived from Figma 1113:5438 / 1113:5434 / 1113:5437
-   (scaled 1920 → 1280 by 2/3). */
+   (scaled 1920 → 1280 by 2/3). Percentages keep the sprite crop
+   aligned when the photo frame scales (desktop grid or mobile stack). */
 .investor-board-member--chairman .investor-board-member__photo {
-  width: 1614px;
+  width: calc(1614 / 242 * 100%);
   height: auto;
-  left: -76px;
-  top: -91px;
+  left: calc(-56 / 242 * 100%);
+  top: calc(-91 / 302 * 100%);
 }
 
 .investor-board-member--center .investor-board-member__photo {
-  width: 1543px;
+  width: calc(1543 / 242 * 100%);
   height: auto;
-  left: -344px;
-  top: -71px;
+  left: calc(-344 / 242 * 100%);
+  top: calc(-71 / 302 * 100%);
 }
 
 .investor-board-member--right .investor-board-member__photo {
-  width: 2052px;
+  width: calc(2052 / 242 * 100%);
   height: auto;
-  left: -111px;
-  top: -971px;
+  left: calc(-111 / 242 * 100%);
+  top: calc(-971 / 302 * 100%);
 }
 
 .investor-board-member__copy {

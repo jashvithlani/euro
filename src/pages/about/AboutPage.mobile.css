@@ -316,18 +316,27 @@
     object-fit: cover;
   }
 
+  /* Same award sprite crop as desktop (global.css .timeline-award-crop) */
+  .about-page .timeline-award-card {
+    min-height: 220px;
+  }
+
   .about-page .timeline-award-crop {
-    width: 100%;
-    height: 140px;
+    position: relative;
+    width: min(42vw, 150px);
+    aspect-ratio: 86.91 / 122.62;
+    margin: 0 auto;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
   .about-page .timeline-award-crop img {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    position: absolute;
+    top: -42.73%;
+    left: -462.07%;
+    width: 582.4%;
+    height: 291.77%;
+    max-width: none;
   }
 
   .about-page .timeline-gt-card span,
@@ -346,7 +355,7 @@
 
   .about-page .timeline-gt-logo,
   .about-page .timeline-euro-logo {
-    width: 72px;
+    width: 98px;
     height: auto;
     object-fit: contain;
   }

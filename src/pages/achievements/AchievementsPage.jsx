@@ -32,7 +32,7 @@ const recognitions = [
     description:
       "Honoured at the VCCI Leaders Summit for business excellence and sustained leadership in Gujarat's food manufacturing sector.",
     presented: "Presented by · VCCI Leaders Summit",
-    cropClass: "achievements-award-excellence",
+    image: asset("achievements-award-excellence.png"),
     imageAlt: "VCCI Leaders Summit excellence award",
   },
   {
@@ -45,7 +45,7 @@ const recognitions = [
     description:
       "Awarded the ESQR Quality Choice Prize for consistent product quality, process discipline, and international manufacturing standards.",
     presented: "Presented by · ESQR",
-    cropClass: "achievements-award-quality",
+    image: asset("achievements-award-quality.png"),
     imageAlt: "ESQR Quality Choice Prize trophy",
   },
   {
@@ -58,24 +58,16 @@ const recognitions = [
     description:
       "Recognised with the International Star for Quality for maintaining excellence across production, packaging, and consumer trust.",
     presented: "Presented by · International Star for Quality",
-    cropClass: "achievements-award-star",
+    image: asset("achievements-award-star.png"),
     imageAlt: "International Star for Quality trophy",
   },
 ];
-
-const sheetImage = asset("achievements-awards-sheet.png");
 
 function RecognitionMedia({ recognition }) {
   return (
     <div className="achievements-featured-media">
       <div className="achievements-featured-shadow" aria-hidden="true"></div>
-      {recognition.image ? (
-        <img src={recognition.image} alt={recognition.imageAlt} />
-      ) : (
-        <div className={`achievements-featured-crop ${recognition.cropClass}`}>
-          <img src={sheetImage} alt={recognition.imageAlt} />
-        </div>
-      )}
+      <img src={recognition.image} alt={recognition.imageAlt} />
     </div>
   );
 }
@@ -106,7 +98,7 @@ export default function AchievementsPage() {
       <div className="achievements-recognitions">
         {recognitions.map((recognition) => (
           <section
-            className="achievements-recognition"
+            className={`achievements-recognition achievements-recognition--${recognition.id}`}
             key={recognition.id}
             aria-labelledby={`recognition-${recognition.id}`}
           >

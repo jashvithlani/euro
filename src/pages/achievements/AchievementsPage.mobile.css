@@ -179,37 +179,30 @@
     display: none;
   }
 
-  .achievements-page .achievements-featured-media > img,
-  .achievements-page .achievements-featured-crop {
+  .achievements-page .achievements-featured-media > img {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    transform: none;
-  }
-
-  .achievements-page .achievements-featured-media > img {
     object-fit: cover;
   }
 
-  .achievements-page .achievements-featured-crop {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #ffffff;
+  .achievements-page .achievements-recognition--quality-2014 .achievements-featured-media > img {
+    position: absolute;
+    width: 43%;
+    height: 84%;
+    top: 33px;
+    left: 86px;
+    object-fit: contain;
   }
 
-  .achievements-page .achievements-featured-crop img {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: auto;
-    max-width: 88%;
-    height: auto;
-    max-height: 88%;
+  .achievements-page .achievements-recognition--national-star .achievements-featured-media > img {
+    position: absolute;
+    width: 40%;
+    height: 96%;
+    left: 96px;
     object-fit: contain;
   }
 

@@ -150,7 +150,7 @@ const pages = {
         buttonColor: "#ce0603",
         buttonLabel: "Know more",
         image: asset('category-chips-wide-card-chilli.png'),
-        imageStyle: { left: 215.91, top: 0, width: 241.5, height: 291.27 },
+        imageStyle: { left: 215.91, top: 22, width: 241.5, height: 291.27 },
       },
     ],
   },

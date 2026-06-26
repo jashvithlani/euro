@@ -42,8 +42,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: auto;
-    min-height: 0;
+    height: 247px;
+    min-height: 247px;
     padding: 32px 20px 40px;
     overflow: hidden;
     background: linear-gradient(168deg, #ffe9f1 0%, #fff3f6 60%, #fff8f6 100%);
@@ -258,6 +258,33 @@
     font-size: 14px !important;
     line-height: 1.4 !important;
     text-align: left;
+  }
+
+  /* Chips image cards — title/badge above pack art; image 25% larger, anchored low. */
+  .category-page .category-main--chips .category-product-card--image {
+    min-height: 320px;
+    padding-bottom: 8px;
+  }
+
+  .category-page .category-main--chips .category-product-card--image .category-product-title {
+    order: 1;
+    margin-top: 0;
+  }
+
+  .category-page .category-main--chips .category-product-card--image .category-product-badge {
+    order: 2;
+    margin-top: 10px;
+  }
+
+  .category-page .category-main--chips .category-product-card--image .category-product-cover,
+  .category-page .category-main--chips .category-product-card--image .category-product-cover--positioned {
+    order: 3;
+    width: min(100%, 300px) !important;
+    max-height: 250px !important;
+    margin-top: auto;
+    margin-bottom: 0;
+    align-self: center;
+    transform: translateY(8px);
   }
 
   /* Promo panels */

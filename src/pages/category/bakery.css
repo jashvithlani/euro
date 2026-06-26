@@ -5,7 +5,7 @@
    Overrides the scaled legacy canvas in CategoryPage.css (which only fills
    the left 2/3 and crops packs vertically). Figma 1218:1727 (×2/3). */
 .category-main--bakery .category-hero {
-  height: 500px;
+  height: 247px;
 }
 
 /* Row-1 Khari banner titles: the long second line ("Methi Khari" / "Plain
@@ -216,6 +216,59 @@
   translate: 0 -2px;
   scale: 1.04;
   box-shadow: 0 18px 30px -12px rgba(78, 40, 31, 0.35);
+}
+
+/* Row-3 rusk / nankhatai cards — mobile: full-bleed image, label top-left. */
+@media (max-width: 999px) {
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) {
+    display: block;
+    padding: 0;
+    min-height: 0;
+    aspect-ratio: 560 / 385;
+  }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img,
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img-frame {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img-frame > img {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover;
+  }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-title {
+    position: absolute !important;
+    top: 16px !important;
+    left: 16px !important;
+    margin: 0 !important;
+    z-index: 2;
+    text-align: left !important;
+    white-space: nowrap !important;
+    word-break: normal !important;
+  }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-title span {
+    display: inline !important;
+    white-space: nowrap !important;
+  }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-title span + span::before {
+    content: " ";
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

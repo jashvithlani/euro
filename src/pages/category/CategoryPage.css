@@ -50,12 +50,11 @@
    width:1280, height:100%). Box heights match the Figma hero bands (×2/3)
    so the floating packs are never cropped vertically. */
 .category-main--fryums .category-hero {
-  height: 430px;
+  height: 247px;
 }
 
-.category-main--bakery .category-hero,
-.category-main--khakhra .category-hero {
-  height: 500px;
+.category-main--bakery .category-hero {
+  height: 247px;
 }
 
 /* Chikki hero is designed at full 1920×559 so the scaled visual (×2/3) fills the 1280×372.67 shell.
@@ -1465,7 +1464,7 @@
 
 .category-newsletter.category-newsletter--farali-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -1549,7 +1548,7 @@
 
 .category-newsletter.category-newsletter--namkeen-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -1685,6 +1684,10 @@
   top: 22px;
   left: 47.67px;
   width: 229.33px;
+}
+
+.category-main--chips .category-feature--chips-wide > img {
+  top: 22px !important;
 }
 
 .category-feature--chips-wide .category-feature-copy > span {
@@ -1935,7 +1938,7 @@
 
 .category-newsletter.category-newsletter--chips-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -1985,7 +1988,7 @@
 
 .category-newsletter.category-newsletter--getmore-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -2021,7 +2024,7 @@
 
 .category-newsletter.category-newsletter--beverages-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -2073,7 +2076,7 @@
 .category-newsletter.category-newsletter--khakhra-compact input,
 .category-newsletter.category-newsletter--fryums-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 
@@ -2118,7 +2121,7 @@
 
 .category-newsletter.category-newsletter--bakery-compact input {
   height: 37.33px;
-  padding: 0 21.33px;
+  padding: 10px 21.33px;
   font-size: 10.67px;
 }
 

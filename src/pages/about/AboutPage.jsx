@@ -3,7 +3,14 @@ import { createPortal } from "react-dom";
 import EuroMoments from "../../components/EuroMoments.jsx";
 import { asset } from "./asset.js";
 import { asset as categoryAsset } from "../category/asset.js";
-import { sharedAsset } from "../../shared/asset.js";
+import { PillarCard, PillarsSectionHeading } from "./PillarCard.jsx";
+import { pillars } from "./pillars-content.jsx";
+import { InfrastructureCard, InfrastructureSectionHeading } from "./InfrastructureCard.jsx";
+import { infrastructureItems } from "./infrastructure-content.jsx";
+import { TimelineMilestone, TimelineSectionHeading } from "./TimelineMilestone.jsx";
+import { timelineMilestones } from "./timeline-milestones.js";
+import { useHorizontalScrollPin } from "./useHorizontalScrollPin.js";
+import { useTimelineMobileScroll } from "./useTimelineMobileScroll.js";
 import "./AboutPage.css";
 
 const timelineProducts = [
@@ -18,37 +25,20 @@ const timelineProducts = [
   { category: "Farali", image: categoryAsset("category-farali-kela-wafers.png") },
 ];
 
-const pillarBackgroundVideo = asset("about-pillars-excellence.mp4");
-
-const pillars = [
-  {
-    title: "Quality",
-    icon: "about-icon-quality.svg",
-    iconClass: "pillar-icon-quality",
-    copy: "Sourcing only the finest ingredients from local Indian farms to ensure every bite is a premium experience.",
-  },
-  {
-    title: "Innovation",
-    icon: "about-icon-innovation.svg",
-    iconClass: "pillar-icon-innovation",
-    copy: "Reimagining traditional textures and shapes for a youthful, modern snacking aesthetic.",
-  },
-  {
-    title: "Community",
-    icon: "about-icon-community.svg",
-    iconClass: "pillar-icon-community",
-    copy: "Building a sustainable ecosystem that supports our farmers and delights our consumers worldwide.",
-  },
-  {
-    title: "Taste",
-    icon: "about-icon-taste.svg",
-    iconClass: "pillar-icon-taste",
-    copy: "An uncompromising commitment to bold, authentic, and memorable flavor profiles.",
-  },
-];
-
 export default function AboutPage() {
   const timelineRef = useRef(null);
+  const mobileScrollRef = useRef(null);
+  const mobileStickyRef = useRef(null);
+  const mobileViewportRef = useRef(null);
+  const mobileTrackRef = useRef(null);
+  const infraScrollRef = useRef(null);
+  const infraStickyRef = useRef(null);
+  const infraViewportRef = useRef(null);
+  const infraTrackRef = useRef(null);
+  const pillarsScrollRef = useRef(null);
+  const pillarsStickyRef = useRef(null);
+  const pillarsViewportRef = useRef(null);
+  const pillarsTrackRef = useRef(null);
   const timelineProductMarkerRef = useRef(null);
   const activeTimelineProductRef = useRef(0);
   const showTimelineProductRef = useRef(false);
@@ -56,18 +46,52 @@ export default function AboutPage() {
   const [activeTimelineProduct, setActiveTimelineProduct] = useState(0);
   const [showTimelineProduct, setShowTimelineProduct] = useState(false);
 
+  useTimelineMobileScroll({
+    driverRef: mobileScrollRef,
+    stickyRef: mobileStickyRef,
+    viewportRef: mobileViewportRef,
+    trackRef: mobileTrackRef,
+  });
+
+  useHorizontalScrollPin({
+    driverRef: pillarsScrollRef,
+    stickyRef: pillarsStickyRef,
+    viewportRef: pillarsViewportRef,
+    trackRef: pillarsTrackRef,
+    tileWidthCssVar: "--pillars-tile-width",
+    progressCssVar: "--pillars-progress",
+    tileSelector: ".about-pillars__scroll-tile",
+    edgeFadeCssVar: "--pillars-edge-fade",
+    approachCssVar: "--pillars-approach",
+    tileWidthScale: 0.8,
+    tileMotion: "soft",
+    edgeFadeZone: 0.04,
+  });
+
+  useHorizontalScrollPin({
+    driverRef: infraScrollRef,
+    stickyRef: infraStickyRef,
+    viewportRef: infraViewportRef,
+    trackRef: infraTrackRef,
+    tileWidthCssVar: "--infra-tile-width",
+    progressCssVar: "--infra-progress",
+  });
+
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
 
+    const desktopQuery = window.matchMedia("(min-width: 1000px)");
     let rafId = 0;
 
     const updateTimelineProduct = () => {
       rafId = 0;
 
+      if (!desktopQuery.matches) return;
+
       const timeline = timelineRef.current;
       if (!timeline) return;
 
-      const line = timeline.querySelector(".timeline-line");
+      const line = timeline.querySelector(".about-timeline__desktop .timeline-line");
       if (!line) return;
 
       const viewportCenter = window.innerHeight / 2;
@@ -90,7 +114,9 @@ export default function AboutPage() {
 
       if (!isProductOnLine) return;
 
-      const milestones = [...timeline.querySelectorAll(".timeline-milestone, .timeline-text-only")];
+      const milestones = [
+        ...timeline.querySelectorAll(".about-timeline__desktop .timeline-milestone, .about-timeline__desktop .timeline-text-only"),
+      ];
       let nextProductIndex = 0;
 
       milestones.forEach((milestone, index) => {
@@ -120,9 +146,19 @@ export default function AboutPage() {
       rafId = window.requestAnimationFrame(updateTimelineProduct);
     };
 
+    const handleDesktopQueryChange = () => {
+      if (!desktopQuery.matches) {
+        showTimelineProductRef.current = false;
+        setShowTimelineProduct(false);
+      }
+
+      scheduleUpdate();
+    };
+
     updateTimelineProduct();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
+    desktopQuery.addEventListener("change", handleDesktopQueryChange);
 
     return () => {
       if (rafId) {
@@ -130,6 +166,7 @@ export default function AboutPage() {
       }
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      desktopQuery.removeEventListener("change", handleDesktopQueryChange);
     };
   }, []);
 
@@ -195,31 +232,45 @@ export default function AboutPage() {
               </section>
 
               <section className="about-pillars">
-                <div className="about-section-heading">
-                  <span>Our Compass</span>
-                  <h2>Pillars of Excellence</h2>
+                <div className="about-pillars__desktop">
+                  <PillarsSectionHeading />
+                  <div className="pillar-grid">
+                    {pillars.map((pillar) => (
+                      <PillarCard key={pillar.id} pillar={pillar} />
+                    ))}
+                  </div>
                 </div>
-                <div className="pillar-grid">
-                  {pillars.map((pillar) => (
-                    <article key={pillar.title} className="pillar-card">
-                      <video
-                        className="pillar-card__video"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        aria-hidden="true"
-                      >
-                        <source src={pillarBackgroundVideo} type="video/mp4" />
-                      </video>
-                      <div className="pillar-icon">
-                        <img className={pillar.iconClass} src={asset(pillar.icon)} alt="" />
+
+                <div ref={pillarsScrollRef} className="about-pillars__scroll-driver">
+                  <div ref={pillarsStickyRef} className="about-pillars__scroll-sticky">
+                    <PillarsSectionHeading />
+                    <div className="about-pillars__scroll-progress" aria-hidden="true">
+                      <span className="about-pillars__scroll-progress-bar" />
+                    </div>
+                    <div ref={pillarsViewportRef} className="about-pillars__scroll-viewport">
+                      <div ref={pillarsTrackRef} className="about-pillars__scroll-track">
+                        {pillars.map((pillar, index) => (
+                          <article
+                            className="about-pillars__scroll-tile"
+                            key={pillar.id}
+                            aria-label={pillar.title}
+                            data-pillar-index={index}
+                          >
+                            <PillarCard pillar={pillar} />
+                          </article>
+                        ))}
                       </div>
-                      <h3>{pillar.title}</h3>
-                      <p>{pillar.copy}</p>
-                    </article>
-                  ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="about-pillars__mobile-fallback" aria-label="Pillars of Excellence">
+                  <PillarsSectionHeading />
+                  <div className="pillar-grid">
+                    {pillars.map((pillar) => (
+                      <PillarCard key={`fallback-${pillar.id}`} pillar={pillar} />
+                    ))}
+                  </div>
                 </div>
               </section>
 
@@ -264,166 +315,85 @@ export default function AboutPage() {
               </section>
 
               <section ref={timelineRef} className="about-timeline" id="milestones">
-                <div className="about-section-heading">
-                  <span>The Evolution</span>
-                  <h2>Our <em>Milestones</em></h2>
+                <div className="about-timeline__desktop">
+                  <TimelineSectionHeading />
+                  <div className="timeline-line" aria-hidden="true"></div>
+                  {timelineMilestones.map((milestone) => (
+                    <TimelineMilestone key={milestone.id} milestone={milestone} layout="desktop" />
+                  ))}
                 </div>
-                <div className="timeline-line" aria-hidden="true"></div>
-                <article className="timeline-milestone timeline-2009 timeline-left">
-                  <div className="timeline-copy timeline-copy-left">
-                    <h3>2009</h3>
-                    <h4>The Spark</h4>
-                    <p>Formation of Euro India Fresh Foods Limited with a vision to establish a strong presence in the packaged food industry.</p>
-                  </div>
-                  <div className="timeline-card timeline-2009-card" aria-label="Euro India Foods plant">
-                    <img src={asset('about-timeline-2009.png')} alt="" />
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2012 timeline-right">
-                  <div className="timeline-card timeline-2012-card" aria-label="Scaling Up production">
-                    <img src={asset('about-timeline-2012.jpeg')} alt="" />
-                  </div>
-                  <div className="timeline-copy timeline-copy-right">
-                    <h3>2012</h3>
-                    <h4>Scaling Up</h4>
-                    <p>Commencement of commercial operations and the establishment of manufacturing capabilities for chips and fried snacks.</p>
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2014 timeline-left">
-                  <div className="timeline-copy timeline-copy-left">
-                    <h3>2014</h3>
-                    <h4>Public Debut</h4>
-                    <ul>
-                      <li>Received ISO 22000:2005 certification for food safety and quality standards.</li>
-                      <li>Honoured as Asia's Fastest Growing Marketing Brand at WCRC Leaders Asia Summit.</li>
-                    </ul>
-                  </div>
-                  <div className="timeline-card timeline-iso-card" aria-label="ISO 22000:2005 certification">
-                    <img src={sharedAsset("footer-cert-iso-22000.png")} alt="" />
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2015 timeline-right">
-                  <div className="timeline-card timeline-2015-card" aria-label="Global Reach production line">
-                    <img src={asset('about-timeline-2015.png')} alt="" />
-                  </div>
-                  <div className="timeline-copy timeline-copy-right">
-                    <h3>2015</h3>
-                    <h4>Global Reach</h4>
-                    <ul>
-                      <li>Awarded as Fastest Growing Indian Company at the International Achievers Summit in Bangkok, Thailand.</li>
-                      <li>Secured the International Star for Quality at the International Star Award in Geneva.</li>
-                    </ul>
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2016 timeline-left">
-                  <div className="timeline-copy timeline-copy-left">
-                    <h3>2016</h3>
-                    <h4>Limited</h4>
-                    <ul>
-                      <li>Converted from a private company to a public company, effecting the strength of the business and its readiness for new opportunities.</li>
-                      <li>Recognised with the ESQR Quality Choice Prize in Berlin for business excellence.</li>
-                    </ul>
-                  </div>
-                  <div className="timeline-card timeline-award-card" aria-label="ESQR Quality Choice Prize">
-                    <div className="timeline-award-crop">
-                      <img src={asset('about-timeline-award-source.png')} alt="" />
+
+                <div ref={mobileScrollRef} className="about-timeline__scroll-driver">
+                  <div ref={mobileStickyRef} className="about-timeline__scroll-sticky">
+                    <TimelineSectionHeading />
+                    <div className="about-timeline__scroll-progress" aria-hidden="true">
+                      <span className="about-timeline__scroll-progress-bar" />
+                    </div>
+                    <div ref={mobileViewportRef} className="about-timeline__scroll-viewport">
+                      <div ref={mobileTrackRef} className="about-timeline__scroll-track">
+                        {timelineMilestones.map((milestone, index) => (
+                          <article
+                            className="about-timeline__scroll-tile"
+                            key={milestone.id}
+                            aria-label={`Milestone ${milestone.year}`}
+                            data-milestone-index={index}
+                          >
+                            <TimelineMilestone milestone={milestone} layout="mobile" />
+                          </article>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </article>
-                <article className="timeline-milestone timeline-2017 timeline-right">
-                  <div className="timeline-card timeline-nse-card">
-                    <img src={asset('about-timeline-nse-source.png')} alt="NSE logo" />
-                  </div>
-                  <div className="timeline-copy timeline-copy-right">
-                    <h3>2017</h3>
-                    <h4>NSE</h4>
-                    <p>Listed successfully on NSE Emerge, marking a significant entry into public capital markets.</p>
-                    <p>* Received the Surat Entrepreneur and Excellence Award.</p>
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2021 timeline-left">
-                  <div className="timeline-copy timeline-copy-left">
-                    <h3>2021</h3>
-                    <h4>Excellence</h4>
-                    <p>* Migration to the NSE Main Board, elevating the Company's presence in the public market.</p>
-                    <p>* Acknowledged during the Vibrant Gujarat Global Summit for entrepreneurship and recognised continued excellence.</p>
-                  </div>
-                  <div className="timeline-card timeline-2021-card" aria-label="Vibrant Gujarat">
-                    <img src={asset('about-timeline-2021.png')} alt="" />
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2025 timeline-right">
-                  <div className="timeline-card timeline-gt-card" aria-label="Gujarat Titans x Euro">
-                    <img className="timeline-gt-logo" src={asset('about-timeline-gt-source.png')} alt="" />
-                    <span>x</span>
-                    <img className="timeline-euro-logo" src={asset('about-timeline-euro-logo-source.png')} alt="" />
-                  </div>
-                  <div className="timeline-copy timeline-copy-right">
-                    <h3>2025</h3>
-                    <h4>IPL- Gujarat Titans</h4>
-                    <p>Named as the Official Snacking Partner of Gujarat Titans IPL team, broadening visibility and strengthening consumer engagement through sports partnerships.</p>
-                  </div>
-                </article>
-                <article className="timeline-milestone timeline-2026 timeline-left">
-                  <div className="timeline-copy timeline-copy-left">
-                    <h3>2026</h3>
-                    <h4>Manufacturing Expansion</h4>
-                    <p>30 Acres state of art manufacturing facilities & development at Chikhli, sized huge & production capacity to next level.</p>
-                  </div>
-                  <div className="timeline-card timeline-2026-card" aria-label="Euro Food Park">
-                    <img src={asset('about-timeline-2026-source.png')} alt="" />
-                  </div>
-                </article>
+                </div>
+
+                <div className="about-timeline__mobile-fallback" aria-label="Our Milestones">
+                  <TimelineSectionHeading />
+                  {timelineMilestones.map((milestone) => (
+                    <TimelineMilestone key={`fallback-${milestone.id}`} milestone={milestone} layout="mobile" />
+                  ))}
+                </div>
               </section>
 
               <section className="about-infrastructure">
-                <div className="about-section-heading">
-                  <span>Our Foundation</span>
-                  <h2>Infrastructure <em>& Capacity</em></h2>
+                <div className="about-infrastructure__desktop">
+                  <InfrastructureSectionHeading />
+                  <div className="infra-grid">
+                    {infrastructureItems.map((item) => (
+                      <InfrastructureCard key={item.id} item={item} />
+                    ))}
+                  </div>
                 </div>
-                <div className="infra-grid">
-                  <article className="infra-card infra-large">
-                    <img src={asset('about-infra-surat.png')} alt="Surat plant" />
-                    <div>
-                      <h3>Surat Plant</h3>
-                      <p>Our flagship Surat facility spans over <strong>2,00,000 square feet</strong>, housing advanced production lines for chips, namkeen, and beverages. Designed for high-volume output without compromising on craftsmanship, this plant is the heart of our operations.</p>
+
+                <div ref={infraScrollRef} className="about-infrastructure__scroll-driver about-infrastructure__scroll-driver--mirror">
+                  <div ref={infraStickyRef} className="about-infrastructure__scroll-sticky">
+                    <InfrastructureSectionHeading />
+                    <div className="about-infrastructure__scroll-progress" aria-hidden="true">
+                      <span className="about-infrastructure__scroll-progress-bar" />
                     </div>
-                  </article>
-                  <article className="infra-card infra-large">
-                    <img src={asset('about-infra-chikhli.png')} alt="Chikhli plant" />
-                    <div>
-                      <h3>Chikhli Plant</h3>
-                      <p>Spread across <strong>30 acres of land</strong>, our Chikhli plant is built for the future. With expansive infrastructure and modern processing capabilities, it enables us to meet growing demand while maintaining the highest standards of hygiene and quality.</p>
+                    <div ref={infraViewportRef} className="about-infrastructure__scroll-viewport">
+                      <div ref={infraTrackRef} className="about-infrastructure__scroll-track">
+                        {infrastructureItems.map((item, index) => (
+                          <article
+                            className="about-infrastructure__scroll-tile"
+                            key={item.id}
+                            aria-label={item.title}
+                            data-infra-index={index}
+                          >
+                            <InfrastructureCard item={item} />
+                          </article>
+                        ))}
+                      </div>
                     </div>
-                  </article>
-                  <article className="infra-card">
-                    <img src={asset('about-infra-pulp-line.jpeg')} alt="Pulp line production" />
-                    <div>
-                      <h3>Pulp Line</h3>
-                      <p>Our dedicated pulp processing line turns quality fruit into smooth, consistent pulp for beverages and allied products — built for scale, hygiene, and dependable supply across seasons.</p>
-                    </div>
-                  </article>
-                  <article className="infra-card">
-                    <img src={asset('about-infra-solar.webp')} alt="Solar power generation" />
-                    <div>
-                      <h3>Solar Power Generation</h3>
-                      <p>Our plants are powered by clean, renewable solar energy - reducing dependence on conventional electricity and significantly lowering carbon emissions.</p>
-                    </div>
-                  </article>
-                  <article className="infra-card">
-                    <img src={asset('about-infra-etp.jpeg')} alt="Effluent treatment plant" />
-                    <div>
-                      <h3>Effluent Treatment Plant (ETP) - Zero Liquid Discharge</h3>
-                      <p>We treat 100% of our wastewater through our in-house ETP, achieving Zero Liquid Discharge. Not a single drop of untreated water leaves our premises.</p>
-                    </div>
-                  </article>
-                  <article className="infra-card">
-                    <img src={asset('about-infra-biogas.jpeg')} alt="Bio gas plant" />
-                    <div>
-                      <h3>Bio-Gas Plant - Agro Waste to Energy</h3>
-                      <p>Agricultural waste from our processes is converted into clean bio-gas through our dedicated bio-gas plant - turning waste into a valuable energy resource.</p>
-                    </div>
-                  </article>
+                  </div>
+                </div>
+
+                <div className="about-infrastructure__mobile-fallback" aria-label="Infrastructure and Capacity">
+                  <InfrastructureSectionHeading />
+                  <div className="infra-grid">
+                    {infrastructureItems.map((item) => (
+                      <InfrastructureCard key={`fallback-${item.id}`} item={item} />
+                    ))}
+                  </div>
                 </div>
               </section>
 

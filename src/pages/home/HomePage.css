@@ -1,5 +1,12 @@
 @import "./HomePage.mobile.css";
 
+.mood-section__scroll-driver,
+.mood-section__mobile-fallback,
+.favorites-section__scroll-driver,
+.favorites-section__mobile-fallback {
+  display: none;
+}
+
 .pattern-layer {
   position: absolute;
   inset: 0;
@@ -315,12 +322,12 @@
      is never hidden on unsupported browsers). `translate` composes over
      each card's resting rotation. */
   @supports (animation-timeline: view()) {
-    .mood-heading,
-    .mood-cta,
-    .category-card,
-    .favorites-heading,
-    .slider-buttons,
-    .product-card,
+    .mood-section__desktop .mood-heading,
+    .mood-section__desktop .mood-cta,
+    .mood-section__desktop .category-card,
+    .favorites-section__desktop .favorites-heading,
+    .favorites-section__desktop .slider-buttons,
+    .favorites-section__desktop .product-card,
     .story-photo-wrap,
     .story-copy,
     .quality-card,
@@ -332,23 +339,22 @@
       animation-range: cover 0% cover 25%;
     }
 
-    /* Stagger the cards within each row as they enter */
-    .category-card.card-juice {
+    .mood-section__desktop .category-card.card-juice {
       animation-range: cover 1% cover 26%;
     }
-    .category-card.card-namkeen {
+    .mood-section__desktop .category-card.card-namkeen {
       animation-range: cover 2% cover 27%;
     }
-    .category-card.card-basket {
+    .mood-section__desktop .category-card.card-basket {
       animation-range: cover 3% cover 28%;
     }
-    .product-card:nth-child(2) {
+    .favorites-section__desktop .product-card:nth-child(2) {
       animation-range: cover 1% cover 26%;
     }
-    .product-card:nth-child(3) {
+    .favorites-section__desktop .product-card:nth-child(3) {
       animation-range: cover 2% cover 27%;
     }
-    .product-card:nth-child(4) {
+    .favorites-section__desktop .product-card:nth-child(4) {
       animation-range: cover 3% cover 28%;
     }
     .quality-card:nth-child(2) {

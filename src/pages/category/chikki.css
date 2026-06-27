@@ -4,22 +4,24 @@
    CategoryPage.css — keep every chikki rule here. */
 
 /* ── Hero ─────────────────────────────────────────────────────────────────
-   Figma node 1217:1021 authored at 1920×668, scaled to the app's 1280 canvas. */
+   Figma node 1217:1021 — taller band than chips; packs need the full 445px shell. */
 .category-main--chikki {
   --home-hero-height: 597.33px;
 }
 
-.category-main--chikki .category-hero {
-  height: 247px;
-  background: #ffffff;
-}
+@media (min-width: 1000px) {
+  .category-main--chikki .category-hero {
+    height: 445.33px;
+    background: #ffffff;
+  }
 
-.category-main--chikki .category-hero-chikki {
-  width: 1280px !important;
-  height: 247px !important;
-  overflow: hidden;
-  background: #ffffff;
-  transform: none !important;
+  .category-main--chikki .category-hero-chikki {
+    width: 1280px !important;
+    height: 445.33px !important;
+    overflow: hidden;
+    background: #ffffff;
+    transform: none !important;
+  }
 }
 
 .category-main--chikki .category-hero h1 {

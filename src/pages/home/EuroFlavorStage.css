@@ -675,7 +675,16 @@
   color: rgba(78, 40, 31, 0.88);
 }
 
+.euro-flavor-stage__scroll-experience {
+  position: relative;
+  height: 100%;
+}
+
 .euro-flavor-stage__mobile-story {
+  display: none;
+}
+
+.euro-flavor-stage__mobile-fallback {
   display: none;
 }
 
@@ -822,7 +831,195 @@
   }
 }
 
-@media (max-width: 999px), (prefers-reduced-motion: reduce) {
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  .euro-flavor-stage {
+    height: auto;
+    margin-top: 0;
+    padding: 0;
+    overflow: visible;
+    color: #fff8ef;
+    background: #180508;
+  }
+
+  .euro-flavor-stage__mobile-fallback {
+    display: none;
+  }
+
+  .euro-flavor-stage__sticky {
+    position: relative;
+    top: auto;
+    display: block;
+    box-sizing: border-box;
+    height: 100dvh;
+    min-height: 520px;
+    padding-top: 76px;
+    background: var(--scene-bg, #180508);
+    transition: background 0.82s ease;
+  }
+
+  .euro-flavor-stage.is-light-scene .euro-flavor-stage__sticky {
+    background: var(--scene-bg, var(--color-page));
+  }
+
+  .euro-flavor-stage__bg,
+  .euro-flavor-stage__background-aura,
+  .euro-flavor-stage__pointer-glow,
+  .euro-flavor-stage__grain {
+    top: -76px;
+    height: calc(100% + 76px);
+  }
+
+  .euro-flavor-stage__scene-label {
+    top: 20px;
+    left: 20px;
+    gap: 10px;
+    font-size: 11px;
+  }
+
+  .euro-flavor-stage__scene-label span {
+    width: 36px;
+    height: 36px;
+    font-size: 11px;
+  }
+
+  .euro-flavor-stage__product-wrap {
+    top: 44%;
+    width: min(92vw, 380px);
+    height: min(52vh, 420px);
+  }
+
+  .euro-flavor-stage__spotlight {
+    top: 40px;
+    width: min(72vw, 300px);
+    height: min(72vw, 300px);
+  }
+
+  .euro-flavor-stage__pedestal {
+    bottom: 22%;
+    width: min(68vw, 280px);
+    height: 56px;
+  }
+
+  .euro-flavor-stage__product {
+    max-height: min(40vh, 300px);
+  }
+
+  .euro-flavor-stage__product--intro {
+    width: calc(var(--pack-width) * 0.8);
+    max-height: min(28.8vh, 208px);
+  }
+
+  .euro-flavor-stage__product--intro .euro-flavor-stage__product {
+    max-height: min(28.8vh, 208px);
+  }
+
+  .euro-flavor-stage__product--chips {
+    width: calc(var(--pack-width) * 0.95);
+  }
+
+  .euro-flavor-stage__product--chips .euro-flavor-stage__product {
+    max-height: min(38vh, 285px);
+  }
+
+  .euro-flavor-stage__product--getmore,
+  .euro-flavor-stage__product--namkeen {
+    width: calc(var(--pack-width) * 0.882);
+  }
+
+  .euro-flavor-stage__product--getmore .euro-flavor-stage__product,
+  .euro-flavor-stage__product--namkeen .euro-flavor-stage__product {
+    max-height: min(35.28vh, 265px);
+  }
+
+  .euro-flavor-stage__product--beverage .euro-flavor-stage__product {
+    max-height: min(44vh, 340px);
+  }
+
+  .euro-flavor-stage__copy {
+    right: auto;
+    left: 20px;
+    bottom: 84px;
+    width: calc(100% - 40px);
+    max-width: none;
+  }
+
+  .euro-flavor-stage__copy h2 {
+    font-size: 34px;
+    line-height: 1.02;
+  }
+
+  .euro-flavor-stage__copy p {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .euro-flavor-stage__copy--intro {
+    right: auto;
+    left: 20px;
+    bottom: 84px;
+  }
+
+  .euro-flavor-stage__copy--intro h2 {
+    font-size: 28px;
+  }
+
+  .euro-flavor-stage__copy--intro p {
+    font-size: 11px;
+  }
+
+  .euro-flavor-stage__progress {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+    justify-content: center;
+  }
+
+  .euro-flavor-stage__wall {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 72px 20px 28px;
+    overflow-y: auto;
+  }
+
+  .euro-flavor-stage__wall-copy h3 {
+    font-size: 30px;
+  }
+
+  .euro-flavor-stage__wall-copy p {
+    font-size: 13px;
+  }
+
+  .euro-flavor-stage__actions {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .euro-flavor-stage__primary {
+    min-height: 50px;
+    padding: 0 22px;
+    font-size: 13px;
+  }
+
+  .euro-flavor-stage__secondary {
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  .euro-flavor-stage__wall-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .euro-flavor-stage__wall-card img {
+    height: 96px;
+  }
+}
+
+@media (max-width: 999px) and (prefers-reduced-motion: reduce) {
   .euro-flavor-stage {
     height: auto;
     margin-top: 0;
@@ -833,8 +1030,12 @@
     overflow: hidden;
   }
 
-  .euro-flavor-stage__sticky {
+  .euro-flavor-stage__scroll-experience {
     display: none;
+  }
+
+  .euro-flavor-stage__mobile-fallback {
+    display: block;
   }
 
   .euro-flavor-stage__mobile-story {
@@ -1075,14 +1276,19 @@
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    width: min(72%, 280px);
-    max-height: min(44%, 200px);
+    width: min(57.6%, 224px);
+    max-height: min(35.2%, 160px);
+  }
+
+  .euro-flavor-stage__mobile-card--chips > img {
+    width: min(51.3%, 228px);
+    max-height: min(45.6%, 209px);
   }
 
   .euro-flavor-stage__mobile-card--getmore > img,
   .euro-flavor-stage__mobile-card--namkeen > img {
-    width: min(46%, 220px);
-    max-height: min(50%, 220px);
+    width: min(40.57%, 194px);
+    max-height: min(44.1%, 194px);
   }
 
   .euro-flavor-stage__mobile-card--beverages > img {
@@ -1111,7 +1317,7 @@
   }
 }
 
-@media (max-width: 999px) {
+@media (max-width: 999px) and (prefers-reduced-motion: reduce) {
   .home-page .euro-flavor-stage {
     padding: 40px 0 48px;
   }
@@ -1140,13 +1346,18 @@
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    width: min(78%, 290px);
-    max-height: min(42%, 190px);
+    width: min(62.4%, 232px);
+    max-height: min(33.6%, 152px);
+  }
+
+  .euro-flavor-stage__mobile-card--chips > img {
+    width: min(55.1%, 238px);
+    max-height: min(43.7%, 200px);
   }
 
   .euro-flavor-stage__mobile-card--getmore > img,
   .euro-flavor-stage__mobile-card--namkeen > img {
-    width: min(48%, 220px);
+    width: min(42.34%, 194px);
   }
 
   .euro-flavor-stage__mobile-card--beverages > img {
@@ -1183,7 +1394,7 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 420px) and (prefers-reduced-motion: reduce) {
   .euro-flavor-stage__mobile-card {
     min-height: 378px;
   }
@@ -1198,7 +1409,12 @@
   }
 
   .euro-flavor-stage__mobile-card--intro > img {
-    width: min(82%, 300px);
-    max-height: min(40%, 180px);
+    width: min(65.6%, 240px);
+    max-height: min(32%, 144px);
+  }
+
+  .euro-flavor-stage__mobile-card--chips > img {
+    width: min(57%, 238px);
+    max-height: min(41.8%, 190px);
   }
 }

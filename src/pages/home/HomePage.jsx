@@ -1,45 +1,123 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import EuroMoments from "../../components/EuroMoments.jsx";
+import { useHorizontalScrollPin } from "../about/useHorizontalScrollPin.js";
+import {
+  MoodCategoryCard,
+  MoodDealershipCta,
+  MoodSectionHeading,
+  moodCategoryVariants,
+} from "./mood-categories.jsx";
+import EuroFlavorStage from "./EuroFlavorStage.jsx";
+import {
+  FavoriteProductCard,
+  FavoritesCarouselControls,
+  FavoritesSectionHeading,
+  favoriteProducts,
+} from "./favorites-content.jsx";
 import { asset } from "./asset.js";
 import "./HomePage.css";
 
 export default function HomePage() {
+  const moodScrollRef = useRef(null);
+  const moodStickyRef = useRef(null);
+  const moodViewportRef = useRef(null);
+  const moodTrackRef = useRef(null);
+  const favoritesScrollRef = useRef(null);
+  const favoritesStickyRef = useRef(null);
+  const favoritesViewportRef = useRef(null);
+  const favoritesTrackRef = useRef(null);
+
+  useHorizontalScrollPin({
+    driverRef: moodScrollRef,
+    stickyRef: moodStickyRef,
+    viewportRef: moodViewportRef,
+    trackRef: moodTrackRef,
+    tileWidthCssVar: "--mood-tile-width",
+    progressCssVar: "--mood-progress",
+    tileSelector: ".mood-section__scroll-tile",
+    edgeFadeCssVar: "--mood-edge-fade",
+    approachCssVar: "--mood-approach",
+    tileWidthScale: 0.88,
+    tileMotion: "soft",
+    edgeFadeZone: 0.04,
+  });
+
+  useHorizontalScrollPin({
+    driverRef: favoritesScrollRef,
+    stickyRef: favoritesStickyRef,
+    viewportRef: favoritesViewportRef,
+    trackRef: favoritesTrackRef,
+    tileWidthCssVar: "--favorites-tile-width",
+    progressCssVar: "--favorites-progress",
+    tileSelector: ".favorites-section__scroll-tile",
+    edgeFadeCssVar: "--favorites-edge-fade",
+    approachCssVar: "--favorites-approach",
+    tileWidthScale: 0.88,
+    tileMotion: "soft",
+    edgeFadeZone: 0.04,
+  });
+
   useEffect(() => {
-    const carouselViewport = document.querySelector("[data-carousel-viewport]");
-    const carouselPrev = document.querySelector("[data-carousel-prev]");
-    const carouselNext = document.querySelector("[data-carousel-next]");
+    const carouselRoots = document.querySelectorAll(
+      ".favorites-section__desktop [data-carousel-root], .favorites-section__mobile-fallback [data-carousel-root]",
+    );
 
-    if (!carouselViewport || !carouselPrev || !carouselNext) {
-      return undefined;
-    }
+    const cleanups = [];
 
-    const updateCarouselControls = () => {
-      const maxScroll = carouselViewport.scrollWidth - carouselViewport.clientWidth;
-      carouselPrev.disabled = carouselViewport.scrollLeft <= 4;
-      carouselNext.disabled = carouselViewport.scrollLeft >= maxScroll - 4;
-    };
+    carouselRoots.forEach((root) => {
+      const carouselViewport = root.querySelector("[data-carousel-viewport]");
+      const carouselPrev = root.querySelector("[data-carousel-prev]");
+      const carouselNext = root.querySelector("[data-carousel-next]");
 
-    const moveCarousel = (direction) => {
-      carouselViewport.scrollBy({
-        left: direction * 256,
-        behavior: "smooth",
+      if (!carouselViewport || !carouselPrev || !carouselNext) {
+        return;
+      }
+
+      const updateCarouselControls = () => {
+        const maxScroll = carouselViewport.scrollWidth - carouselViewport.clientWidth;
+        carouselPrev.disabled = carouselViewport.scrollLeft <= 4;
+        carouselNext.disabled = carouselViewport.scrollLeft >= maxScroll - 4;
+      };
+
+      const moveCarousel = (direction) => {
+        carouselViewport.scrollBy({
+          left: direction * 256,
+          behavior: "smooth",
+        });
+      };
+
+      const handlePrevClick = () => moveCarousel(-1);
+      const handleNextClick = () => moveCarousel(1);
+
+      carouselPrev.addEventListener("click", handlePrevClick);
+      carouselNext.addEventListener("click", handleNextClick);
+      carouselViewport.addEventListener("scroll", updateCarouselControls);
+      updateCarouselControls();
+
+      cleanups.push(() => {
+        carouselPrev.removeEventListener("click", handlePrevClick);
+        carouselNext.removeEventListener("click", handleNextClick);
+        carouselViewport.removeEventListener("scroll", updateCarouselControls);
+      });
+    });
+
+    const handleLoad = () => {
+      carouselRoots.forEach((root) => {
+        const carouselViewport = root.querySelector("[data-carousel-viewport]");
+        if (!carouselViewport) return;
+        const maxScroll = carouselViewport.scrollWidth - carouselViewport.clientWidth;
+        const carouselPrev = root.querySelector("[data-carousel-prev]");
+        const carouselNext = root.querySelector("[data-carousel-next]");
+        if (carouselPrev) carouselPrev.disabled = carouselViewport.scrollLeft <= 4;
+        if (carouselNext) carouselNext.disabled = carouselViewport.scrollLeft >= maxScroll - 4;
       });
     };
 
-    const handlePrevClick = () => moveCarousel(-1);
-    const handleNextClick = () => moveCarousel(1);
-
-    carouselPrev.addEventListener("click", handlePrevClick);
-    carouselNext.addEventListener("click", handleNextClick);
-    carouselViewport.addEventListener("scroll", updateCarouselControls);
-    window.addEventListener("load", updateCarouselControls);
-    updateCarouselControls();
+    window.addEventListener("load", handleLoad);
 
     return () => {
-      carouselPrev.removeEventListener("click", handlePrevClick);
-      carouselNext.removeEventListener("click", handleNextClick);
-      carouselViewport.removeEventListener("scroll", updateCarouselControls);
-      window.removeEventListener("load", updateCarouselControls);
+      window.removeEventListener("load", handleLoad);
+      cleanups.forEach((cleanup) => cleanup());
     };
   }, []);
 
@@ -65,97 +143,107 @@ export default function HomePage() {
 
               <div className="patch patch-gold"></div>
 
+              <EuroFlavorStage />
+
               <section className="mood-section" id="products">
                 <div className="pattern-layer" aria-hidden="true"></div>
-                <div className="section-heading mood-heading">
-                  <span className="kicker">Categories</span>
-                  <h2>Pick Your Mood.</h2>
+
+                <div className="mood-section__desktop">
+                  <MoodSectionHeading />
+                  <MoodDealershipCta />
+                  {moodCategoryVariants.map((variant) => (
+                    <MoodCategoryCard key={variant} variant={variant} />
+                  ))}
                 </div>
-                <a className="button button-blue mood-cta" href="#franchise">Make Dealership Inquiry</a>
 
-                <article className="category-card card-chips">
-                  <div>
-                    <span>Classic Chips</span>
-                    <small>The crunch that started it all.<br />Simple,<br />salty, iconic.</small>
+                <div ref={moodScrollRef} className="mood-section__scroll-driver">
+                  <div ref={moodStickyRef} className="mood-section__scroll-sticky">
+                    <MoodSectionHeading />
+                    <MoodDealershipCta />
+                    <div className="mood-section__scroll-progress" aria-hidden="true">
+                      <span className="mood-section__scroll-progress-bar" />
+                    </div>
+                    <div ref={moodViewportRef} className="mood-section__scroll-viewport">
+                      <div ref={moodTrackRef} className="mood-section__scroll-track">
+                        {moodCategoryVariants.map((variant, index) => (
+                          <article
+                            className="mood-section__scroll-tile"
+                            key={variant}
+                            aria-label={variant}
+                            data-mood-index={index}
+                          >
+                            <MoodCategoryCard variant={variant} />
+                          </article>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <img src={asset('category-chips.png')} alt="Classic chips flavors" />
-                </article>
+                </div>
 
-                <article className="category-card card-juice">
-                  <span>Juices</span>
-                  <img src={asset('category-juices.png')} alt="Euro juices" />
-                </article>
-
-                <article className="category-card card-namkeen">
-                  <span>Namkeen</span>
-                  <img src={asset('category-namkeen.png')} alt="Euro namkeen pack" />
-                </article>
-
-                <article className="category-card card-basket">
-                  <img src={asset('category-bundle.png')} alt="Euro sweet memories box" />
-                  <div>
-                    <h3>Can't decide?<br />Try our Mix-It-Up Boxes.</h3>
-                  </div>
-                </article>
+                <div className="mood-section__mobile-fallback" aria-label="Pick Your Mood categories">
+                  <MoodSectionHeading />
+                  <MoodDealershipCta />
+                  {moodCategoryVariants.map((variant) => (
+                    <MoodCategoryCard key={`fallback-${variant}`} variant={variant} />
+                  ))}
+                </div>
               </section>
 
               <div className="patch patch-lavender"></div>
 
               <section className="favorites-section">
-                <div className="section-heading favorites-heading">
-                  <span className="kicker">Trending Now</span>
-                  <h2>The Crowd<br />Favourites</h2>
+                <div className="favorites-section__desktop">
+                  <FavoritesSectionHeading />
+                  <div data-carousel-root>
+                    <FavoritesCarouselControls />
+                    <div className="product-viewport" data-carousel-viewport>
+                      <div className="product-track">
+                        {favoriteProducts.map((product) => (
+                          <FavoriteProductCard key={product.id} product={product} />
+                        ))}
+                        <FavoriteProductCard key="masala-carousel-tail" product={favoriteProducts[0]} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="slider-buttons" aria-label="Product carousel controls">
-                  <button className="slider-btn" type="button" data-carousel-prev aria-label="Previous products">
-                    <img src={asset('arrow-prev.svg')} alt="" aria-hidden="true" />
-                  </button>
-                  <button className="slider-btn" type="button" data-carousel-next aria-label="Next products">
-                    <img src={asset('arrow-next.svg')} alt="" aria-hidden="true" />
-                  </button>
+
+                <div
+                  ref={favoritesScrollRef}
+                  className="favorites-section__scroll-driver favorites-section__scroll-driver--mirror"
+                >
+                  <div ref={favoritesStickyRef} className="favorites-section__scroll-sticky">
+                    <FavoritesSectionHeading />
+                    <div className="favorites-section__scroll-progress" aria-hidden="true">
+                      <span className="favorites-section__scroll-progress-bar" />
+                    </div>
+                    <div ref={favoritesViewportRef} className="favorites-section__scroll-viewport">
+                      <div ref={favoritesTrackRef} className="favorites-section__scroll-track">
+                        {favoriteProducts.map((product, index) => (
+                          <article
+                            className="favorites-section__scroll-tile"
+                            key={product.id}
+                            aria-label={product.title}
+                            data-favorite-index={index}
+                          >
+                            <FavoriteProductCard product={product} />
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="product-viewport" data-carousel-viewport>
-                  <div className="product-track">
-                    <article className="product-card product-card--lavender">
-                      <div className="product-art">
-                        <span className="product-badge product-badge--gold">Best Seller</span>
-                        <img src={asset('bestseller-masala.png')} alt="Masti Masala chips" />
+
+                <div className="favorites-section__mobile-fallback" aria-label="Crowd Favourites products">
+                  <FavoritesSectionHeading />
+                  <div data-carousel-root>
+                    <FavoritesCarouselControls />
+                    <div className="product-viewport" data-carousel-viewport>
+                      <div className="product-track">
+                        {favoriteProducts.map((product) => (
+                          <FavoriteProductCard key={`fallback-${product.id}`} product={product} />
+                        ))}
                       </div>
-                      <h3>Masti Masala chips</h3>
-                      <p>Light, crispy, and perfectly salted.</p>
-                    </article>
-                    <article className="product-card product-card--cyan">
-                      <div className="product-art">
-                        <span className="product-badge">Hot</span>
-                        <img src={asset('bestseller-tomato.png')} alt="Tingling Tomato chips" />
-                      </div>
-                      <h3>Tingling Tomato</h3>
-                      <p>For those who like it bold.</p>
-                    </article>
-                    <article className="product-card product-card--rose">
-                      <div className="product-art">
-                        <span className="product-badge product-badge--purple">Sweet</span>
-                        <img src={asset('bestseller-guava.png')} alt="Fresh Guava Juice" />
-                      </div>
-                      <h3>Fresh Guava Juice</h3>
-                      <p>Guava with a fresh taste.</p>
-                    </article>
-                    <article className="product-card product-card--yellow">
-                      <div className="product-art">
-                        <span className="product-badge product-badge--green">Natural</span>
-                        <img src={asset('bestseller-mango.png')} alt="Raw Mango Punch" />
-                      </div>
-                      <h3>Raw Mango Punch</h3>
-                      <p>Tangy refreshment in every sip.</p>
-                    </article>
-                    <article className="product-card product-card--lavender">
-                      <div className="product-art">
-                        <span className="product-badge product-badge--gold">Best Seller</span>
-                        <img src={asset('bestseller-masala.png')} alt="Masti Masala chips" />
-                      </div>
-                      <h3>Masti Masala chips</h3>
-                      <p>Light, crispy, and perfectly salted.</p>
-                    </article>
+                    </div>
                   </div>
                 </div>
               </section>

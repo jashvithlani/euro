@@ -45,34 +45,18 @@
   transform-origin: top left;
 }
 
-/* Fryums / Bakery / Khakhra heroes render natively full-width like Chips
-   (no scale transform — they fall back to .category-hero-custom: inset:0,
-   width:1280, height:100%). Box heights match the Figma hero bands (×2/3)
-   so the floating packs are never cropped vertically. */
-.category-main--fryums .category-hero {
-  height: 247px;
-}
-
-.category-main--bakery .category-hero {
-  height: 247px;
-}
-
-/* Chikki hero is designed at full 1920×559 so the scaled visual (×2/3) fills the 1280×372.67 shell.
-   !important needed to beat the .category-hero-custom rule (width: 1280px, height: 100%). */
-.category-hero-chikki {
-  width: 1920px !important;
-  height: 559px !important;
-}
+/* Fryums / Bakery / Khakhra / Farali heroes use the same compact top-nav band as Chips
+   (top:152, height:372.67 → bottom 524.67). Per-category CSS must not override height
+   on desktop — only mobile uses a shorter 247px banner in CategoryPage.mobile.css. */
 
 /* offsetFromHeroBottom assumes --home-hero-height = hero bottom position (hero starts at 0).
-   Chikki uses the compact top-nav hero (top:152, height:372.67 → bottom 524.67), so override
-   the viewport-derived value from SiteLayout to match. */
-.category-main--chikki {
-  --home-hero-height: 524.67px;
-}
-
-/* Namkeen compact hero — same bottom (524.67); other top-nav pages keep SiteLayout viewport height. */
-.category-main--namkeen {
+   All top-nav category pages share the chips compact hero bottom (524.67px). */
+.category-main--chips,
+.category-main--beverages,
+.category-main--getmore,
+.category-main--farali,
+.category-main--namkeen,
+.category-main--fryums {
   --home-hero-height: 524.67px;
 }
 

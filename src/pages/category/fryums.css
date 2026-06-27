@@ -81,10 +81,7 @@
   letter-spacing: -1px;
 }
 
-/* ---- Hero: Figma 1246:2362, scaled from 1920px to the 1280 shell. */
-.category-main--fryums .category-hero {
-  height: 247px;
-}
+/* ---- Hero: Figma 1246:2362 — visual layers only; shell height matches chips top-nav. */
 
 .category-main--fryums .category-hero-fryums {
   top: 0;

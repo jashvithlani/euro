@@ -48,6 +48,60 @@ function ProductShopLink() {
 }
 
 const originalCategoryHeroBottom = 695.37;
+/* Chips top-nav hero: top 152px + height 372.67px → 524.67px bottom, 26px gap to row 1. */
+const categoryHeroBottom = 524.67;
+const categoryFirstSectionTop = 550.67;
+
+function parseAuthoredTop(top) {
+  if (typeof top === "number") return top;
+  if (typeof top === "string" && top.endsWith("px") && !top.includes("calc")) {
+    return parseFloat(top);
+  }
+  return null;
+}
+
+function resolveAuthoredTop(top, shiftUp = 0) {
+  const parsed = parseAuthoredTop(top);
+  if (parsed === null) return null;
+  if (typeof top === "number") {
+    return categoryHeroBottom + (parsed - originalCategoryHeroBottom - shiftUp);
+  }
+  return parsed;
+}
+
+function shiftAuthoredTop(top, delta) {
+  const parsed = parseAuthoredTop(top);
+  if (parsed === null) return top;
+  const shifted = parsed + delta;
+  if (typeof top === "number") return shifted;
+  return `${Number(shifted.toFixed(3))}px`;
+}
+
+function normalizeToChipsSpacing(page, pageKey, shiftUp = 0) {
+  /* Taller hero bands keep their authored section spacing from content files. */
+  if (pageKey === "chikki" || pageKey === "bakery" || pageKey === "khakhra") return page;
+
+  const sectionTops = page.sections
+    .map((section) => resolveAuthoredTop(section.top, shiftUp))
+    .filter((top) => top !== null);
+
+  if (sectionTops.length === 0) return page;
+
+  const delta = Number((categoryFirstSectionTop - Math.min(...sectionTops)).toFixed(3));
+  if (Math.abs(delta) < 0.5) return page;
+
+  return {
+    ...page,
+    height: shiftAuthoredTop(page.height, delta),
+    newsletter: page.newsletter
+      ? { ...page.newsletter, top: shiftAuthoredTop(page.newsletter.top, delta) }
+      : page.newsletter,
+    sections: page.sections.map((section) => ({
+      ...section,
+      top: shiftAuthoredTop(section.top, delta),
+    })),
+  };
+}
 
 const pages = {
   chips: {
@@ -185,29 +239,30 @@ function offsetFromHeroBottomNamkeen(value, shiftUp) {
 }
 
 function applyTopHeroLayout(page, pageKey) {
+  const shiftUp = page.compactContentShift ?? 0;
+  const normalized = normalizeToChipsSpacing(page, pageKey, pageKey === "namkeen" ? shiftUp : 0);
+
   if (pageKey !== "namkeen") {
     return {
-      ...page,
-      height: offsetFromHeroBottom(page.height),
-      newsletter: page.newsletter
-        ? { ...page.newsletter, top: offsetFromHeroBottom(page.newsletter.top) }
-        : page.newsletter,
-      sections: page.sections.map((section) => ({
+      ...normalized,
+      height: offsetFromHeroBottom(normalized.height),
+      newsletter: normalized.newsletter
+        ? { ...normalized.newsletter, top: offsetFromHeroBottom(normalized.newsletter.top) }
+        : normalized.newsletter,
+      sections: normalized.sections.map((section) => ({
         ...section,
         top: offsetFromHeroBottom(section.top),
       })),
     };
   }
 
-  const shiftUp = page.compactContentShift ?? 0;
-
   return {
-    ...page,
-    height: offsetFromHeroBottomNamkeen(page.height, shiftUp),
-    newsletter: page.newsletter
-      ? { ...page.newsletter, top: offsetFromHeroBottomNamkeen(page.newsletter.top, shiftUp) }
-      : page.newsletter,
-    sections: page.sections.map((section) => ({
+    ...normalized,
+    height: offsetFromHeroBottomNamkeen(normalized.height, shiftUp),
+    newsletter: normalized.newsletter
+      ? { ...normalized.newsletter, top: offsetFromHeroBottomNamkeen(normalized.newsletter.top, shiftUp) }
+      : normalized.newsletter,
+    sections: normalized.sections.map((section) => ({
       ...section,
       top: offsetFromHeroBottomNamkeen(section.top, shiftUp),
     })),

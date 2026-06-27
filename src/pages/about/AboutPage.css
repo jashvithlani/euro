@@ -1,5 +1,14 @@
 @import "./AboutPage.mobile.css";
 
+.about-timeline__scroll-driver,
+.about-timeline__mobile-fallback,
+.about-pillars__scroll-driver,
+.about-pillars__mobile-fallback,
+.about-infrastructure__scroll-driver,
+.about-infrastructure__mobile-fallback {
+  display: none;
+}
+
 .pillar-card__video {
   position: absolute;
   inset: 0;
@@ -160,15 +169,15 @@
       animation-range: cover 0% cover 25%;
     }
 
-    .pillar-card {
+    .about-pillars__desktop .pillar-card {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
     }
 
-    .pillar-card:nth-child(2) { animation-range: cover 1% cover 26%; }
-    .pillar-card:nth-child(3) { animation-range: cover 2% cover 27%; }
-    .pillar-card:nth-child(4) { animation-range: cover 3% cover 28%; }
+    .about-pillars__desktop .pillar-card:nth-child(2) { animation-range: cover 1% cover 26%; }
+    .about-pillars__desktop .pillar-card:nth-child(3) { animation-range: cover 2% cover 27%; }
+    .about-pillars__desktop .pillar-card:nth-child(4) { animation-range: cover 3% cover 28%; }
 
     .manufacturing-feature {
       animation: about-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -286,7 +295,7 @@
 /* ---- Hover lifts / focus for previously-uncovered elements ---- */
 
 /* 3D perspective for the milestone flip-stamp reveal */
-.about-timeline {
+.about-timeline__desktop {
   perspective: 1600px;
   perspective-origin: 50% 40%;
 }
@@ -392,8 +401,8 @@
    timeline content stays readable instead of popping in at center. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .timeline-line,
-    .about-timeline > .about-section-heading,
+    .about-timeline__desktop .timeline-line,
+    .about-timeline__desktop > .about-section-heading,
     .timeline-left .timeline-copy,
     .timeline-right .timeline-copy,
     .timeline-text-only .timeline-copy-left,
@@ -447,24 +456,34 @@
     }
 
     /* Pillars heading was uncovered — reveal alongside its cards */
-    .about-pillars > .about-section-heading {
+    .about-pillars__desktop > .about-section-heading {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
     }
 
+    .about-pillars__desktop .pillar-card {
+      animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 25%;
+    }
+
+    .about-pillars__desktop .pillar-card:nth-child(2) { animation-range: cover 1% cover 26%; }
+    .about-pillars__desktop .pillar-card:nth-child(3) { animation-range: cover 2% cover 27%; }
+    .about-pillars__desktop .pillar-card:nth-child(4) { animation-range: cover 3% cover 28%; }
+
     /* ---- Timeline ----
        Vertical spine grows in; copy and card slide in from their sides.
        Side direction comes from .timeline-left / .timeline-right /
        .timeline-text-only. Composes over the layout's own positioning. */
-    .timeline-line {
+    .about-timeline__desktop .timeline-line {
       transform-origin: top center;
       animation: about-grow-y 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% cover 50%;
     }
 
-    .about-timeline > .about-section-heading {
+    .about-timeline__desktop > .about-section-heading {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
@@ -510,22 +529,22 @@
     }
 
     /* ---- Infrastructure ---- */
-    .about-infrastructure > .about-section-heading {
+    .about-infrastructure__desktop > .about-section-heading {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
     }
 
-    .infra-card {
+    .about-infrastructure__desktop .infra-card {
       animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
     }
-    .infra-card:nth-child(2) { animation-range: cover 1% cover 26%; }
-    .infra-card:nth-child(3) { animation-range: cover 2% cover 27%; }
-    .infra-card:nth-child(4) { animation-range: cover 3% cover 28%; }
-    .infra-card:nth-child(5) { animation-range: cover 4% cover 29%; }
-    .infra-card:nth-child(6) { animation-range: cover 6% cover 31%; }
+    .about-infrastructure__desktop .infra-card:nth-child(2) { animation-range: cover 1% cover 26%; }
+    .about-infrastructure__desktop .infra-card:nth-child(3) { animation-range: cover 2% cover 27%; }
+    .about-infrastructure__desktop .infra-card:nth-child(4) { animation-range: cover 3% cover 28%; }
+    .about-infrastructure__desktop .infra-card:nth-child(5) { animation-range: cover 4% cover 29%; }
+    .about-infrastructure__desktop .infra-card:nth-child(6) { animation-range: cover 6% cover 31%; }
 
     /* ---- Logistics ---- */
     .about-logistics > h2,

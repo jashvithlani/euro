@@ -1961,12 +1961,16 @@ textarea {
 
 .about-timeline {
   position: relative;
-  height: 2020px;
   padding: 0;
   background: var(--color-page);
 }
 
-.about-timeline .about-section-heading {
+.about-timeline__desktop {
+  position: relative;
+  height: 2020px;
+}
+
+.about-timeline__desktop .about-section-heading {
   position: absolute;
   top: 32px;
   left: 0;
@@ -1975,7 +1979,7 @@ textarea {
   text-align: center;
 }
 
-.about-timeline .about-section-heading span {
+.about-timeline__desktop .about-section-heading span {
   display: inline-block;
   margin-bottom: 10.67px;
   color: var(--color-accent);
@@ -1987,7 +1991,7 @@ textarea {
   text-transform: uppercase;
 }
 
-.about-timeline .about-section-heading h2 {
+.about-timeline__desktop .about-section-heading h2 {
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
@@ -1996,7 +2000,7 @@ textarea {
   line-height: 1;
 }
 
-.about-timeline .about-section-heading h2 em {
+.about-timeline__desktop .about-section-heading h2 em {
   color: var(--color-accent);
   font-style: italic;
 }
@@ -2486,7 +2490,7 @@ textarea {
   z-index: 2;
 }
 
-.about-infrastructure .about-section-heading {
+.about-infrastructure__desktop .about-section-heading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2495,7 +2499,7 @@ textarea {
   text-align: center;
 }
 
-.about-infrastructure .about-section-heading span {
+.about-infrastructure__desktop .about-section-heading span {
   color: var(--color-accent);
   font-family: var(--font-body);
   font-size: 10.67px;
@@ -2505,7 +2509,7 @@ textarea {
   text-transform: uppercase;
 }
 
-.about-infrastructure .about-section-heading h2 {
+.about-infrastructure__desktop .about-section-heading h2 {
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
@@ -2514,7 +2518,7 @@ textarea {
   line-height: 32px;
 }
 
-.about-infrastructure .about-section-heading h2 em {
+.about-infrastructure__desktop .about-section-heading h2 em {
   color: var(--color-accent);
   font-style: italic;
 }

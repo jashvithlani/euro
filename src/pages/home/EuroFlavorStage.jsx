@@ -1,6 +1,11 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import {
+  MOBILE_NAV_HEIGHT,
+  clearStickyPosition,
+  getStickyHeight,
+} from "../about/useHorizontalScrollPin.js";
 import "./EuroFlavorStage.css";
 
 const homeAsset = (fileName) => new URL(`./assets/${fileName}`, import.meta.url).href;
@@ -202,7 +207,56 @@ function getParticleStyle(seed, index, progress) {
   };
 }
 
-function useFlavorStageProgress(sectionRef) {
+const MOBILE_STAGE_SCROLL_MULTIPLIER = 4.25;
+
+function setFlavorStagePinned(sticky, viewportHeight) {
+  sticky.style.position = "fixed";
+  sticky.style.top = "0";
+  sticky.style.left = "0";
+  sticky.style.right = "0";
+  sticky.style.width = "100%";
+  sticky.style.height = `${viewportHeight}px`;
+  sticky.style.zIndex = "2";
+}
+
+function setFlavorStageAfterPin(sticky, viewportHeight, scrollRange) {
+  sticky.style.position = "absolute";
+  sticky.style.top = `${scrollRange}px`;
+  sticky.style.left = "0";
+  sticky.style.right = "0";
+  sticky.style.width = "100%";
+  sticky.style.height = `${viewportHeight}px`;
+  sticky.style.zIndex = "2";
+}
+
+function updateFlavorStagePinState(sticky, metrics, driverTop, driverBottom) {
+  if (!sticky || !metrics) return;
+
+  const pinEnd = metrics.viewportHeight;
+
+  if (driverTop <= MOBILE_NAV_HEIGHT && driverBottom > pinEnd) {
+    setFlavorStagePinned(sticky, metrics.viewportHeight);
+    return;
+  }
+
+  if (driverBottom <= pinEnd) {
+    setFlavorStageAfterPin(sticky, metrics.viewportHeight, metrics.scrollRange);
+    return;
+  }
+
+  clearStickyPosition(sticky);
+}
+
+function getStageProgress(sectionRect, mode, scrollRange) {
+  if (mode === "mobile") {
+    return clamp((MOBILE_NAV_HEIGHT - sectionRect.top) / Math.max(1, scrollRange));
+  }
+
+  const scrollable = Math.max(1, sectionRect.height - window.innerHeight);
+  return clamp(-sectionRect.top / scrollable);
+}
+
+function useFlavorStageProgress(sectionRef, stickyRef) {
   const [progress, setProgress] = React.useState(0);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const progressRef = React.useRef(0);
@@ -213,13 +267,33 @@ function useFlavorStageProgress(sectionRef) {
     if (!section || typeof window === "undefined") return undefined;
 
     const desktopQuery = window.matchMedia("(min-width: 1000px)");
+    const mobileQuery = window.matchMedia("(max-width: 999px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let rafId = 0;
+
+    const resetMobilePin = () => {
+      section.style.removeProperty("height");
+      clearStickyPosition(stickyRef.current);
+    };
+
+    const measureMobile = () => {
+      const contentHeight = getStickyHeight();
+      const viewportHeight = window.innerHeight;
+      const scrollRange = Math.max(1, contentHeight * MOBILE_STAGE_SCROLL_MULTIPLIER);
+
+      section.style.height = `${contentHeight + scrollRange}px`;
+
+      return { contentHeight, scrollRange, viewportHeight };
+    };
 
     const update = () => {
       rafId = 0;
 
-      if (!desktopQuery.matches || reducedMotionQuery.matches) {
+      const useMobileScroll = mobileQuery.matches && !reducedMotionQuery.matches;
+      const useDesktopScroll = desktopQuery.matches && !reducedMotionQuery.matches;
+
+      if (!useMobileScroll && !useDesktopScroll) {
+        resetMobilePin();
         if (progressRef.current !== 0) {
           progressRef.current = 0;
           setProgress(0);
@@ -232,8 +306,19 @@ function useFlavorStageProgress(sectionRef) {
       }
 
       const rect = section.getBoundingClientRect();
-      const scrollable = Math.max(1, rect.height - window.innerHeight);
-      const nextProgress = clamp(-rect.top / scrollable);
+      let nextProgress;
+
+      if (useMobileScroll) {
+        const metrics = measureMobile();
+        updateFlavorStagePinState(stickyRef.current, metrics, rect.top, rect.bottom);
+        nextProgress = getStageProgress(rect, "mobile", metrics.scrollRange);
+      } else {
+        if (section.style.height) {
+          resetMobilePin();
+        }
+        nextProgress = getStageProgress(rect, "desktop");
+      }
+
       const nextActiveIndex = getSceneIndex(nextProgress);
 
       if (Math.abs(progressRef.current - nextProgress) > 0.003) {
@@ -251,8 +336,17 @@ function useFlavorStageProgress(sectionRef) {
       if (!rafId) rafId = window.requestAnimationFrame(update);
     };
 
-    const removeDesktopListener = addMediaChangeListener(desktopQuery, requestUpdate);
-    const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, requestUpdate);
+    const handleMediaChange = () => {
+      if (!mobileQuery.matches || reducedMotionQuery.matches) {
+        resetMobilePin();
+      }
+
+      requestUpdate();
+    };
+
+    const removeDesktopListener = addMediaChangeListener(desktopQuery, handleMediaChange);
+    const removeMobileListener = addMediaChangeListener(mobileQuery, handleMediaChange);
+    const removeReducedMotionListener = addMediaChangeListener(reducedMotionQuery, handleMediaChange);
 
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
@@ -263,9 +357,11 @@ function useFlavorStageProgress(sectionRef) {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
       removeDesktopListener();
+      removeMobileListener();
       removeReducedMotionListener();
+      resetMobilePin();
     };
-  }, [sectionRef]);
+  }, [sectionRef, stickyRef]);
 
   return { progress, activeIndex };
 }
@@ -865,7 +961,8 @@ export function EuroFlavorStagePortal({ enabled }) {
 
 export default function EuroFlavorStage() {
   const sectionRef = React.useRef(null);
-  const { progress, activeIndex } = useFlavorStageProgress(sectionRef);
+  const stickyRef = React.useRef(null);
+  const { progress, activeIndex } = useFlavorStageProgress(sectionRef, stickyRef);
   useFlavorStagePointer(sectionRef);
   const activeScene = flavorScenes[activeIndex];
   const finalOpacity = clamp((progress - 0.78) / 0.16);
@@ -883,7 +980,8 @@ export default function EuroFlavorStage() {
         "--stage-progress": progress,
       }}
     >
-      <div className="euro-flavor-stage__sticky">
+      <div className="euro-flavor-stage__scroll-experience">
+        <div className="euro-flavor-stage__sticky" ref={stickyRef}>
         <div className="euro-flavor-stage__bg" aria-hidden="true" />
         <div className="euro-flavor-stage__background-aura" aria-hidden="true" />
         <div className="euro-flavor-stage__pointer-glow" aria-hidden="true" />
@@ -966,9 +1064,12 @@ export default function EuroFlavorStage() {
         </div>
 
         <ProductWall opacity={finalOpacity} isActive={copyIsFinal} />
+        </div>
       </div>
 
-      <MobileFlavorStory />
+      <div className="euro-flavor-stage__mobile-fallback">
+        <MobileFlavorStory />
+      </div>
     </section>
   );
 }

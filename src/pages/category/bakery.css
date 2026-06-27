@@ -2,10 +2,15 @@
    (Hero geometry handled here so it survives edits to CategoryPage.css.) */
 
 /* ---- Hero: render natively full-width like the Chips hero ----
-   Overrides the scaled legacy canvas in CategoryPage.css (which only fills
-   the left 2/3 and crops packs vertically). Figma 1218:1727 (×2/3). */
-.category-main--bakery .category-hero {
-  height: 247px;
+   Figma 1218:1727 (×2/3). Taller band than chips — pack art needs 500px. */
+.category-main--bakery {
+  --home-hero-height: 652px;
+}
+
+@media (min-width: 1000px) {
+  .category-main--bakery .category-hero {
+    height: 500px;
+  }
 }
 
 /* Row-1 Khari banner titles: the long second line ("Methi Khari" / "Plain

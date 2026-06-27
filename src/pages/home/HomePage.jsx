@@ -1,3 +1,4 @@
+// Build by Jash Vithlani, contact: jashvithlani56@gmail.com
 import { useEffect, useRef } from "react";
 import EuroMoments from "../../components/EuroMoments.jsx";
 import { useHorizontalScrollPin } from "../about/useHorizontalScrollPin.js";

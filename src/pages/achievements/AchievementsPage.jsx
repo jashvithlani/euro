@@ -26,9 +26,9 @@ const recognitions = [
     id: "excellence-2011",
     ghost: "2011",
     kicker: "Industry Recognition",
-    title: "eXCELLENCE Awards",
+    title: "EXCELLENCE Awards",
     label: "VCCI Leaders Summit",
-    heading: "eXCELLENCE AWARDS - 2011",
+    heading: "EXCELLENCE AWARDS - 2011",
     description:
       "Honoured at the VCCI Leaders Summit for business excellence and sustained leadership in Gujarat's food manufacturing sector.",
     presented: "Presented by · VCCI Leaders Summit",

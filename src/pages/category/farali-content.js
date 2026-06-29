@@ -102,6 +102,7 @@ const faraliAt1920 = {
       buttonLabel: "Inquire",
       image: asset("category-farali-kela-chiwda-tikha.png"),
       imageStyle: { left: 469, top: 29, width: 158, height: 255 },
+      imageImportantStyle: { height: 255 },
     },
     {
       type: "productCard",

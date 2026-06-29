@@ -2476,7 +2476,9 @@
 }
 
 .category-product-card--image:hover::after,
-.category-product-card--product:hover::after {
+.category-product-card--product:hover::after,
+.category-product-card--image.category-product-card--shop-revealed::after,
+.category-product-card--product.category-product-card--shop-revealed::after {
   opacity: 1;
 }
 
@@ -2491,6 +2493,12 @@
   left: 50%;
   translate: -50% -50%;
   z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 44px;
   padding: 11px 26px;
   border-radius: 999px;
   background: var(--color-accent);
@@ -2499,6 +2507,8 @@
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.04em;
+  line-height: 1;
+  gap: 0;
   white-space: nowrap;
   text-decoration: none;
   opacity: 0;
@@ -2509,11 +2519,37 @@
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.3);
 }
 
+/* Keep one pill size — category `.feature a` rules must not resize the shop CTA. */
+a.category-product-shop {
+  height: auto !important;
+  min-height: 44px !important;
+  padding: 11px 26px !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  gap: 0 !important;
+}
+
 .category-product-card--image:hover .category-product-shop,
-.category-product-card--product:hover .category-product-shop {
+.category-product-card--product:hover .category-product-shop,
+.category-product-card--image.category-product-card--shop-revealed .category-product-shop,
+.category-product-card--product.category-product-card--shop-revealed .category-product-shop {
   opacity: 1;
   scale: 1;
-  pointer-events: auto;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .category-product-card--image:is(:hover, .category-product-card--shop-revealed) .category-product-shop:hover,
+  .category-product-card--product:is(:hover, .category-product-card--shop-revealed) .category-product-shop:hover {
+    pointer-events: auto;
+  }
+}
+
+@media (hover: none) {
+  .category-product-card--image.category-product-card--shop-revealed .category-product-shop,
+  .category-product-card--product.category-product-card--shop-revealed .category-product-shop {
+    pointer-events: auto;
+  }
 }
 
 /* Photo sits above the back panel and slides up on hover */
@@ -2525,7 +2561,9 @@
 }
 
 .category-product-card--image:hover,
-.category-product-card--product:hover {
+.category-product-card--product:hover,
+.category-product-card--image.category-product-card--shop-revealed,
+.category-product-card--product.category-product-card--shop-revealed {
   translate: 0 -8px;
   scale: 1.025;
   box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.45);
@@ -2554,13 +2592,22 @@
   }
 }
 
-/* Slide the photo upward off the card. `!important` defeats the
-   chips-specific `:hover img { scale: 1.07 }` declared earlier — both
-   selectors have the same specificity, so a marker is required to win
-   regardless of source order. */
+.category-product-card--image.category-product-card--shop-revealed .category-product-title,
+.category-product-card--product.category-product-card--shop-revealed .category-product-title,
+.category-product-card--image.category-product-card--shop-revealed .category-product-badge,
+.category-product-card--product.category-product-card--shop-revealed .category-product-badge,
+.category-product-card--image.category-product-card--shop-revealed .category-product-subtitle,
+.category-product-card--product.category-product-card--shop-revealed .category-product-subtitle {
+  opacity: 0;
+}
+
+/* Slide the photo upward off the card — 110% of the tile height (set via
+   --tile-height on each card in useCategoryTileHeight). */
 .category-product-card--image:hover .category-product-cover,
-.category-product-card--product:hover .category-product-img {
-  translate: 0 -110% !important;
+.category-product-card--product:hover .category-product-img,
+.category-product-card--image.category-product-card--shop-revealed .category-product-cover,
+.category-product-card--product.category-product-card--shop-revealed .category-product-img {
+  translate: 0 calc(var(--tile-height, 0px) * -1.1) !important;
   scale: 1 !important;
 }
 
@@ -2591,31 +2638,55 @@
 }
 
 .category-feature--chips-wide:hover,
-.category-feature--beverages-wide:hover {
+.category-feature--beverages-wide:hover,
+.category-feature--chips-wide.category-product-card--shop-revealed,
+.category-feature--beverages-wide.category-product-card--shop-revealed {
   transform: translateY(-8px) scale(1.025);
   box-shadow: 0 30px 52px -22px rgba(78, 40, 31, 0.45);
 }
 
 .category-feature--chips-wide:hover::after,
-.category-feature--beverages-wide:hover::after {
+.category-feature--beverages-wide:hover::after,
+.category-feature--chips-wide.category-product-card--shop-revealed::after,
+.category-feature--beverages-wide.category-product-card--shop-revealed::after {
   opacity: 1;
 }
 
 .category-feature--chips-wide:hover .category-product-shop,
-.category-feature--beverages-wide:hover .category-product-shop {
+.category-feature--beverages-wide:hover .category-product-shop,
+.category-feature--chips-wide.category-product-card--shop-revealed .category-product-shop,
+.category-feature--beverages-wide.category-product-card--shop-revealed .category-product-shop {
   opacity: 1;
   scale: 1;
-  pointer-events: auto;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .category-feature--chips-wide:is(:hover, .category-product-card--shop-revealed) .category-product-shop:hover,
+  .category-feature--beverages-wide:is(:hover, .category-product-card--shop-revealed) .category-product-shop:hover {
+    pointer-events: auto;
+  }
+}
+
+@media (hover: none) {
+  .category-feature--chips-wide.category-product-card--shop-revealed .category-product-shop,
+  .category-feature--beverages-wide.category-product-card--shop-revealed .category-product-shop {
+    pointer-events: auto;
+  }
 }
 
 .category-feature--chips-wide:hover .category-feature-copy,
-.category-feature--beverages-wide:hover .category-feature-copy {
+.category-feature--beverages-wide:hover .category-feature-copy,
+.category-feature--chips-wide.category-product-card--shop-revealed .category-feature-copy,
+.category-feature--beverages-wide.category-product-card--shop-revealed .category-feature-copy {
   opacity: 0;
 }
 
 .category-feature--chips-wide:hover > img,
-.category-feature--beverages-wide:hover > img {
-  translate: 0 -110% !important;
+.category-feature--beverages-wide:hover > img,
+.category-feature--chips-wide.category-product-card--shop-revealed > img,
+.category-feature--beverages-wide.category-product-card--shop-revealed > img {
+  translate: 0 calc(var(--tile-height, 0px) * -1.1) !important;
   scale: 1 !important;
   rotate: none !important;
 }

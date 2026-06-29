@@ -112,7 +112,8 @@ const fryumsAt1920 = {
       height: 385,
       background: fryumsCardBackground,
       image: asset("category-fryums-ringoli-tomato-rings.png"),
-      imageStyle: { left: 59, top: 26, width: 404, height: 404 },
+      imageStyle: { left: 59, top: 26, width: 404, height: 434, maxHeight: 420 },
+      imageImportantStyle: { width: 404, height: 434 },
       title: "Ringoli Tomato Rings",
       titleClass: "text-fryums-ring product-title-fryums-ringoli text-center",
       titleStyle: { left: 0, top: 22, width: 522 },
@@ -137,8 +138,11 @@ const fryumsAt1920 = {
         top: 0,
         width: 400,
         height: 400,
+        maxWidth: 396,
+        maxHeight: 405,
         transform: "rotate(8.2deg)",
       },
+      imageImportantStyle: { width: 400, height: 400 },
     },
 
     /* ----- Row 4 (Figma top 2216) ----- */

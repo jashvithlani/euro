@@ -289,6 +289,7 @@ const namkeenAt1920 = {
       },
       {
         type: "spotlight",
+        hideOnMobile: true,
         top: 5144,
         title: "Royal\nCrunch...",
         nodeId: "1215:605",

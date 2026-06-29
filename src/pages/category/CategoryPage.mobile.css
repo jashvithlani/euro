@@ -442,7 +442,7 @@
     line-height: 1.5 !important;
   }
 
-  .category-page .category-feature a {
+  .category-page .category-feature a:not(.category-product-shop) {
     align-self: flex-start;
     height: auto;
     min-height: 40px;
@@ -462,6 +462,10 @@
   }
 
   /* Spotlight strip (namkeen) */
+  .category-page .category-spotlight--hide-mobile {
+    display: none !important;
+  }
+
   .category-page .category-spotlight {
     position: relative !important;
     top: auto !important;

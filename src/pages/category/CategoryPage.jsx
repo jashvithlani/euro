@@ -2,6 +2,9 @@ import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./CategoryPage.css";
 import ProductSubNav from "../../components/ProductSubNav.jsx";
+import CategoryProductShopButton from "./CategoryProductShopButton.jsx";
+import { useCategoryTileHeight } from "./useCategoryTileHeight.js";
+import { useCategoryProductShopReveal } from "./useCategoryProductShopReveal.js";
 import { beveragesPage } from "./beverages-content.jsx";
 import { faraliPage } from "./farali-content.js";
 import { getmorePage } from "./getmore-content.jsx";
@@ -29,22 +32,6 @@ function getProductColor(imageUrl) {
   if (direct) return direct;
   const unhashed = filename.replace(/-[A-Za-z0-9_-]{8}(\.[a-z]+)$/i, '$1');
   return productColors[unhashed];
-}
-
-const CATEGORY_SHOP_URL =
-  "https://www.amazon.in/stores/EuroIndiaFreshFoodsPvtLtd/page/B6C6B387-3B3E-495A-957A-EDE91567671E?lp_asin=B0CWLDDWJ9&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto";
-
-function ProductShopLink() {
-  return (
-    <a
-      className="category-product-shop"
-      href={CATEGORY_SHOP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Shop Now
-    </a>
-  );
 }
 
 const originalCategoryHeroBottom = 695.37;
@@ -593,6 +580,12 @@ function DecorativeLayers({ decorations }) {
 }
 
 function ProductImage({ item }) {
+  const desktopImgRef = useRef(null);
+
+  useLayoutEffect(() => {
+    applyImportantStyle(desktopImgRef.current, item.imageImportantStyle);
+  }, [item.imageImportantStyle, item.imageStyle]);
+
   if (item.imageInnerStyle) {
     return (
       <span className="category-product-img category-product-img-frame" style={layerStyle(item.imageStyle)}>
@@ -604,6 +597,7 @@ function ProductImage({ item }) {
   return (
     <>
       <img
+        ref={desktopImgRef}
         className="category-product-img category-product-img--desktop"
         src={item.image}
         alt=""
@@ -617,9 +611,14 @@ function ProductImage({ item }) {
 }
 
 function ImageCard({ item }) {
+  const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
+  useCategoryTileHeight(tileRef);
+  useCategoryProductShopReveal(tileRef);
+
   return (
     <article
+      ref={tileRef}
       className="category-product-card category-product-card--image"
       style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
     >
@@ -638,15 +637,20 @@ function ImageCard({ item }) {
           importantStyle={item.titleImportantStyle}
         />
       ) : null}
-      <ProductShopLink />
+      <CategoryProductShopButton />
     </article>
   );
 }
 
 function ProductCard({ item }) {
+  const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
+  useCategoryTileHeight(tileRef);
+  useCategoryProductShopReveal(tileRef);
+
   return (
     <article
+      ref={tileRef}
       className={`category-product-card category-product-card--product${item.ring ? " category-product-card--ring" : ""}`}
       style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
       {...(item.nodeId ? { "data-node-id": item.nodeId } : {})}
@@ -666,7 +670,7 @@ function ProductCard({ item }) {
         />
       ) : null}
       {item.subtitle ? <ProductSubtitle subtitle={item.subtitle} style={item.subtitleStyle} /> : null}
-      <ProductShopLink />
+      <CategoryProductShopButton />
     </article>
   );
 }
@@ -695,10 +699,33 @@ function PromoPanel({ item }) {
   );
 }
 
+function FeatureImage({ item }) {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    applyImportantStyle(ref.current, item.imageImportantStyle);
+  }, [item.imageImportantStyle, item.imageStyle]);
+
+  return (
+    <img
+      ref={ref}
+      className="category-feature-img category-feature-img--desktop"
+      src={item.image}
+      alt=""
+      style={layerStyle(item.imageStyle)}
+    />
+  );
+}
+
 function FeatureCard({ item }) {
+  const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
+  useCategoryTileHeight(tileRef);
+  useCategoryProductShopReveal(tileRef);
+
   return (
     <article
+      ref={tileRef}
       className={`category-feature ${item.className || ""}`}
       style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
     >
@@ -712,16 +739,11 @@ function FeatureCard({ item }) {
         </h2>
         <p>{item.copy}</p>
       </div>
-      <img
-        className="category-feature-img category-feature-img--desktop"
-        src={item.image}
-        alt=""
-        style={layerStyle(item.imageStyle)}
-      />
+      <FeatureImage item={item} />
       {item.mobileImage ? (
         <img className="category-feature-img category-feature-img--mobile" src={item.mobileImage} alt="" />
       ) : null}
-      {item.image ? <ProductShopLink /> : null}
+      {item.image ? <CategoryProductShopButton /> : null}
     </article>
   );
 }
@@ -742,7 +764,7 @@ function ArrowControl({ item }) {
 function SpotlightStrip({ item }) {
   return (
     <section
-      className="category-spotlight"
+      className={`category-spotlight${item.hideOnMobile ? " category-spotlight--hide-mobile" : ""}`}
       style={{ top: cssLength(item.top) }}
       aria-label="Royal Crunch products"
       {...(item.nodeId ? { "data-node-id": item.nodeId } : {})}

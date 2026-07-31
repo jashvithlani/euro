@@ -75,7 +75,7 @@ const beveragesAt1920 = {
       background: "radial-gradient(circle, #f6f6f6 0%, #ffece4 100%)",
       image: asset("category-beverage-litchi.png"),
       mobileImage: asset("LITCHI-mobile.png"),
-      imageStyle: { left: -177, top: 90, width: 763, height: 535.5, transform: "rotate(-5.14deg)" },
+      imageStyle: { left: -127, top: 90, width: 763, height: 535.5},
       title: "Litchi Juice",
       titleClass: "text-dark product-title-beverages-water",
       titleStyle: { left: 60, top: 45, width: 340 },

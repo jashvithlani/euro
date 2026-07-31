@@ -1,0 +1,17 @@
+# SPA fallback for Euro India Foods — serve index.html for client-side routes
+# while letting real files (assets, /api/*.php, pdfs, favicons) resolve directly.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve real files and directories as-is (JS/CSS chunks, images, /api PHP, PDFs, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Never rewrite the /api PHP handlers — they must execute as PHP.
+  RewriteRule ^api/ - [L]
+
+  # Everything else (e.g. /contact, /dealers, /chips) → SPA entry point.
+  RewriteRule ^ index.html [L]
+</IfModule>

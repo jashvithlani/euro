@@ -206,7 +206,7 @@ const beveragesAt1920 = {
       buttonLabel: "Inquire",
       image: asset("category-beverage-water.png"),
       mobileImage: asset("mineral-water-mobile.png"),
-      imageStyle: { left: 608, top: 0, width: 448, height: 441.5 },
+      imageStyle: { left: 408, top: 20, width: 448, height: 441.5 },
     },
   ],
 };

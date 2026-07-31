@@ -119,7 +119,7 @@ $boundary = 'career_application_' . bin2hex(random_bytes(16));
 
 $headers = [
     'MIME-Version: 1.0',
-    'From: Euro India Foods Website <no-reply@euroindiafreshfoods.com>',
+    'From: Euro India Foods Website <jashvithlani56@gmail.com>',
     'Reply-To: ' . $safeName . ' <' . $safeEmail . '>',
     'Content-Type: multipart/mixed; boundary="' . $boundary . '"',
     'X-Mailer: PHP/' . phpversion(),

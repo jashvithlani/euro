@@ -737,7 +737,7 @@ function FeatureCard({ item }) {
             <span key={line}>{line}</span>
           ))}
         </h2>
-        <p>{item.copy}</p>
+        {item.copy ? <p>{item.copy}</p> : null}
       </div>
       <FeatureImage item={item} />
       {item.mobileImage ? (

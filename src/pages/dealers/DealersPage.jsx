@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import "./DealersPage.css";
 import { asset } from "./asset.js";
 
@@ -90,6 +91,28 @@ export default function DealersPage() {
       ? new URLSearchParams(window.location.search).get("dealerInquiry")
       : null;
 
+  const [isUploading, setIsUploading] = useState(false);
+  const [gstFile, setGstFile] = useState(null);
+  const formRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const clearGst = () => {
+    setGstFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  // When a file is attached, disable the submit button + show an
+  // "Uploading…" blocker while the (potentially slow) upload runs.
+  // We preventDefault and submit programmatically so disabling the
+  // button doesn't cancel the native submission in some browsers.
+  const handleSubmit = (e) => {
+    if (fileInputRef.current && fileInputRef.current.files.length > 0) {
+      e.preventDefault();
+      setIsUploading(true);
+      formRef.current?.submit();
+    }
+  };
+
   return (
     <main className="dealers-main" data-node-id="1079:3487">
       {/* Form / hero card — Figma 1079:3688 */}
@@ -106,7 +129,7 @@ export default function DealersPage() {
           Please provide the details of your established entity or proposed venture.
         </p>
 
-        <form className="dealers-form" action="/api/dealer-inquiry.php" method="post" encType="multipart/form-data">
+        <form ref={formRef} onSubmit={handleSubmit} className="dealers-form" action="/api/dealer-inquiry.php" method="post" encType="multipart/form-data">
           {dealerStatus === "sent" && (
             <p className="dealers-form-status dealers-form-status--success" role="status">
               Your dealer inquiry has been sent. Our team will get back to you shortly.
@@ -128,12 +151,40 @@ export default function DealersPage() {
           </div>
 
           <div className="dealers-upload">
-            <span className="dealers-upload-label">COMPANY GST CERTIFICATE*</span>
+            <span className="dealers-upload-label">COMPANY GST CERTIFICATE (optional)</span>
             <div className="dealers-upload-drop">
-              <img src={asset("dealers-upload.svg")} alt="" aria-hidden="true" />
-              <p>Click to upload or drag and drop your official company GST certificate</p>
-              <input type="file" name="gst-certificate" accept="application/pdf,image/png,image/jpeg,.pdf,.png,.jpg,.jpeg" required />
+              {gstFile ? (
+                <div className="dealers-upload-file">
+                  <img src={asset("dealers-upload.svg")} alt="" aria-hidden="true" />
+                  <span className="dealers-upload-filename">{gstFile.name}</span>
+                  <span className="dealers-upload-filesize">
+                    {(gstFile.size / 1024).toFixed(0)} KB
+                  </span>
+                </div>
+              ) : (
+                <>
+                  <img src={asset("dealers-upload.svg")} alt="" aria-hidden="true" />
+                  <p>Click to upload or drag and drop your official company GST certificate</p>
+                </>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                name="gst-certificate"
+                accept="application/pdf,image/png,image/jpeg,.pdf,.png,.jpg,.jpeg"
+                onChange={(e) => setGstFile(e.target.files?.[0] ?? null)}
+              />
             </div>
+            {gstFile && (
+              <button
+                type="button"
+                className="dealers-upload-remove"
+                onClick={clearGst}
+                disabled={isUploading}
+              >
+                Remove
+              </button>
+            )}
           </div>
 
           <label className="dealers-field dealers-field--message">
@@ -142,8 +193,8 @@ export default function DealersPage() {
           </label>
 
           <div className="dealers-submit-row">
-            <button className="dealers-submit" type="submit">
-              Submit Inquiry
+            <button className="dealers-submit" type="submit" disabled={isUploading}>
+              {isUploading ? "Uploading…" : "Submit Inquiry"}
             </button>
           </div>
         </form>

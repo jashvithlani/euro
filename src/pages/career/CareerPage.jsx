@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { asset } from './asset.js';
 import "./CareerPage.css";
@@ -63,6 +63,28 @@ export default function CareerPage() {
       ? new URLSearchParams(window.location.search).get("careerApplication")
       : null;
 
+  const [isUploading, setIsUploading] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
+  const formRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const clearResume = () => {
+    setResumeFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  // When a file is attached, disable the submit button + show an
+  // "Uploading…" blocker while the (potentially slow) upload runs.
+  // We preventDefault and submit programmatically so disabling the
+  // button doesn't cancel the native submission in some browsers.
+  const handleSubmit = (e) => {
+    if (fileInputRef.current && fileInputRef.current.files.length > 0) {
+      e.preventDefault();
+      setIsUploading(true);
+      formRef.current?.submit();
+    }
+  };
+
   return (
     <>
       <main className="career-main">
@@ -120,7 +142,7 @@ export default function CareerPage() {
             </p>
           </div>
 
-          <form className="career-form" action="/api/career-application.php" method="post" encType="multipart/form-data">
+          <form ref={formRef} onSubmit={handleSubmit} className="career-form" action="/api/career-application.php" method="post" encType="multipart/form-data">
             {applicationStatus === "sent" && (
               <p className="career-form-status career-form-status--success" role="status">
                 Your application has been sent. Our team will review it and get back to you shortly.
@@ -142,11 +164,40 @@ export default function CareerPage() {
 
               <label className="career-upload career-field-wide">
                 <span>Resume * (PDF)</span>
-                <div>
-                  <img src={asset('career-icon-upload.svg')} alt="" />
-                  <p>Click to upload or drag and drop your resume</p>
-                  <input type="file" name="resume" accept="application/pdf,.pdf" required />
+                <div className="career-upload-drop">
+                  {resumeFile ? (
+                    <div className="career-upload-file">
+                      <img src={asset('career-icon-upload.svg')} alt="" />
+                      <span className="career-upload-filename">{resumeFile.name}</span>
+                      <span className="career-upload-filesize">
+                        {(resumeFile.size / 1024).toFixed(0)} KB
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      <img src={asset('career-icon-upload.svg')} alt="" />
+                      <p>Click to upload or drag and drop your resume</p>
+                    </>
+                  )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    name="resume"
+                    accept="application/pdf,.pdf"
+                    required
+                    onChange={(e) => setResumeFile(e.target.files?.[0] ?? null)}
+                  />
                 </div>
+                {resumeFile && (
+                  <button
+                    type="button"
+                    className="career-upload-remove"
+                    onClick={clearResume}
+                    disabled={isUploading}
+                  >
+                    Remove
+                  </button>
+                )}
               </label>
 
               <label className="career-field career-field-wide career-message">
@@ -154,7 +205,9 @@ export default function CareerPage() {
                 <textarea name="message" placeholder="Tell us something about yourself..."></textarea>
               </label>
             </div>
-            <button type="submit">SUBMIT APPLICATION</button>
+            <button type="submit" disabled={isUploading}>
+              {isUploading ? "Uploading…" : "SUBMIT APPLICATION"}
+            </button>
           </form>
         </section>
       </main>

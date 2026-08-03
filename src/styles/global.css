@@ -1286,7 +1286,7 @@ textarea {
 
 .footer {
   position: relative;
-  height: 276.67px;
+  min-height: 276.67px;
   padding: 0;
   background: var(--color-footer);
   color: #d6d3d1;
@@ -1481,10 +1481,10 @@ textarea {
 }
 
 .footer-certificate-strip img:nth-child(3) {
-  top: -12.65px;
+  top: -3.65px;
   left: 120.71px;
   width: 63.33px;
-  height: 63.33px;
+  height: 43.33px;
 }
 
 .footer-certificate-strip img:nth-child(4) {
@@ -1509,16 +1509,26 @@ textarea {
 }
 
 .footer-certificate-strip img:nth-child(7) {
-  top: 5.64px;
+  top: 0.64px;
   left: 314.14px;
   width: 48px;
-  height: 26.67px;
+  height: 37.67px;
 }
 
 @media (min-width: 1000px) {
   .footer-certificate-strip {
     transform: scale(1.15);
     transform-origin: left center;
+  }
+
+  /* Web-only override: nth-child(4) certificate sizing. The base rule
+     above is shared with mobile; this desktop-scoped rule layers
+     the new values on top so mobile keeps the common base. */
+  .footer-certificate-strip img:nth-child(4) {
+    top: -6.18px;
+    left: 176.24px;
+    width: 49.33px;
+    height: 51.4px;
   }
 }
 
@@ -1546,6 +1556,63 @@ textarea {
   width: 66.11px;
   height: 20.01px;
   object-fit: contain;
+}
+
+/* Sub-footer: copyright + designed-by band, matching the footer colour scheme. */
+.footer-subfooter {
+  position: relative;
+  background: var(--color-footer);
+  color: #d6d3d1;
+  padding: 14px 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-subfooter p {
+  margin: 0;
+  font-size: 10.67px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  color: #78716c;
+}
+
+.footer-subfooter-copy {
+  text-transform: uppercase;
+  letter-spacing: 1.33px;
+}
+
+.footer-subfooter-designed a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #78716c;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-subfooter-designed a:hover {
+  color: #d6d3d1;
+}
+
+.footer-subfooter-designed img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+@media (max-width: 999px) {
+  .footer-subfooter {
+    padding: 12px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 33px;
+  }
 }
 
 /* About page */
@@ -3041,6 +3108,59 @@ textarea {
   opacity: 0;
 }
 
+/* Selected-file state: show the chosen file name + size instead of
+   the upload prompt. The overlay input still covers the box so
+   clicking it re-opens the picker; the Remove button sits
+   outside the overlay so it stays clickable. */
+.career-upload-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.career-upload-filename {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2a2522;
+}
+
+.career-upload-filesize {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8a807c;
+}
+
+.career-upload-remove {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 999px;
+  background: #fbe9e3;
+  color: #b5462d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.career-upload-remove:hover:not(:disabled) {
+  background: #f7d8cd;
+  color: #8a3526;
+}
+
+.career-upload-remove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .career-upload img {
   width: 16px;
   height: 20px;
@@ -3078,6 +3198,13 @@ textarea {
   box-shadow: 0 10px 15px -3px rgba(190, 0, 75, 0.2),
     0 4px 6px -4px rgba(190, 0, 75, 0.2);
   cursor: pointer;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.career-form button:disabled {
+  cursor: progress;
+  opacity: 0.7;
+  box-shadow: none;
 }
 
 .career-ready {

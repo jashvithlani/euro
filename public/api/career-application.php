@@ -68,6 +68,7 @@ if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
     redirect_with_status('error');
 }
 
+/* Resume is REQUIRED. */
 $resume = $_FILES['resume'] ?? null;
 if (!is_array($resume) || ($resume['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
     redirect_with_status('error');
@@ -79,6 +80,11 @@ $resumeSize = (int) ($resume['size'] ?? 0);
 $resumeExtension = strtolower(pathinfo($resumeName, PATHINFO_EXTENSION));
 
 if ($resumeTmp === '' || !is_uploaded_file($resumeTmp) || $resumeSize <= 0 || $resumeSize > 5 * 1024 * 1024 || $resumeExtension !== 'pdf') {
+    redirect_with_status('error');
+}
+
+$resumeContents = file_get_contents($resumeTmp);
+if ($resumeContents === false) {
     redirect_with_status('error');
 }
 
@@ -105,11 +111,6 @@ foreach ($labels as $key => $label) {
     if ($value !== '') {
         $lines[] = $label . ': ' . $value;
     }
-}
-
-$resumeContents = file_get_contents($resumeTmp);
-if ($resumeContents === false) {
-    redirect_with_status('error');
 }
 
 $subject = 'New Career Application - Euro India Foods';

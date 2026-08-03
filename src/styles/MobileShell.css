@@ -351,16 +351,9 @@
     height: auto;
   }
 
-  .app-viewport--fluid .footer-inner::after {
-    display: block;
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    color: #78716c;
-    font-size: 12px;
-    line-height: 1.5;
-    content: "© 2026 Euro India Foods";
-  }
+  /* The .footer-subfooter band (in global.css) now renders the copyright +
+     "Designed by Incuse Digital" line for both desktop and mobile, so the
+     mobile-only ::after copyright line is no longer needed. */
 
   .scroll-to-top {
     position: fixed;

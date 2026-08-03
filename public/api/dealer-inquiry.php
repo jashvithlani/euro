@@ -68,29 +68,41 @@ if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
     redirect_with_status('error');
 }
 
+/* GST certificate is OPTIONAL. Only validate/attach when a file was actually uploaded. */
 $certificate = $_FILES['gst-certificate'] ?? null;
-if (!is_array($certificate) || ($certificate['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
-    redirect_with_status('error');
-}
+$certificateContents = null;
+$certificateName = 'gst-certificate.pdf';
+$mimeType = 'application/pdf';
 
-$certificateTmp = (string) ($certificate['tmp_name'] ?? '');
-$certificateName = clean_filename((string) ($certificate['name'] ?? 'gst-certificate.pdf'));
-$certificateSize = (int) ($certificate['size'] ?? 0);
-$extension = strtolower(pathinfo($certificateName, PATHINFO_EXTENSION));
-$allowedExtensions = ['pdf', 'png', 'jpg', 'jpeg'];
-$mimeType = match ($extension) {
-    'png' => 'image/png',
-    'jpg', 'jpeg' => 'image/jpeg',
-    default => 'application/pdf',
-};
+if (is_array($certificate) && ($certificate['error'] ?? UPLOAD_ERR_OK) === UPLOAD_ERR_OK) {
+    // A file was uploaded — validate it.
+    $certificateTmp = (string) ($certificate['tmp_name'] ?? '');
+    $certificateName = clean_filename((string) ($certificate['name'] ?? 'gst-certificate.pdf'));
+    $certificateSize = (int) ($certificate['size'] ?? 0);
+    $extension = strtolower(pathinfo($certificateName, PATHINFO_EXTENSION));
+    $allowedExtensions = ['pdf', 'png', 'jpg', 'jpeg'];
+    $mimeType = match ($extension) {
+        'png' => 'image/png',
+        'jpg', 'jpeg' => 'image/jpeg',
+        default => 'application/pdf',
+    };
 
-if (
-    $certificateTmp === ''
-    || !is_uploaded_file($certificateTmp)
-    || $certificateSize <= 0
-    || $certificateSize > 5 * 1024 * 1024
-    || !in_array($extension, $allowedExtensions, true)
-) {
+    if (
+        $certificateTmp === ''
+        || !is_uploaded_file($certificateTmp)
+        || $certificateSize <= 0
+        || $certificateSize > 5 * 1024 * 1024
+        || !in_array($extension, $allowedExtensions, true)
+    ) {
+        redirect_with_status('error');
+    }
+
+    $certificateContents = file_get_contents($certificateTmp);
+    if ($certificateContents === false) {
+        redirect_with_status('error');
+    }
+} elseif (is_array($certificate) && ($certificate['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE && ($certificate['error'] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK) {
+    // An upload error occurred (not "no file") — fail.
     redirect_with_status('error');
 }
 
@@ -121,34 +133,41 @@ foreach ($labels as $key => $label) {
     }
 }
 
-$certificateContents = file_get_contents($certificateTmp);
-if ($certificateContents === false) {
-    redirect_with_status('error');
-}
-
 $subject = 'New Dealer Inquiry - Euro India Foods';
 $safeName = clean_header_value(field('fullName'));
 $safeEmail = clean_header_value($email);
-$boundary = 'dealer_inquiry_' . bin2hex(random_bytes(16));
 
-$headers = [
-    'MIME-Version: 1.0',
-    'From: Euro India Foods Website <jashvithlani56@gmail.com>',
-    'Reply-To: ' . $safeName . ' <' . $safeEmail . '>',
-    'Content-Type: multipart/mixed; boundary="' . $boundary . '"',
-    'X-Mailer: PHP/' . phpversion(),
-];
-
-$body = '--' . $boundary . "\r\n";
-$body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-$body .= implode("\n", $lines) . "\r\n\r\n";
-$body .= '--' . $boundary . "\r\n";
-$body .= "Content-Type: " . $mimeType . "; name=\"" . $certificateName . "\"\r\n";
-$body .= "Content-Transfer-Encoding: base64\r\n";
-$body .= "Content-Disposition: attachment; filename=\"" . $certificateName . "\"\r\n\r\n";
-$body .= chunk_split(base64_encode($certificateContents)) . "\r\n";
-$body .= '--' . $boundary . "--\r\n";
+if ($certificateContents === null) {
+    // No certificate attached — plain text email.
+    $headers = [
+        'MIME-Version: 1.0',
+        'From: Euro India Foods Website <jashvithlani56@gmail.com>',
+        'Reply-To: ' . $safeName . ' <' . $safeEmail . '>',
+        'Content-Type: text/plain; charset=UTF-8',
+        'X-Mailer: PHP/' . phpversion(),
+    ];
+    $body = implode("\n", $lines);
+} else {
+    // Certificate attached — multipart email.
+    $boundary = 'dealer_inquiry_' . bin2hex(random_bytes(16));
+    $headers = [
+        'MIME-Version: 1.0',
+        'From: Euro India Foods Website <jashvithlani56@gmail.com>',
+        'Reply-To: ' . $safeName . ' <' . $safeEmail . '>',
+        'Content-Type: multipart/mixed; boundary="' . $boundary . '"',
+        'X-Mailer: PHP/' . phpversion(),
+    ];
+    $body = '--' . $boundary . "\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+    $body .= implode("\n", $lines) . "\r\n\r\n";
+    $body .= '--' . $boundary . "\r\n";
+    $body .= "Content-Type: " . $mimeType . "; name=\"" . $certificateName . "\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"" . $certificateName . "\"\r\n\r\n";
+    $body .= chunk_split(base64_encode($certificateContents)) . "\r\n";
+    $body .= '--' . $boundary . "--\r\n";
+}
 
 $sent = mail($recipient, $subject, $body, implode("\r\n", $headers));
 

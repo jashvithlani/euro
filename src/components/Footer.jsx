@@ -95,6 +95,17 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <div className="footer-subfooter">
+        <p className="footer-subfooter-copy">© 2026, Euro India Foods.</p>
+        <p className="footer-subfooter-designed">
+          Designed by{" "}
+          <a href="https://incusedigital.com/" target="_blank" rel="noopener noreferrer">
+            Incuse Digital
+            <img src={sharedAsset("incuse-favicon.png")} alt="" />
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }

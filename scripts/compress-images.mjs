@@ -69,11 +69,24 @@ function parseMatches() {
   return matches;
 }
 
+// Optional path-substring skip filters (can be repeated): --skip hero-products
+// Files whose path contains any skip substring are excluded entirely.
+function parseSkips() {
+  const skips = [];
+  for (let i = 0; i < process.argv.length; i++) {
+    if (process.argv[i] === "--skip" && process.argv[i + 1]) {
+      skips.push(process.argv[i + 1]);
+    }
+  }
+  return skips;
+}
+
 const MIN_BYTES = parseMinBytes();
 const TARGET_MAX_KB = parseTargetKb();
 const MAX_SIZE_MB = TARGET_MAX_KB / 1024;
 const INITIAL_QUALITY = parseQuality();
 const MATCH_FILTERS = parseMatches();
+const SKIP_FILTERS = parseSkips();
 const PAGE_RECYCLE_EVERY = 15;
 
 const MIME_BY_EXT = {
@@ -180,6 +193,14 @@ async function main() {
       if (MATCH_FILTERS.length > 0) {
         const rel = path.relative(root, filePath).toLowerCase();
         if (!MATCH_FILTERS.some((m) => rel.includes(m.toLowerCase()))) {
+          continue;
+        }
+      }
+
+      // Skip files whose path contains any --skip substring.
+      if (SKIP_FILTERS.length > 0) {
+        const rel = path.relative(root, filePath).toLowerCase();
+        if (SKIP_FILTERS.some((s) => rel.includes(s.toLowerCase()))) {
           continue;
         }
       }

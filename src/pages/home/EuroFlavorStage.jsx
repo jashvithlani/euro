@@ -8,8 +8,8 @@ import {
 } from "../about/useHorizontalScrollPin.js";
 import "./EuroFlavorStage.css";
 
-const homeAsset = (fileName) => new URL(`./assets/${fileName}`, import.meta.url).href;
-const categoryAsset = (fileName) => new URL(`../category/assets/${fileName}`, import.meta.url).href;
+import { asset as homeAsset } from "./asset.js";
+import { asset as categoryAsset } from "../category/asset.js";
 
 const flavorScenes = [
   {

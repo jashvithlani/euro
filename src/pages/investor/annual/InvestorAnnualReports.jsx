@@ -1,4 +1,5 @@
 import { annualAsset } from "./asset.js";
+import { sharedAsset } from "../../../shared/asset.js";
 import {
   annualArchiveYears,
   annualFeaturedYears,
@@ -46,7 +47,7 @@ export default function InvestorAnnualReports() {
             <div className="investor-annual__integrated">
               <img
                 className="investor-annual__integrated-watermark"
-                src={annualAsset("annual-integrated-watermark.png")}
+                src={sharedAsset("investor-integrated-watermark.png")}
                 alt=""
                 aria-hidden="true"
               />

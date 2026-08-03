@@ -1,6 +1,51 @@
 # SPA fallback for Euro India Foods — serve index.html for client-side routes
 # while letting real files (assets, /api/*.php, pdfs, favicons) resolve directly.
 
+# Prevent ERR_HTTP2_PROTOCOL_ERROR on large images: do NOT gzip already-compressed
+# binary assets. mod_deflate is often enabled globally on cPanel/Apache hosts and
+# corrupts HTTP/2 framing when it tries to compress large PNG/JPEG/WebP files.
+<IfModule mod_deflate.c>
+  SetEnvIfNoCase Request_URI \.(?:png|jpe?g|gif|webp|avif|ico|svgz|woff2?|ttf|otf|eot|pdf)$ no-gzip dont-vary
+  # Compress text-based assets (these compress well and are safe over HTTP/2).
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml application/manifest+json
+</IfModule>
+
+# Send correct Content-Type for fonts so they aren't re-processed.
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Long-term caching for hashed build assets (filenames include content hashes,
+# so they're safe to cache for a year and are immutable). Repeat visits and
+# in-site navigations reuse these instead of re-downloading ~136 MB each time.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed chunks under /assets/ — cache forever.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 year"
+  # HTML is the entry point — revalidate often so deploys are picked up.
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_headers.c>
+  # Immutable caching for hashed asset files (browser can skip revalidation).
+  <FilesMatch "\.(?:js|css|png|jpe?g|gif|webp|avif|svg|woff2?|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML must always revalidate so new deploys are served.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 

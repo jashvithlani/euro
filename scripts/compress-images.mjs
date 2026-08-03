@@ -34,9 +34,46 @@ function parseMinBytes() {
   return 8 * 1024;
 }
 
+function parseTargetKb() {
+  const idx = process.argv.indexOf("--target-kb");
+  if (idx !== -1) {
+    const value = Number(process.argv[idx + 1]);
+    if (!Number.isFinite(value) || value <= 0) {
+      throw new Error("--target-kb requires a positive number (kilobytes)");
+    }
+    return value;
+  }
+  return 750;
+}
+
+function parseQuality() {
+  const idx = process.argv.indexOf("--quality");
+  if (idx !== -1) {
+    const value = Number(process.argv[idx + 1]);
+    if (!Number.isFinite(value) || value <= 0 || value > 1) {
+      throw new Error("--quality requires a number in (0, 1]");
+    }
+    return value;
+  }
+  return 0.82;
+}
+
+// Optional path-substring filters (can be repeated): --match hero --match chips
+function parseMatches() {
+  const matches = [];
+  for (let i = 0; i < process.argv.length; i++) {
+    if (process.argv[i] === "--match" && process.argv[i + 1]) {
+      matches.push(process.argv[i + 1]);
+    }
+  }
+  return matches;
+}
+
 const MIN_BYTES = parseMinBytes();
-const TARGET_MAX_KB = 750;
+const TARGET_MAX_KB = parseTargetKb();
 const MAX_SIZE_MB = TARGET_MAX_KB / 1024;
+const INITIAL_QUALITY = parseQuality();
+const MATCH_FILTERS = parseMatches();
 const PAGE_RECYCLE_EVERY = 15;
 
 const MIME_BY_EXT = {
@@ -84,7 +121,7 @@ async function createCompressorPage(browser) {
 async function compressBuffer(page, input, fileName, mime) {
   const base64 = input.toString("base64");
   const outputBase64 = await page.evaluate(
-    async ({ base64, name, type, maxSizeMB }) => {
+    async ({ base64, name, type, maxSizeMB, initialQuality }) => {
       const binary = atob(base64);
       const bytes = new Uint8Array(binary.length);
       for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
@@ -93,7 +130,7 @@ async function compressBuffer(page, input, fileName, mime) {
       const compressed = await window.imageCompression(file, {
         maxSizeMB,
         useWebWorker: false,
-        initialQuality: 0.82,
+        initialQuality,
         fileType: type,
         preserveExif: type === "image/jpeg",
       });
@@ -106,7 +143,7 @@ async function compressBuffer(page, input, fileName, mime) {
       }
       return btoa(binaryStr);
     },
-    { base64, name: fileName, type: mime, maxSizeMB: MAX_SIZE_MB },
+    { base64, name: fileName, type: mime, maxSizeMB: MAX_SIZE_MB, initialQuality: INITIAL_QUALITY },
   );
 
   return Buffer.from(outputBase64, "base64");
@@ -128,8 +165,8 @@ async function main() {
 
   console.log(
     write
-      ? `Compressing images > ${formatBytes(MIN_BYTES)} (target ≤ ${TARGET_MAX_KB} KB) — write mode…`
-      : `Dry run — files > ${formatBytes(MIN_BYTES)}, target ≤ ${TARGET_MAX_KB} KB. Pass --write to apply.\n`,
+      ? `Compressing images > ${formatBytes(MIN_BYTES)} (target ≤ ${TARGET_MAX_KB} KB, quality ${INITIAL_QUALITY}${MATCH_FILTERS.length ? `, matching: ${MATCH_FILTERS.join(", ")}` : ""}) — write mode…`
+      : `Dry run — files > ${formatBytes(MIN_BYTES)}, target ≤ ${TARGET_MAX_KB} KB, quality ${INITIAL_QUALITY}${MATCH_FILTERS.length ? `, matching: ${MATCH_FILTERS.join(", ")}` : ""}. Pass --write to apply.\n`,
   );
 
   const browser = await chromium.launch({ headless: true });
@@ -138,6 +175,15 @@ async function main() {
 
   try {
     for (const filePath of files.sort()) {
+      // If --match filters were provided, only process files whose path contains
+      // at least one of the filter substrings (case-insensitive).
+      if (MATCH_FILTERS.length > 0) {
+        const rel = path.relative(root, filePath).toLowerCase();
+        if (!MATCH_FILTERS.some((m) => rel.includes(m.toLowerCase()))) {
+          continue;
+        }
+      }
+
       const stat = await fs.stat(filePath);
       if (stat.size < MIN_BYTES) {
         skippedSmall += 1;

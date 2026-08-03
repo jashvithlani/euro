@@ -60,7 +60,7 @@ const beveragesAt1920 = {
       height: 549.667,
       background: "radial-gradient(circle, #f6f6f6 0%, #ffece4 100%)",
       image: asset("category-beverage-mango.png"),
-      mobileImage: asset("MANGO-mobile.png"),
+      mobileImage: asset("category-beverage-fig-mango.png"),
       imageStyle: { left: -53, top: 29, width: 736, height: 708 },
       title: "Fresho\nMango",
       titleClass: "text-orange product-title-beverages-lg text-right",

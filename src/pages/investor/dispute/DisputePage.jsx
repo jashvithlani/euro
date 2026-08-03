@@ -1,4 +1,5 @@
 import { disputeAsset } from "./asset.js";
+import { sharedAsset } from "../../../shared/asset.js";
 import { disputePageCopy } from "./dispute-content.js";
 import "./DisputePage.css";
 
@@ -21,7 +22,7 @@ export default function DisputePage() {
           <article className="investor-dispute__integrated">
             <img
               className="investor-dispute__integrated-watermark"
-              src={disputeAsset("dispute-integrated-watermark.png")}
+              src={sharedAsset("investor-integrated-watermark.png")}
               alt=""
               aria-hidden="true"
             />

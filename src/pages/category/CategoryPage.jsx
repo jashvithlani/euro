@@ -368,11 +368,11 @@ function HeroVisual({ hero }) {
 
   if (hero.mode === "khakhra") {
     const packs = [
-      { key: "7grain", img: "category-khakhra-figma-7grain.png" },
-      { key: "panipuri", img: "category-khakhra-figma-panipuri.png" },
-      { key: "fafda", img: "category-khakhra-figma-fafda.png" },
-      { key: "jeera", img: "category-khakhra-figma-jeera.png" },
-      { key: "masala", img: "category-khakhra-figma-masala.png" },
+      { key: "7grain", img: "category-khakhra-7grain.png" },
+      { key: "panipuri", img: "category-khakhra-panipuri.png" },
+      { key: "fafda", img: "category-khakhra-fafda.png" },
+      { key: "jeera", img: "category-khakhra-jeera.png" },
+      { key: "masala", img: "category-khakhra-masala.png" },
     ];
 
     return (

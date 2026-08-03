@@ -436,7 +436,7 @@
   height: 244px;
   background:
     linear-gradient(90deg, #fff8f6 0%, rgba(255, 248, 246, 0.9) 50%, rgba(255, 248, 246, 0) 100%),
-    url("./assets/achievements-cta-bg.png") center / cover no-repeat;
+    url("../../shared/assets/section-cta-texture.png") center / cover no-repeat;
 }
 
 .achievements-cta-bg::after {

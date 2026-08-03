@@ -3,6 +3,7 @@ import InvestorYearTabs from "../components/InvestorYearTabs.jsx";
 import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import InvestorUpdateItem from "./components/InvestorUpdateItem.jsx";
 import { asset } from "./asset.js";
+import { sharedAsset } from "../../../shared/asset.js";
 import {
   fyYearTabs,
   getUpdatesForYear,
@@ -87,7 +88,7 @@ export default function UpdatesPage() {
 
       <section ref={ctaRef} className="investor-updates-cta" aria-labelledby="investor-updates-cta-title">
         <div className="investor-updates-cta__backdrop" aria-hidden="true">
-          <img src={asset("updates-cta-texture.png")} alt="" />
+          <img src={sharedAsset("section-cta-texture.png")} alt="" />
           <span className="investor-updates-cta__backdrop-fade" />
         </div>
         <div className="investor-updates-cta__inner">

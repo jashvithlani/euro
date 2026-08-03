@@ -41,11 +41,6 @@ export const productColors = {
   "category-chips-wide-card-onion.png":  "#6ca538", // onion green
   "category-chips-wide-card-salted.png": "#ebca18", // bright yellow
   "category-chips-wide-card-tomato.png": "#c0392b", // tomato red
-  "category-chips-chilli.png":           "#d51a23",
-  "category-chips-masti.png":            "#293582",
-  "category-chips-onion.png":            "#6ca538",
-  "category-chips-salted.png":           "#ebca18",
-  "category-chips-tomato.png":           "#c0392b",
   "category-farali-chiwda-mitha.png": "#36366a",
   "category-farali-chiwda-tikha.png": "#864748",
   "category-farali-kela-chiwda-card.png": "#a7869a",

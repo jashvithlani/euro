@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 
 export default {
-  base: "./",
+  base: "/",
   plugins: [react()],
   build: {
     sourcemap: false,

@@ -16,6 +16,7 @@ import {
   favoriteProducts,
 } from "./favorites-content.jsx";
 import { asset } from "./asset.js";
+import { prefetchImagesAfterDelay } from "../../prefetch-images.js";
 import "./HomePage.css";
 
 export default function HomePage() {
@@ -27,6 +28,11 @@ export default function HomePage() {
   const favoritesStickyRef = useRef(null);
   const favoritesViewportRef = useRef(null);
   const favoritesTrackRef = useRef(null);
+
+  // Prefetch all other pages' images 15s after landing so other pages feel instant.
+  useEffect(() => {
+    prefetchImagesAfterDelay();
+  }, []);
 
   useHorizontalScrollPin({
     driverRef: moodScrollRef,

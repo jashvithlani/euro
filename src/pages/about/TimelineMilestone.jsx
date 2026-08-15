@@ -1,5 +1,6 @@
 import { asset } from "./asset.js";
 import { sharedAsset } from "../../shared/asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 function TimelineCopy({ milestone }) {
   const copyClass = milestone.side === "left" ? "timeline-copy-left" : "timeline-copy-right";
@@ -30,7 +31,7 @@ function TimelineCard({ milestone }) {
     return (
       <div className={`timeline-card ${card.cardClass}`} aria-label={card.label}>
         <div className="timeline-award-crop">
-          <img src={asset(card.image)} alt="" />
+          <OptimizedImage src={asset(card.image)} alt="" sizes="(max-width: 999px) 92vw, 420px" />
         </div>
       </div>
     );
@@ -39,9 +40,9 @@ function TimelineCard({ milestone }) {
   if (card.kind === "gt") {
     return (
       <div className={`timeline-card ${card.cardClass}`} aria-label={card.label}>
-        <img className="timeline-gt-logo" src={asset(card.gtImage)} alt="" />
+        <OptimizedImage className="timeline-gt-logo" src={asset(card.gtImage)} alt="" sizes="80px" />
         <span>x</span>
-        <img className="timeline-euro-logo" src={asset(card.euroImage)} alt="" />
+        <OptimizedImage className="timeline-euro-logo" src={asset(card.euroImage)} alt="" sizes="80px" />
       </div>
     );
   }
@@ -49,7 +50,7 @@ function TimelineCard({ milestone }) {
   if (card.kind === "nse") {
     return (
       <div className={`timeline-card ${card.cardClass}`}>
-        <img src={asset(card.image)} alt="NSE logo" />
+        <OptimizedImage src={asset(card.image)} alt="NSE logo" sizes="160px" />
       </div>
     );
   }
@@ -58,7 +59,7 @@ function TimelineCard({ milestone }) {
 
   return (
     <div className={`timeline-card ${card.cardClass}`} aria-label={card.label}>
-      <img src={imageSrc} alt="" />
+      <OptimizedImage src={imageSrc} alt="" sizes="(max-width: 999px) 92vw, 420px" />
     </div>
   );
 }

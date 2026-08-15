@@ -1,6 +1,7 @@
 import { disputeAsset } from "./asset.js";
 import { sharedAsset } from "../../../shared/asset.js";
 import { disputePageCopy } from "./dispute-content.js";
+import OptimizedImage from "../../../components/OptimizedImage.jsx";
 import "./DisputePage.css";
 
 export default function DisputePage() {
@@ -20,11 +21,12 @@ export default function DisputePage() {
 
         <div className="investor-dispute__cards" data-node-id="1131:2274">
           <article className="investor-dispute__integrated">
-            <img
+            <OptimizedImage
               className="investor-dispute__integrated-watermark"
               src={sharedAsset("investor-integrated-watermark.png")}
               alt=""
               aria-hidden="true"
+              sizes="160px"
             />
             <div className="investor-dispute__integrated-copy">
               <p className="investor-dispute__eyebrow">{integrated.eyebrow}</p>
@@ -73,7 +75,7 @@ export default function DisputePage() {
       >
         <div className="investor-dispute-trust__layout" data-node-id="1131:2302">
           <div className="investor-dispute-trust__visual" data-node-id="1131:2315">
-            <img src={disputeAsset("dispute-trust-photo.png")} alt="Euro India Foods leadership" />
+            <OptimizedImage src={disputeAsset("dispute-trust-photo.png")} alt="Euro India Foods leadership" sizes="(max-width: 999px) 92vw, 480px" />
           </div>
           <div className="investor-dispute-trust__copy">
             <h2 id="investor-dispute-trust-title">

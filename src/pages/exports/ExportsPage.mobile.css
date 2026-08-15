@@ -91,7 +91,8 @@
     overflow: visible;
   }
 
-  .exports-page .export-hero-media > img {
+  .exports-page .export-hero-media > img,
+  .exports-page .export-hero-media > picture > img {
     display: block;
     width: 100%;
     height: auto;
@@ -174,7 +175,8 @@
     word-break: break-word;
   }
 
-  .exports-page .export-contact-card > img {
+  .exports-page .export-contact-card > img,
+  .exports-page .export-contact-card > picture > img {
     width: 56px;
     height: 56px;
   }

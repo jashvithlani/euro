@@ -154,6 +154,7 @@
 .category-main--bakery .category-promo a,
 .category-main--bakery .category-feature,
 .category-main--bakery .category-feature > img,
+.category-main--bakery .category-feature > picture > img,
 .category-main--bakery .category-feature a,
 .category-main--bakery .category-feature-arrow,
 .category-main--bakery .category-newsletter--bakery-compact input,
@@ -196,7 +197,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--bakery .category-feature:hover > img {
+.category-main--bakery .category-feature:hover > img,
+.category-main--bakery .category-feature:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;
@@ -244,7 +246,8 @@
     margin: 0 !important;
   }
 
-  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img-frame > img {
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img-frame > img,
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-img-frame > picture > img {
     position: absolute !important;
     inset: 0 !important;
     top: 0 !important;

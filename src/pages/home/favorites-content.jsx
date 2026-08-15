@@ -1,4 +1,5 @@
 import { asset } from "./asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 export const favoriteProducts = [
   {
@@ -13,7 +14,7 @@ export const favoriteProducts = [
   {
     id: "tomato",
     tone: "cyan",
-    badge: "Hot",
+    badge: "TANGY",
     badgeTone: "",
     image: "bestseller-tomato.png",
     title: "Tingling Tomato",
@@ -22,20 +23,29 @@ export const favoriteProducts = [
   {
     id: "guava",
     tone: "rose",
-    badge: "Sweet",
+    badge: "Tropical",
     badgeTone: "purple",
     image: "bestseller-guava.png",
-    title: "Fresh Guava Juice",
-    copy: "Guava with a fresh taste.",
+    title: "Guava Juice",
+    copy: "A delicious burst of guava flavour.",
   },
   {
     id: "mango",
     tone: "yellow",
-    badge: "Natural",
+    badge: "ZESTY",
     badgeTone: "green",
     image: "bestseller-mango.png",
-    title: "Raw Mango Punch",
-    copy: "Tangy refreshment in every sip.",
+    title: "Mango Punch",
+    copy: "A delicious mango kick in every sip",
+  },
+  {
+    id: "masala",
+    tone: "lavender",
+    badge: "Best Seller",
+    badgeTone: "gold",
+    image: "bestseller-sevmumra.png",
+    title: "Masala Sev Mumra",
+    copy: "Crunchy. Spicy. Irresistible.",
   },
 ];
 
@@ -74,7 +84,7 @@ export function FavoriteProductCard({ product }) {
     <article className={`product-card product-card--${product.tone}`}>
       <div className="product-art">
         <span className={badgeClassName}>{product.badge}</span>
-        <img src={asset(product.image)} alt={product.title} />
+        <OptimizedImage src={asset(product.image)} alt={product.title} sizes="(max-width: 480px) 70vw, 240px" />
       </div>
       <h3>{product.title}</h3>
       <p>{product.copy}</p>

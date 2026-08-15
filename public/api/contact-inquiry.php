@@ -79,7 +79,7 @@ $body = implode("\n", $lines);
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
-    'From: Euro India Foods Website <jashvithlani56@gmail.com>',
+    'From: Euro India Foods Website <info@euroindiafoods.com>',
     'Reply-To: ' . $safeName . ' <' . $safeEmail . '>',
     'X-Mailer: PHP/' . phpversion(),
 ];

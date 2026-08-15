@@ -253,6 +253,7 @@
 .category-main--chikki .category-promo--chikki-compact a,
 .category-main--chikki .category-feature--chikki-wide,
 .category-main--chikki .category-feature--chikki-wide > img,
+.category-main--chikki .category-feature--chikki-wide > picture > img,
 .category-main--chikki .category-feature--chikki-wide a,
 .category-main--chikki .category-feature-arrow,
 .category-main--chikki .category-newsletter--chikki-compact input,
@@ -295,7 +296,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--chikki .category-feature--chikki-wide:hover > img {
+.category-main--chikki .category-feature--chikki-wide:hover > img,
+.category-main--chikki .category-feature--chikki-wide:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;

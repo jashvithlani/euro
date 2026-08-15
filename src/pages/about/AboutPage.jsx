@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import EuroMoments from "../../components/EuroMoments.jsx";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 import { asset } from "./asset.js";
 import { asset as categoryAsset } from "../category/asset.js";
 import { PillarCard, PillarsSectionHeading } from "./PillarCard.jsx";
@@ -180,13 +181,14 @@ export default function AboutPage() {
             aria-hidden="true"
           >
             {timelineProducts.map((product, index) => (
-              <img
+              <OptimizedImage
                 key={product.category}
                 className={`timeline-product-marker__image${
                   index === activeTimelineProduct ? " is-active" : ""
                 }`}
                 src={product.image}
                 alt=""
+                sizes="120px"
               />
             ))}
           </div>,
@@ -211,19 +213,19 @@ export default function AboutPage() {
                 <div className="about-hero-media">
                   <div className="about-hero-card-wrap about-hero-left-wrap" aria-hidden="true">
                     <div className="about-hero-card about-hero-left-card">
-                      <img src={asset('about-hero-left-source.png')} alt="" />
+                      <OptimizedImage src={asset('about-hero-left-source.png')} alt="" sizes="(max-width: 999px) 45vw, 360px" priority />
                     </div>
                   </div>
                   <div className="about-hero-card-wrap about-hero-right-wrap" aria-hidden="true">
                     <div className="about-hero-card about-hero-right-card">
-                      <img src={asset('about-hero-right-source.png')} alt="" />
+                      <OptimizedImage src={asset('about-hero-right-source.png')} alt="" sizes="(max-width: 999px) 45vw, 360px" />
                     </div>
                   </div>
                 </div>
               </section>
 
               <section className="about-journey" id="journey">
-                <img src={asset('about-office.png')} alt="Euro India Foods office" />
+                <OptimizedImage src={asset('about-office.png')} alt="Euro India Foods office" sizes="(max-width: 999px) 92vw, 560px" />
                 <span className="float-tag tag-trusted">#trusted</span>
                 <span className="float-tag tag-loyal">#loyal</span>
                 <span className="float-tag tag-experienced">#experienced</span>
@@ -275,7 +277,7 @@ export default function AboutPage() {
               </section>
 
               <section className="about-manufacturing">
-                <img className="manufacturing-photo" src={asset('about-manufacturing.png')} alt="Euro India Foods manufacturing line" />
+                <OptimizedImage className="manufacturing-photo" src={asset('about-manufacturing.png')} alt="Euro India Foods manufacturing line" sizes="(max-width: 999px) 92vw, 560px" />
                 <div className="manufacturing-copy">
                   <span className="about-kicker">Precision Crafted</span>
                   <h2>
@@ -298,14 +300,14 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="manufacturing-feature">
-                    <span className="manufacturing-icon"><img src={asset('about-icon-ribbon.png')} alt="" /></span>
+                    <span className="manufacturing-icon"><OptimizedImage src={asset('about-icon-ribbon.png')} alt="" sizes="64px" /></span>
                     <div>
                       <h3>Strict Quality Control</h3>
                       <p>Rigorous testing protocols ensure every batch meets the highest standards of safety, taste, and reliability.</p>
                     </div>
                   </div>
                   <div className="manufacturing-feature">
-                    <span className="manufacturing-icon"><img src={asset('about-icon-chain.png')} alt="" /></span>
+                    <span className="manufacturing-icon"><OptimizedImage src={asset('about-icon-chain.png')} alt="" sizes="64px" /></span>
                     <div>
                       <h3>Efficient Supply Chain</h3>
                       <p>A robust distribution network ensures timely delivery and product availability across markets.</p>
@@ -402,12 +404,12 @@ export default function AboutPage() {
               <section className="about-logistics">
                 <h2>Logistics</h2>
                 <p>Getting our products from the plant to your shelf is just as important as making them. With a robust in-house logistics network of <strong>40+ fleets</strong>, we ensure timely, efficient, and reliable delivery across the country.</p>
-                <img src={asset('about-logistics.jpeg')} alt="Euro logistics fleet" />
+                <OptimizedImage src={asset('about-logistics.jpeg')} alt="Euro logistics fleet" sizes="(max-width: 999px) 92vw, 480px" />
               </section>
 
               <section className="about-family">
                 <h2>The Euro Family</h2>
-                <img src={asset('about-family.png')} alt="Euro India Foods team" />
+                <OptimizedImage src={asset('about-family.png')} alt="Euro India Foods team" sizes="(max-width: 999px) 92vw, 1152px" />
                 <span className="float-tag family-tag-one">#Teamwork</span>
                 <span className="float-tag family-tag-two">#Innovative</span>
                 <span className="float-tag family-tag-three">#Happiness</span>

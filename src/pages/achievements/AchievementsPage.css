@@ -278,7 +278,8 @@
   background: #be004b;
 }
 
-.achievements-featured-media > img {
+.achievements-featured-media > img,
+.achievements-featured-media > picture > img {
   position: absolute;
   top: 3px;
   left: 0;
@@ -288,18 +289,20 @@
   object-fit: cover;
 }
 
-.achievements-recognition--quality-2014 .achievements-featured-media > img {
+.achievements-recognition--quality-2014 .achievements-featured-media > img,
+.achievements-recognition--quality-2014 .achievements-featured-media > picture > img {
   width: 43%;
   height: 84%;
-  top: 33px;
-  left: 86px;
+  top: 22px;
+  left: 77px;
   object-fit: contain;
 }
 
-.achievements-recognition--national-star .achievements-featured-media > img {
+.achievements-recognition--national-star .achievements-featured-media > img,
+.achievements-recognition--national-star .achievements-featured-media > picture > img {
   width: 40%;
   height: 96%;
-  left: 96px;
+  left: 83px;
   object-fit: contain;
 }
 
@@ -437,6 +440,9 @@
   background:
     linear-gradient(90deg, #fff8f6 0%, rgba(255, 248, 246, 0.9) 50%, rgba(255, 248, 246, 0) 100%),
     url("../../shared/assets/section-cta-texture.png") center / cover no-repeat;
+  background-image:
+    linear-gradient(90deg, #fff8f6 0%, rgba(255, 248, 246, 0.9) 50%, rgba(255, 248, 246, 0) 100%),
+    var(--image-section-cta-texture, url("../../shared/assets/section-cta-texture.png"));
 }
 
 .achievements-cta-bg::after {

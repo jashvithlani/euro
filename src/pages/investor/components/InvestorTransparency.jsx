@@ -1,11 +1,12 @@
 import { asset } from "../asset.js";
+import OptimizedImage from "../../../components/OptimizedImage.jsx";
 
 export default function InvestorTransparency() {
   return (
     <section className="investor-transparency" aria-labelledby="investor-transparency-title">
       <div className="investor-transparency-layout">
         <div className="investor-transparency-visual">
-          <img src={asset("investor-transparency.png")} alt="Euro India Foods leadership" />
+          <OptimizedImage src={asset("investor-transparency.png")} alt="Euro India Foods leadership" sizes="(max-width: 999px) 92vw, 480px" />
         </div>
         <div className="investor-transparency-aside">
           <div className="investor-transparency-copy">

@@ -92,7 +92,8 @@
     animation: exports-bg-grow 0.9s ease both;
   }
 
-  .exports-main .export-hero-media > img {
+  .exports-main .export-hero-media > img,
+  .exports-main .export-hero-media > picture > img {
     animation: exports-rise-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
   }
 

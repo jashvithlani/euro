@@ -1,5 +1,6 @@
 import { annualAsset } from "./asset.js";
 import { sharedAsset } from "../../../shared/asset.js";
+import OptimizedImage from "../../../components/OptimizedImage.jsx";
 import {
   annualArchiveYears,
   annualFeaturedYears,
@@ -45,11 +46,12 @@ export default function InvestorAnnualReports() {
           <YearDivider label={year2024.yearLabel} align={year2024.yearAlign} />
           <div className="investor-annual__grid-2024">
             <div className="investor-annual__integrated">
-              <img
+              <OptimizedImage
                 className="investor-annual__integrated-watermark"
                 src={sharedAsset("investor-integrated-watermark.png")}
                 alt=""
                 aria-hidden="true"
+                sizes="160px"
               />
               <div className="investor-annual__integrated-copy">
                 <p className="investor-annual__eyebrow investor-annual__eyebrow--brand">

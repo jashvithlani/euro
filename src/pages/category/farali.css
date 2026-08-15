@@ -36,6 +36,7 @@
 .category-main--farali .category-promo--farali-compact a,
 .category-main--farali .category-feature--farali-wide,
 .category-main--farali .category-feature--farali-wide > img,
+.category-main--farali .category-feature--farali-wide > picture > img,
 .category-main--farali .category-feature--farali-wide a,
 .category-main--farali .category-feature-arrow,
 .category-main--farali .category-newsletter--farali-compact input,
@@ -78,7 +79,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--farali .category-feature--farali-wide:hover > img {
+.category-main--farali .category-feature--farali-wide:hover > img,
+.category-main--farali .category-feature--farali-wide:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;

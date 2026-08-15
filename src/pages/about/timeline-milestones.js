@@ -27,7 +27,7 @@ export const timelineMilestones = [
     card: {
       kind: "image",
       cardClass: "timeline-2012-card",
-      image: "about-timeline-2012.jpeg",
+      image: "about-timeline-2012.png",
       label: "Scaling Up production",
     },
   },

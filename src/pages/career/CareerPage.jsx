@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { asset } from './asset.js';
+import OptimizedImage from '../../components/OptimizedImage.jsx';
 import "./CareerPage.css";
 
 const valueCards = [
@@ -107,7 +108,7 @@ export default function CareerPage() {
           <div className="career-hero-media">
             <div className="career-hero-tilt"></div>
             <div className="career-hero-photo">
-              <img src={asset('career-hero-team.png')} alt="Team collaborating in a modern office" />
+              <OptimizedImage src={asset('career-hero-team.png')} alt="Team collaborating in a modern office" sizes="(max-width: 999px) 100vw, 1284px" priority />
               <div className="career-hero-gradient"></div>
               <div className="career-family-badge">Join the Family</div>
             </div>

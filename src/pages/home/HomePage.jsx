@@ -1,5 +1,5 @@
-// Build by Jash Vithlani, contact: jashvithlani56@gmail.com
-import { useEffect, useRef } from "react";
+// Build by Jash Vithlani, contact: info@euroindiafoods.com
+import { useEffect, useRef, useState } from "react";
 import EuroMoments from "../../components/EuroMoments.jsx";
 import { useHorizontalScrollPin } from "../about/useHorizontalScrollPin.js";
 import {
@@ -16,10 +16,12 @@ import {
   favoriteProducts,
 } from "./favorites-content.jsx";
 import { asset } from "./asset.js";
-import { prefetchImagesAfterDelay } from "../../prefetch-images.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 import "./HomePage.css";
 
 export default function HomePage() {
+  const moodSectionRef = useRef(null);
+  const [isMoodPatternVisible, setIsMoodPatternVisible] = useState(false);
   const moodScrollRef = useRef(null);
   const moodStickyRef = useRef(null);
   const moodViewportRef = useRef(null);
@@ -28,11 +30,6 @@ export default function HomePage() {
   const favoritesStickyRef = useRef(null);
   const favoritesViewportRef = useRef(null);
   const favoritesTrackRef = useRef(null);
-
-  // Prefetch all other pages' images 15s after landing so other pages feel instant.
-  useEffect(() => {
-    prefetchImagesAfterDelay();
-  }, []);
 
   useHorizontalScrollPin({
     driverRef: moodScrollRef,
@@ -48,6 +45,27 @@ export default function HomePage() {
     tileMotion: "soft",
     edgeFadeZone: 0.04,
   });
+
+  useEffect(() => {
+    const section = moodSectionRef.current;
+    if (!section) return undefined;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsMoodPatternVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setIsMoodPatternVisible(true);
+        observer.disconnect();
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   useHorizontalScrollPin({
     driverRef: favoritesScrollRef,
@@ -133,7 +151,13 @@ export default function HomePage() {
             <main>
               <section className="hero">
                 <div className="hero-bg"></div>
-                <img className="hero-products" src={asset('hero-products.png')} alt="Euro potato chips packs" />
+                <OptimizedImage
+                  className="hero-products"
+                  src={asset('hero-products.png')}
+                  alt="Euro potato chips packs"
+                  sizes="(max-width: 999px) 380px, 570px"
+                  priority
+                />
                 <div className="hero-copy">
                   <h1 className="hero-title">
                     <span>Every</span>
@@ -152,8 +176,8 @@ export default function HomePage() {
 
               <EuroFlavorStage />
 
-              <section className="mood-section" id="products">
-                <div className="pattern-layer" aria-hidden="true"></div>
+              <section ref={moodSectionRef} className="mood-section" id="products">
+                <div className={`pattern-layer${isMoodPatternVisible ? " pattern-layer--loaded" : ""}`} aria-hidden="true"></div>
 
                 <div className="mood-section__desktop">
                   <MoodSectionHeading />
@@ -259,8 +283,12 @@ export default function HomePage() {
 
               <section className="story-section">
                 <div className="story-photo-wrap">
-                  <div className="story-photo-bg"></div>
-                  <img src={asset('story-photo.png')} alt="One bite, pausing the chaos" />
+                <div className="story-photo-bg"></div>
+                <OptimizedImage
+                  src={asset('story-photo.png')}
+                  alt="One bite, pausing the chaos"
+                  sizes="(max-width: 999px) 92vw, 410px"
+                />
                 </div>
                 <div className="story-copy">
                   <h2>

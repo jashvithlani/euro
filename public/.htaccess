@@ -10,36 +10,48 @@
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml application/manifest+json
 </IfModule>
 
-# Send correct Content-Type for fonts so they aren't re-processed.
+# Send correct Content-Type values even on cPanel installations with an older
+# shared MIME database.
 <IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
   AddType image/svg+xml .svg
 </IfModule>
 
-# Long-term caching for hashed build assets (filenames include content hashes,
-# so they're safe to cache for a year and are immutable). Repeat visits and
-# in-site navigations reuse these instead of re-downloading ~136 MB each time.
+# Give stable public files a short freshness window. Fingerprinted files under
+# /assets/ and /image-assets/ receive the immutable policy below.
 <IfModule mod_expires.c>
   ExpiresActive On
-  # Hashed chunks under /assets/ — cache forever.
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType text/javascript "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/avif "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType application/font-woff "access plus 1 year"
-  ExpiresByType application/pdf "access plus 1 year"
-  # HTML is the entry point — revalidate often so deploys are picked up.
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType text/javascript "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+  ExpiresByType image/svg+xml "access plus 1 day"
+  ExpiresByType image/png "access plus 1 day"
+  ExpiresByType image/jpeg "access plus 1 day"
+  ExpiresByType image/gif "access plus 1 day"
+  ExpiresByType image/webp "access plus 1 day"
+  ExpiresByType image/avif "access plus 1 day"
+  ExpiresByType image/x-icon "access plus 1 day"
+  ExpiresByType font/woff2 "access plus 1 day"
+  ExpiresByType application/font-woff "access plus 1 day"
+  ExpiresByType application/pdf "access plus 1 day"
+  ExpiresByType application/manifest+json "access plus 1 day"
   ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
+
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "/(?:assets|image-assets)/" fingerprinted_asset=1
+</IfModule>
+
 <IfModule mod_headers.c>
-  # Immutable caching for hashed asset files (browser can skip revalidation).
-  <FilesMatch "\.(?:js|css|png|jpe?g|gif|webp|avif|svg|woff2?|ttf|otf|eot)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+  # Stable filenames can change between deploys, so keep revalidation enabled.
+  <FilesMatch "\.(?:js|css|png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|otf|eot|pdf)$">
+    Header set Cache-Control "public, max-age=86400, stale-while-revalidate=604800" env=!fingerprinted_asset
   </FilesMatch>
+
+  # Vite and the image pipeline put content hashes in these directory trees.
+  Header set Cache-Control "public, max-age=31536000, immutable" env=fingerprinted_asset
+
   # HTML must always revalidate so new deploys are served.
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"

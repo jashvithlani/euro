@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import "./DealersPage.css";
 import { asset } from "./asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 const formFields = [
   { id: "fullName", label: "Full Name*", placeholder: "e.g. Julian Varma", col: "left", row: 1 },
@@ -219,7 +220,7 @@ export default function DealersPage() {
           </div>
         </div>
         <div className="dealers-footprint-map" aria-hidden="true">
-          <img src={asset("dealers-footprint-photo.jpg")} alt="" />
+          <OptimizedImage src={asset("dealers-footprint-photo.jpg")} alt="" sizes="(max-width: 999px) 100vw, 1100px" />
         </div>
       </section>
 

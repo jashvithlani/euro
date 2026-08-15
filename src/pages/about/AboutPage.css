@@ -324,8 +324,11 @@
 .timeline-card img,
 .infra-card,
 .infra-card > img,
+.infra-card > picture > img,
 .about-logistics > img,
-.about-family > img {
+.about-logistics > picture > img,
+.about-family > img,
+.about-family > picture > img {
   transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
               scale 0.4s cubic-bezier(0.22, 1, 0.36, 1),
               rotate 0.4s ease,
@@ -349,12 +352,15 @@
   box-shadow: 0 30px 56px -22px rgba(78, 40, 31, 0.3);
 }
 
-.infra-card:hover > img {
+.infra-card:hover > img,
+.infra-card:hover > picture > img {
   scale: 1.05;
 }
 
 .about-logistics > img:hover,
-.about-family > img:hover {
+.about-logistics > picture > img:hover,
+.about-family > img:hover,
+.about-family > picture > img:hover {
   translate: 0 -6px;
   scale: 1.015;
 }
@@ -555,7 +561,8 @@
     }
     .about-logistics > p { animation-range: cover 2% cover 27%; }
 
-    .about-logistics > img {
+    .about-logistics > img,
+    .about-logistics > picture > img {
       animation: about-rise-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
@@ -563,11 +570,13 @@
 
     /* ---- Family ---- */
     .about-family > h2,
-    .about-family > img {
+    .about-family > img,
+    .about-family > picture > img {
       animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: cover 0% cover 25%;
     }
-    .about-family > img { animation-range: cover 2% cover 27%; }
+    .about-family > img,
+    .about-family > picture > img { animation-range: cover 2% cover 27%; }
   }
 }

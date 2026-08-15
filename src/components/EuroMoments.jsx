@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { asset } from "./EuroMoments/asset.js";
+import OptimizedImage from "./OptimizedImage.jsx";
 import "./EuroMoments.css";
 
 const CARD_TRAVEL = [96, 154, 74, 132, 88];
@@ -9,9 +10,9 @@ const CAROUSEL_HOLD_MS = 3000;
 const CAROUSEL_EXIT_MS = 550;
 
 const SOCIAL_CARDS = [
-  { src: asset("contact-social-card-1.png"), alt: "Euro snack moment" },
-  { src: asset("contact-social-card-2.png"), alt: "Euro chips pack moment" },
-  { src: asset("contact-social-card-3.png"), alt: "Euro chips everywhere moment" },
+  { src: asset("contact-social-card-1.jpeg"), alt: "Euro snack moment" },
+  { src: asset("contact-social-card-2.jpeg"), alt: "Euro chips pack moment" },
+  { src: asset("contact-social-card-3.jpeg"), alt: "Euro chips everywhere moment" },
   { src: asset("contact-social-card-4.jpeg"), alt: "Euro table snack moment" },
   { src: asset("contact-social-card-5.jpeg"), alt: "Fresh and tasty Euro beverages" },
 ];
@@ -192,21 +193,23 @@ export default function EuroMoments({ className = "" }) {
         </p>
       </header>
 
-      <img
+      <OptimizedImage
         className="euro-moments__strip"
         src={asset("contact-social-strip.png")}
         alt="Euro India social feed"
+        sizes="(max-width: 999px) 92vw, 1100px"
       />
 
       {isMobile ? (
         <div className="euro-moments__carousel" aria-live="polite">
           <div className="euro-moments__carousel-stage">
-            <img
+            <OptimizedImage
               key={activeIndex}
               className={`euro-moments-card euro-moments-card--carousel euro-moments-card--carousel-${phase} euro-moments-card--index-${activeIndex + 1}`}
               src={activeCard.src}
               alt={activeCard.alt}
-              loading="eager"
+              loading="lazy"
+              sizes="(max-width: 480px) 80vw, 320px"
               style={{ "--card-rotate": `${CARD_ROTATE[activeIndex]}deg` }}
             />
           </div>
@@ -214,12 +217,13 @@ export default function EuroMoments({ className = "" }) {
       ) : (
         <div className="euro-moments__grid" ref={gridRef} aria-label="Euro India social moments">
           {SOCIAL_CARDS.map((card, index) => (
-            <img
+            <OptimizedImage
               key={card.src}
               className="euro-moments-card"
               src={card.src}
               alt={card.alt}
-              loading={index === 0 ? "eager" : "lazy"}
+              loading="lazy"
+              sizes="(max-width: 480px) 45vw, (max-width: 999px) 30vw, 220px"
             />
           ))}
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CATEGORY_PATHS, getNavActive, normalizePath } from "../../site-routing.js";
 import { sharedAsset } from "../../shared/asset.js";
+import OptimizedImage from "../OptimizedImage.jsx";
 import HeaderSearchButton from "./HeaderSearchButton.jsx";
 import MobileHeaderActions from "./MobileHeaderActions.jsx";
 import MobileNavDrawer from "./MobileNavDrawer.jsx";
@@ -30,7 +31,7 @@ export default function Header() {
   return (
     <header className={`site-nav${menuOpen ? " site-nav--menu-open" : ""}`}>
       <Link className="site-logo" to="/" aria-label="Euro India Foods" onClick={closeMenu}>
-        <img src={sharedAsset("logo-main.png")} alt="Euro India Foods" />
+        <OptimizedImage src={sharedAsset("logo-main.png")} alt="Euro India Foods" sizes="160px" loading="eager" />
       </Link>
 
       <MobileHeaderActions

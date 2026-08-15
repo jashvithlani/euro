@@ -3,9 +3,12 @@
   "type": "module",
   "scripts": {
     "generate:investor": "node scripts/generate-investor-documents.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "compress:images": "node scripts/compress-images.mjs",
-    "dev": "npm run generate:investor && vite --host 127.0.0.1",
-    "build": "npm run generate:investor && vite build",
+    "audit:images": "node scripts/audit-images.mjs",
+    "dev": "npm run generate:investor && npm run optimize:images && vite --host 127.0.0.1",
+    "build": "npm run generate:investor && npm run optimize:images && npm run audit:images && vite build",
+    "validate:dist": "node scripts/validate-dist.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
@@ -18,6 +21,7 @@
     "@vitejs/plugin-react": "4.3.4",
     "browser-image-compression": "^2.0.2",
     "playwright": "^1.44.1",
+    "sharp": "^0.35.3",
     "vite": "5.4.19"
   }
 }

@@ -15,6 +15,7 @@ import { bakeryPage } from "./bakery-content.jsx";
 import { fryumsPage } from "./fryums-content.jsx";
 import { asset } from './asset.js';
 import { productColors } from './product-colors.js';
+import OptimizedImage from '../../components/OptimizedImage.jsx';
 
 /* Look up a card's dominant product colour from the precomputed map.
    item.image is a fully-resolved URL (asset() uses new URL(...).href),
@@ -287,11 +288,11 @@ function HeroVisual({ hero }) {
   if (hero.mode === "getmoreWide") {
     return (
       <div className="category-hero-custom category-hero-getmore-wide" aria-hidden="true">
-        <img className="getmore-wide-hero-bg" src={asset("category-getmore-hero-bg.png")} alt="" />
-        <img className="getmore-wide-line getmore-wide-line-red" src={asset("category-getmore-line-red.png")} alt="" />
-        <img className="getmore-wide-line getmore-wide-line-blue" src={asset("category-getmore-line-blue.png")} alt="" />
-        <img className="getmore-wide-pack getmore-wide-pack-tomato" src={asset("category-getmore-tomato.png")} alt="" />
-        <img className="getmore-wide-pack getmore-wide-pack-chatpata" src={asset("category-getmore-chatpata.png")} alt="" />
+        <OptimizedImage className="getmore-wide-hero-bg" src={asset("category-getmore-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage className="getmore-wide-line getmore-wide-line-red" src={asset("category-getmore-line-red.png")} alt="" sizes="200px" />
+        <OptimizedImage className="getmore-wide-line getmore-wide-line-blue" src={asset("category-getmore-line-blue.png")} alt="" sizes="200px" />
+        <OptimizedImage className="getmore-wide-pack getmore-wide-pack-tomato" src={asset("category-getmore-tomato.png")} alt="" sizes="(max-width: 999px) 30vw, 240px" />
+        <OptimizedImage className="getmore-wide-pack getmore-wide-pack-chatpata" src={asset("category-getmore-chatpata.png")} alt="" sizes="(max-width: 999px) 30vw, 240px" />
       </div>
     );
   }
@@ -299,7 +300,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "farali") {
     return (
       <div className="category-hero-custom category-hero-farali" aria-hidden="true" data-node-id="1159:473">
-        <img className="farali-hero-bg" src={asset("category-farali-hero-bg.png")} alt="" />
+        <OptimizedImage className="farali-hero-bg" src={asset("category-farali-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         <div className="farali-hero-products category-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             { cls: 'farali-pack-wafer',       img: 'category-farali-kela-wafers.png' },
@@ -310,11 +311,12 @@ function HeroVisual({ hero }) {
           ].map((p, i) => {
             const slot = copy * 5 + i;
             return (
-              <img
+              <OptimizedImage
                 key={`${p.cls}-${copy}`}
                 className={`farali-hero-pack category-orbit-pack ${p.cls}`}
                 src={asset(p.img)}
                 alt=""
+                sizes="(max-width: 999px) 30vw, 200px"
                 style={{ '--slot': slot }}
               />
             );
@@ -327,7 +329,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "namkeen") {
     return (
       <div className="category-hero-custom category-hero-namkeen" aria-hidden="true" data-node-id="1206:104">
-        <img className="namkeen-hero-bg" src={asset("category-namkeen-hero-bg.png")} alt="" />
+        <OptimizedImage className="namkeen-hero-bg" src={asset("category-namkeen-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         <div className="namkeen-hero-products category-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             { cls: 'namkeen-pack-all-in-one', img: 'category-namkeen-all-in-one.png' },
@@ -338,11 +340,12 @@ function HeroVisual({ hero }) {
           ].map((p, i) => {
             const slot = copy * 5 + i;
             return (
-              <img
+              <OptimizedImage
                 key={`${p.cls}-${copy}`}
                 className={`namkeen-hero-pack category-orbit-pack ${p.cls}`}
                 src={asset(p.img)}
                 alt=""
+                sizes="(max-width: 999px) 30vw, 200px"
                 style={{ '--slot': slot }}
               />
             );
@@ -360,7 +363,7 @@ function HeroVisual({ hero }) {
         </div>
         <img className="chikki-hero-accent" src={asset("category-chikki-figma-accent.svg")} alt="" />
         <div className="chikki-hero-products">
-          <img className="chikki-hero-products-img" src={asset("category-chikki-figma-products.png")} alt="" />
+          <OptimizedImage className="chikki-hero-products-img" src={asset("category-chikki-figma-products.png")} alt="" sizes="(max-width: 999px) 92vw, 600px" priority />
         </div>
       </div>
     );
@@ -390,7 +393,7 @@ function HeroVisual({ hero }) {
                   className={`khakhra-hero-pack khakhra-orbit-pack khakhra-pack-${pack.key} khakhra-art-${pack.key}`}
                   style={{ "--slot": slot }}
                 >
-                  <img src={asset(pack.img)} alt="" />
+                  <OptimizedImage src={asset(pack.img)} alt="" sizes="(max-width: 999px) 30vw, 200px" priority={copy === 0 && i === 0} />
                 </span>
               );
             })
@@ -404,9 +407,9 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-bakery" aria-hidden="true">
         <span className="bakery-hero-curve" />
-        <img className="bakery-hero-pack bakery-pack-plain" src={asset('category-bakery-plain-khari.png')} alt="" />
-        <img className="bakery-hero-pack bakery-pack-coconut" src={asset('category-bakery-coconut-nankhatai.png')} alt="" />
-        <img className="bakery-hero-pack bakery-pack-methi" src={asset('category-bakery-methi-khari.png')} alt="" />
+        <OptimizedImage className="bakery-hero-pack bakery-pack-plain" src={asset('category-bakery-plain-khari.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" priority />
+        <OptimizedImage className="bakery-hero-pack bakery-pack-coconut" src={asset('category-bakery-coconut-nankhatai.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" />
+        <OptimizedImage className="bakery-hero-pack bakery-pack-methi" src={asset('category-bakery-methi-khari.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" />
       </div>
     );
   }
@@ -422,17 +425,18 @@ function HeroVisual({ hero }) {
 
     return (
       <div className="category-hero-custom category-hero-fryums" aria-hidden="true" data-node-id="1246:2362">
-        <img className="fryums-hero-bg" src={asset("category-fryums-figma-wave.png")} alt="" />
+        <OptimizedImage className="fryums-hero-bg" src={asset("category-fryums-figma-wave.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         <div className="fryums-hero-ring">
           {[0, 1, 2, 3, 4].flatMap((copy) =>
             packs.map((pack, i) => {
               const slot = copy * packs.length + i;
               return (
-                <img
+                <OptimizedImage
                   key={`${pack.key}-${copy}`}
                   className={`fryums-hero-pack fryums-orbit-pack fryums-pack-${pack.key}`}
                   src={asset(pack.img)}
                   alt=""
+                  sizes="(max-width: 999px) 30vw, 200px"
                   style={{ "--slot": slot }}
                 />
               );
@@ -446,7 +450,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "chipsWide") {
     return (
       <div className="category-hero-custom category-hero-chips-wide" aria-hidden="true">
-        <img className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" />
+        <OptimizedImage className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         <div className="chips-wide-hero-ring">
           {/* 10 slots = the 5 packs duplicated in the same order. The
               ring rotates as a unit; the duplicates fill the loop so
@@ -461,11 +465,12 @@ function HeroVisual({ hero }) {
           ].map((p, i) => {
             const slot = copy * 5 + i;
             return (
-              <img
+              <OptimizedImage
                 key={`${p.key}-${copy}`}
                 className={`chips-wide-hero-pack chips-wide-pack-${p.key} chips-wide-slot-${slot}`}
                 src={asset(p.img)}
                 alt=""
+                sizes="(max-width: 999px) 30vw, 200px"
                 style={{ '--slot': slot }}
               />
             );
@@ -478,7 +483,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "beveragesWide") {
     return (
       <div className="category-hero-custom category-hero-beverages-wide" aria-hidden="true">
-        <img className="beverages-wide-hero-bg" src={asset('category-beverages-hero-shape.png')} alt="" />
+        <OptimizedImage className="beverages-wide-hero-bg" src={asset('category-beverages-hero-shape.png')} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         <div className="beverages-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             /* Bottles + order from Figma frame 1131:3426 — left to right:
@@ -497,11 +502,12 @@ function HeroVisual({ hero }) {
           ].map((p, i) => {
             const slot = copy * 5 + i;
             return (
-              <img
+              <OptimizedImage
                 key={`${p.cls}-${copy}`}
                 className={`beverages-orbit-pack beverages-hero-pack ${p.cls}`}
                 src={asset(p.img)}
                 alt=""
+                sizes="(max-width: 999px) 30vw, 200px"
                 style={{ '--slot': slot }}
               />
             );
@@ -511,7 +517,7 @@ function HeroVisual({ hero }) {
     );
   }
 
-  return <img className={`category-hero-visual ${hero.className || ""}`} src={hero.image} alt="" aria-hidden="true" />;
+  return <OptimizedImage className={`category-hero-visual ${hero.className || ""}`} src={hero.image} alt="" aria-hidden="true" sizes="(max-width: 999px) 100vw, 1284px" priority />;
 }
 
 function Badge({ badge }) {
@@ -574,7 +580,7 @@ function DecorativeLayers({ decorations }) {
       style={layerStyle(decor.style || {})}
       aria-hidden="true"
     >
-      <img src={decor.image} alt="" />
+      <OptimizedImage src={decor.image} alt="" sizes="(max-width: 999px) 30vw, 200px" />
     </span>
   ));
 }
@@ -589,23 +595,23 @@ function ProductImage({ item }) {
   if (item.imageInnerStyle) {
     return (
       <span className="category-product-img category-product-img-frame" style={layerStyle(item.imageStyle)}>
-        <img src={item.image} alt="" style={layerStyle(item.imageInnerStyle)} />
+        <OptimizedImage src={item.image} alt="" style={layerStyle(item.imageInnerStyle)} sizes="(max-width: 768px) 92vw, 370px" />
       </span>
     );
   }
 
   return (
     <>
-      <img
+      <OptimizedImage
         ref={desktopImgRef}
-        className="category-product-img category-product-img--desktop"
+        className={`category-product-img ${item.mobileImage ? "category-product-img--responsive" : "category-product-img--desktop"}`}
         src={item.image}
+        mobileSrc={item.mobileImage}
         alt=""
         style={layerStyle(item.imageStyle)}
+        sizes="(max-width: 768px) 92vw, 370px"
+        mobileSizes="(max-width: 768px) 92vw, 280px"
       />
-      {item.mobileImage ? (
-        <img className="category-product-img category-product-img--mobile" src={item.mobileImage} alt="" />
-      ) : null}
     </>
   );
 }
@@ -622,11 +628,12 @@ function ImageCard({ item }) {
       className="category-product-card category-product-card--image"
       style={{ ...boxStyle(item), background: item.background, ...(productColor ? { "--product-color": productColor } : {}) }}
     >
-      <img
+      <OptimizedImage
         className={`category-product-cover ${item.imageStyle ? "category-product-cover--positioned" : ""}`}
         src={item.image}
         alt=""
         style={item.imageStyle ? layerStyle(item.imageStyle) : undefined}
+        sizes="(max-width: 768px) 92vw, 370px"
       />
       <Badge badge={item.badge} />
       {item.title ? (
@@ -707,12 +714,15 @@ function FeatureImage({ item }) {
   }, [item.imageImportantStyle, item.imageStyle]);
 
   return (
-    <img
+    <OptimizedImage
       ref={ref}
-      className="category-feature-img category-feature-img--desktop"
+      className={`category-feature-img ${item.mobileImage ? "category-feature-img--responsive" : "category-feature-img--desktop"}`}
       src={item.image}
+      mobileSrc={item.mobileImage}
       alt=""
       style={layerStyle(item.imageStyle)}
+      sizes="(max-width: 768px) 92vw, 560px"
+      mobileSizes="(max-width: 768px) 92vw, 280px"
     />
   );
 }
@@ -740,9 +750,6 @@ function FeatureCard({ item }) {
         {item.copy ? <p>{item.copy}</p> : null}
       </div>
       <FeatureImage item={item} />
-      {item.mobileImage ? (
-        <img className="category-feature-img category-feature-img--mobile" src={item.mobileImage} alt="" />
-      ) : null}
       {item.image ? <CategoryProductShopButton /> : null}
     </article>
   );
@@ -779,7 +786,7 @@ function SpotlightStrip({ item }) {
         {item.items.map((product) => (
           <article className="category-spotlight-card" key={product.image}>
             <img className="category-spotlight-ring" src={asset('category-namkeen-royal-card-ring.svg')} alt="" aria-hidden="true" />
-            <img src={product.image} alt="" />
+            <OptimizedImage src={product.image} alt="" sizes="(max-width: 768px) 45vw, 260px" />
           </article>
         ))}
       </div>

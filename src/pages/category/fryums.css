@@ -235,6 +235,7 @@
 .category-main--fryums .category-promo a,
 .category-main--fryums .category-feature,
 .category-main--fryums .category-feature > img,
+.category-main--fryums .category-feature > picture > img,
 .category-main--fryums .category-feature a,
 .category-main--fryums .category-feature-arrow,
 .category-main--fryums .category-newsletter--fryums-compact input,
@@ -277,7 +278,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--fryums .category-feature:hover > img {
+.category-main--fryums .category-feature:hover > img,
+.category-main--fryums .category-feature:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;

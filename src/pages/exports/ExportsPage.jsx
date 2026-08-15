@@ -1,5 +1,6 @@
 import { asset } from './asset.js';
 import { sharedAsset } from '../../shared/asset.js';
+import OptimizedImage from '../../components/OptimizedImage.jsx';
 import "./ExportsPage.css";
 
 export default function ExportsPage() {
@@ -32,7 +33,7 @@ export default function ExportsPage() {
                   </div>
 
                   <div className="export-hero-media">
-                    <img src={asset('exports-hero.png')} alt="Shipping containers at sunset" />
+                    <OptimizedImage src={asset('exports-hero.png')} alt="Shipping containers at sunset" sizes="(max-width: 999px) 100vw, 1284px" priority />
                     <div className="export-hero-gradient"></div>
                     <aside className="export-presence-card">
                       <h2>International Presence</h2>
@@ -59,7 +60,7 @@ export default function ExportsPage() {
                     </div>
 
                     <article className="export-contact-card">
-                      <img src={asset('exports-avatar.png')} alt="Shailesh Sardhara" />
+                      <OptimizedImage src={asset('exports-avatar.png')} alt="Shailesh Sardhara" sizes="120px" />
                       <div>
                         <h3>Shailesh Sardhara</h3>
                         <p>Export In-Charge</p>
@@ -77,10 +78,10 @@ export default function ExportsPage() {
 
                   <div className="export-story-media">
                     <figure className="export-wafers-card">
-                      <img src={asset('exports-wafers.png')} alt="Crispy banana wafers in a glass bowl" />
+                      <OptimizedImage src={asset('exports-wafers.png')} alt="Crispy banana wafers in a glass bowl" sizes="(max-width: 999px) 92vw, 480px" />
                       <figcaption>Premium Quality</figcaption>
                     </figure>
-                    <img className="export-factory-image" src={asset('exports-factory.png')} alt="Food manufacturing machinery" />
+                    <OptimizedImage className="export-factory-image" src={asset('exports-factory.png')} alt="Food manufacturing machinery" sizes="(max-width: 999px) 92vw, 480px" />
                   </div>
                 </div>
               </section>
@@ -190,7 +191,7 @@ export default function ExportsPage() {
                 <strong>10+</strong>
                 <small>Active States</small>
               </div>
-              <img src={asset('exports-map.png')} alt="India map showing Euro India Foods domestic footprint" />
+              <OptimizedImage src={asset('exports-map.png')} alt="India map showing Euro India Foods domestic footprint" sizes="(max-width: 999px) 100vw, 1100px" />
             </section>
     </>
   );

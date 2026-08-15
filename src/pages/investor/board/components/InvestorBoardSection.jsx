@@ -1,5 +1,6 @@
 import { boardCommittees, boardIntro, boardMembers } from "../board-content.js";
 import InvestorCommitteeTable from "./InvestorCommitteeTable.jsx";
+import OptimizedImage from "../../../../components/OptimizedImage.jsx";
 import "../BoardPage.css";
 
 function boardAsset(fileName) {
@@ -10,7 +11,7 @@ function BoardMemberCard({ member }) {
   return (
     <article className={`investor-board-member investor-board-member--${member.variant}`}>
       <div className="investor-board-member__photo-wrap">
-        <img className="investor-board-member__photo" src={boardAsset(member.image)} alt="" />
+        <OptimizedImage className="investor-board-member__photo" src={boardAsset(member.image)} alt="" sizes="(max-width: 999px) calc(2052 / 242 * 92vw), 2052px" />
       </div>
       <div className="investor-board-member__copy">
         <h3>{member.name}</h3>

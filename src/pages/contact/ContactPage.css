@@ -51,6 +51,7 @@
   /* Figma 1079:3308: opacity 0.03 */
   opacity: 0.03;
   background-image: url("./assets/contact-texture.png");
+  background-image: var(--image-contact-texture, url("./assets/contact-texture.png"));
   background-size: 341px 341px; /* 512 × 0.667 */
   background-position: top left;
 }

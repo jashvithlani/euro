@@ -16,6 +16,20 @@ export const investorDocuments = {
     "documentsByYear": {
       "2026-27": [
         {
+          "title": "Financial result for quarter ended on 30.06.2026",
+          "date": "June 30, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1782777600000,
+          "size": "1.4 MB",
+          "meta": "PDF • 1.4 MB",
+          "href": "/investor-pdfs/financial/2026-27/Financial%20result%20for%20quarter%20ended%20on%2030.06.2026.pdf",
+          "order": null,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
           "title": "Quarter and year ended on 31.03.2026",
           "date": "March 31, 2026",
           "calendarYear": 2026,
@@ -953,6 +967,7 @@ export const investorDocuments = {
   },
   "agm": {
     "years": [
+      "2026-27",
       "2025-26",
       "2024-25",
       "2023-24",
@@ -964,6 +979,64 @@ export const investorDocuments = {
       "2017-18"
     ],
     "documentsByYear": {
+      "2026-27": [
+        {
+          "title": "Euro India EOGM Notice",
+          "date": "2026-27",
+          "calendarYear": 2026,
+          "timestamp": 0,
+          "size": "1.1 MB",
+          "meta": "PDF • 1.1 MB",
+          "href": "/investor-pdfs/agm/2026-27/01.%20Euro_India_EOGM_Notice.pdf",
+          "order": 1,
+          "icon": "notice",
+          "tall": true,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "Euro India Fresh Foods Limited Corrigendum to Notice of EOGM to be held on 17.07.2026",
+          "date": "July 17, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1784246400000,
+          "size": "604 KB",
+          "meta": "PDF • 604 KB",
+          "href": "/investor-pdfs/agm/2026-27/02.%20Euro%20India%20Fresh%20Foods%20Limited_Corrigendum%20to%20Notice%20of%20EOGM%20to%20be%20held%20on%2017.07.2026.pdf",
+          "order": 2,
+          "icon": "notice",
+          "tall": true,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "Procedding of EOGM 17.07",
+          "date": "2026-27",
+          "calendarYear": 2026,
+          "timestamp": 0,
+          "size": "676 KB",
+          "meta": "PDF • 676 KB",
+          "href": "/investor-pdfs/agm/2026-27/03.%20Procedding%20of%20EOGM%2017.07.pdf",
+          "order": 3,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "Voting result EOGM held on 17 07 2026",
+          "date": "2026-27",
+          "calendarYear": 2026,
+          "timestamp": 1767225600000,
+          "size": "2.6 MB",
+          "meta": "PDF • 2.6 MB",
+          "href": "/investor-pdfs/agm/2026-27/04.%20Voting%20result%20EOGM%20held%20on%2017-07-2026.pdf",
+          "order": 4,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        }
+      ],
       "2025-26": [
         {
           "title": "02.09.2025 Newspaper Advertisement for 16th AGM Dt. 26.09.2025",
@@ -2307,6 +2380,7 @@ export const investorDocuments = {
   },
   "updates": {
     "years": [
+      "2026-27",
       "2025-26",
       "Year 2022",
       "Year 2021",
@@ -2314,6 +2388,36 @@ export const investorDocuments = {
       "Year 2019"
     ],
     "documentsByYear": {
+      "2026-27": [
+        {
+          "title": "PCS & PCA CERTIFICATE",
+          "date": "2026-27",
+          "calendarYear": 2026,
+          "timestamp": 0,
+          "size": "2.6 MB",
+          "meta": "PDF • 2.6 MB",
+          "href": "/investor-pdfs/updates/2026-27/PCS%20&%20PCA%20CERTIFICATE.pdf",
+          "order": null,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "PCS PCA Certificate Updated",
+          "date": "2026-27",
+          "calendarYear": 2026,
+          "timestamp": 0,
+          "size": "4.5 MB",
+          "meta": "PDF • 4.5 MB",
+          "href": "/investor-pdfs/updates/2026-27/PCS-PCA_%20Certificate_Updated.pdf",
+          "order": null,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        }
+      ],
       "2025-26": [
         {
           "title": "26.07.2025 Credit Rating",
@@ -2824,6 +2928,76 @@ export const investorDocuments = {
                 "meta": "PDF • 2.3 MB",
                 "href": "/investor-pdfs/announcements/2026-27/board-meetings/02-Outcome-of-Board-Meeting-27.05.2026.pdf",
                 "order": 2,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting preferntial issue 19.06.2026",
+                "date": "June 19, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1781827200000,
+                "size": "744 KB",
+                "meta": "PDF • 744 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/03.%20Outcome%20of%20Board%20Meeting%20preferntial%20issue%2019.06.2026.pdf",
+                "order": 3,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting preferntial issue 09.07.2026",
+                "date": "July 9, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1783555200000,
+                "size": "773 KB",
+                "meta": "PDF • 773 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/04.%20Outcome%20of%20Board%20Meeting%20preferntial%20issue%2009.07.2026.pdf",
+                "order": 4,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting NSE Intimation allotment of convertible warrants 07.08.2026",
+                "date": "August 7, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1786060800000,
+                "size": "664 KB",
+                "meta": "PDF • 664 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/05.%20Outcome%20of%20Board%20Meeting%20NSE%20Intimation%20allotment%20of%20convertible%20warrants%2007.08.2026.pdf",
+                "order": 5,
+                "icon": "report",
+                "tall": false,
+                "badge": "NSE FILING",
+                "badgeTone": "regulation"
+              },
+              {
+                "title": "Intimation of Board Meeting dated 12.08.2026",
+                "date": "August 12, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1786492800000,
+                "size": "658 KB",
+                "meta": "PDF • 658 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/06.%20Intimation%20of%20Board%20Meeting%20dated%2012.08.2026.pdf",
+                "order": 6,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting financial result 12.08.2026",
+                "date": "August 12, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1786492800000,
+                "size": "2.1 MB",
+                "meta": "PDF • 2.1 MB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/07.%20Outcome%20of%20Board%20Meeting%20financial%20result%2012.08.2026.pdf",
+                "order": 7,
                 "icon": "report",
                 "tall": false,
                 "badge": "UPDATE",

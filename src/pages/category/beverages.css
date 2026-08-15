@@ -54,6 +54,7 @@
 .category-main--beverages .category-promo--beverages-compact a,
 .category-main--beverages .category-feature--beverages-wide,
 .category-main--beverages .category-feature--beverages-wide > img,
+.category-main--beverages .category-feature--beverages-wide > picture > img,
 .category-main--beverages .category-feature--beverages-wide a,
 .category-main--beverages .category-feature-arrow,
 .category-main--beverages .category-newsletter--beverages-compact input,
@@ -98,7 +99,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--beverages .category-feature--beverages-wide:hover > img {
+.category-main--beverages .category-feature--beverages-wide:hover > img,
+.category-main--beverages .category-feature--beverages-wide:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;
@@ -220,29 +222,19 @@
   object-fit: contain;
 }
 
-/* Mobile-only product art — hidden on desktop. */
-.category-main--beverages .category-product-img--mobile,
-.category-main--beverages .category-feature-img--mobile {
-  display: none;
-}
-
 @media (max-width: 999px) {
-  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--mobile) {
+  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--responsive) {
     align-items: center;
   }
 
-  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--mobile) .category-product-title,
-  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--mobile) .category-product-badge,
-  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--mobile) .category-product-subtitle {
+  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--responsive) .category-product-title,
+  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--responsive) .category-product-badge,
+  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--responsive) .category-product-subtitle {
     align-self: stretch;
     width: 100%;
   }
 
-  .category-page .category-main--beverages .category-product-card--product:has(.category-product-img--mobile) .category-product-img--desktop {
-    display: none !important;
-  }
-
-  .category-page .category-main--beverages .category-product-card--product .category-product-img--mobile {
+  .category-page .category-main--beverages .category-product-card--product .category-product-img--responsive {
     display: block !important;
     position: relative !important;
     top: auto !important;
@@ -260,11 +252,7 @@
     transform: none !important;
   }
 
-  .category-page .category-main--beverages .category-feature--beverages-wide:has(.category-feature-img--mobile) .category-feature-img--desktop {
-    display: none !important;
-  }
-
-  .category-page .category-main--beverages .category-feature--beverages-wide .category-feature-img--mobile {
+  .category-page .category-main--beverages .category-feature--beverages-wide .category-feature-img--responsive {
     display: block !important;
     position: relative !important;
     top: auto !important;

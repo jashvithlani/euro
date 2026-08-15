@@ -1,4 +1,5 @@
 import { asset } from "./asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 export const moodCategoryVariants = ["chips", "juice", "namkeen", "basket"];
 
@@ -33,7 +34,7 @@ export function MoodCategoryCard({ variant }) {
             salty, iconic.
           </small>
         </div>
-        <img src={asset("category-chips.png")} alt="Classic chips flavors" />
+        <OptimizedImage src={asset("hero-products.png")} alt="Classic chips flavors" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
       </article>
     );
   }
@@ -42,7 +43,7 @@ export function MoodCategoryCard({ variant }) {
     return (
       <article className="category-card card-juice">
         <span>Juices</span>
-        <img src={asset("category-juices.png")} alt="Euro juices" />
+        <OptimizedImage src={asset("category-juices.png")} alt="Euro juices" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
       </article>
     );
   }
@@ -51,14 +52,14 @@ export function MoodCategoryCard({ variant }) {
     return (
       <article className="category-card card-namkeen">
         <span>Namkeen</span>
-        <img src={asset("category-namkeen.png")} alt="Euro namkeen pack" />
+        <OptimizedImage src={asset("category-namkeen.png")} alt="Euro namkeen pack" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
       </article>
     );
   }
 
   return (
     <article className="category-card card-basket">
-      <img src={asset("category-bundle.png")} alt="Euro sweet memories box" />
+      <OptimizedImage src={asset("category-bundle.png")} alt="Euro sweet memories box" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
       <div>
         <h3>
           Can&apos;t decide?

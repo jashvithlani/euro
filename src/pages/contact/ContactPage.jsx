@@ -1,5 +1,6 @@
 import "./ContactPage.css";
 import EuroMoments from "../../components/EuroMoments.jsx";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 import { asset } from './asset.js';
 
 const contactCards = [
@@ -74,7 +75,7 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="contact-hero-card" aria-hidden="true">
-            <img src={asset('contact-hero.jpeg')} alt="" />
+            <OptimizedImage src={asset('contact-hero.jpeg')} alt="" sizes="(max-width: 999px) 92vw, 460px" priority />
           </div>
         </div>
       </section>
@@ -136,7 +137,7 @@ export default function ContactPage() {
         <h2 id="contact-map-title" className="contact-visually-hidden">
           Our locations
         </h2>
-        <img className="contact-map-image" src={asset('contact-map.png')} alt="" />
+        <OptimizedImage className="contact-map-image" src={asset('contact-map.png')} alt="" sizes="(max-width: 999px) 100vw, 1100px" />
         <div className="contact-map-actions" aria-label="Location shortcuts">
           <a className="contact-map-action contact-map-action--ghost" href="#distributor">Become a Distributor</a>
           <a className="contact-map-action contact-map-action--solid" href="#contact-form-title">Business Inquiry</a>

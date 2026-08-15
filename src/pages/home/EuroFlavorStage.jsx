@@ -10,6 +10,7 @@ import "./EuroFlavorStage.css";
 
 import { asset as homeAsset } from "./asset.js";
 import { asset as categoryAsset } from "../category/asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 const flavorScenes = [
   {
@@ -32,7 +33,7 @@ const flavorScenes = [
     id: "chips",
     eyebrow: "Chips",
     title: "Cool crunch, impossible to pause.",
-    description: "Creamy onion flavor with a fresh green snap in every bite.",
+    description: "Creamy onion flavour with a savoury crunch in every bite.",
     product: {
       src: categoryAsset("category-chips-wide-hero-onion.png"),
       alt: "Euro Cream and Onion chips pack",
@@ -61,7 +62,7 @@ const flavorScenes = [
   {
     id: "namkeen",
     eyebrow: "Namkeen",
-    title: "Classic cravings, freshly made.",
+    title: "The Classic Crunch You Crave.",
     description: "Traditional Indian snacking with a modern Euro twist.",
     product: {
       src: categoryAsset("category-namkeen-royal-peanuts.png"),
@@ -77,7 +78,7 @@ const flavorScenes = [
     id: "beverages",
     eyebrow: "Beverages",
     title: "Sip the sunshine.",
-    description: "A bright mango refreshment that keeps the snack moment going.",
+    description: "A juicy mango taste that makes every sip delightful.",
     product: {
       src: categoryAsset("category-beverage-fig-mango.png"),
       alt: "Euro Fresho Mango beverage bottle",
@@ -591,7 +592,7 @@ function ProductWall({ opacity, isActive }) {
             style={{ "--wall-delay": `${index * 38}ms` }}
             data-cursor="product"
           >
-            <img src={product.src} alt={product.alt} loading="lazy" />
+            <OptimizedImage src={product.src} alt={product.alt} loading="lazy" sizes="(max-width: 480px) 45vw, (max-width: 999px) 30vw, 240px" />
             <span>{product.label}</span>
           </article>
         ))}
@@ -884,7 +885,7 @@ function MobileFlavorStory() {
                 <h3>{scene.title}</h3>
                 <p>{scene.description}</p>
               </div>
-              <img src={scene.product.src} alt={scene.product.alt} loading={scene.id === "intro" ? "eager" : "lazy"} />
+              <OptimizedImage src={scene.product.src} alt={scene.product.alt} loading="lazy" sizes="(max-width: 480px) 80vw, (max-width: 999px) 60vw, 420px" />
             </article>
           ))}
 
@@ -908,7 +909,7 @@ function MobileFlavorStory() {
             </div>
             <div className="euro-flavor-stage__mobile-wall">
               {productWall.map((product) => (
-                <img src={product.src} alt={product.alt} key={product.label} loading="lazy" />
+                <OptimizedImage src={product.src} alt={product.alt} key={product.label} loading="lazy" sizes="(max-width: 480px) 30vw, 140px" />
               ))}
             </div>
           </article>
@@ -1029,11 +1030,12 @@ export default function EuroFlavorStage() {
                 <span className="euro-flavor-stage__product-pointer-layer">
                   <span className="euro-flavor-stage__product-ambient-layer">
                     <span className="euro-flavor-stage__product-shine" aria-hidden="true" />
-                    <img
+                    <OptimizedImage
                       className="euro-flavor-stage__product"
                       src={scene.product.src}
                       alt={scene.product.alt}
-                      loading={index < 2 ? "eager" : "lazy"}
+                      loading="lazy"
+                      sizes="(max-width: 999px) 60vw, 520px"
                     />
                   </span>
                 </span>

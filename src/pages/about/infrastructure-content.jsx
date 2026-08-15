@@ -28,14 +28,6 @@ export const infrastructureItems = [
     ),
   },
   {
-    id: "pulp-line",
-    image: "about-infra-pulp-line.jpeg",
-    alt: "Pulp line production",
-    title: "Pulp Line",
-    description:
-      "Our dedicated pulp processing line turns quality fruit into smooth, consistent pulp for beverages and allied products — built for scale, hygiene, and dependable supply across seasons.",
-  },
-  {
     id: "solar",
     image: "about-infra-solar.webp",
     alt: "Solar power generation",

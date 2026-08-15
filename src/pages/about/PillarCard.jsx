@@ -1,5 +1,6 @@
 import { asset } from "./asset.js";
 import { pillarBackgroundVideo } from "./pillars-content.jsx";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 export function PillarsSectionHeading() {
   return (
@@ -25,7 +26,7 @@ export function PillarCard({ pillar }) {
         <source src={pillarBackgroundVideo} type="video/mp4" />
       </video>
       <div className="pillar-icon">
-        <img className={pillar.iconClass} src={asset(pillar.icon)} alt="" />
+        <OptimizedImage className={pillar.iconClass} src={asset(pillar.icon)} alt="" sizes="96px" />
       </div>
       <h3>{pillar.title}</h3>
       <p>{pillar.copy}</p>

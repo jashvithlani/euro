@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { sharedAsset } from '../shared/asset.js';
+import OptimizedImage from '../components/OptimizedImage.jsx';
+import { CATEGORY_PRODUCT_SHOP_URL } from '../pages/category/CategoryProductShopButton.jsx';
 
 const footerLinks = [
   { key: "home", label: "Home", href: "/" },
@@ -29,8 +31,8 @@ const supportItems = [
   },
   {
     icon: sharedAsset('exports-icon-mail.svg'),
-    label: "hello@euroindia.com",
-    href: "mailto:hello@euroindia.com",
+    label: "info@euroindiafoods.com",
+    href: "mailto:info@euroindiafoods.com",
   },
 ];
 
@@ -50,7 +52,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-primary">
           <div className="footer-about">
-            <img src={sharedAsset("logo-footer.png")} alt="Euro India Foods" />
+            <OptimizedImage src={sharedAsset("logo-footer.png")} alt="Euro India Foods" sizes="200px" />
             <p>Elevating India&apos;s snack culture through quality, innovation, and authentic flavor stories.</p>
           </div>
 
@@ -84,14 +86,22 @@ export default function Footer() {
             <h2>Certificates</h2>
             <div className="footer-certificate-strip">
               {certificateLogos.map((logo) => (
-                <img key={logo.src} src={logo.src} alt={logo.alt} />
+                <OptimizedImage key={logo.src} src={logo.src} alt={logo.alt} sizes="120px" />
               ))}
             </div>
           </div>
 
           <div className="footer-availability">
             <span>Also available on</span>
-            <img src={sharedAsset("footer-amazon.png")} alt="Amazon" />
+            <a
+              className="footer-availability-link"
+              href={CATEGORY_PRODUCT_SHOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Shop Euro India Foods on Amazon"
+            >
+              <OptimizedImage src={sharedAsset("footer-amazon.png")} alt="Amazon" sizes="140px" />
+            </a>
           </div>
         </div>
       </div>
@@ -102,7 +112,7 @@ export default function Footer() {
           Designed by{" "}
           <a href="https://incusedigital.com/" target="_blank" rel="noopener noreferrer">
             Incuse Digital
-            <img src={sharedAsset("incuse-favicon.png")} alt="" />
+            <OptimizedImage src={sharedAsset("incuse-favicon.png")} alt="" sizes="24px" />
           </a>
         </p>
       </div>

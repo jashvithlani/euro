@@ -152,7 +152,8 @@
   will-change: opacity;
 }
 
-.category-main--khakhra .khakhra-orbit-pack > img {
+.category-main--khakhra .khakhra-orbit-pack > img,
+.category-main--khakhra .khakhra-orbit-pack > picture > img {
   position: absolute;
   max-width: none;
   pointer-events: none;
@@ -266,6 +267,7 @@
 .category-main--khakhra .category-promo--khakhra a,
 .category-main--khakhra .category-feature--khakhra-wide,
 .category-main--khakhra .category-feature--khakhra-wide > img,
+.category-main--khakhra .category-feature--khakhra-wide > picture > img,
 .category-main--khakhra .category-feature--khakhra-wide a,
 .category-main--khakhra .category-feature-arrow,
 .category-main--khakhra .category-newsletter--khakhra-compact input,
@@ -308,7 +310,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--khakhra .category-feature--khakhra-wide:hover > img {
+.category-main--khakhra .category-feature--khakhra-wide:hover > img,
+.category-main--khakhra .category-feature--khakhra-wide:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;

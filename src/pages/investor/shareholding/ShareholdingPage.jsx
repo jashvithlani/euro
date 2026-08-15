@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useInvestorDynamicHeight } from "../components/useInvestorDynamicHeight.js";
 import { useScrollActiveTabIntoView } from "../components/useScrollActiveTabIntoView.js";
 import { asset } from "./asset.js";
+import OptimizedImage from "../../../components/OptimizedImage.jsx";
 import { shareholdingDocumentsByYear, shareholdingYears } from "./shareholding-data.js";
 import "./ShareholdingPage.css";
 
@@ -98,7 +99,7 @@ export default function ShareholdingPage() {
             </div>
             <div className="investor-shareholding__promo-visual" aria-hidden="true">
               <div className="investor-shareholding__promo-photo">
-                <img src={asset("shareholding-promo-photo.png")} alt="" />
+                <OptimizedImage src={asset("shareholding-promo-photo.png")} alt="" sizes="(max-width: 999px) 92vw, 420px" />
               </div>
             </div>
             <span className="investor-shareholding__promo-glow" aria-hidden="true" />

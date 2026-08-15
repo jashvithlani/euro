@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 const FORM_RECIPIENTS = [
-    'career' => 'jashvithlani56@gmail.com',
-    'contact' => 'jashvithlani56@gmail.com',
-    'dealers' => 'jashvithlani56@gmail.com',
-    'exports' => 'jashvithlani56@gmail.com',
+    'career' => 'careers@euroindiafoods.com',
+    'contact' => 'enquiry@euroindiafoods.com',
+    'dealers' => 'enquiry@euroindiafoods.com',
+    'exports' => 'enquiry@euroindiafoods.com',
 ];

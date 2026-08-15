@@ -127,6 +127,7 @@
 .category-main--getmore .category-promo--getmore-compact a,
 .category-main--getmore .category-feature--getmore-wide,
 .category-main--getmore .category-feature--getmore-wide > img,
+.category-main--getmore .category-feature--getmore-wide > picture > img,
 .category-main--getmore .category-feature--getmore-wide a,
 .category-main--getmore .category-feature-arrow,
 .category-main--getmore .category-newsletter--getmore-compact input,
@@ -169,7 +170,8 @@
   box-shadow: 0 30px 56px -24px rgba(206, 6, 3, 0.4);
 }
 
-.category-main--getmore .category-feature--getmore-wide:hover > img {
+.category-main--getmore .category-feature--getmore-wide:hover > img,
+.category-main--getmore .category-feature--getmore-wide:hover > picture > img {
   translate: 0 -8px;
   scale: 1.04;
   rotate: -3deg;

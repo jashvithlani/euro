@@ -1,4 +1,5 @@
 import { asset } from "../asset.js";
+import OptimizedImage from "../../../components/OptimizedImage.jsx";
 
 export default function InvestorHero() {
   return (
@@ -14,10 +15,12 @@ export default function InvestorHero() {
       </div>
 
       <div className="investor-hero-media">
-        <img
+        <OptimizedImage
           className="investor-hero-photo"
           src={asset("investor-hero-photo.jpeg")}
           alt="Corporate team reviewing market performance"
+          sizes="(max-width: 999px) 92vw, 560px"
+          priority
         />
 
         <div className="investor-hero-ticker">

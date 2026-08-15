@@ -1,4 +1,5 @@
 import { asset } from "./asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 export function InfrastructureSectionHeading() {
   return (
@@ -14,7 +15,7 @@ export function InfrastructureSectionHeading() {
 export function InfrastructureCard({ item }) {
   return (
     <article className={`infra-card${item.large ? " infra-large" : ""}`}>
-      <img src={asset(item.image)} alt={item.alt} />
+      <OptimizedImage src={asset(item.image)} alt={item.alt} sizes="(max-width: 999px) 92vw, 460px" />
       <div>
         <h3>{item.title}</h3>
         <p>{item.description}</p>

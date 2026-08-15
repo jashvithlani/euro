@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./AchievementsPage.css";
 import { asset } from "./asset.js";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 const stats = [
   { value: "4+", label: "National Awards" },
@@ -26,9 +27,9 @@ const recognitions = [
     id: "excellence-2011",
     ghost: "2011",
     kicker: "Industry Recognition",
-    title: "EXCELLENCE Awards",
+    title: "Excellence Awards",
     label: "VCCI Leaders Summit",
-    heading: "EXCELLENCE AWARDS - 2011",
+    heading: "Excellence Awards - 2011",
     description:
       "Honoured at the VCCI Leaders Summit for business excellence and sustained leadership in Gujarat's food manufacturing sector.",
     presented: "Presented by · VCCI Leaders Summit",
@@ -41,7 +42,7 @@ const recognitions = [
     kicker: "Quality Recognition",
     title: "Best Quality Choice",
     label: "ESQR Quality Choice Prize",
-    heading: "BEST QUALITY CHOICE - 2014",
+    heading: "Best Quality Choice - 2014",
     description:
       "Awarded the ESQR Quality Choice Prize for consistent product quality, process discipline, and international manufacturing standards.",
     presented: "Presented by · ESQR",
@@ -54,7 +55,7 @@ const recognitions = [
     kicker: "Global Recognition",
     title: "National Star for Quality",
     label: "International Star for Quality",
-    heading: "NATIONAL STAR FOR QUALITY",
+    heading: "National Star for Quality",
     description:
       "Recognised with the International Star for Quality for maintaining excellence across production, packaging, and consumer trust.",
     presented: "Presented by · International Star for Quality",
@@ -67,7 +68,7 @@ function RecognitionMedia({ recognition }) {
   return (
     <div className="achievements-featured-media">
       <div className="achievements-featured-shadow" aria-hidden="true"></div>
-      <img src={recognition.image} alt={recognition.imageAlt} />
+      <OptimizedImage src={recognition.image} alt={recognition.imageAlt} sizes="(max-width: 999px) 92vw, 560px" />
     </div>
   );
 }
@@ -77,14 +78,14 @@ export default function AchievementsPage() {
     <main className="achievements-main" aria-labelledby="achievements-title">
       <section className="achievements-hero" aria-labelledby="achievements-title">
         <div className="achievements-hero-texture" aria-hidden="true">
-          <img src={asset("achievements-hero-texture.png")} alt="" />
+          <OptimizedImage src={asset("achievements-hero-texture.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
         </div>
         <p className="achievements-hero-kicker">Recognition &amp; Honours</p>
         <h1 id="achievements-title">A Legacy of Excellence</h1>
       </section>
 
       <section className="achievements-stats" aria-label="Achievement statistics">
-        <img className="achievements-stats-texture" src={asset("achievements-stats-texture.png")} alt="" aria-hidden="true" />
+        <OptimizedImage className="achievements-stats-texture" src={asset("achievements-stats-texture.png")} alt="" aria-hidden="true" sizes="(max-width: 999px) 100vw, 1100px" />
         <div className="achievements-stats-list">
           {stats.map((stat) => (
             <div className="achievements-stat" key={stat.label}>

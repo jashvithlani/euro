@@ -221,7 +221,8 @@
     height: 200px !important;
   }
 
-  .category-page .category-product-img-frame > img {
+  .category-page .category-product-img-frame > img,
+  .category-page .category-product-img-frame > picture > img {
     position: absolute !important;
     max-width: none !important;
   }
@@ -343,7 +344,8 @@
     height: 250px !important;
   }
 
-  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame > img {
+  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame > img,
+  .category-page .category-main--beverages .category-product-card--product .category-product-img-frame > picture > img {
     position: relative !important;
     width: 100% !important;
     height: auto !important;
@@ -451,7 +453,8 @@
     line-height: 1.4;
   }
 
-  .category-page .category-feature > img {
+  .category-page .category-feature > img,
+  .category-page .category-feature > picture > img {
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -515,7 +518,8 @@
     border-radius: 32px;
   }
 
-  .category-page .category-spotlight-card > img:not(.category-spotlight-ring) {
+  .category-page .category-spotlight-card > img:not(.category-spotlight-ring),
+  .category-page .category-spotlight-card > picture > img:not(.category-spotlight-ring) {
     width: 150px;
     height: 170px;
   }

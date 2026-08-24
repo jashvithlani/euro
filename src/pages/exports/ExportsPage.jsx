@@ -1,6 +1,7 @@
 import { asset } from './asset.js';
 import { sharedAsset } from '../../shared/asset.js';
 import OptimizedImage from '../../components/OptimizedImage.jsx';
+import ExportMapJourney from './ExportMapJourney.jsx';
 import "./ExportsPage.css";
 
 export default function ExportsPage() {
@@ -12,7 +13,9 @@ export default function ExportsPage() {
   return (
     <>
             <main className="exports-main">
-              <section className="export-hero">
+              <ExportMapJourney />
+
+              <section className="export-hero export-hero--secondary">
                 <div className="export-hero-grid">
                   <div className="export-hero-copy">
                     <span className="export-pill">Global Reach</span>

@@ -37,7 +37,7 @@ export const infrastructureItems = [
   },
   {
     id: "etp",
-    image: "about-infra-etp.jpeg",
+    image: "about-infra-etp.png",
     alt: "Effluent treatment plant",
     title: "Effluent Treatment Plant (ETP) - Zero Liquid Discharge",
     description:
@@ -45,7 +45,7 @@ export const infrastructureItems = [
   },
   {
     id: "biogas",
-    image: "about-infra-biogas.jpeg",
+    image: "about-infra-biogas.png",
     alt: "Bio gas plant",
     title: "Bio-Gas Plant - Agro Waste to Energy",
     description:

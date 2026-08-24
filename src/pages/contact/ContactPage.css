@@ -465,6 +465,12 @@
   bottom: 28px;
 }
 
+.contact-map-card--plant-surat {
+  /* Replaces the former map pin at top 192.67 / left 570.67 */
+  top: 118px;
+  left: 476.67px;
+}
+
 .contact-map-card h3 {
   /* Figma 1079:3397/3404: bold 16/24 #4e281f */
   margin: 0;
@@ -493,19 +499,6 @@
   font-size: 9.33px;
   font-weight: 700;
   line-height: 13.33px;
-}
-
-.contact-map-pin {
-  /* Figma 1079:3391/3392: 62 × 62 outer halo bg #be004b op 0.2, inner 38 × 38 white-bordered pin */
-  position: absolute;
-  top: 192.67px;
-  left: 570.67px;
-  width: 25.33px;
-  height: 25.33px;
-  border: 2.67px solid #ffffff;
-  border-radius: 50%;
-  background: #be004b;
-  box-shadow: 0 0 0 8px rgba(190, 0, 75, 0.2);
 }
 
 /* ----- Partner band (Figma 1079:3408) --------------------------- */
@@ -661,6 +654,12 @@
       animation: contact-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% entry 45%;
+    }
+
+    .contact-main .contact-map-card--plant-surat {
+      animation: contact-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 4% entry 49%;
     }
 
     .contact-main .contact-form-panel,

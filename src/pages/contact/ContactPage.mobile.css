@@ -229,10 +229,6 @@
     margin-top: 8px;
   }
 
-  .contact-page .contact-map-pin {
-    display: none;
-  }
-
   .contact-page .contact-partner {
     width: calc(100% - 40px);
     height: auto;

@@ -14,7 +14,7 @@ export function InfrastructureSectionHeading() {
 
 export function InfrastructureCard({ item }) {
   return (
-    <article className={`infra-card${item.large ? " infra-large" : ""}`}>
+    <article className={`infra-card${item.large ? " infra-large" : ""} infra-card--${item.id}`}>
       <OptimizedImage src={asset(item.image)} alt={item.alt} sizes="(max-width: 999px) 92vw, 460px" />
       <div>
         <h3>{item.title}</h3>

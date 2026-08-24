@@ -159,7 +159,20 @@ export default function ContactPage() {
             Get Directions →
           </a>
         </article>
-        <span className="contact-map-pin" aria-hidden="true"></span>
+        <article className="contact-map-card contact-map-card--plant-surat">
+          <h3>Manufacturing Plant - 1</h3>
+          <p>
+            Plot No. A-22/1, Ichchhapore G.I.D.C. Hazira Magdalla Road, Tal –Choryasi,
+            Surat, Gujarat 394510
+          </p>
+          <a
+            href="https://maps.google.com/?q=Plot%20No.%20A-22/1%2C%20Ichchhapore%20GIDC%20Hazira%20Magdalla%20Road%2C%20Choryasi%2C%20Surat%2C%20Gujarat%20394510"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Directions →
+          </a>
+        </article>
       </section>
 
       <section className="contact-partner" id="distributor">

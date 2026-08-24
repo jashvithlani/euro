@@ -1,5 +1,250 @@
 @import "./ExportsPage.mobile.css";
 
+.world-map-canvas-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.export-map-journey {
+  --journey-color: var(--color-accent);
+  --journey-progress: 0;
+  position: relative;
+  width: 100%;
+  background: #fbf9f4;
+}
+
+.export-map-journey__sticky {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: var(--journey-viewport-height, 720px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 53% 38%, rgba(183, 129, 45, 0.09), transparent 38%),
+    radial-gradient(circle at 25% 62%, rgba(45, 79, 130, 0.055), transparent 34%),
+    linear-gradient(180deg, #fdfcf9 0%, #f8f5ee 100%);
+}
+
+.export-map-journey__map-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.export-map-journey .export-map-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  flex: 0 0 auto;
+}
+
+.export-map-journey__story {
+  position: absolute;
+  z-index: 4;
+  top: 68%;
+  left: 34px;
+  width: 370px;
+  min-height: 190px;
+  overflow: hidden;
+  translate: 0 -50%;
+  border: 1px solid color-mix(in srgb, var(--journey-color) 34%, transparent);
+  border-radius: 24px;
+  padding: 25px 26px 22px 30px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--journey-surface) 88%, white), rgba(253, 251, 247, 0.92));
+  box-shadow: 0 26px 68px rgba(24, 38, 59, 0.17);
+  backdrop-filter: blur(20px) saturate(135%);
+  transition: border-color 0.45s ease, background 0.45s ease, box-shadow 0.45s ease;
+}
+
+.export-map-journey__story::before {
+  position: absolute;
+  top: 25px;
+  bottom: 25px;
+  left: 0;
+  width: 5px;
+  border-radius: 0 999px 999px 0;
+  background: var(--journey-color);
+  content: "";
+  transition: background 0.45s ease;
+}
+
+.export-map-journey__counter {
+  color: var(--journey-color);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: color 0.45s ease;
+}
+
+.export-map-journey__copy {
+  margin-top: 13px;
+  animation: export-journey-copy-in 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.export-map-journey__copy span {
+  display: block;
+  color: #657084;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.export-map-journey__copy strong {
+  display: block;
+  margin-top: 7px;
+  color: #202d41;
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  line-height: 1.08;
+}
+
+.export-map-journey__copy p {
+  max-width: 306px;
+  margin: 10px 0 0;
+  color: #657084;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.export-map-journey__progress {
+  height: 2px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(45, 63, 88, 0.11);
+}
+
+.export-map-journey__progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a94b6b, var(--journey-color));
+  transform: scaleX(var(--journey-progress));
+  transform-origin: left center;
+}
+
+.export-map-journey__hint {
+  position: absolute;
+  z-index: 3;
+  right: 30px;
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(32, 45, 65, 0.58);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  opacity: clamp(0, calc(1 - var(--journey-progress) * 10), 1);
+}
+
+.export-map-journey__hint span {
+  position: relative;
+  width: 15px;
+  height: 23px;
+  border: 1px solid rgba(32, 45, 65, 0.35);
+  border-radius: 999px;
+}
+
+.export-map-journey__hint span::after {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 2px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  content: "";
+  translate: -50% 0;
+  animation: export-journey-scroll-hint 1.6s ease-in-out infinite;
+}
+
+.export-map-journey[data-reduced-motion="true"] {
+  height: auto;
+}
+
+.export-map-journey[data-reduced-motion="true"] .export-map-journey__sticky {
+  position: relative;
+}
+
+@keyframes export-journey-copy-in {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes export-journey-scroll-hint {
+  0%, 100% { opacity: 0.35; translate: -50% 0; }
+  50% { opacity: 1; translate: -50% 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .export-map-journey__copy,
+  .export-map-journey__hint span::after {
+    animation: none;
+  }
+}
+
+.export-hero--secondary {
+  height: 496.67px;
+  padding-top: 42px;
+}
+
+.world-map-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  image-rendering: auto;
+}
+
+.world-map-tooltip {
+  position: absolute;
+  z-index: 2;
+  translate: -50% -100%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: var(--world-map-tooltip-color, var(--color-accent));
+  color: #20352b;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 9px 24px rgba(20, 34, 55, 0.18);
+  pointer-events: none;
+}
+
+.world-map-error {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  translate: -50% -50%;
+  margin: 0;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
 /* =====================================================================
  * Exports page motion layer — scoped to .exports-main. CSS-only.
  * ===================================================================== */

@@ -1,7 +1,15 @@
+import { Link } from "react-router-dom";
 import { asset } from "./asset.js";
 import OptimizedImage from "../../components/OptimizedImage.jsx";
 
 export const moodCategoryVariants = ["chips", "juice", "namkeen", "basket"];
+
+const moodCategoryHrefs = {
+  chips: "/chips",
+  juice: "/beverages",
+  namkeen: "/namkeen",
+  basket: "/getmore",
+};
 
 export function MoodSectionHeading() {
   return (
@@ -23,7 +31,7 @@ export function MoodDealershipCta() {
 export function MoodCategoryCard({ variant }) {
   if (variant === "chips") {
     return (
-      <article className="category-card card-chips">
+      <Link className="category-card card-chips" to={moodCategoryHrefs.chips}>
         <div>
           <span>Classic Chips</span>
           <small>
@@ -35,30 +43,30 @@ export function MoodCategoryCard({ variant }) {
           </small>
         </div>
         <OptimizedImage src={asset("hero-products.png")} alt="Classic chips flavors" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
-      </article>
+      </Link>
     );
   }
 
   if (variant === "juice") {
     return (
-      <article className="category-card card-juice">
+      <Link className="category-card card-juice" to={moodCategoryHrefs.juice}>
         <span>Juices</span>
         <OptimizedImage src={asset("category-juices.png")} alt="Euro juices" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
-      </article>
+      </Link>
     );
   }
 
   if (variant === "namkeen") {
     return (
-      <article className="category-card card-namkeen">
+      <Link className="category-card card-namkeen" to={moodCategoryHrefs.namkeen}>
         <span>Namkeen</span>
         <OptimizedImage src={asset("category-namkeen.png")} alt="Euro namkeen pack" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
-      </article>
+      </Link>
     );
   }
 
   return (
-    <article className="category-card card-basket">
+    <Link className="category-card card-basket" to={moodCategoryHrefs.basket}>
       <OptimizedImage src={asset("category-bundle.png")} alt="Euro sweet memories box" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
       <div>
         <h3>
@@ -67,6 +75,6 @@ export function MoodCategoryCard({ variant }) {
           Try our Mix-It-Up Boxes.
         </h3>
       </div>
-    </article>
+    </Link>
   );
 }

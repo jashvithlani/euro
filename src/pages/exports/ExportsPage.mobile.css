@@ -1,6 +1,42 @@
 /* Exports page mobile — desktop in public/styles.css; shell in MobileShell.css */
 
 @media (max-width: 999px) {
+  .exports-page .export-map-journey__map-stage {
+    inset: 0;
+  }
+
+  .exports-page .export-map-journey .export-map-hero-canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  .exports-page .export-map-journey__story {
+    top: auto;
+    right: 16px;
+    bottom: 18px;
+    left: 16px;
+    width: auto;
+    min-height: 136px;
+    translate: 0 0;
+    border-radius: 18px;
+    padding: 16px 17px 14px;
+  }
+
+  .exports-page .export-map-journey__copy strong {
+    font-size: 20px;
+  }
+
+  .exports-page .export-map-journey__copy p {
+    max-width: none;
+    font-size: 11px;
+  }
+
+  .exports-page .export-map-journey__hint {
+    top: 88px;
+    right: 16px;
+    bottom: auto;
+  }
+
   .exports-page .export-hero {
     height: auto !important;
     padding: 32px 20px 40px;

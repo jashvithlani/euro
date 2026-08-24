@@ -560,6 +560,9 @@ textarea {
   border-radius: 30px;
   background: var(--color-white);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .category-card span {
@@ -2665,6 +2668,13 @@ textarea {
 
 .infra-card:nth-child(n + 3) img {
   object-position: center 42%;
+}
+
+.infra-card.infra-card--etp img,
+.infra-card.infra-card--etp picture > img,
+.infra-card.infra-card--biogas img,
+.infra-card.infra-card--biogas picture > img {
+  object-position: center;
 }
 
 .infra-card div {

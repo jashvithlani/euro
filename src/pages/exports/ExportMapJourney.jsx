@@ -1,77 +1,78 @@
 import React from "react";
 import WorldMapCanvas from "./WorldMapCanvas.jsx";
+import { EXPORT_JOURNEY_PALETTE } from "./export-map-palette.js";
 
 const JOURNEY_STEPS = [
   {
     kicker: "Origin",
     title: "India",
     description: "Every route begins at home.",
-    color: "#a94b6b",
-    surface: "#f8dce4",
+    color: EXPORT_JOURNEY_PALETTE[0].color,
+    surface: EXPORT_JOURNEY_PALETTE[0].surface,
     start: 0,
   },
   {
     kicker: "North America",
     title: "United States of America",
     description: "Carrying familiar Indian flavours across the Atlantic.",
-    color: "#517da2",
-    surface: "#dcecf7",
+    color: EXPORT_JOURNEY_PALETTE[1].color,
+    surface: EXPORT_JOURNEY_PALETTE[1].surface,
     start: 0.07,
   },
   {
     kicker: "Europe",
     title: "United Kingdom",
     description: "A growing presence in one of our key international markets.",
-    color: "#76588d",
-    surface: "#eadff3",
+    color: EXPORT_JOURNEY_PALETTE[2].color,
+    surface: EXPORT_JOURNEY_PALETTE[2].surface,
     start: 0.18,
   },
   {
     kicker: "Oceania",
     title: "Australia",
     description: "Reaching shelves and communities across Australia.",
-    color: "#a75f82",
-    surface: "#f5dfeb",
+    color: EXPORT_JOURNEY_PALETTE[3].color,
+    surface: EXPORT_JOURNEY_PALETTE[3].surface,
     start: 0.29,
   },
   {
     kicker: "Oceania",
     title: "New Zealand",
     description: "Extending our footprint to the edge of the Pacific.",
-    color: "#4c887f",
-    surface: "#dcefe9",
+    color: EXPORT_JOURNEY_PALETTE[4].color,
+    surface: EXPORT_JOURNEY_PALETTE[4].surface,
     start: 0.4,
   },
   {
     kicker: "Middle East",
     title: "United Arab Emirates",
     description: "A dedicated destination at the crossroads of global trade.",
-    color: "#a57832",
-    surface: "#f8e9ca",
+    color: EXPORT_JOURNEY_PALETTE[5].color,
+    surface: EXPORT_JOURNEY_PALETTE[5].surface,
     start: 0.51,
   },
   {
     kicker: "Regional reach",
     title: "Across Asia",
     description: "A growing network of Asian markets, anchored in Indonesia.",
-    color: "#6176a0",
-    surface: "#e4e9f9",
+    color: EXPORT_JOURNEY_PALETTE[6].color,
+    surface: EXPORT_JOURNEY_PALETTE[6].surface,
     start: 0.62,
   },
   {
     kicker: "Regional reach",
     title: "Across Europe",
     description: "Multiple European markets, connected by one commitment to quality.",
-    color: "#a66858",
-    surface: "#f8dfd8",
+    color: EXPORT_JOURNEY_PALETTE[7].color,
+    surface: EXPORT_JOURNEY_PALETTE[7].surface,
     start: 0.77,
   },
   {
     kicker: "Global presence",
     title: "20+ export destinations",
     description: "One growing network, bringing Euro products to the world.",
-    color: "#a94b6b",
-    surface: "#f8dce4",
+    color: EXPORT_JOURNEY_PALETTE[8].color,
+    surface: EXPORT_JOURNEY_PALETTE[8].surface,
     start: 0.92,
   },
 ];
@@ -97,11 +98,35 @@ function findActiveStep(progress) {
   return 0;
 }
 
-function useExportMapJourney(sectionRef, mapRef) {
+function useMobileLayout() {
+  const [isMobile, setIsMobile] = React.useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 999px)").matches,
+  );
+
+  React.useEffect(() => {
+    const query = window.matchMedia("(max-width: 999px)");
+    const update = () => setIsMobile(query.matches);
+
+    update();
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", update);
+      return () => query.removeEventListener("change", update);
+    }
+
+    query.addListener(update);
+    return () => query.removeListener(update);
+  }, []);
+
+  return isMobile;
+}
+
+function useExportMapJourney(sectionRef, mapRef, disabled = false) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeIndexRef = React.useRef(0);
 
   React.useEffect(() => {
+    if (disabled) return undefined;
+
     const section = sectionRef.current;
     if (!section || typeof window === "undefined") return undefined;
 
@@ -203,7 +228,7 @@ function useExportMapJourney(sectionRef, mapRef) {
       section.style.removeProperty("--journey-map-width");
       delete section.dataset.reducedMotion;
     };
-  }, [mapRef, sectionRef]);
+  }, [disabled, mapRef, sectionRef]);
 
   return activeIndex;
 }
@@ -211,9 +236,12 @@ function useExportMapJourney(sectionRef, mapRef) {
 export default function ExportMapJourney() {
   const sectionRef = React.useRef(null);
   const mapRef = React.useRef(null);
-  const activeIndex = useExportMapJourney(sectionRef, mapRef);
+  const isMobile = useMobileLayout();
+  const activeIndex = useExportMapJourney(sectionRef, mapRef, isMobile);
   const activeStep = JOURNEY_STEPS[activeIndex];
   const visibleStepNumber = Math.min(activeIndex + 1, JOURNEY_STEPS.length - 1);
+
+  if (isMobile) return null;
 
   return (
     <section

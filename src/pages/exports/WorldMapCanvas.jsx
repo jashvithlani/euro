@@ -1,22 +1,38 @@
 import React from "react";
 import worldMapReferenceUrl from "../../../world-map.jpg";
+import { asset as categoryAsset } from "../category/asset.js";
+import {
+  CHIP_PACKET_PALETTE,
+  EXPORT_JOURNEY_PALETTE,
+} from "./export-map-palette.js";
 
 const MAP_DATA_URL = "/data/world-countries.geojson";
 const MAP_ASPECT_RATIO = 5000 / 3334;
 const PAPER_COLOR = "#fbf9f4";
-const LAND_COLOR = "#a8b7c8";
-const LAND_COLOR_DARK = "#a8b7c8";
+const LAND_COLOR = "#a8afc4";
+const LAND_COLOR_DARK = "#939db8";
 const BORDER_COLOR = "#f8fbf5";
-const ACCENT_COLOR = "#f3b5c5";
-const INDIA_ROUTE_COLOR = "#a94b6b";
-const BRAND_HOVER_COLORS = ["#b9d9ee", "#d9c2eb", "#f2c2b5", "#b7dfd6"];
+const ACCENT_COLOR = EXPORT_JOURNEY_PALETTE[0].map;
+const INDIA_ROUTE_COLOR = EXPORT_JOURNEY_PALETTE[0].color;
+const BRAND_HOVER_COLORS = CHIP_PACKET_PALETTE.map((entry) => entry.map);
+
+const JOURNEY_PRODUCT_URLS = {
+  chips: categoryAsset("category-chips-wide-hero-masti.png"),
+  beverages: categoryAsset("category-beverage-fig-mango.png"),
+  getmore: categoryAsset("category-getmore-tomato.png"),
+  namkeen: categoryAsset("category-namkeen-shahi-mixture.png"),
+  chikki: categoryAsset("category-chikki-peanut.png"),
+  khakhra: categoryAsset("category-khakhra-masala.png"),
+  bakery: categoryAsset("category-bakery-jeera-khari.png"),
+  fryums: categoryAsset("category-fryums-magic-abcde.png"),
+};
 
 const JOURNEY_DESTINATIONS = [
-  { id: "USA", label: "USA", start: 0.07, end: 0.16, color: "#517da2", fill: "#b9d9ee", curve: 118, labelX: 0, labelY: -18 },
-  { id: "GBR", label: "United Kingdom", start: 0.18, end: 0.27, color: "#76588d", fill: "#d9c2eb", curve: 62, labelX: -8, labelY: -17 },
-  { id: "AUS", label: "Australia", start: 0.29, end: 0.38, color: "#a75f82", fill: "#edc4d8", curve: 72, labelX: 0, labelY: -18 },
-  { id: "NZL", label: "New Zealand", start: 0.4, end: 0.49, color: "#4c887f", fill: "#b7dfd6", curve: 78, labelX: -10, labelY: -17 },
-  { id: "ARE", label: "UAE", start: 0.51, end: 0.6, color: "#a57832", fill: "#f3d7a6", curve: -34, labelX: 7, labelY: -17 },
+  { id: "USA", label: "USA", start: 0.07, end: 0.16, color: EXPORT_JOURNEY_PALETTE[1].color, fill: EXPORT_JOURNEY_PALETTE[1].map, product: "beverages", curve: 118, labelX: 0, labelY: 20 },
+  { id: "GBR", label: "United Kingdom", start: 0.18, end: 0.27, color: EXPORT_JOURNEY_PALETTE[2].color, fill: EXPORT_JOURNEY_PALETTE[2].map, product: "getmore", curve: 62, labelX: -8, labelY: -58 },
+  { id: "AUS", label: "Australia", start: 0.29, end: 0.38, color: EXPORT_JOURNEY_PALETTE[3].color, fill: EXPORT_JOURNEY_PALETTE[3].map, product: "namkeen", curve: 72, labelX: 0, labelY: 20 },
+  { id: "NZL", label: "New Zealand", start: 0.4, end: 0.49, color: EXPORT_JOURNEY_PALETTE[4].color, fill: EXPORT_JOURNEY_PALETTE[4].map, product: "chikki", curve: 78, labelX: -10, labelY: 20 },
+  { id: "ARE", label: "UAE", start: 0.51, end: 0.6, color: EXPORT_JOURNEY_PALETTE[5].color, fill: EXPORT_JOURNEY_PALETTE[5].map, product: "khakhra", curve: -34, labelX: 7, labelY: 20 },
 ];
 
 const JOURNEY_REGIONS = [
@@ -24,11 +40,12 @@ const JOURNEY_REGIONS = [
     label: "Asia",
     start: 0.62,
     end: 0.75,
-    color: "#6176a0",
-    fill: "#c9d5f3",
+    color: EXPORT_JOURNEY_PALETTE[6].color,
+    fill: EXPORT_JOURNEY_PALETTE[6].map,
+    product: "bakery",
     anchor: [117, -2.5],
     curve: 46,
-    labelX: 20,
+    labelX: 38,
     labelY: 19,
     ids: ["IDN", "SGP", "MYS", "THA", "VNM", "JPN"],
   },
@@ -36,11 +53,12 @@ const JOURNEY_REGIONS = [
     label: "Europe",
     start: 0.77,
     end: 0.9,
-    color: "#a66858",
-    fill: "#f2c2b5",
+    color: EXPORT_JOURNEY_PALETTE[7].color,
+    fill: EXPORT_JOURNEY_PALETTE[7].map,
+    product: "fryums",
     anchor: [18, 47],
     curve: 62,
-    labelX: 22,
+    labelX: 40,
     labelY: 20,
     ids: ["FRA", "DEU", "NLD", "BEL", "ITA", "ESP", "PRT"],
   },
@@ -251,8 +269,8 @@ function normalizeName(value) {
 
 function countryHoverColor(countryId) {
   const hash = String(countryId).split("").reduce(
-    (total, character) => total + character.charCodeAt(0),
-    0,
+    (total, character) => (total * 31 + character.charCodeAt(0)) >>> 0,
+    17,
   );
   return BRAND_HOVER_COLORS[hash % BRAND_HOVER_COLORS.length];
 }
@@ -697,24 +715,54 @@ function drawJourneyLabel(context, point, label, progress, color, mapWidth, offs
   context.restore();
 }
 
-function drawJourneyEndpoint(context, point, progress, color, mapWidth) {
-  if (progress <= 0) return;
+function drawJourneyProduct(
+  context,
+  point,
+  progress,
+  productImage,
+  mapWidth,
+  offsetX = 0,
+  offsetY = 0,
+) {
+  if (
+    progress <= 0 ||
+    !productImage?.complete ||
+    !productImage.naturalWidth ||
+    !productImage.naturalHeight
+  ) {
+    return;
+  }
 
-  const radius = Math.max(2.6, mapWidth * 0.0027);
+  const reveal = easeInOutCubic(clamp(progress, 0, 1));
+  const markerHeight = clamp(mapWidth * 0.036, 34, 46);
+  const naturalRatio = productImage.naturalWidth / productImage.naturalHeight;
+  let width = markerHeight * naturalRatio;
+  let height = markerHeight;
+  const maximumWidth = markerHeight * 0.9;
+
+  if (width > maximumWidth) {
+    height *= maximumWidth / width;
+    width = maximumWidth;
+  }
+
+  const markerScale = 0.82 + reveal * 0.18;
+  const scaledWidth = width * markerScale;
+  const scaledHeight = height * markerScale;
+  const scaledOffsetX = offsetX * (mapWidth / 1280);
+  const scaledOffsetY = offsetY * (mapWidth / 1280);
+  const x = point.x + scaledOffsetX - scaledWidth / 2;
+  const y = point.y + scaledOffsetY - scaledHeight - 3 - (1 - reveal) * 8;
+
   context.save();
-  context.globalAlpha = 0.2 * progress;
-  context.fillStyle = color;
-  context.beginPath();
-  context.arc(point.x, point.y, radius * (2.1 + progress), 0, Math.PI * 2);
-  context.fill();
-  context.globalAlpha = 0.95 * progress;
-  context.beginPath();
-  context.arc(point.x, point.y, radius, 0, Math.PI * 2);
-  context.fill();
+  context.globalAlpha = reveal;
+  context.shadowColor = "rgba(31, 37, 61, 0.18)";
+  context.shadowBlur = Math.max(6, mapWidth * 0.006);
+  context.shadowOffsetY = Math.max(3, mapWidth * 0.003);
+  context.drawImage(productImage, x, y, scaledWidth, scaledHeight);
   context.restore();
 }
 
-function drawExportJourney(context, map, progress, borderWidth) {
+function drawExportJourney(context, map, progress, borderWidth, productImages) {
   const countriesById = new Map(map.countries.map((country) => [country.id, country]));
   const india = countriesById.get("IND");
   if (!india) return;
@@ -779,11 +827,11 @@ function drawExportJourney(context, map, progress, borderWidth) {
         },
         borderWidth,
       );
-      drawJourneyEndpoint(
+      drawJourneyProduct(
         context,
         country.center,
         countryProgress,
-        destination.color,
+        productImages.get(destination.product),
         map.width,
       );
       drawJourneyLabel(
@@ -828,7 +876,13 @@ function drawExportJourney(context, map, progress, borderWidth) {
 
     if (regionProgress > 0.52) {
       const labelProgress = getJourneyProgress(regionProgress, 0.52, 1);
-      drawJourneyEndpoint(context, anchor, labelProgress, region.color, map.width);
+      drawJourneyProduct(
+        context,
+        anchor,
+        labelProgress,
+        productImages.get(region.product),
+        map.width,
+      );
       drawJourneyLabel(
         context,
         anchor,
@@ -855,7 +909,13 @@ function drawExportJourney(context, map, progress, borderWidth) {
     },
     borderWidth,
   );
-  drawJourneyEndpoint(context, india.center, 0.85, INDIA_ROUTE_COLOR, map.width);
+  drawJourneyProduct(
+    context,
+    india.center,
+    0.95,
+    productImages.get("chips"),
+    map.width,
+  );
   drawJourneyLabel(
     context,
     india.center,
@@ -864,7 +924,7 @@ function drawExportJourney(context, map, progress, borderWidth) {
     INDIA_ROUTE_COLOR,
     map.width,
     0,
-    -20,
+    20,
   );
 }
 
@@ -893,6 +953,7 @@ const WorldMapCanvas = React.forwardRef(function WorldMapCanvas(
   const tooltipRef = React.useRef(null);
   const referenceImageRef = React.useRef(null);
   const brandedReferenceRef = React.useRef(null);
+  const productImagesRef = React.useRef(new Map());
   const mapRef = React.useRef(null);
   const countryMaskCacheRef = React.useRef(new Map());
   const effectsRef = React.useRef(new Map());
@@ -1021,6 +1082,31 @@ const WorldMapCanvas = React.forwardRef(function WorldMapCanvas(
 
     return () => {
       referenceImage.onload = null;
+    };
+  }, [requestDraw]);
+
+  React.useEffect(() => {
+    let active = true;
+    const images = [];
+
+    Object.entries(JOURNEY_PRODUCT_URLS).forEach(([key, url]) => {
+      const productImage = new Image();
+      productImage.decoding = "async";
+      productImage.onload = () => {
+        if (!active) return;
+        productImagesRef.current.set(key, productImage);
+        requestDraw();
+      };
+      productImage.src = url;
+      images.push(productImage);
+    });
+
+    return () => {
+      active = false;
+      images.forEach((productImage) => {
+        productImage.onload = null;
+      });
+      productImagesRef.current.clear();
     };
   }, [requestDraw]);
 
@@ -1209,6 +1295,7 @@ const WorldMapCanvas = React.forwardRef(function WorldMapCanvas(
           map,
           journeyProgressRef.current,
           borderWidth,
+          productImagesRef.current,
         );
       }
 

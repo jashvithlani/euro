@@ -1,6 +1,10 @@
 /* Exports page mobile — desktop in public/styles.css; shell in MobileShell.css */
 
 @media (max-width: 999px) {
+  .exports-page .export-map-journey {
+    display: none;
+  }
+
   .exports-page .export-map-journey__map-stage {
     inset: 0;
   }

@@ -189,8 +189,8 @@
   .app-viewport--fluid .footer-primary {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 24px;
+    grid-template-columns: minmax(84px, 0.45fr) minmax(0, 1.55fr);
+    gap: 32px 18px;
     inset: auto;
   }
 
@@ -212,6 +212,10 @@
     width: 100%;
     height: auto;
     padding: 0;
+  }
+
+  .app-viewport--fluid .footer-support {
+    min-width: 0;
   }
 
   .app-viewport--fluid .footer-about img {
@@ -244,11 +248,13 @@
 
   .app-viewport--fluid .footer-support p,
   .app-viewport--fluid .footer-support .footer-support-item {
-    margin-bottom: 20px;
+    min-width: 0;
+    margin-bottom: 16px;
     font-size: 14px;
     line-height: 1.37;
     color: #d6d3d1;
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 
   .app-viewport--fluid .footer-support .footer-support-item:hover {

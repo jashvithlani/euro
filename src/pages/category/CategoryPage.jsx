@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import "./CategoryPage.css";
 import ProductSubNav from "../../components/ProductSubNav.jsx";
 import CategoryProductShopButton from "./CategoryProductShopButton.jsx";
@@ -697,10 +696,7 @@ function PromoPanel({ item }) {
             <span key={line}>{line}</span>
           ))}
         </h2>
-        <p style={{ color: item.copyColor || item.color }}>{item.copy}</p>
-        <Link to="/about" style={{ color: item.buttonColor }}>
-          LEARN OUR STORY
-        </Link>
+        <p style={{ color: item.copyColor || item.color, marginBottom: 0 }}>{item.copy}</p>
       </div>
     </section>
   );

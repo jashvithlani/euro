@@ -1,6 +1,11 @@
 import { asset } from "./asset.js";
 import OptimizedImage from "../../components/OptimizedImage.jsx";
 
+const shahiMixtureImage = new URL(
+  "../category/assets/category-namkeen-shahi-mixture.png",
+  import.meta.url,
+).href;
+
 export const favoriteProducts = [
   {
     id: "masala",
@@ -12,15 +17,6 @@ export const favoriteProducts = [
     copy: "Light, crispy, and perfectly salted.",
   },
   {
-    id: "tomato",
-    tone: "cyan",
-    badge: "TANGY",
-    badgeTone: "",
-    image: "bestseller-tomato.png",
-    title: "Tingling Tomato",
-    copy: "For those who like it bold.",
-  },
-  {
     id: "guava",
     tone: "rose",
     badge: "Tropical",
@@ -28,6 +24,15 @@ export const favoriteProducts = [
     image: "bestseller-guava.png",
     title: "Guava Juice",
     copy: "A delicious burst of guava flavour.",
+  },
+  {
+    id: "tomato",
+    tone: "cyan",
+    badge: "TANGY",
+    badgeTone: "",
+    image: "bestseller-tomato.png",
+    title: "Tingling Tomato",
+    copy: "For those who like it bold.",
   },
   {
     id: "mango",
@@ -39,12 +44,12 @@ export const favoriteProducts = [
     copy: "A delicious mango kick in every sip",
   },
   {
-    id: "masala",
+    id: "shahi-mixture",
     tone: "lavender",
     badge: "Best Seller",
     badgeTone: "gold",
-    image: "bestseller-sevmumra.png",
-    title: "Masala Sev Mumra",
+    imageSrc: shahiMixtureImage,
+    title: "Shahi Mixture",
     copy: "Crunchy. Spicy. Irresistible.",
   },
 ];
@@ -84,7 +89,11 @@ export function FavoriteProductCard({ product }) {
     <article className={`product-card product-card--${product.tone}`}>
       <div className="product-art">
         <span className={badgeClassName}>{product.badge}</span>
-        <OptimizedImage src={asset(product.image)} alt={product.title} sizes="(max-width: 480px) 70vw, 240px" />
+        <OptimizedImage
+          src={product.imageSrc || asset(product.image)}
+          alt={product.title}
+          sizes="(max-width: 480px) 70vw, 240px"
+        />
       </div>
       <h3>{product.title}</h3>
       <p>{product.copy}</p>

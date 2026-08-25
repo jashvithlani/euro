@@ -38,6 +38,7 @@ export default function App() {
         <Route path="/career" element={<CareerPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/dealers" element={<DealersPage />} />
+        <Route path="/dealer" element={<Navigate to="/dealers" replace />} />
         <Route path="/achievements" element={<AchievementsPage />} />
         <Route path="/investor" element={<InvestorLayout />}>
           <Route index element={<InvestorIndexPage />} />
@@ -60,6 +61,7 @@ export default function App() {
         </Route>
         <Route path="/chips" element={<CategoryPage pageKey="chips" />} />
         <Route path="/beverages" element={<CategoryPage pageKey="beverages" />} />
+        <Route path="/bevereges" element={<Navigate to="/beverages" replace />} />
         <Route path="/getmore" element={<CategoryPage pageKey="getmore" />} />
         <Route path="/namkeen" element={<CategoryPage pageKey="namkeen" />} />
         <Route path="/chikki" element={<CategoryPage pageKey="chikki" />} />

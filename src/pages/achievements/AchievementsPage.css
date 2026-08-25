@@ -177,53 +177,20 @@
 
   .achievements-recognition-heading .achievements-ghost {
     top: 19px;
-    left: 47px;
+    left: 48px;
+    width: 200px;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
   }
 
   .achievements-recognition-heading p {
     top: 0;
-    left: 400px;
+    left: 330px;
   }
 
   .achievements-recognition-heading h2 {
     top: 34px;
-    left: 410px;
-  }
-
-  .achievements-recognition:nth-child(2) .achievements-ghost {
-    left: 56px;
-  }
-
-  .achievements-recognition:nth-child(2) .achievements-recognition-heading p {
-    left: 285px;
-  }
-
-  .achievements-recognition:nth-child(2) .achievements-recognition-heading h2 {
-    left: 276px;
-  }
-
-  .achievements-recognition:nth-child(3) .achievements-ghost {
-    left: 56px;
-  }
-
-  .achievements-recognition:nth-child(3) .achievements-recognition-heading p {
-    left: 300px;
-  }
-
-  .achievements-recognition:nth-child(3) .achievements-recognition-heading h2 {
-    left: 292px;
-  }
-
-  .achievements-recognition:nth-child(4) .achievements-ghost {
-    left: 40px;
-  }
-
-  .achievements-recognition:nth-child(4) .achievements-recognition-heading p {
-    left: 268px;
-  }
-
-  .achievements-recognition:nth-child(4) .achievements-recognition-heading h2 {
-    left: 214px;
+    left: 330px;
   }
 }
 

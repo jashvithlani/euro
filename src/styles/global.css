@@ -1379,7 +1379,7 @@ textarea {
   left: 3.32px;
   width: 248px;
   margin: 0;
-  color: #78716c;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 500;
   line-height: 19.5px;
@@ -1400,23 +1400,41 @@ textarea {
 .footer-support {
   top: 24.67px;
   left: 746.67px;
+  width: 480px;
+}
+
+.footer-support h2 {
+  margin-bottom: 18px;
 }
 
 .footer-links a {
   margin-bottom: 16px;
+  color: #ffffff;
 }
 
 .footer-support p,
 .footer-support .footer-support-item {
   display: flex;
+  min-width: 0;
   align-items: flex-start;
   gap: 10.67px;
-  margin: 0 0 16px;
+  margin: 0 0 10px;
   color: #d6d3d1;
   font-size: 12px;
   font-weight: 400;
   line-height: 18.67px;
   text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.footer-support-copy {
+  min-width: 0;
+  white-space: pre-wrap;
+}
+
+.footer-support-copy strong {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .footer-support .footer-support-item:hover {
@@ -1433,13 +1451,14 @@ textarea {
 }
 
 .footer-support p:first-of-type img,
-.footer-support .footer-support-item:first-of-type img {
+.footer-support .footer-support-item:first-of-type img,
+.footer-support .footer-support-item:nth-of-type(2) img {
   width: 10.67px;
   height: 13.33px;
 }
 
 .footer-support p:nth-of-type(2) img,
-.footer-support .footer-support-item:nth-of-type(2) img {
+.footer-support .footer-support-item:nth-of-type(3) img {
   width: 12px;
   height: 12px;
   margin-top: 3.33px;
@@ -2460,8 +2479,51 @@ textarea {
   object-fit: contain;
 }
 
-.timeline-2025 {
+.timeline-2022 {
   top: 1620px;
+  left: 340px;
+  width: 600px;
+  min-height: 124px;
+  height: auto;
+  margin: 0;
+}
+
+.timeline-2022::after {
+  top: 58px;
+  left: 296px;
+}
+
+.timeline-2022 .timeline-copy {
+  top: 0;
+  left: 340px;
+  width: 260px;
+}
+
+.timeline-2022-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 140px;
+  border-radius: 16px;
+}
+
+.timeline-2022-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-2022 .timeline-copy h3 {
+  opacity: 0.33;
+}
+
+.timeline-2022 .timeline-copy p {
+  white-space: normal;
+}
+
+.timeline-2025 {
+  top: 1820px;
   left: 340px;
   width: 600px;
   height: 148px;
@@ -2474,13 +2536,14 @@ textarea {
 
 .timeline-2025 .timeline-copy {
   top: 0;
-  left: 340px;
+  right: 340px;
   width: 260px;
+  text-align: right;
 }
 
 .timeline-gt-card {
   top: 30px;
-  left: 0;
+  left: 340px;
   width: 240px;
   height: 140px;
   border-radius: 16px;
@@ -2514,50 +2577,6 @@ textarea {
   width: 80px;
   height: 60px;
   object-fit: cover;
-}
-
-.timeline-2026 {
-  top: 1820px;
-  left: 340px;
-  width: 600px;
-  min-height: 124px;
-  height: auto;
-  margin: 0;
-}
-
-.timeline-2026::after {
-  top: 58px;
-  left: 296px;
-}
-
-.timeline-2026 .timeline-copy {
-  top: 0;
-  right: 340px;
-  width: 260px;
-  text-align: right;
-}
-
-.timeline-2026-card {
-  position: absolute;
-  top: 0;
-  left: 340px;
-  width: 240px;
-  height: 140px;
-  border-radius: 16px;
-}
-
-.timeline-2026-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.timeline-2026 .timeline-copy h3 {
-  opacity: 0.33;
-}
-
-.timeline-2026 .timeline-copy p {
-  white-space: normal;
 }
 
 .timeline-text-only {

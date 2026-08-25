@@ -1,6 +1,8 @@
 import "./ContactPage.css";
+import { Link } from "react-router-dom";
 import EuroMoments from "../../components/EuroMoments.jsx";
 import OptimizedImage from "../../components/OptimizedImage.jsx";
+import ContactLocationsMap from "./ContactLocationsMap.jsx";
 import { asset } from './asset.js';
 
 const contactCards = [
@@ -21,6 +23,30 @@ const contactCards = [
     lines: ["info@euroindiafoods.com", "sales@euroindiafoods.com"],
     icon: asset('contact-icon-mail.svg'),
     tone: "green",
+  },
+];
+
+const locations = [
+  {
+    title: "Euro India Foods HQ",
+    address: "4408, Kohinoor Square,N.C.Kelkar Marg, Dadar West, Mumbai-400028",
+    coordinates: [19.0249099, 72.8417497],
+    directionsUrl: "https://maps.google.com/?q=Kohinoor%20Square%20Dadar%20West%20Mumbai",
+  },
+  {
+    title: "EURO Manufacturing plant",
+    address:
+      "J.R. Foods & Beverages, Euro Food Park, Block No.-1862 B/H Gujarat Hotel, Nh-48, Taluka- Chikhli, District- Navsari, Gujarat- 396530.",
+    coordinates: [20.8192168, 73.07284],
+    directionsUrl: "https://maps.google.com/?q=Euro%20Food%20Park%20Chikhli%20Navsari%20Gujarat",
+  },
+  {
+    title: "Manufacturing Plant - 1",
+    address:
+      "Plot No. A-22/1, Ichchhapore G.I.D.C. Hazira Magdalla Road, Tal –Choryasi, Surat, Gujarat 394510",
+    coordinates: [21.187042, 72.734031],
+    directionsUrl:
+      "https://maps.google.com/?q=Plot%20No.%20A-22/1%2C%20Ichchhapore%20GIDC%20Hazira%20Magdalla%20Road%2C%20Choryasi%2C%20Surat%2C%20Gujarat%20394510",
   },
 ];
 
@@ -46,6 +72,16 @@ function ContactField({ label, children, wide = false }) {
       {children}
     </label>
   );
+}
+
+function scrollToContactInquiry(event) {
+  const contactForm = document.getElementById("contact-inquiry");
+
+  if (!contactForm) return;
+
+  event.preventDefault();
+  contactForm.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.replaceState(null, "", "#contact-inquiry");
 }
 
 export default function ContactPage() {
@@ -86,7 +122,7 @@ export default function ContactPage() {
         ))}
       </section>
 
-      <section className="contact-form-band" aria-labelledby="contact-form-title">
+      <section className="contact-form-band" id="contact-inquiry" aria-labelledby="contact-form-title">
         <div className="contact-form-panel">
           <form className="contact-form" action="/api/contact-inquiry.php" method="post">
             <h2 id="contact-form-title">Send Us a Message</h2>
@@ -134,45 +170,43 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-map-section" aria-labelledby="contact-map-title">
-        <h2 id="contact-map-title" className="contact-visually-hidden">
-          Our locations
-        </h2>
-        <OptimizedImage className="contact-map-image" src={asset('contact-map.png')} alt="" sizes="(max-width: 999px) 100vw, 1100px" />
-        <div className="contact-map-actions" aria-label="Location shortcuts">
-          <a className="contact-map-action contact-map-action--ghost" href="#distributor">Become a Distributor</a>
-          <a className="contact-map-action contact-map-action--solid" href="#contact-form-title">Business Inquiry</a>
+        <div className="contact-map-header">
+          <div>
+            <span>Our footprint</span>
+            <h2 id="contact-map-title">Find us on the map</h2>
+          </div>
+          <div className="contact-map-actions" aria-label="Location shortcuts">
+            <Link className="contact-map-action contact-map-action--ghost" to="/dealers">
+              Become a Distributor
+            </Link>
+            <a
+              className="contact-map-action contact-map-action--solid"
+              href="#contact-inquiry"
+              onClick={scrollToContactInquiry}
+            >
+              Business Inquiry
+            </a>
+          </div>
         </div>
-        <article className="contact-map-card contact-map-card--office">
-          <h3>Euro India Foods HQ</h3>
-          <p>4408, Kohinoor Square,N.C.Kelkar Marg, Dadar West, Mumbai-400028</p>
-          <a href="https://maps.google.com/?q=Kohinoor%20Square%20Dadar%20West%20Mumbai" target="_blank" rel="noreferrer">
-            Get Directions →
-          </a>
-        </article>
-        <article className="contact-map-card contact-map-card--plant">
-          <h3>EURO Manufacturing plant</h3>
-          <p>
-            J.R. Foods &amp; Beverages, Euro Food Park, Block No.-1862 B/H Gujarat
-            Hotel, Nh-48, Taluka- Chikhli, District- Navsari, Gujarat- 396530.
-          </p>
-          <a href="https://maps.google.com/?q=Euro%20Food%20Park%20Chikhli%20Navsari%20Gujarat" target="_blank" rel="noreferrer">
-            Get Directions →
-          </a>
-        </article>
-        <article className="contact-map-card contact-map-card--plant-surat">
-          <h3>Manufacturing Plant - 1</h3>
-          <p>
-            Plot No. A-22/1, Ichchhapore G.I.D.C. Hazira Magdalla Road, Tal –Choryasi,
-            Surat, Gujarat 394510
-          </p>
-          <a
-            href="https://maps.google.com/?q=Plot%20No.%20A-22/1%2C%20Ichchhapore%20GIDC%20Hazira%20Magdalla%20Road%2C%20Choryasi%2C%20Surat%2C%20Gujarat%20394510"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Get Directions →
-          </a>
-        </article>
+        <div className="contact-map-layout">
+          <ContactLocationsMap locations={locations} />
+          <div className="contact-location-list" aria-label="Euro India Foods locations">
+            {locations.map((location, index) => (
+              <article className="contact-location-card" key={location.title}>
+                <span className="contact-location-marker" aria-hidden="true">
+                  {String.fromCharCode(65 + index)}
+                </span>
+                <div className="contact-location-content">
+                  <h3>{location.title}</h3>
+                  <p>{location.address}</p>
+                  <a href={location.directionsUrl} target="_blank" rel="noreferrer">
+                    Get Directions →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="contact-partner" id="distributor">

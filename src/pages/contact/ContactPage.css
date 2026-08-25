@@ -385,34 +385,56 @@
 
 /* ----- Map section (Figma 1079:3384) ---------------------------- */
 .contact-map-section {
-  /* Figma 1079:3385: 1784 × 640 at x=66, y=1988. Border 4 white, radius 40, padding 4, shadow */
-  position: relative;
   width: 1189.33px;
-  height: 426.67px;
   margin: 33.33px auto 0;
   overflow: hidden;
   border: 2.67px solid #ffffff;
   border-radius: 26.67px;
-  padding: 2.67px;
-  background: #ffffff;
+  padding: 24px;
+  background: #fff7f7;
   box-shadow: 0 13.33px 16.67px -3.33px rgba(0, 0, 0, 0.1), 0 5.33px 6.67px -4px rgba(0, 0, 0, 0.1);
 }
 
-.contact-map-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  object-fit: cover;
-  filter: brightness(0.78) contrast(1.08);
+.contact-map-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.contact-map-header span {
+  display: block;
+  margin-bottom: 4px;
+  color: #be004b;
+  font-family: var(--font-body);
+  font-size: 10.67px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.contact-map-header h2 {
+  margin: 0;
+  color: #4e281f;
+  font-family: var(--font-display);
+  font-size: 26.67px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.contact-map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(286px, 0.9fr);
+  gap: 16px;
+  align-items: stretch;
 }
 
 .contact-map-actions {
-  /* Figma 1079:3387/3389: two buttons top-right of map */
-  position: absolute;
-  top: 24px;
-  right: 33.33px;
   display: flex;
   gap: 6.67px;
+  flex-shrink: 0;
 }
 
 .contact-map-action {
@@ -431,6 +453,7 @@
 .contact-map-action--ghost {
   background: #ffffff;
   color: #4e281f;
+  border: 1px solid rgba(130, 83, 72, 0.16);
   box-shadow: 0 6.67px 10px -2px rgba(0, 0, 0, 0.1), 0 2.67px 4px -2.67px rgba(0, 0, 0, 0.1);
 }
 
@@ -439,66 +462,147 @@
   color: #fff7f7;
 }
 
-.contact-map-card {
-  /* Figma 1079:3394/3401: max-w 320, p 24, radius 24, bg rgba(255,255,255,0.9), backdrop-blur 6 */
-  position: absolute;
-  width: 213.33px;
+.contact-locations-map {
+  min-height: 500px;
+  overflow: hidden;
+  border: 1px solid rgba(130, 83, 72, 0.13);
+  border-radius: 18px;
+  background: #eae9f9;
+  box-shadow: 0 10px 24px -16px rgba(78, 40, 31, 0.35);
+  isolation: isolate;
+}
+
+.contact-location-map-icon {
+  border: 0;
+  background: transparent;
+}
+
+.contact-location-map-icon span {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #be004b;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 5px 14px rgba(78, 40, 31, 0.35);
+}
+
+.contact-location-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  color: #825348;
+  font-family: var(--font-body);
+}
+
+.contact-location-popup .leaflet-popup-content {
+  min-width: 210px;
+  margin: 14px 16px;
+}
+
+.contact-location-popup-content {
   display: flex;
   flex-direction: column;
-  gap: 2.67px;
+  gap: 6px;
+}
+
+.contact-location-popup-content strong {
+  color: #4e281f;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.contact-location-popup-content p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.contact-location-popup-content a {
+  align-self: flex-start;
+  color: #be004b;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.contact-locations-map .leaflet-control-attribution {
+  font-family: var(--font-body);
+  font-size: 9px;
+}
+
+.contact-location-list {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.contact-location-card {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  border: 1px solid rgba(130, 83, 72, 0.13);
   border-radius: 16px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 13.33px 16.67px -3.33px rgba(0, 0, 0, 0.1), 0 5.33px 6.67px -4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  box-shadow: 0 10px 24px -16px rgba(78, 40, 31, 0.35);
 }
 
-.contact-map-card--office {
-  /* Figma 1079:3394: bottom 246 right 1372.89 within 640-tall section → top ~162, left ~74 (scaled) */
-  left: 74px;
-  bottom: 161.33px;
+.contact-location-marker {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #be004b;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 5px 12px rgba(190, 0, 75, 0.2);
 }
 
-.contact-map-card--plant {
-  /* Figma 1079:3401: bottom 1795.43 right 263.8 within the GROUP frame (different origin); approx aligns to right-edge of map, ~22 bottom */
-  right: 175.87px;
-  bottom: 28px;
+.contact-location-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
 }
 
-.contact-map-card--plant-surat {
-  /* Replaces the former map pin at top 192.67 / left 570.67 */
-  top: 118px;
-  left: 476.67px;
-}
-
-.contact-map-card h3 {
-  /* Figma 1079:3397/3404: bold 16/24 #4e281f */
+.contact-location-card h3 {
   margin: 0;
   color: #4e281f;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.contact-location-card p {
+  margin: 6px 0 0;
+  color: #825348;
+  font-family: var(--font-body);
+  font-size: 11.33px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.contact-location-card a {
+  align-self: flex-start;
+  margin-top: 12px;
+  color: #be004b;
   font-family: var(--font-body);
   font-size: 10.67px;
   font-weight: 700;
   line-height: 16px;
-}
-
-.contact-map-card p {
-  /* Figma 1079:3399/3406: 14/20 #825348 */
-  margin: 0;
-  color: #825348;
-  font-family: var(--font-body);
-  font-size: 9.33px;
-  font-weight: 400;
-  line-height: 13.33px;
-}
-
-.contact-map-card a {
-  /* Figma 1079:3400/3407: bold 14/20 #be004b */
-  margin-top: 5.33px;
-  color: #be004b;
-  font-family: var(--font-body);
-  font-size: 9.33px;
-  font-weight: 700;
-  line-height: 13.33px;
 }
 
 /* ----- Partner band (Figma 1079:3408) --------------------------- */
@@ -567,7 +671,7 @@
 .contact-main .contact-card,
 .contact-main .contact-card-icon,
 .contact-main .contact-hero-card,
-.contact-main .contact-map-card,
+.contact-main .contact-location-card,
 .contact-main .contact-map-action,
 .contact-main .contact-field input,
 .contact-main .contact-field textarea,
@@ -590,7 +694,7 @@
   rotate: -6deg;
 }
 
-.contact-main .contact-map-card:hover {
+.contact-main .contact-location-card:hover {
   translate: 0 -8px;
   scale: 1.025;
 }
@@ -644,22 +748,22 @@
   .contact-main .contact-card:nth-child(3) { animation-delay: 0.6s; }
 
   @supports (animation-timeline: view()) {
-    .contact-main .contact-map-card--office {
+    .contact-main .contact-location-card:nth-child(1) {
       animation: contact-rise-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% entry 45%;
     }
 
-    .contact-main .contact-map-card--plant {
-      animation: contact-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    .contact-main .contact-location-card:nth-child(2) {
+      animation: contact-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% entry 45%;
     }
 
-    .contact-main .contact-map-card--plant-surat {
-      animation: contact-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    .contact-main .contact-location-card:nth-child(3) {
+      animation: contact-rise-right 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
-      animation-range: entry 4% entry 49%;
+      animation-range: entry 0% entry 45%;
     }
 
     .contact-main .contact-form-panel,

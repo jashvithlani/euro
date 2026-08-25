@@ -11,19 +11,6 @@ const stats = [
 
 const recognitions = [
   {
-    id: "vibrant-gujarat",
-    ghost: "2017",
-    kicker: "Featured Recognition",
-    title: "Vibrant Gujarat Summit",
-    label: "Best Entrepreneur Award",
-    heading: "Vibrant Gujarat Summit 2017",
-    description:
-      "Recognised by the Government of Gujarat for outstanding entrepreneurial contribution to the food processing industry, setting a benchmark for quality, innovation, and regional economic growth.",
-    presented: "Presented by · Government of Gujarat, India",
-    image: asset("achievements-vibrant-gujarat.png"),
-    imageAlt: "Vibrant Gujarat Summit 2017 Best Entrepreneur Award",
-  },
-  {
     id: "excellence-2011",
     ghost: "2011",
     kicker: "Industry Recognition",
@@ -51,7 +38,7 @@ const recognitions = [
   },
   {
     id: "national-star",
-    ghost: "STAR",
+    ghost: "2015",
     kicker: "Global Recognition",
     title: "National Star for Quality",
     label: "International Star for Quality",
@@ -61,6 +48,19 @@ const recognitions = [
     presented: "Presented by · International Star for Quality",
     image: asset("achievements-award-star.png"),
     imageAlt: "International Star for Quality trophy",
+  },
+  {
+    id: "vibrant-gujarat",
+    ghost: "2017",
+    kicker: "Featured Recognition",
+    title: "Vibrant Gujarat Summit",
+    label: "Best Entrepreneur Award",
+    heading: "Vibrant Gujarat Summit 2017",
+    description:
+      "Recognised by the Government of Gujarat for outstanding entrepreneurial contribution to the food processing industry, setting a benchmark for quality, innovation, and regional economic growth.",
+    presented: "Presented by · Government of Gujarat, India",
+    image: asset("achievements-vibrant-gujarat.png"),
+    imageAlt: "Vibrant Gujarat Summit 2017 Best Entrepreneur Award",
   },
 ];
 

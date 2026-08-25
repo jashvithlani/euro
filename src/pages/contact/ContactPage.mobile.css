@@ -168,9 +168,6 @@
   }
 
   .contact-page .contact-map-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
     width: calc(100% - 40px);
     height: auto;
     min-height: 0;
@@ -180,19 +177,27 @@
     overflow: visible;
   }
 
-  .contact-page .contact-map-image {
-    order: 1;
-    height: 220px;
-    min-height: 220px;
-    border-radius: 16px;
+  .contact-page .contact-map-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .contact-page .contact-map-header span {
+    font-size: 11px;
+  }
+
+  .contact-page .contact-map-header h2 {
+    font-size: 26px;
+  }
+
+  .contact-page .contact-map-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .contact-page .contact-map-actions {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    order: 2;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
@@ -203,28 +208,35 @@
     font-size: 12px;
   }
 
-  .contact-page .contact-map-card {
-    position: relative;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    order: 3;
-    width: 100%;
-    margin: 0;
+  .contact-page .contact-locations-map {
+    height: clamp(300px, 90vw, 380px);
+    min-height: 0;
+    border-radius: 16px;
   }
 
-  .contact-page .contact-map-card h3 {
+  .contact-page .contact-location-list {
+    grid-template-rows: repeat(3, auto);
+    gap: 12px;
+  }
+
+  .contact-page .contact-location-card {
+    width: 100%;
+    margin: 0;
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .contact-page .contact-location-card h3 {
     font-size: 14px;
     line-height: 1.35;
   }
 
-  .contact-page .contact-map-card p {
+  .contact-page .contact-location-card p {
     font-size: 13px;
     line-height: 1.45;
   }
 
-  .contact-page .contact-map-card a {
+  .contact-page .contact-location-card a {
     font-size: 13px;
     margin-top: 8px;
   }

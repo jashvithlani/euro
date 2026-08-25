@@ -232,7 +232,6 @@ export default function HomePage() {
                         {favoriteProducts.map((product) => (
                           <FavoriteProductCard key={product.id} product={product} />
                         ))}
-                        <FavoriteProductCard key="masala-carousel-tail" product={favoriteProducts[0]} />
                       </div>
                     </div>
                   </div>

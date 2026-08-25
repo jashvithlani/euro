@@ -126,10 +126,26 @@ export const timelineMilestones = [
     },
   },
   {
+    id: "2022",
+    year: "2022",
+    title: "Manufacturing Expansion",
+    side: "right",
+    body: {
+      kind: "paragraph",
+      text: "30 Acres state of art manufacturing facilities & development at Chikhli, sized huge & production capacity to next level.",
+    },
+    card: {
+      kind: "image",
+      cardClass: "timeline-2022-card",
+      image: "about-timeline-2022-source.png",
+      label: "Euro Food Park",
+    },
+  },
+  {
     id: "2025",
     year: "2025",
     title: "IPL- Gujarat Titans",
-    side: "right",
+    side: "left",
     body: {
       kind: "paragraph",
       text: "Named as the Official Snacking Partner of Gujarat Titans IPL team, broadening visibility and strengthening consumer engagement through sports partnerships.",
@@ -140,22 +156,6 @@ export const timelineMilestones = [
       gtImage: "about-timeline-gt-source.png",
       euroImage: "about-timeline-euro-logo-source.png",
       label: "Gujarat Titans x Euro",
-    },
-  },
-  {
-    id: "2026",
-    year: "2026",
-    title: "Manufacturing Expansion",
-    side: "left",
-    body: {
-      kind: "paragraph",
-      text: "30 Acres state of art manufacturing facilities & development at Chikhli, sized huge & production capacity to next level.",
-    },
-    card: {
-      kind: "image",
-      cardClass: "timeline-2026-card",
-      image: "about-timeline-2026-source.png",
-      label: "Euro Food Park",
     },
   },
 ];

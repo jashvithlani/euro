@@ -13,21 +13,26 @@ const footerLinks = [
 const supportItems = [
   {
     icon: sharedAsset('exports-icon-location.svg'),
-    label: "Plot 12, GIDC, Surat, Gujarat",
-    href: "https://maps.google.com/?q=Plot+12,+GIDC,+Surat,+Gujarat",
+    label: "Corp Address : 4408 Central Tower, Kohinoor Square, N.C.Kelkar Marg, R.G. Gadkari Chowk Opp Shivsena Bhavan Chhatrapati Shivaji Maharaj Park, Dadar(West), Mumbai - 400028.",
+    href: "https://maps.google.com/?q=4408+Central+Tower,+Kohinoor+Square,+N.C.Kelkar+Marg,+Dadar+West,+Mumbai+400028",
     external: true,
     exportsLabel: (
       <>
-        Plot 12, GIDC, Surat,
-        <br />
-        Gujarat
+        <strong>Corp Address</strong>
+        {" : 4408 Central Tower, Kohinoor Square, N.C.Kelkar Marg, R.G. Gadkari Chowk Opp Shivsena Bhavan Chhatrapati Shivaji Maharaj Park, Dadar(West), Mumbai - 400028."}
       </>
     ),
   },
   {
+    icon: sharedAsset('exports-icon-location.svg'),
+    label: "Factory : Plot No. 15, CITY SURVEY NO NA 1862/15,At. Degam,Ta. Chikhli Dist. Navsari.",
+    href: "https://maps.google.com/?q=Plot+No.+15,+City+Survey+No.+1862%2F15,+Degam,+Chikhli,+Navsari,+Gujarat",
+    external: true,
+  },
+  {
     icon: sharedAsset('exports-icon-phone.svg'),
-    label: "+91 261 2400000",
-    href: "tel:+912612400000",
+    label: "Tel No.: 022-48256981",
+    href: "tel:+912248256981",
   },
   {
     icon: sharedAsset('exports-icon-mail.svg'),
@@ -75,7 +80,7 @@ export default function Footer() {
                 {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 <img src={item.icon} alt="" />
-                {item.exportsLabel || item.label}
+                <span className="footer-support-copy">{item.exportsLabel || item.label}</span>
               </a>
             ))}
           </div>

@@ -1638,10 +1638,11 @@
   width: 576px;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 60px;
+  line-height: 44px;
+  padding-top: 30px;
 }
 
 .category-promo h2 span {

@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import GlobalPointerCursor from "../components/GlobalPointerCursor.jsx";
+import SeoMetadata from "../components/SeoMetadata.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
 import { CATEGORY_PATHS, getShellClassName, normalizePath } from "../site-routing.js";
@@ -126,21 +127,24 @@ export default function SiteLayout() {
   const viewportClassName = useFluidMobile ? "app-viewport app-viewport--fluid" : "app-viewport app-viewport--scaled";
 
   return (
-    <div
-      className={viewportClassName}
-      style={{
-        "--app-scale": scale,
-        "--scaled-shell-height": `${shellHeight * scale}px`,
-        "--home-hero-height": `${homeHeroHeight}px`,
-      }}
-    >
-      <div ref={shellRef} className={shellClassName}>
-        <Header />
-        <Outlet />
-        <Footer />
+    <>
+      <SeoMetadata />
+      <div
+        className={viewportClassName}
+        style={{
+          "--app-scale": scale,
+          "--scaled-shell-height": `${shellHeight * scale}px`,
+          "--home-hero-height": `${homeHeroHeight}px`,
+        }}
+      >
+        <div ref={shellRef} className={shellClassName}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+        <ScrollToTopButton />
+        <GlobalPointerCursor />
       </div>
-      <ScrollToTopButton />
-      <GlobalPointerCursor />
-    </div>
+    </>
   );
 }

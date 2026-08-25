@@ -81,6 +81,11 @@ function clamp(value, minimum = 0, maximum = 1) {
   return Math.min(maximum, Math.max(minimum, value));
 }
 
+function smoothStep(value) {
+  const bounded = clamp(value);
+  return bounded * bounded * (3 - 2 * bounded);
+}
+
 function getAppScale(section) {
   const viewport = section?.closest(".app-viewport");
   if (!viewport) return 1;
@@ -120,7 +125,7 @@ function useMobileLayout() {
   return isMobile;
 }
 
-function useExportMapJourney(sectionRef, mapRef, disabled = false) {
+function useExportMapJourney(sectionRef, mapRef, storyRef, disabled = false) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeIndexRef = React.useRef(0);
 
@@ -129,7 +134,6 @@ function useExportMapJourney(sectionRef, mapRef, disabled = false) {
 
     const section = sectionRef.current;
     if (!section || typeof window === "undefined") return undefined;
-
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileQuery = window.matchMedia("(max-width: 999px)");
     let frameId = 0;
@@ -137,8 +141,32 @@ function useExportMapJourney(sectionRef, mapRef, disabled = false) {
     const setProgress = (progress) => {
       const nextProgress = clamp(progress);
       const nextIndex = findActiveStep(nextProgress);
+      const finalProgress = smoothStep((nextProgress - 0.86) / 0.14);
+      const summaryProgress = smoothStep((finalProgress - 0.18) / 0.82);
+      const storyWidth = storyRef.current?.offsetWidth || 370;
+      const storyGutter = 34;
+      const storyTravel = Math.max(
+        0,
+        section.clientWidth - storyWidth - storyGutter * 2,
+      );
 
       section.style.setProperty("--journey-progress", nextProgress.toFixed(4));
+      section.style.setProperty(
+        "--journey-card-x",
+        `${storyTravel * finalProgress}px`,
+      );
+      section.style.setProperty(
+        "--journey-final-opacity",
+        summaryProgress.toFixed(4),
+      );
+      section.style.setProperty(
+        "--journey-final-shift",
+        `${(1 - summaryProgress) * 34}px`,
+      );
+      section.style.setProperty(
+        "--journey-final-scale",
+        (0.96 + summaryProgress * 0.04).toFixed(4),
+      );
       mapRef.current?.setJourneyProgress(nextProgress);
 
       if (activeIndexRef.current !== nextIndex) {
@@ -224,24 +252,68 @@ function useExportMapJourney(sectionRef, mapRef, disabled = false) {
       removeMobileListener();
       section.style.removeProperty("height");
       section.style.removeProperty("--journey-progress");
+      section.style.removeProperty("--journey-card-x");
+      section.style.removeProperty("--journey-final-opacity");
+      section.style.removeProperty("--journey-final-shift");
+      section.style.removeProperty("--journey-final-scale");
       section.style.removeProperty("--journey-viewport-height");
       section.style.removeProperty("--journey-map-width");
       delete section.dataset.reducedMotion;
     };
-  }, [disabled, mapRef, sectionRef]);
+  }, [disabled, mapRef, sectionRef, storyRef]);
 
   return activeIndex;
+}
+
+function GlobalReachSummary({ mobile = false }) {
+  return (
+    <div
+      className={`export-map-journey__summary${mobile ? " export-map-journey__summary--mobile" : ""}`}
+    >
+      <span className="export-map-journey__summary-pill">Global Reach</span>
+      <h1 id={mobile ? "exports-mobile-global-title" : "exports-global-title"}>
+        Expanding <em>Globally</em>
+      </h1>
+      <p>
+        As of the financial year ending March 2025, we have actively exported
+        to 20 countries worldwide, showcasing our expanding global footprint
+        and product acceptance across diverse markets.
+      </p>
+
+      <div className="export-map-journey__summary-stats">
+        <div>
+          <strong>2012</strong>
+          <span>Commercial Start</span>
+        </div>
+        <i aria-hidden="true" />
+        <div>
+          <strong>20+</strong>
+          <span>Export Destinations</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function ExportMapJourney() {
   const sectionRef = React.useRef(null);
   const mapRef = React.useRef(null);
+  const storyRef = React.useRef(null);
   const isMobile = useMobileLayout();
-  const activeIndex = useExportMapJourney(sectionRef, mapRef, isMobile);
+  const activeIndex = useExportMapJourney(sectionRef, mapRef, storyRef, isMobile);
   const activeStep = JOURNEY_STEPS[activeIndex];
   const visibleStepNumber = Math.min(activeIndex + 1, JOURNEY_STEPS.length - 1);
 
-  if (isMobile) return null;
+  if (isMobile) {
+    return (
+      <section
+        className="export-map-mobile-intro"
+        aria-labelledby="exports-mobile-global-title"
+      >
+        <GlobalReachSummary mobile />
+      </section>
+    );
+  }
 
   return (
     <section
@@ -262,7 +334,9 @@ export default function ExportMapJourney() {
           />
         </div>
 
-        <aside className="export-map-journey__story" aria-live="off">
+        <GlobalReachSummary />
+
+        <aside ref={storyRef} className="export-map-journey__story" aria-live="off">
           <div className="export-map-journey__counter" aria-hidden="true">
             {activeIndex === JOURNEY_STEPS.length - 1
               ? "Complete"

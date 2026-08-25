@@ -15,44 +15,6 @@ export default function ExportsPage() {
             <main className="exports-main">
               <ExportMapJourney />
 
-              <section className="export-hero export-hero--secondary">
-                <div className="export-hero-grid">
-                  <div className="export-hero-copy">
-                    <span className="export-pill">Global Reach</span>
-                    <h1>Expanding <em>Globally</em></h1>
-                    <p className="export-hero-lede">As of the financial year ending March 2025, we have actively exported to 20 countries worldwide, showcasing our expanding global footprint and product acceptance across diverse markets.</p>
-
-                    <div className="export-stats-row">
-                      <div className="export-stat">
-                        <strong>2012</strong>
-                        <span>Commercial Start</span>
-                      </div>
-                      <div className="export-stat-divider"></div>
-                      <div className="export-stat">
-                        <strong>20+</strong>
-                        <span>Export Destinations</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="export-hero-media">
-                    <OptimizedImage src={asset('exports-hero.png')} alt="Shipping containers at sunset" sizes="(max-width: 999px) 100vw, 1284px" priority />
-                    <div className="export-hero-gradient"></div>
-                    <aside className="export-presence-card">
-                      <h2>International Presence</h2>
-                      <ul>
-                        <li>United States of America</li>
-                        <li>United Kingdom</li>
-                        <li>Australia</li>
-                        <li>New Zealand</li>
-                        <li>Asia</li>
-                        <li>Multiple countries across Europe</li>
-                      </ul>
-                    </aside>
-                  </div>
-                </div>
-              </section>
-
               <section className="export-story">
                 <div className="export-story-grid">
                   <div className="export-story-copy">

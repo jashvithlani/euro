@@ -28,6 +28,12 @@ const supportItems = [
     label: "Factory : Plot No. 15, CITY SURVEY NO NA 1862/15,At. Degam,Ta. Chikhli Dist. Navsari.",
     href: "https://maps.google.com/?q=Plot+No.+15,+City+Survey+No.+1862%2F15,+Degam,+Chikhli,+Navsari,+Gujarat",
     external: true,
+    exportsLabel: (
+      <>
+        <strong>Factory</strong>
+        {" : Plot No. 15, CITY SURVEY NO NA 1862/15,At. Degam,Ta. Chikhli Dist. Navsari."}
+      </>
+    ),
   },
   {
     icon: sharedAsset('exports-icon-location.svg'),

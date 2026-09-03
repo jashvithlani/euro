@@ -208,7 +208,8 @@ export default function EuroMoments({ className = "" }) {
               className={`euro-moments-card euro-moments-card--carousel euro-moments-card--carousel-${phase} euro-moments-card--index-${activeIndex + 1}`}
               src={activeCard.src}
               alt={activeCard.alt}
-              loading="lazy"
+              loading="eager"
+              fetchPriority="low"
               sizes="(max-width: 480px) 80vw, 320px"
               style={{ "--card-rotate": `${CARD_ROTATE[activeIndex]}deg` }}
             />
@@ -222,7 +223,8 @@ export default function EuroMoments({ className = "" }) {
               className="euro-moments-card"
               src={card.src}
               alt={card.alt}
-              loading="lazy"
+              loading="eager"
+              fetchPriority="low"
               sizes="(max-width: 480px) 45vw, (max-width: 999px) 30vw, 220px"
             />
           ))}

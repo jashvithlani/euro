@@ -6,8 +6,9 @@
     "optimize:images": "node scripts/optimize-images.mjs",
     "compress:images": "node scripts/compress-images.mjs",
     "audit:images": "node scripts/audit-images.mjs",
+    "audit:mobile": "node scripts/audit-mobile-performance.mjs",
     "dev": "npm run generate:investor && npm run optimize:images && vite --host 127.0.0.1",
-    "build": "npm run generate:investor && npm run optimize:images && npm run audit:images && vite build",
+    "build": "npm run generate:investor && npm run optimize:images && npm run audit:images && vite build && npm run audit:mobile",
     "validate:dist": "node scripts/validate-dist.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },

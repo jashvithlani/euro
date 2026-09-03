@@ -218,7 +218,7 @@ export default function AboutPage() {
                   </div>
                   <div className="about-hero-card-wrap about-hero-right-wrap" aria-hidden="true">
                     <div className="about-hero-card about-hero-right-card">
-                      <OptimizedImage src={asset('about-hero-right-source.png')} alt="" sizes="(max-width: 999px) 45vw, 360px" />
+                      <OptimizedImage src={asset('about-hero-right-source.png')} alt="" sizes="(max-width: 999px) 45vw, 360px" data-loader-critical="true" />
                     </div>
                   </div>
                 </div>

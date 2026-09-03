@@ -131,7 +131,7 @@
     margin-top: -46px;
   }
 
-  /* Categories — mobile scroll-pin */
+  /* Categories — mobile scroll deck */
   .home-page .mood-section {
     padding: 0;
     overflow: visible;
@@ -139,11 +139,11 @@
     margin-top: 0;
   }
 
-  .home-page .mood-section__desktop {
-    display: none;
+  .home-page .pattern-layer {
+    background-size: 600px 600px;
   }
 
-  .home-page .mood-section__mobile-fallback {
+  .home-page .mood-section__desktop {
     display: none;
   }
 
@@ -249,6 +249,7 @@
   }
 
   .home-page .mood-section__scroll-tile .category-card {
+    display: block;
     position: relative;
     top: auto !important;
     left: auto !important;
@@ -335,52 +336,62 @@
   }
 
   .home-page .mood-section__scroll-tile .card-basket {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    background: var(--color-accent);
-    color: #ffffff;
+    display: block;
+    padding: 0;
+    background: #dce1c6;
+  }
+
+  .home-page .mood-section__scroll-tile .card-basket > picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .home-page .mood-section__scroll-tile .card-basket img {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 38%;
-    height: auto;
-    flex-shrink: 0;
-    object-fit: contain;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  .home-page .mood-section__scroll-tile .card-basket > div {
+  .home-page .mood-section__scroll-driver--deck .mood-section__scroll-track {
     position: relative;
-    top: auto;
-    left: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    transform: none !important;
+  }
+
+  .home-page .mood-section__scroll-driver--deck .mood-section__scroll-tile {
+    --tile-offset: 1;
+    position: absolute;
+    inset: 0 20px;
     width: auto;
-    flex: 1;
+    max-width: 720px;
+    height: min(82%, 420px);
+    margin: auto;
+    opacity: var(--tile-deck-opacity, 0);
+    transform: translate3d(calc(var(--tile-offset) * 100%), var(--tile-deck-y, 0), 0);
+    will-change: transform, opacity;
   }
 
-  .home-page .mood-section__scroll-tile .card-basket h3 {
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.25;
-    color: #ffffff;
+  .home-page .mood-section__scroll-driver--deck .mood-section__scroll-tile:first-child {
+    --tile-offset: 0;
+    opacity: var(--tile-deck-opacity, 1);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .home-page .mood-section__scroll-driver {
-      display: none;
-    }
+  .home-page .mood-section__mobile-fallback {
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+    padding: 56px 20px 48px;
+  }
 
-    .home-page .mood-section__mobile-fallback {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      padding: 56px 20px 40px;
-    }
-
-    .home-page .mood-section__mobile-fallback .mood-heading {
+  .home-page .mood-section__mobile-fallback .mood-heading {
       position: relative;
       top: auto;
       left: auto;
@@ -419,7 +430,7 @@
     }
 
     .home-page .mood-section__mobile-fallback .card-chips {
-      order: 2;
+      order: 5;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -498,38 +509,64 @@
     }
 
     .home-page .mood-section__mobile-fallback .card-basket {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: block;
       height: 220px;
-      padding: 16px;
-      order: 5;
+      padding: 0;
+      order: 2;
+      background: #dce1c6;
     }
 
-    .home-page .mood-section__mobile-fallback .card-basket img {
-      position: relative;
-      top: auto;
-      left: auto;
-      width: 145px;
-      height: auto;
-      flex-shrink: 0;
+    .home-page .mood-section__mobile-fallback .card-basket > picture {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    .home-page .mood-section__mobile-fallback .card-basket > div {
-      position: relative;
-      top: auto;
-      left: auto;
-      width: auto;
-      flex: 1;
+  .home-page .mood-section__mobile-fallback .card-basket img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .home-page .mood-section__mobile-fallback .card-basket h3 {
-      font-size: 18px;
-      line-height: 1.25;
+  @media (prefers-reduced-motion: reduce) {
+    .home-page .mood-section__scroll-driver {
+      display: none;
+    }
+
+    .home-page .mood-section__mobile-fallback {
+      display: flex;
     }
   }
 
-  /* Favorites — mobile scroll-pin (left→right) */
+  @media (min-width: 640px) and (prefers-reduced-motion: reduce) {
+    .home-page .mood-section__mobile-fallback {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      padding-inline: 32px;
+    }
+
+    .home-page .mood-section__mobile-fallback .mood-heading,
+    .home-page .mood-section__mobile-fallback .mood-cta,
+    .home-page .mood-section__mobile-fallback .card-basket,
+    .home-page .mood-section__mobile-fallback .card-chips {
+      grid-column: 1 / -1;
+    }
+
+    .home-page .mood-section__mobile-fallback .category-card {
+      height: 280px;
+    }
+
+    .home-page .mood-section__mobile-fallback .card-basket {
+      height: clamp(220px, 30vw, 300px);
+    }
+  }
+
+  /* Favorites — mobile scroll deck */
   .home-page .favorites-section {
     padding: 0;
     overflow: visible;
@@ -538,10 +575,6 @@
   }
 
   .home-page .favorites-section__desktop {
-    display: none;
-  }
-
-  .home-page .favorites-section__mobile-fallback {
     display: none;
   }
 
@@ -686,16 +719,56 @@
     opacity: calc(0.88 + 0.12 * var(--tile-enter, 1));
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .home-page .favorites-section__scroll-driver {
-      display: none;
-    }
+  .home-page .favorites-section__scroll-driver--deck .favorites-section__scroll-viewport {
+    transform: none;
+  }
 
-    .home-page .favorites-section__mobile-fallback {
-      display: block;
+  .home-page .favorites-section__scroll-driver--deck .favorites-section__scroll-track {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    transform: none !important;
+  }
+
+  .home-page .favorites-section__scroll-driver--deck .favorites-section__scroll-tile {
+    --tile-offset: -1;
+    position: absolute;
+    inset: 0 20px;
+    width: auto;
+    max-width: 720px;
+    height: min(88%, 460px);
+    margin: auto;
+    opacity: var(--tile-deck-opacity, 0);
+    transform: translate3d(calc(var(--tile-offset) * 100%), var(--tile-deck-y, 0), 0);
+    will-change: transform, opacity;
+  }
+
+  .home-page .favorites-section__scroll-driver--deck .favorites-section__scroll-tile:first-child {
+    --tile-offset: 0;
+    opacity: var(--tile-deck-opacity, 1);
+  }
+
+  .home-page .favorites-section__scroll-driver--deck .product-card {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  .home-page .favorites-section__scroll-driver--deck .product-card--masala .product-art img,
+  .home-page .favorites-section__scroll-driver--deck .product-card--shahi-mixture .product-art img {
+    width: auto;
+    height: 82%;
+    max-width: 82%;
+    max-height: 220px;
+  }
+
+  .home-page .favorites-section__mobile-fallback {
+      display: none;
       position: relative;
       padding: 56px 0 48px;
-    }
+  }
 
     .home-page .favorites-section__mobile-fallback .favorites-heading {
       position: relative;
@@ -767,6 +840,14 @@
       max-width: none;
     }
 
+    .home-page .favorites-section__mobile-fallback .product-card--masala .product-art img,
+    .home-page .favorites-section__mobile-fallback .product-card--shahi-mixture .product-art img {
+      width: auto;
+      height: 82%;
+      max-width: 82%;
+      max-height: 220px;
+    }
+
     .home-page .favorites-section__mobile-fallback .product-card--yellow .product-art img {
       width: auto;
       height: auto;
@@ -788,6 +869,15 @@
     .home-page .favorites-section__mobile-fallback .product-card p {
       font-size: 14px;
       line-height: 1.37;
+    }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-page .favorites-section__scroll-driver {
+      display: none;
+    }
+
+    .home-page .favorites-section__mobile-fallback {
+      display: block;
     }
   }
 
@@ -861,7 +951,7 @@
   .home-page .story-photo-wrap img {
     top: 26px;
     left: 50%;
-    width: min(295px, 82vw);
+    width: min(302px, 84vw);
     height: 378px;
     transform: translateX(-50%) rotate(-8deg);
   }

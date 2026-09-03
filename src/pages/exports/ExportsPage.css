@@ -72,7 +72,7 @@
 .export-map-journey__story {
   position: absolute;
   z-index: 4;
-  top: 68%;
+  top: var(--journey-story-center, 68%);
   left: 34px;
   width: 370px;
   min-height: 190px;
@@ -85,6 +85,8 @@
     linear-gradient(135deg, color-mix(in srgb, var(--journey-surface) 88%, white), rgba(253, 251, 247, 0.92));
   box-shadow: 0 26px 68px rgba(24, 38, 59, 0.17);
   backdrop-filter: blur(20px) saturate(135%);
+  scale: var(--journey-story-fit, 1);
+  transform-origin: right center;
   will-change: translate;
   transition: border-color 0.45s ease, background 0.45s ease, box-shadow 0.45s ease;
 }
@@ -92,14 +94,16 @@
 .export-map-journey__summary {
   position: absolute;
   z-index: 4;
-  top: 49%;
+  /* Measured in ExportMapJourney so the complete block remains inside the
+     sticky frame even when a short laptop viewport or DevTools reduces it. */
+  top: var(--journey-summary-top, 45%);
   left: 52px;
   width: min(500px, 42vw);
   color: #202d41;
   opacity: var(--journey-final-opacity, 0);
   translate: 0 var(--journey-final-shift, 34px);
-  scale: var(--journey-final-scale, 0.96);
-  transform-origin: left center;
+  scale: calc(var(--journey-final-scale, 0.96) * var(--journey-summary-fit, 1));
+  transform-origin: left top;
   will-change: opacity, translate, scale;
   pointer-events: none;
 }
@@ -132,7 +136,7 @@
 
 .export-map-journey__summary h1 em {
   display: block;
-  color: #bd3038;
+  color: var(--color-accent);
   font-style: italic;
   font-weight: 900;
 }

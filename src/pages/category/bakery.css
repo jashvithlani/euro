@@ -277,6 +277,15 @@
   .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-title span + span::before {
     content: " ";
   }
+
+  .category-page .category-main--bakery .category-product-card--product:has(.bakery-title-nankhatai) .category-product-badge {
+    position: absolute !important;
+    top: 52px !important;
+    right: auto !important;
+    left: 16px !important;
+    z-index: 2;
+    margin: 0 !important;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

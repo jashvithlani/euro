@@ -19,6 +19,7 @@ const YEAR_SECTIONS = [
   "reconciliation",
   "updates",
   "secretarial",
+  "credit-ratings",
 ];
 
 const MONTHS = [

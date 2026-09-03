@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { forwardRef, useLayoutEffect, useRef } from "react";
 import "./CategoryPage.css";
 import ProductSubNav from "../../components/ProductSubNav.jsx";
 import CategoryProductShopButton from "./CategoryProductShopButton.jsx";
@@ -14,7 +14,31 @@ import { bakeryPage } from "./bakery-content.jsx";
 import { fryumsPage } from "./fryums-content.jsx";
 import { asset } from './asset.js';
 import { productColors } from './product-colors.js';
-import OptimizedImage from '../../components/OptimizedImage.jsx';
+import BaseOptimizedImage from '../../components/OptimizedImage.jsx';
+
+const CATEGORY_IMAGE_TIERS = {
+  card: { mobileWidth: 480, tabletWidth: 640, desktopWidth: 768 },
+  feature: { mobileWidth: 480, tabletWidth: 640, desktopWidth: 960 },
+  spotlight: { mobileWidth: 320, tabletWidth: 480, desktopWidth: 480 },
+  decor: { mobileWidth: 240, tabletWidth: 320, desktopWidth: 480 },
+  heroProduct: { mobileWidth: 320, tabletWidth: 480, desktopWidth: 640 },
+  heroComposite: { mobileWidth: 768, tabletWidth: 960, desktopWidth: 960 },
+  heroBackground: { mobileWidth: 768, tabletWidth: 1200, desktopWidth: 1440 },
+};
+
+const OptimizedImage = forwardRef(function CategoryOptimizedImage(
+  { tier = "card", loading = "eager", ...props },
+  ref,
+) {
+  return (
+    <BaseOptimizedImage
+      ref={ref}
+      {...CATEGORY_IMAGE_TIERS[tier]}
+      loading={loading}
+      {...props}
+    />
+  );
+});
 
 /* Look up a card's dominant product colour from the precomputed map.
    item.image is a fully-resolved URL (asset() uses new URL(...).href),
@@ -287,11 +311,11 @@ function HeroVisual({ hero }) {
   if (hero.mode === "getmoreWide") {
     return (
       <div className="category-hero-custom category-hero-getmore-wide" aria-hidden="true">
-        <OptimizedImage className="getmore-wide-hero-bg" src={asset("category-getmore-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
-        <OptimizedImage className="getmore-wide-line getmore-wide-line-red" src={asset("category-getmore-line-red.png")} alt="" sizes="200px" />
-        <OptimizedImage className="getmore-wide-line getmore-wide-line-blue" src={asset("category-getmore-line-blue.png")} alt="" sizes="200px" />
-        <OptimizedImage className="getmore-wide-pack getmore-wide-pack-tomato" src={asset("category-getmore-tomato.png")} alt="" sizes="(max-width: 999px) 30vw, 240px" />
-        <OptimizedImage className="getmore-wide-pack getmore-wide-pack-chatpata" src={asset("category-getmore-chatpata.png")} alt="" sizes="(max-width: 999px) 30vw, 240px" />
+        <OptimizedImage tier="heroBackground" desktopOnly fileName="category-getmore-hero-bg.png" className="getmore-wide-hero-bg" src={asset("category-getmore-hero-bg.png")} alt="" sizes="1284px" priority />
+        <OptimizedImage tier="decor" desktopOnly fileName="category-getmore-line-red.png" className="getmore-wide-line getmore-wide-line-red" src={asset("category-getmore-line-red.png")} alt="" sizes="200px" />
+        <OptimizedImage tier="decor" desktopOnly fileName="category-getmore-line-blue.png" className="getmore-wide-line getmore-wide-line-blue" src={asset("category-getmore-line-blue.png")} alt="" sizes="200px" />
+        <OptimizedImage tier="heroProduct" desktopOnly className="getmore-wide-pack getmore-wide-pack-tomato" src={asset("category-getmore-tomato.png")} alt="" sizes="240px" />
+        <OptimizedImage tier="heroProduct" desktopOnly className="getmore-wide-pack getmore-wide-pack-chatpata" src={asset("category-getmore-chatpata.png")} alt="" sizes="240px" />
       </div>
     );
   }
@@ -299,7 +323,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "farali") {
     return (
       <div className="category-hero-custom category-hero-farali" aria-hidden="true" data-node-id="1159:473">
-        <OptimizedImage className="farali-hero-bg" src={asset("category-farali-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage tier="heroBackground" desktopOnly className="farali-hero-bg" src={asset("category-farali-hero-bg.png")} alt="" sizes="1284px" priority />
         <div className="farali-hero-products category-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             { cls: 'farali-pack-wafer',       img: 'category-farali-kela-wafers.png' },
@@ -311,6 +335,8 @@ function HeroVisual({ hero }) {
             const slot = copy * 5 + i;
             return (
               <OptimizedImage
+                tier="heroProduct"
+                desktopOnly
                 key={`${p.cls}-${copy}`}
                 className={`farali-hero-pack category-orbit-pack ${p.cls}`}
                 src={asset(p.img)}
@@ -328,7 +354,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "namkeen") {
     return (
       <div className="category-hero-custom category-hero-namkeen" aria-hidden="true" data-node-id="1206:104">
-        <OptimizedImage className="namkeen-hero-bg" src={asset("category-namkeen-hero-bg.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage tier="heroBackground" desktopOnly className="namkeen-hero-bg" src={asset("category-namkeen-hero-bg.png")} alt="" sizes="1284px" priority />
         <div className="namkeen-hero-products category-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             { cls: 'namkeen-pack-all-in-one', img: 'category-namkeen-all-in-one.png' },
@@ -340,6 +366,8 @@ function HeroVisual({ hero }) {
             const slot = copy * 5 + i;
             return (
               <OptimizedImage
+                tier="heroProduct"
+                desktopOnly
                 key={`${p.cls}-${copy}`}
                 className={`namkeen-hero-pack category-orbit-pack ${p.cls}`}
                 src={asset(p.img)}
@@ -362,7 +390,7 @@ function HeroVisual({ hero }) {
         </div>
         <img className="chikki-hero-accent" src={asset("category-chikki-figma-accent.svg")} alt="" />
         <div className="chikki-hero-products">
-          <OptimizedImage className="chikki-hero-products-img" src={asset("category-chikki-figma-products.png")} alt="" sizes="(max-width: 999px) 92vw, 600px" priority />
+          <OptimizedImage tier="heroComposite" desktopOnly className="chikki-hero-products-img" src={asset("category-chikki-figma-products.png")} alt="" sizes="600px" priority />
         </div>
       </div>
     );
@@ -392,7 +420,7 @@ function HeroVisual({ hero }) {
                   className={`khakhra-hero-pack khakhra-orbit-pack khakhra-pack-${pack.key} khakhra-art-${pack.key}`}
                   style={{ "--slot": slot }}
                 >
-                  <OptimizedImage src={asset(pack.img)} alt="" sizes="(max-width: 999px) 30vw, 200px" priority={copy === 0 && i === 0} />
+                  <OptimizedImage tier="heroProduct" desktopOnly src={asset(pack.img)} alt="" sizes="200px" priority={copy === 0 && i === 0} />
                 </span>
               );
             })
@@ -406,9 +434,9 @@ function HeroVisual({ hero }) {
     return (
       <div className="category-hero-custom category-hero-bakery" aria-hidden="true">
         <span className="bakery-hero-curve" />
-        <OptimizedImage className="bakery-hero-pack bakery-pack-plain" src={asset('category-bakery-plain-khari.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" priority />
-        <OptimizedImage className="bakery-hero-pack bakery-pack-coconut" src={asset('category-bakery-coconut-nankhatai.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" />
-        <OptimizedImage className="bakery-hero-pack bakery-pack-methi" src={asset('category-bakery-methi-khari.png')} alt="" sizes="(max-width: 999px) 40vw, 280px" />
+        <OptimizedImage tier="heroProduct" desktopOnly className="bakery-hero-pack bakery-pack-plain" src={asset('category-bakery-plain-khari.png')} alt="" sizes="280px" priority />
+        <OptimizedImage tier="heroProduct" desktopOnly className="bakery-hero-pack bakery-pack-coconut" src={asset('category-bakery-coconut-nankhatai.png')} alt="" sizes="280px" />
+        <OptimizedImage tier="heroProduct" desktopOnly className="bakery-hero-pack bakery-pack-methi" src={asset('category-bakery-methi-khari.png')} alt="" sizes="280px" />
       </div>
     );
   }
@@ -424,13 +452,15 @@ function HeroVisual({ hero }) {
 
     return (
       <div className="category-hero-custom category-hero-fryums" aria-hidden="true" data-node-id="1246:2362">
-        <OptimizedImage className="fryums-hero-bg" src={asset("category-fryums-figma-wave.png")} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage tier="heroBackground" desktopOnly className="fryums-hero-bg" src={asset("category-fryums-figma-wave.png")} alt="" sizes="1284px" priority />
         <div className="fryums-hero-ring">
           {[0, 1, 2, 3, 4].flatMap((copy) =>
             packs.map((pack, i) => {
               const slot = copy * packs.length + i;
               return (
                 <OptimizedImage
+                  tier="heroProduct"
+                  desktopOnly
                   key={`${pack.key}-${copy}`}
                   className={`fryums-hero-pack fryums-orbit-pack fryums-pack-${pack.key}`}
                   src={asset(pack.img)}
@@ -449,7 +479,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "chipsWide") {
     return (
       <div className="category-hero-custom category-hero-chips-wide" aria-hidden="true">
-        <OptimizedImage className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage tier="heroBackground" desktopOnly className="chips-wide-hero-bg" src={asset('category-chips-wide-hero-bg.png')} alt="" sizes="1284px" priority />
         <div className="chips-wide-hero-ring">
           {/* 10 slots = the 5 packs duplicated in the same order. The
               ring rotates as a unit; the duplicates fill the loop so
@@ -465,6 +495,8 @@ function HeroVisual({ hero }) {
             const slot = copy * 5 + i;
             return (
               <OptimizedImage
+                tier="heroProduct"
+                desktopOnly
                 key={`${p.key}-${copy}`}
                 className={`chips-wide-hero-pack chips-wide-pack-${p.key} chips-wide-slot-${slot}`}
                 src={asset(p.img)}
@@ -482,7 +514,7 @@ function HeroVisual({ hero }) {
   if (hero.mode === "beveragesWide") {
     return (
       <div className="category-hero-custom category-hero-beverages-wide" aria-hidden="true">
-        <OptimizedImage className="beverages-wide-hero-bg" src={asset('category-beverages-hero-shape.png')} alt="" sizes="(max-width: 999px) 100vw, 1284px" priority />
+        <OptimizedImage tier="heroBackground" desktopOnly className="beverages-wide-hero-bg" src={asset('category-beverages-hero-shape.png')} alt="" sizes="1284px" priority />
         <div className="beverages-orbit-ring">
           {[0, 1, 2, 3].flatMap((copy) => [
             /* Bottles + order from Figma frame 1131:3426 — left to right:
@@ -502,6 +534,8 @@ function HeroVisual({ hero }) {
             const slot = copy * 5 + i;
             return (
               <OptimizedImage
+                tier="heroProduct"
+                desktopOnly
                 key={`${p.cls}-${copy}`}
                 className={`beverages-orbit-pack beverages-hero-pack ${p.cls}`}
                 src={asset(p.img)}
@@ -516,7 +550,7 @@ function HeroVisual({ hero }) {
     );
   }
 
-  return <OptimizedImage className={`category-hero-visual ${hero.className || ""}`} src={hero.image} alt="" aria-hidden="true" sizes="(max-width: 999px) 100vw, 1284px" priority />;
+  return <OptimizedImage tier="heroBackground" desktopOnly className={`category-hero-visual ${hero.className || ""}`} src={hero.image} alt="" aria-hidden="true" sizes="1284px" priority />;
 }
 
 function Badge({ badge }) {
@@ -579,12 +613,12 @@ function DecorativeLayers({ decorations }) {
       style={layerStyle(decor.style || {})}
       aria-hidden="true"
     >
-      <OptimizedImage src={decor.image} alt="" sizes="(max-width: 999px) 30vw, 200px" />
+      <OptimizedImage tier="decor" src={decor.image} alt="" sizes="(max-width: 999px) 30vw, 200px" />
     </span>
   ));
 }
 
-function ProductImage({ item }) {
+function ProductImage({ item, priority = false }) {
   const desktopImgRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -594,7 +628,13 @@ function ProductImage({ item }) {
   if (item.imageInnerStyle) {
     return (
       <span className="category-product-img category-product-img-frame" style={layerStyle(item.imageStyle)}>
-        <OptimizedImage src={item.image} alt="" style={layerStyle(item.imageInnerStyle)} sizes="(max-width: 768px) 92vw, 370px" />
+        <OptimizedImage
+          src={item.image}
+          alt=""
+          priority={priority}
+          style={layerStyle(item.imageInnerStyle)}
+          sizes="(max-width: 768px) 92vw, 370px"
+        />
       </span>
     );
   }
@@ -607,6 +647,7 @@ function ProductImage({ item }) {
         src={item.image}
         mobileSrc={item.mobileImage}
         alt=""
+        priority={priority}
         style={layerStyle(item.imageStyle)}
         sizes="(max-width: 768px) 92vw, 370px"
         mobileSizes="(max-width: 768px) 92vw, 280px"
@@ -615,7 +656,7 @@ function ProductImage({ item }) {
   );
 }
 
-function ImageCard({ item }) {
+function ImageCard({ item, priority = false }) {
   const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
   useCategoryTileHeight(tileRef);
@@ -631,6 +672,7 @@ function ImageCard({ item }) {
         className={`category-product-cover ${item.imageStyle ? "category-product-cover--positioned" : ""}`}
         src={item.image}
         alt=""
+        priority={priority}
         style={item.imageStyle ? layerStyle(item.imageStyle) : undefined}
         sizes="(max-width: 768px) 92vw, 370px"
       />
@@ -648,7 +690,7 @@ function ImageCard({ item }) {
   );
 }
 
-function ProductCard({ item }) {
+function ProductCard({ item, priority = false }) {
   const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
   useCategoryTileHeight(tileRef);
@@ -665,7 +707,7 @@ function ProductCard({ item }) {
         <img className="category-product-ring" src={asset('category-namkeen-royal-card-ring.svg')} alt="" aria-hidden="true" />
       )}
       <DecorativeLayers decorations={item.decorations} />
-      <ProductImage item={item} />
+      <ProductImage item={item} priority={priority} />
       <Badge badge={item.badge} />
       {item.title ? (
         <ProductTitle
@@ -702,7 +744,7 @@ function PromoPanel({ item }) {
   );
 }
 
-function FeatureImage({ item }) {
+function FeatureImage({ item, priority = false }) {
   const ref = useRef(null);
 
   useLayoutEffect(() => {
@@ -711,11 +753,13 @@ function FeatureImage({ item }) {
 
   return (
     <OptimizedImage
+      tier="feature"
       ref={ref}
       className={`category-feature-img ${item.mobileImage ? "category-feature-img--responsive" : "category-feature-img--desktop"}`}
       src={item.image}
       mobileSrc={item.mobileImage}
       alt=""
+      priority={priority}
       style={layerStyle(item.imageStyle)}
       sizes="(max-width: 768px) 92vw, 560px"
       mobileSizes="(max-width: 768px) 92vw, 280px"
@@ -723,7 +767,7 @@ function FeatureImage({ item }) {
   );
 }
 
-function FeatureCard({ item }) {
+function FeatureCard({ item, priority = false }) {
   const tileRef = useRef(null);
   const productColor = getProductColor(item.image);
   useCategoryTileHeight(tileRef);
@@ -745,7 +789,7 @@ function FeatureCard({ item }) {
         </h2>
         {item.copy ? <p>{item.copy}</p> : null}
       </div>
-      <FeatureImage item={item} />
+      <FeatureImage item={item} priority={priority} />
       {item.image ? <CategoryProductShopButton /> : null}
     </article>
   );
@@ -782,7 +826,7 @@ function SpotlightStrip({ item }) {
         {item.items.map((product) => (
           <article className="category-spotlight-card" key={product.image}>
             <img className="category-spotlight-ring" src={asset('category-namkeen-royal-card-ring.svg')} alt="" aria-hidden="true" />
-            <OptimizedImage src={product.image} alt="" sizes="(max-width: 768px) 45vw, 260px" />
+            <OptimizedImage tier="spotlight" src={product.image} alt="" sizes="(max-width: 768px) 45vw, 260px" />
           </article>
         ))}
       </div>
@@ -807,24 +851,42 @@ function NewsletterPatch({ config }) {
   );
 }
 
-function CategorySection({ item }) {
+function CategorySection({ item, priority = false }) {
   if (item.type === "arrow") return <ArrowControl item={item} />;
   if (item.type === "spotlight") return <SpotlightStrip item={item} />;
   if (item.type === "promo") return <PromoPanel item={item} />;
-  if (item.type === "feature") return <FeatureCard item={item} />;
-  if (item.type === "productCard") return <ProductCard item={item} />;
-  return <ImageCard item={item} />;
+  if (item.type === "feature") return <FeatureCard item={item} priority={priority} />;
+  if (item.type === "productCard") return <ProductCard item={item} priority={priority} />;
+  return <ImageCard item={item} priority={priority} />;
+}
+
+function prioritizeLeadProductImages(sections, count = 4) {
+  let remaining = count;
+
+  return sections.map((section) => {
+    const hasLeadImage = Boolean(
+      section.image && ["imageCard", "productCard", "feature"].includes(section.type),
+    );
+    const priority = hasLeadImage && remaining > 0;
+    if (priority) remaining -= 1;
+    return { section, priority };
+  });
 }
 
 export default function CategoryPage({ pageKey }) {
   const page = applyTopHeroLayout(pages[pageKey] || pages.chips, pageKey);
+  const prioritizedSections = prioritizeLeadProductImages(page.sections);
 
   return (
     <main className={`category-main category-main--${pageKey}`} aria-label={`${page.title} category page`} style={{ height: cssLength(page.height) }}>
       <CategoryHero page={page} />
       <ProductSubNav active={pageKey} placement={page.subnavPlacement === "top" ? "top" : "default"} />
-      {page.sections.map((section, index) => (
-        <CategorySection key={`${section.type}-${section.left}-${section.top}-${index}`} item={section} />
+      {prioritizedSections.map(({ section, priority }, index) => (
+        <CategorySection
+          key={`${section.type}-${section.left}-${section.top}-${index}`}
+          item={section}
+          priority={priority}
+        />
       ))}
       <NewsletterPatch config={page.newsletter} />
     </main>

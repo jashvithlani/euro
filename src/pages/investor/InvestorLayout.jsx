@@ -21,6 +21,7 @@ export default function InvestorLayout() {
   const isDisputePage = activeTab === "dispute";
   const isShareholdingPage = activeTab === "shareholding";
   const isPoliciesPage = activeTab === "policies";
+  const isCreditRatingsPage = activeTab === "credit-ratings";
   const isGovernancePage = activeTab === "governance";
   const isBoardPage = activeTab === "board";
   const hideTransparency =
@@ -37,6 +38,7 @@ export default function InvestorLayout() {
     isDisputePage ||
     isShareholdingPage ||
     isPoliciesPage ||
+    isCreditRatingsPage ||
     isGovernancePage ||
     isBoardPage;
 
@@ -55,6 +57,7 @@ export default function InvestorLayout() {
     isDisputePage ? "investor-main--dispute" : "",
     isShareholdingPage ? "investor-main--shareholding" : "",
     isPoliciesPage ? "investor-main--policies" : "",
+    isCreditRatingsPage ? "investor-main--credit-ratings" : "",
     isGovernancePage ? "investor-main--governance" : "",
   ]
     .filter(Boolean)

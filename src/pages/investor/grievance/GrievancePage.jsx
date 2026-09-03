@@ -60,7 +60,7 @@ export default function GrievancePage() {
               icon={asset("grievance-icon-phone.svg")}
               iconClass="investor-grievance__icon-wrap--phone"
               rowClass="investor-grievance__row--grievance-contact"
-              label="Investor Grievance Email"
+              label="Contact"
             >
               <p className="investor-grievance__value">+91 261 2913021 / 41</p>
             </GrievanceRow>

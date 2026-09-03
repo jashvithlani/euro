@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { asset } from "./asset.js";
 import OptimizedImage from "../../components/OptimizedImage.jsx";
 
-export const moodCategoryVariants = ["chips", "juice", "namkeen", "basket"];
+export const moodCategoryVariants = ["basket", "juice", "namkeen", "chips"];
 
 const moodCategoryHrefs = {
   chips: "/chips",
@@ -67,14 +67,12 @@ export function MoodCategoryCard({ variant }) {
 
   return (
     <Link className="category-card card-basket" to={moodCategoryHrefs.basket}>
-      <OptimizedImage src={asset("category-bundle.png")} alt="Euro sweet memories box" sizes="(max-width: 480px) 46vw, (max-width: 900px) 30vw, 260px" />
-      <div>
-        <h3>
-          Can&apos;t decide?
-          <br />
-          Try our Mix-It-Up Boxes.
-        </h3>
-      </div>
+      <img
+        src={asset("hamper.png")}
+        alt="Euro festive hamper gift box displayed beside a lantern"
+        loading="eager"
+        decoding="async"
+      />
     </Link>
   );
 }

@@ -5,7 +5,7 @@
  * variants) plus the original raster as the <img> fallback. Handles:
  *   - responsive srcset/sizes,
  *   - explicit width/height to prevent layout shift,
- *   - lazy vs eager loading and fetchpriority for the LCP image,
+ *   - eager page-level loading with fetchpriority for the LCP image,
  *   - object-fit / object-position,
  *   - decorative vs content alt text.
  *
@@ -25,6 +25,24 @@ import { forwardRef } from "react";
 import { responsiveAsset, responsiveAssetFromUrl } from "../shared/responsive-image.js";
 
 const DEFAULT_DECODING = "async";
+const TRANSPARENT_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
+function fixedSource(sourceDescriptor, format, targetWidth, media) {
+  if (!targetWidth || !sourceDescriptor) return null;
+  const variants = sourceDescriptor[`${format}Variants`] || [];
+  const variant = variants.find(({ w }) => w >= targetWidth) || variants.at(-1);
+  if (!variant) return null;
+
+  return {
+    key: `${media}-${format}`,
+    media,
+    type: `image/${format}`,
+    srcSet: variant.src,
+    w: variant.w,
+    h: Math.round((sourceDescriptor.h / sourceDescriptor.w) * variant.w),
+  };
+}
 
 const OptimizedImage = forwardRef(function OptimizedImage(
   {
@@ -34,6 +52,13 @@ const OptimizedImage = forwardRef(function OptimizedImage(
     mobileSrc,
     mobileMedia = "(max-width: 999px)",
     mobileSizes,
+    mobileWidth,
+    tabletWidth,
+    desktopWidth,
+    phoneMedia = "(max-width: 767px)",
+    tabletMedia = "(min-width: 768px) and (max-width: 999px)",
+    desktopMedia = "(min-width: 1000px)",
+    desktopOnly = false,
     alt = "",
     sizes,
     width,
@@ -56,6 +81,21 @@ const OptimizedImage = forwardRef(function OptimizedImage(
     (fileName ? responsiveAsset(fileName, srcProp) : null) ||
     (srcProp ? responsiveAssetFromUrl(srcProp) : null);
   const mobileDescriptor = mobileSrc ? responsiveAssetFromUrl(mobileSrc) : null;
+  const mobileSourceDescriptor = mobileDescriptor || descriptor;
+  const usesThreeTiers = Boolean(tabletWidth || desktopWidth);
+  const fixedMobileMedia = usesThreeTiers ? phoneMedia : mobileMedia;
+  const fixedSources = [
+    ...(!desktopOnly
+      ? [
+          fixedSource(mobileSourceDescriptor, "avif", mobileWidth, fixedMobileMedia),
+          fixedSource(mobileSourceDescriptor, "webp", mobileWidth, fixedMobileMedia),
+          fixedSource(mobileSourceDescriptor, "avif", tabletWidth, tabletMedia),
+          fixedSource(mobileSourceDescriptor, "webp", tabletWidth, tabletMedia),
+        ]
+      : []),
+    fixedSource(descriptor, "avif", desktopWidth, desktopMedia),
+    fixedSource(descriptor, "webp", desktopWidth, desktopMedia),
+  ].filter(Boolean);
 
   // SVG, remote URL, or unknown file — fall back to a plain <img>.
   if (!descriptor) {
@@ -69,11 +109,12 @@ const OptimizedImage = forwardRef(function OptimizedImage(
         ref={ref}
         src={resolvedSrc}
         alt={alt}
-        loading={loading || (priority ? "eager" : "lazy")}
+        loading={loading || "eager"}
         decoding={decoding}
         {...(width ? { width } : {})}
         {...(height ? { height } : {})}
         {...(fetchPriority || fetchpriority || priority ? { fetchPriority: fetchPriority || fetchpriority || "high" } : {})}
+        {...(priority ? { "data-loader-critical": "true" } : {})}
         className={className}
         style={imgStyle}
         {...rest}
@@ -82,7 +123,10 @@ const OptimizedImage = forwardRef(function OptimizedImage(
   }
 
   const isPriority = Boolean(priority);
-  const resolvedLoading = loading || (isPriority ? "eager" : "lazy");
+  // Once a route is mounted, begin warming that page's image cache. The LCP
+  // image is still the only high-priority request; everything else retains
+  // the browser's normal priority so it does not outrank the first view.
+  const resolvedLoading = loading || "eager";
   const resolvedFetchpriority = fetchPriority || fetchpriority || (isPriority ? "high" : undefined);
 
   // Intrinsic dimensions from the manifest prevent CLS.
@@ -95,13 +139,14 @@ const OptimizedImage = forwardRef(function OptimizedImage(
 
   const imgProps = {
     ref,
-    src: descriptor.src,
+    src: desktopOnly ? TRANSPARENT_PIXEL : descriptor.src,
     alt,
     loading: resolvedLoading,
     decoding,
     ...(intrinsicW ? { width: intrinsicW } : {}),
     ...(intrinsicH ? { height: intrinsicH } : {}),
     ...(resolvedFetchpriority ? { fetchPriority: resolvedFetchpriority } : {}),
+    ...(isPriority ? { "data-loader-critical": "true" } : {}),
     className,
     style: imgStyle,
     ...rest,
@@ -118,7 +163,17 @@ const OptimizedImage = forwardRef(function OptimizedImage(
 
   return (
     <picture>
-      {mobileDescriptor?.avif ? (
+      {fixedSources.map((source) => (
+        <source
+          key={source.key}
+          media={source.media}
+          type={source.type}
+          srcSet={source.srcSet}
+          width={source.w}
+          height={source.h}
+        />
+      ))}
+      {!desktopOnly && mobileDescriptor?.avif && !mobileWidth ? (
         <source
           media={mobileMedia}
           type="image/avif"
@@ -127,7 +182,7 @@ const OptimizedImage = forwardRef(function OptimizedImage(
           {...sourceDimensions(mobileDescriptor)}
         />
       ) : null}
-      {mobileDescriptor?.webp ? (
+      {!desktopOnly && mobileDescriptor?.webp && !mobileWidth ? (
         <source
           media={mobileMedia}
           type="image/webp"
@@ -136,12 +191,25 @@ const OptimizedImage = forwardRef(function OptimizedImage(
           {...sourceDimensions(mobileDescriptor)}
         />
       ) : null}
-      {descriptor.avif ? (
-        <source type="image/avif" srcSet={descriptor.avif} sizes={sizes} {...sourceDimensions(descriptor)} />
+      {descriptor.avif && !desktopWidth ? (
+        <source
+          type="image/avif"
+          srcSet={descriptor.avif}
+          sizes={sizes}
+          {...(desktopOnly ? { media: desktopMedia } : {})}
+          {...sourceDimensions(descriptor)}
+        />
       ) : null}
-      {descriptor.webp ? (
-        <source type="image/webp" srcSet={descriptor.webp} sizes={sizes} {...sourceDimensions(descriptor)} />
+      {descriptor.webp && !desktopWidth ? (
+        <source
+          type="image/webp"
+          srcSet={descriptor.webp}
+          sizes={sizes}
+          {...(desktopOnly ? { media: desktopMedia } : {})}
+          {...sourceDimensions(descriptor)}
+        />
       ) : null}
+      {desktopOnly ? <source media={desktopMedia} srcSet={descriptor.src} /> : null}
       <img {...imgProps} />
     </picture>
   );

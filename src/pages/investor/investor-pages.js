@@ -3,6 +3,7 @@ export { default as GrievancePage } from "./grievance/GrievancePage.jsx";
 export { default as ShareholdingPage } from "./shareholding/ShareholdingPage.jsx";
 export { default as BoardPage } from "./board/BoardPage.jsx";
 export { default as PoliciesPage } from "./policies/PoliciesPage.jsx";
+export { default as CreditRatingsPage } from "./credit-ratings/CreditRatingsPage.jsx";
 export { default as GovernancePage } from "./governance/GovernancePage.jsx";
 export { default as AnnualPage } from "./annual/AnnualPage.jsx";
 export { default as SecretarialPage } from "./secretarial/SecretarialPage.jsx";

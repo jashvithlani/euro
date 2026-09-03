@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { asset } from "./asset.js";
-import { complianceReports } from "./secretarial-content.js";
+import {
+  complianceReportRange,
+  complianceReports,
+  latestComplianceFiscalYear,
+} from "./secretarial-content.js";
 import "./SecretarialPage.css";
 
 export default function SecretarialPage() {
@@ -10,7 +14,7 @@ export default function SecretarialPage() {
         <h2 className="secretarial-page__title">Annual Secretarial Compliance Report</h2>
         <p className="secretarial-page__lede">
           Access comprehensive archival data of Euro India Foods regulatory filings and governance standards from
-          2021 through 2025.
+          {` ${complianceReportRange.first ?? "our earliest records"} through ${complianceReportRange.last ?? "today"}.`}
         </p>
       </header>
 
@@ -25,7 +29,7 @@ export default function SecretarialPage() {
             <div className="secretarial-archive__update" role="status">
               <p className="secretarial-archive__update-label">Latest update</p>
               <div className="secretarial-archive__update-row">
-                <span>FY 2024-25 Published</span>
+                <span>{latestComplianceFiscalYear ? `FY ${latestComplianceFiscalYear} Published` : "Report Published"}</span>
                 <img src={asset("secretarial-check-icon.svg")} alt="" aria-hidden="true" />
               </div>
             </div>

@@ -22,6 +22,8 @@ const flavorScenes = [
       src: homeAsset("hero-products.png"),
       alt: "Euro chips range",
       width: "585px",
+      sizes: "(max-width: 999px) 380px, 585px",
+      mobileWidth: 768,
       className: "euro-flavor-stage__product--intro",
     },
     bg: "radial-gradient(circle at 50% 40%, rgba(255, 222, 167, 0.72) 0%, rgba(255, 248, 246, 0.98) 38%, #fff8f6 72%, #ffffff 100%)",
@@ -38,6 +40,8 @@ const flavorScenes = [
       src: categoryAsset("category-chips-wide-hero-onion.png"),
       alt: "Euro Cream and Onion chips pack",
       width: "300px",
+      sizes: "(max-width: 999px) 285px, 300px",
+      mobileWidth: 640,
       className: "euro-flavor-stage__product--chips",
     },
     bg: "radial-gradient(circle at 50% 42%, rgba(255, 222, 167, 0.5) 0%, rgba(97, 182, 79, 0.42) 31%, #1e6f3c 72%, #092515 100%)",
@@ -53,6 +57,8 @@ const flavorScenes = [
       src: categoryAsset("category-getmore-tomato.png"),
       alt: "Euro Getmore Tingling Tomato snack pack",
       width: "368px",
+      sizes: "(max-width: 999px) 210px, 368px",
+      mobileWidth: 480,
       className: "euro-flavor-stage__product--getmore",
     },
     bg: "radial-gradient(circle at 48% 43%, rgba(255, 182, 74, 0.48) 0%, rgba(233, 49, 45, 0.4) 38%, #7f1230 72%, #1d0712 100%)",
@@ -68,6 +74,8 @@ const flavorScenes = [
       src: categoryAsset("category-namkeen-royal-peanuts.png"),
       alt: "Euro Tasty Peanuts namkeen pack",
       width: "322px",
+      sizes: "(max-width: 999px) 190px, 322px",
+      mobileWidth: 480,
       className: "euro-flavor-stage__product--namkeen",
     },
     bg: "radial-gradient(circle at 52% 42%, rgba(255, 222, 167, 0.48) 0%, rgba(178, 39, 96, 0.34) 36%, #641331 72%, #210713 100%)",
@@ -83,6 +91,8 @@ const flavorScenes = [
       src: categoryAsset("category-beverage-fig-mango.png"),
       alt: "Euro Fresho Mango beverage bottle",
       width: "205px",
+      sizes: "(max-width: 999px) 120px, 205px",
+      mobileWidth: 320,
       className: "euro-flavor-stage__product--beverage",
     },
     bg: "radial-gradient(circle at 50% 42%, rgba(255, 245, 199, 0.46) 0%, rgba(255, 169, 40, 0.44) 31%, #a95a09 68%, #241005 100%)",
@@ -102,10 +112,10 @@ const flavorScenes = [
 ];
 
 const productWall = [
-  { label: "Cream & Onion Chips", src: categoryAsset("category-chips-wide-hero-onion.png"), alt: "Euro Cream and Onion chips pack" },
-  { label: "Getmore Tomato", src: categoryAsset("category-getmore-tomato.png"), alt: "Euro Getmore Tingling Tomato snack pack" },
-  { label: "Tasty Peanuts", src: categoryAsset("category-namkeen-royal-peanuts.png"), alt: "Euro Tasty Peanuts namkeen pack" },
-  { label: "Fresho Mango", src: categoryAsset("category-beverage-fig-mango.png"), alt: "Euro Fresho Mango beverage bottle" },
+  { label: "Masala Khakhra", src: categoryAsset("category-khakhra-masala.png"), alt: "Euro Masala Khakhra pack", mobileWidth: 640 },
+  { label: "Getmore Tomato", src: categoryAsset("category-getmore-tomato.png"), alt: "Euro Getmore Tingling Tomato snack pack", mobileWidth: 480 },
+  { label: "Tasty Peanuts", src: categoryAsset("category-namkeen-royal-peanuts.png"), alt: "Euro Tasty Peanuts namkeen pack", mobileWidth: 480 },
+  { label: "Fresho Mango", src: categoryAsset("category-beverage-fig-mango.png"), alt: "Euro Fresho Mango beverage bottle", mobileWidth: 320 },
 ];
 
 const particleSeeds = [
@@ -592,7 +602,7 @@ function ProductWall({ opacity, isActive }) {
             style={{ "--wall-delay": `${index * 38}ms` }}
             data-cursor="product"
           >
-            <OptimizedImage src={product.src} alt={product.alt} loading="lazy" sizes="(max-width: 480px) 45vw, (max-width: 999px) 30vw, 240px" />
+            <OptimizedImage src={product.src} alt={product.alt} loading="eager" fetchPriority="low" sizes="(max-width: 999px) 30vw, 240px" mobileWidth={product.mobileWidth} />
             <span>{product.label}</span>
           </article>
         ))}
@@ -885,7 +895,14 @@ function MobileFlavorStory() {
                 <h3>{scene.title}</h3>
                 <p>{scene.description}</p>
               </div>
-              <OptimizedImage src={scene.product.src} alt={scene.product.alt} loading="lazy" sizes="(max-width: 480px) 80vw, (max-width: 999px) 60vw, 420px" />
+              <OptimizedImage
+                src={scene.product.src}
+                alt={scene.product.alt}
+                loading="eager"
+                fetchPriority="low"
+                sizes={scene.product.sizes}
+                mobileWidth={scene.product.mobileWidth}
+              />
             </article>
           ))}
 
@@ -909,7 +926,7 @@ function MobileFlavorStory() {
             </div>
             <div className="euro-flavor-stage__mobile-wall">
               {productWall.map((product) => (
-                <OptimizedImage src={product.src} alt={product.alt} key={product.label} loading="lazy" sizes="(max-width: 480px) 30vw, 140px" />
+                <OptimizedImage src={product.src} alt={product.alt} key={product.label} loading="eager" fetchPriority="low" sizes="(max-width: 999px) 30vw, 140px" mobileWidth={product.mobileWidth} />
               ))}
             </div>
           </article>
@@ -1018,7 +1035,6 @@ export default function EuroFlavorStage() {
           {flavorScenes.slice(0, 5).map((scene, index) => {
             const productStyle = getProductStyle(index, progress);
             const isVisible = productStyle.opacity > 0.06;
-
             return (
               <span
                 className={`euro-flavor-stage__product-scroll-layer ${scene.product.className}`}
@@ -1034,8 +1050,10 @@ export default function EuroFlavorStage() {
                       className="euro-flavor-stage__product"
                       src={scene.product.src}
                       alt={scene.product.alt}
-                      loading="lazy"
-                      sizes="(max-width: 999px) 60vw, 520px"
+                      loading="eager"
+                      fetchPriority="low"
+                      sizes={scene.product.sizes}
+                      mobileWidth={scene.product.mobileWidth}
                     />
                   </span>
                 </span>

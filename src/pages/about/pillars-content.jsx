@@ -1,6 +1,4 @@
-import { asset } from "./asset.js";
-
-export const pillarBackgroundVideo = asset("about-pillars-excellence.mp4");
+import { asset as categoryAsset } from "../category/asset.js";
 
 export const pillars = [
   {
@@ -8,6 +6,7 @@ export const pillars = [
     title: "Quality",
     icon: "about-icon-quality.svg",
     iconClass: "pillar-icon-quality",
+    product: categoryAsset("category-chips-wide-hero-masti.png"),
     copy: "Sourcing only the finest ingredients from local Indian farms to ensure every bite is a premium experience.",
   },
   {
@@ -15,6 +14,7 @@ export const pillars = [
     title: "Innovation",
     icon: "about-icon-innovation.svg",
     iconClass: "pillar-icon-innovation",
+    product: categoryAsset("category-beverage-fig-mango.png"),
     copy: "Reimagining traditional textures and shapes for a youthful, modern snacking aesthetic.",
   },
   {
@@ -22,6 +22,7 @@ export const pillars = [
     title: "Community",
     icon: "about-icon-community.svg",
     iconClass: "pillar-icon-community",
+    product: categoryAsset("category-getmore-tomato.png"),
     copy: "Building a sustainable ecosystem that supports our farmers and delights our consumers worldwide.",
   },
   {
@@ -29,6 +30,7 @@ export const pillars = [
     title: "Taste",
     icon: "about-icon-taste.svg",
     iconClass: "pillar-icon-taste",
+    product: categoryAsset("category-khakhra-masala.png"),
     copy: "An uncompromising commitment to bold, authentic, and memorable flavor profiles.",
   },
 ];

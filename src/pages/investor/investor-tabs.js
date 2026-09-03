@@ -5,6 +5,7 @@ export const investorFilterTabs = [
   { id: "shareholding", label: "Shareholding Pattern", left: 499, top: 0, width: 294, height: 61 },
   { id: "board", label: "Composition of Board and Committees", left: 812, top: 0, width: 489, height: 61 },
   { id: "policies", label: "Corporate Policies", left: 1321, top: 0, width: 267, height: 61 },
+  { id: "credit-ratings", label: "Credit Ratings", left: 1608, top: 0, width: 176, height: 61 },
   { id: "governance", label: "Corporate Governance Reports", left: 0, top: 80, width: 407, height: 61 },
   { id: "annual", label: "Annual Reports", left: 426, top: 80, width: 230, height: 61 },
   { id: "secretarial", label: "Annual Secretarial Compliance Report", left: 675, top: 80, width: 476, height: 61 },

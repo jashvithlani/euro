@@ -1,6 +1,7 @@
 // Build by Jash Vithlani, contact: info@euroindiafoods.com
 import { useEffect, useRef, useState } from "react";
 import EuroMoments from "../../components/EuroMoments.jsx";
+import EuroFlavorStage from "./EuroFlavorStage.jsx";
 import { useHorizontalScrollPin } from "../about/useHorizontalScrollPin.js";
 import {
   MoodCategoryCard,
@@ -8,7 +9,6 @@ import {
   MoodSectionHeading,
   moodCategoryVariants,
 } from "./mood-categories.jsx";
-import EuroFlavorStage from "./EuroFlavorStage.jsx";
 import {
   FavoriteProductCard,
   FavoritesCarouselControls,
@@ -36,13 +36,26 @@ export default function HomePage() {
     stickyRef: moodStickyRef,
     viewportRef: moodViewportRef,
     trackRef: moodTrackRef,
-    tileWidthCssVar: "--mood-tile-width",
     progressCssVar: "--mood-progress",
     tileSelector: ".mood-section__scroll-tile",
     edgeFadeCssVar: "--mood-edge-fade",
     approachCssVar: "--mood-approach",
-    tileWidthScale: 0.88,
-    tileMotion: "soft",
+    scrollMode: "deck",
+    deckDirection: 1,
+    edgeFadeZone: 0.04,
+  });
+
+  useHorizontalScrollPin({
+    driverRef: favoritesScrollRef,
+    stickyRef: favoritesStickyRef,
+    viewportRef: favoritesViewportRef,
+    trackRef: favoritesTrackRef,
+    progressCssVar: "--favorites-progress",
+    tileSelector: ".favorites-section__scroll-tile",
+    edgeFadeCssVar: "--favorites-edge-fade",
+    approachCssVar: "--favorites-approach",
+    scrollMode: "deck",
+    deckDirection: -1,
     edgeFadeZone: 0.04,
   });
 
@@ -66,21 +79,6 @@ export default function HomePage() {
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
-
-  useHorizontalScrollPin({
-    driverRef: favoritesScrollRef,
-    stickyRef: favoritesStickyRef,
-    viewportRef: favoritesViewportRef,
-    trackRef: favoritesTrackRef,
-    tileWidthCssVar: "--favorites-tile-width",
-    progressCssVar: "--favorites-progress",
-    tileSelector: ".favorites-section__scroll-tile",
-    edgeFadeCssVar: "--favorites-edge-fade",
-    approachCssVar: "--favorites-approach",
-    tileWidthScale: 0.88,
-    tileMotion: "soft",
-    edgeFadeZone: 0.04,
-  });
 
   useEffect(() => {
     const carouselRoots = document.querySelectorAll(
@@ -156,6 +154,7 @@ export default function HomePage() {
                   src={asset('hero-products.png')}
                   alt="Euro potato chips packs"
                   sizes="(max-width: 999px) 380px, 570px"
+                  mobileWidth={768}
                   priority
                 />
                 <div className="hero-copy">
@@ -187,7 +186,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <div ref={moodScrollRef} className="mood-section__scroll-driver">
+                <div ref={moodScrollRef} className="mood-section__scroll-driver mood-section__scroll-driver--deck">
                   <div ref={moodStickyRef} className="mood-section__scroll-sticky">
                     <MoodSectionHeading />
                     <MoodDealershipCta />
@@ -237,10 +236,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div
-                  ref={favoritesScrollRef}
-                  className="favorites-section__scroll-driver favorites-section__scroll-driver--mirror"
-                >
+                <div ref={favoritesScrollRef} className="favorites-section__scroll-driver favorites-section__scroll-driver--deck">
                   <div ref={favoritesStickyRef} className="favorites-section__scroll-sticky">
                     <FavoritesSectionHeading />
                     <div className="favorites-section__scroll-progress" aria-hidden="true">
@@ -284,7 +280,7 @@ export default function HomePage() {
                 <div className="story-photo-wrap">
                 <div className="story-photo-bg"></div>
                 <OptimizedImage
-                  src={asset('story-photo.png')}
+                  src={asset('story-moments.jpg')}
                   alt="One bite, pausing the chaos"
                   sizes="(max-width: 999px) 92vw, 410px"
                 />

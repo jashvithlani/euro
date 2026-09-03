@@ -10,7 +10,25 @@ import { chromium } from "playwright";
 
 const baseUrl = process.env.DIST_URL || "http://127.0.0.1:4173";
 const screenshotDir = process.env.VALIDATION_SCREENSHOT_DIR;
-const routePairs = ["/namkeen", "/beverages", "/exports", "/about", "/achievements", "/contact", "/investor"];
+const categoryPriorityCounts = new Map([
+  ["/chips", 5],
+  ["/beverages", 5],
+  ["/getmore", 3],
+  ["/namkeen", 5],
+  ["/chikki", 5],
+  ["/khakhra", 5],
+  ["/bakery", 5],
+  ["/fryums", 5],
+  ["/farali", 5],
+]);
+const routePairs = [
+  ...categoryPriorityCounts.keys(),
+  "/exports",
+  "/about",
+  "/achievements",
+  "/contact",
+  "/investor",
+];
 const cases = [
   { route: "/", width: 375, height: 812 },
   { route: "/", width: 768, height: 1024 },
@@ -72,7 +90,7 @@ try {
       return {
         pictures: pictures.length,
         modernSelected: pictureImages.filter((image) => /\/image-assets\/.*\.avif(?:\?|$)/.test(image.currentSrc)).length,
-        fallbackSelected: pictureImages.filter((image) => image.currentSrc && !/\/image-assets\//.test(image.currentSrc)).length,
+        fallbackSelected: pictureImages.filter((image) => image.currentSrc && !image.currentSrc.startsWith("data:image/") && !/\/image-assets\//.test(image.currentSrc)).length,
         missingDimensions: pictureImages.filter((image) => !image.hasAttribute("width") || !image.hasAttribute("height")).length,
         highPriority: high.length,
         highPrioritySource: high[0]?.currentSrc || "",
@@ -80,8 +98,8 @@ try {
         brokenImages: broken.length,
         responsiveSources: responsive.map((image) => ({
           current: image.currentSrc,
-          mobile: srcSetUrls(image.parentElement.querySelector('source[media][type="image/avif"]')),
-          desktop: srcSetUrls(image.parentElement.querySelector('source:not([media])[type="image/avif"]')),
+          mobile: srcSetUrls(image.parentElement.querySelector('source[media*="max-width: 767px"][type="image/avif"], source[media*="max-width: 999px"][type="image/avif"]')),
+          desktop: srcSetUrls(image.parentElement.querySelector('source[media*="min-width: 1000px"][type="image/avif"], source:not([media])[type="image/avif"]')),
         })),
         transferredModernBytes: resources.reduce((sum, entry) => sum + entry.transferSize, 0),
       };
@@ -89,7 +107,8 @@ try {
 
     const responseCounts = new Map();
     for (const response of imageResponses) responseCounts.set(response.url, (responseCounts.get(response.url) || 0) + 1);
-    const duplicates = [...responseCounts.values()].filter((count) => count > 1).length;
+    const duplicateResponses = [...responseCounts.entries()].filter(([, count]) => count > 1);
+    const duplicates = duplicateResponses.length;
     const httpErrors = imageResponses.filter((response) => response.status >= 400);
     const artDirectionInvalid = testCase.route === "/beverages" && dom.responsiveSources.some((sources) => {
       if (!sources.current) return false;
@@ -102,9 +121,19 @@ try {
     if (!dom.modernSelected) issues.push("no AVIF selected");
     if (dom.fallbackSelected) issues.push(`${dom.fallbackSelected} picture fallback(s) selected`);
     if (dom.missingDimensions) issues.push(`${dom.missingDimensions} picture image(s) lack dimensions`);
-    if (dom.highPriority !== 1) issues.push(`expected one high-priority image, found ${dom.highPriority}`);
+    const expectedHighPriority = testCase.route === "/exports"
+      ? 0
+      : categoryPriorityCounts.has(testCase.route)
+        ? categoryPriorityCounts.get(testCase.route)
+        : 1;
+    if (dom.highPriority !== expectedHighPriority) issues.push(`expected ${expectedHighPriority} high-priority image${expectedHighPriority === 1 ? "" : "s"}, found ${dom.highPriority}`);
     if (dom.brokenImages) issues.push(`${dom.brokenImages} broken image(s)`);
-    if (duplicates) issues.push(`${duplicates} duplicate image response(s)`);
+    if (duplicates) {
+      const duplicateNames = duplicateResponses
+        .map(([url, count]) => `${new URL(url).pathname.split("/").pop()} ×${count}`)
+        .join(", ");
+      issues.push(`${duplicates} duplicate image response(s): ${duplicateNames}`);
+    }
     if (httpErrors.length) issues.push(`${httpErrors.length} image HTTP error(s)`);
     if (requestFailures.length) issues.push(`${requestFailures.length} failed request(s)`);
     if (pageErrors.length) issues.push(`${pageErrors.length} page error(s)`);

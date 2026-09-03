@@ -430,6 +430,7 @@ export const investorDocuments = {
   },
   "governance": {
     "years": [
+      "2026-27",
       "2025-26",
       "2024-25",
       "2023-24",
@@ -441,6 +442,22 @@ export const investorDocuments = {
       "2017-18"
     ],
     "documentsByYear": {
+      "2026-27": [
+        {
+          "title": "Integrated Filing Governance as on 30.06.2026",
+          "date": "June 30, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1782777600000,
+          "size": "175 KB",
+          "meta": "PDF • 175 KB",
+          "href": "/investor-pdfs/governance/2026-27/01-Integrated-Filing-Governance-as-on-30.06.2026.pdf",
+          "order": 1,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        }
+      ],
       "2025-26": [
         {
           "title": "11.07.2025 Integrated Filing (Governance) as on 30.06.2025",
@@ -479,6 +496,20 @@ export const investorDocuments = {
           "meta": "PDF • 103 KB",
           "href": "/investor-pdfs/governance/2025-26/03-12.01.2026-Integrated-Filing-(Governance)-as-on-31.12.2025.pdf",
           "order": 3,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "Integrated Filing Governance as on 31.03.2026",
+          "date": "March 31, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1774915200000,
+          "size": "197 KB",
+          "meta": "PDF • 197 KB",
+          "href": "/investor-pdfs/governance/2025-26/04-Integrated-Filing-Governance-as-on-31.03.2026.pdf",
+          "order": 4,
           "icon": "report",
           "tall": false,
           "badge": "UPDATE",
@@ -1758,6 +1789,20 @@ export const investorDocuments = {
           "tall": false,
           "badge": "UPDATE",
           "badgeTone": "compliance"
+        },
+        {
+          "title": "Annual Return 2023-24",
+          "date": "2023-24",
+          "calendarYear": 2023,
+          "timestamp": 1672531200000,
+          "size": "990 KB",
+          "meta": "PDF • 990 KB",
+          "href": "/investor-pdfs/annual/2023-24/03-Annual-Return-2023-24.pdf",
+          "order": 3,
+          "icon": "return",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
         }
       ],
       "2022-23": [
@@ -1918,6 +1963,7 @@ export const investorDocuments = {
   },
   "shareholding": {
     "years": [
+      "2026-27",
       "2025-26",
       "2024-25",
       "2023-24",
@@ -1929,6 +1975,36 @@ export const investorDocuments = {
       "2017-18"
     ],
     "documentsByYear": {
+      "2026-27": [
+        {
+          "title": "Shareholding Pattern as on 30.06.2026",
+          "date": "June 30, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1782777600000,
+          "size": "357 KB",
+          "meta": "PDF • 357 KB",
+          "href": "/investor-pdfs/shareholding/2026-27/01-Shareholding-Pattern-as-on-30.06.2026.pdf",
+          "order": 1,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        },
+        {
+          "title": "Shareholding Pattern as on 13.08.2026",
+          "date": "August 13, 2026",
+          "calendarYear": 2026,
+          "timestamp": 1786579200000,
+          "size": "356 KB",
+          "meta": "PDF • 356 KB",
+          "href": "/investor-pdfs/shareholding/2026-27/02-Shareholding-Pattern-as-on-13.08.2026.pdf",
+          "order": 2,
+          "icon": "report",
+          "tall": false,
+          "badge": "UPDATE",
+          "badgeTone": "compliance"
+        }
+      ],
       "2025-26": [
         {
           "title": "Shareholding pattern as on 30.06.2025",
@@ -2824,12 +2900,29 @@ export const investorDocuments = {
   },
   "secretarial": {
     "years": [
+      "2025-26",
       "2024-25",
       "2023-24",
       "2022-23",
       "2021-22"
     ],
     "documentsByYear": {
+      "2025-26": [
+        {
+          "title": "Annual Secretarial Compliance Report 2026",
+          "date": "2025-26",
+          "calendarYear": 2026,
+          "timestamp": 1767225600000,
+          "size": "8.1 MB",
+          "meta": "PDF • 8.1 MB",
+          "href": "/investor-pdfs/secretarial/2025-26/01-Annual-Secretarial-Compliance-Report-2026.pdf",
+          "order": 1,
+          "icon": "report",
+          "tall": false,
+          "badge": "COMPLIANCE",
+          "badgeTone": "compliance"
+        }
+      ],
       "2024-25": [
         {
           "title": "Compliance Report Annual Secretarial Compliance Report 2025",
@@ -2892,6 +2985,29 @@ export const investorDocuments = {
           "tall": false,
           "badge": "COMPLIANCE",
           "badgeTone": "compliance"
+        }
+      ]
+    }
+  },
+  "credit-ratings": {
+    "years": [
+      "2025-26"
+    ],
+    "documentsByYear": {
+      "2025-26": [
+        {
+          "title": "Credit Rating 26.07.2025",
+          "date": "July 26, 2025",
+          "calendarYear": 2025,
+          "timestamp": 1753488000000,
+          "size": "1.3 MB",
+          "meta": "PDF • 1.3 MB",
+          "href": "/investor-pdfs/credit-ratings/2025-26/01-Credit-Rating-26.07.2025.pdf",
+          "order": 1,
+          "icon": "report",
+          "tall": false,
+          "badge": "REGULATION 30",
+          "badgeTone": "regulation"
         }
       ]
     }
@@ -2998,6 +3114,48 @@ export const investorDocuments = {
                 "meta": "PDF • 2.1 MB",
                 "href": "/investor-pdfs/announcements/2026-27/board-meetings/07.%20Outcome%20of%20Board%20Meeting%20financial%20result%2012.08.2026.pdf",
                 "order": 7,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Intimation of Board Meeting to be held on 19.06.2026",
+                "date": "June 19, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1781827200000,
+                "size": "662 KB",
+                "meta": "PDF • 662 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/08-Intimation-of-Board-Meeting-to-be-held-on-19.06.2026.pdf",
+                "order": 8,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting for Allotment of Equity Shares dated 13.08.2026",
+                "date": "August 13, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1786579200000,
+                "size": "662 KB",
+                "meta": "PDF • 662 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/09-Outcome-of-Board-Meeting-for-Allotment-of-Equity-Shares-dated-13.08.2026.pdf",
+                "order": 9,
+                "icon": "report",
+                "tall": false,
+                "badge": "UPDATE",
+                "badgeTone": "compliance"
+              },
+              {
+                "title": "Outcome of Board Meeting for Revision in the Utilisation of the Proceeds 27.08.2026",
+                "date": "August 27, 2026",
+                "calendarYear": 2026,
+                "timestamp": 1787788800000,
+                "size": "674 KB",
+                "meta": "PDF • 674 KB",
+                "href": "/investor-pdfs/announcements/2026-27/board-meetings/10-Outcome-of-Board-Meeting-for-Revision-in-the-Utilisation-of-the-Proceeds-27.08.2026.pdf",
+                "order": 10,
                 "icon": "report",
                 "tall": false,
                 "badge": "UPDATE",

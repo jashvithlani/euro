@@ -16,7 +16,7 @@
   }
 
   .investor-main--secretarial {
-    height: 1713px;
+    height: 1810px;
   }
 
   /* Reconciliation — Figma 1131:1615 (no transparency block); canvas ≥ outlet + 40px bottom gap */
@@ -353,6 +353,10 @@
   /* Corporate Governance Reports — Figma 1117:5978 (outlet only; no transparency block) */
   .investor-main--governance {
     height: 1203px; /* governance outlet bottom ~1163 + 40px breathing room */
+  }
+
+  .investor-main--credit-ratings {
+    height: 1203px;
   }
 
   /* Corporate Policies — Figma 1117:5551 (outlet only; no transparency block) */

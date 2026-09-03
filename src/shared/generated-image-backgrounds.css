@@ -5,4 +5,12 @@
     --image-category-pattern: image-set(url("/image-assets/category-pattern-1200w-619f7c8159dd.avif") type("image/avif"), url("/image-assets/category-pattern-1200w-619f7c8159dd.webp") type("image/webp"));
     --image-section-cta-texture: image-set(url("/image-assets/section-cta-texture-512w-35feb1dcb0c6.avif") type("image/avif"), url("/image-assets/section-cta-texture-512w-35feb1dcb0c6.webp") type("image/webp"));
   }
+
+  @media (max-width: 999px) {
+    :root {
+      --image-contact-texture: image-set(url("/image-assets/contact-texture-512w-0d7e400a3af8.avif") type("image/avif"), url("/image-assets/contact-texture-512w-0d7e400a3af8.webp") type("image/webp"));
+      --image-category-pattern: image-set(url("/image-assets/category-pattern-320w-619f7c8159dd.avif") type("image/avif"), url("/image-assets/category-pattern-320w-619f7c8159dd.webp") type("image/webp"));
+      --image-section-cta-texture: image-set(url("/image-assets/section-cta-texture-512w-35feb1dcb0c6.avif") type("image/avif"), url("/image-assets/section-cta-texture-512w-35feb1dcb0c6.webp") type("image/webp"));
+    }
+  }
 }

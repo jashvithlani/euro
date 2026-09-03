@@ -1,6 +1,7 @@
 import React from "react";
 import worldMapReferenceUrl from "../../../world-map.jpg";
 import { asset as categoryAsset } from "../category/asset.js";
+import { fixedResponsiveAssetUrl } from "../../shared/responsive-image.js";
 import {
   CHIP_PACKET_PALETTE,
   EXPORT_JOURNEY_PALETTE,
@@ -16,15 +17,18 @@ const ACCENT_COLOR = EXPORT_JOURNEY_PALETTE[0].map;
 const INDIA_ROUTE_COLOR = EXPORT_JOURNEY_PALETTE[0].color;
 const BRAND_HOVER_COLORS = CHIP_PACKET_PALETTE.map((entry) => entry.map);
 
+const journeyProduct = (name, width = 480) =>
+  fixedResponsiveAssetUrl(categoryAsset(name), width);
+
 const JOURNEY_PRODUCT_URLS = {
-  chips: categoryAsset("category-chips-wide-hero-masti.png"),
-  beverages: categoryAsset("category-beverage-fig-mango.png"),
-  getmore: categoryAsset("category-getmore-tomato.png"),
-  namkeen: categoryAsset("category-namkeen-shahi-mixture.png"),
-  chikki: categoryAsset("category-chikki-peanut.png"),
-  khakhra: categoryAsset("category-khakhra-masala.png"),
-  bakery: categoryAsset("category-bakery-jeera-khari.png"),
-  fryums: categoryAsset("category-fryums-magic-abcde.png"),
+  chips: journeyProduct("category-chips-wide-hero-masti.png"),
+  beverages: journeyProduct("category-beverage-fig-mango.png", 320),
+  getmore: journeyProduct("category-getmore-tomato.png"),
+  namkeen: journeyProduct("category-namkeen-shahi-mixture.png"),
+  chikki: journeyProduct("category-chikki-peanut.png"),
+  khakhra: journeyProduct("category-khakhra-masala.png"),
+  bakery: journeyProduct("category-bakery-jeera-khari.png"),
+  fryums: journeyProduct("category-fryums-magic-abcde.png"),
 };
 
 const JOURNEY_DESTINATIONS = [

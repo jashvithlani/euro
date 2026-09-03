@@ -6,6 +6,7 @@ export const INVESTOR_TAB_IDS = [
   "shareholding",
   "board",
   "policies",
+  "credit-ratings",
   "governance",
   "annual",
   "secretarial",

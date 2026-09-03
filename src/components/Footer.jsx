@@ -30,6 +30,18 @@ const supportItems = [
     external: true,
   },
   {
+    icon: sharedAsset('exports-icon-location.svg'),
+    label: "Registered Office Address: PLOT NO. A 22/1 G.I.D.C. ICHHAPORE, SURAT, GUJARAT, INDIA, 394510",
+    href: "https://maps.google.com/?q=Plot+No.+A+22%2F1+G.I.D.C.+Ichhapore,+Surat,+Gujarat,+India+394510",
+    external: true,
+    exportsLabel: (
+      <>
+        <strong>Registered Office Address</strong>
+        {": PLOT NO. A 22/1 G.I.D.C. ICHHAPORE, SURAT, GUJARAT, INDIA, 394510"}
+      </>
+    ),
+  },
+  {
     icon: sharedAsset('exports-icon-phone.svg'),
     label: "Tel No.: 022-48256981",
     href: "tel:+912248256981",

@@ -89,12 +89,41 @@ function updateTileMotion(track, tileSelector, progress, motion = "default") {
   });
 }
 
+function updateDeckMotion(track, tileSelector, progress, direction = 1) {
+  if (!tileSelector) return;
+
+  const tiles = [...track.querySelectorAll(tileSelector)];
+  const count = tiles.length;
+  const position = progress * Math.max(0, count - 1);
+  const activeIndex = Math.round(position);
+
+  tiles.forEach((tile, index) => {
+    const distance = index - position;
+    const offset = clamp(distance, -1, 1) * direction;
+    const isVisible = Math.abs(distance) <= 1.001;
+    const isActive = index === activeIndex;
+
+    tile.style.setProperty("--tile-offset", offset.toFixed(4));
+    tile.style.setProperty("--tile-deck-opacity", isVisible ? "1" : "0");
+    tile.style.setProperty("--tile-deck-y", "0px");
+    tile.style.zIndex = isActive ? "2" : "1";
+    tile.style.pointerEvents = isActive ? "auto" : "none";
+    tile.inert = !isActive;
+  });
+}
+
 function clearTileMotion(track, tileSelector) {
   if (!track || !tileSelector) return;
 
   track.querySelectorAll(tileSelector).forEach((tile) => {
     tile.style.removeProperty("--tile-visibility");
     tile.style.removeProperty("--tile-enter");
+    tile.style.removeProperty("--tile-offset");
+    tile.style.removeProperty("--tile-deck-opacity");
+    tile.style.removeProperty("--tile-deck-y");
+    tile.style.removeProperty("z-index");
+    tile.style.removeProperty("pointer-events");
+    tile.inert = false;
   });
 }
 
@@ -148,6 +177,9 @@ export function useHorizontalScrollPin({
   tileWidthScale = 1,
   tileMotion = "default",
   edgeFadeZone = 0.14,
+  scrollMode = "track",
+  deckDirection = 1,
+  deckStepScale = 0.58,
 }) {
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
@@ -187,13 +219,25 @@ export function useHorizontalScrollPin({
         return null;
       }
 
+      viewport.style.removeProperty("width");
+      const viewportWidth = viewport.clientWidth;
       const stickyHeight = getStickyHeight();
-      const tileWidth = Math.max(280, viewport.clientWidth - 40) * tileWidthScale;
+      const tileWidth = Math.max(280, viewportWidth - 40) * tileWidthScale;
 
       driver.style.setProperty(tileWidthCssVar, `${tileWidth}px`);
-      viewport.style.width = `${viewport.clientWidth}px`;
 
-      const maxScroll = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      if (scrollMode === "deck") {
+        const tileCount = tileSelector ? track.querySelectorAll(tileSelector).length : 0;
+        const deckStep = Math.max(280, Math.min(420, stickyHeight * deckStepScale));
+        const scrollRange = Math.max(1, (tileCount - 1) * deckStep);
+
+        driver.style.height = `${stickyHeight + scrollRange}px`;
+        return { maxScroll: 0, scrollRange, stickyHeight };
+      }
+
+      viewport.style.width = `${viewportWidth}px`;
+
+      const maxScroll = Math.max(0, track.scrollWidth - viewportWidth);
       const scrollRange = Math.max(1, maxScroll);
 
       driver.style.height = `${stickyHeight + scrollRange}px`;
@@ -219,13 +263,19 @@ export function useHorizontalScrollPin({
 
       const rect = driver.getBoundingClientRect();
       const progress = clamp((MOBILE_NAV_HEIGHT - rect.top) / metrics.scrollRange);
-      const translateX = getTranslateX(progress, metrics.maxScroll);
 
       updateStickyPinState(stickyRef.current, metrics, rect.top, rect.bottom);
 
-      track.style.transform = `translate3d(${translateX}px, 0, 0)`;
+      if (scrollMode === "deck") {
+        track.style.removeProperty("transform");
+        updateDeckMotion(track, tileSelector, progress, deckDirection);
+      } else {
+        const translateX = getTranslateX(progress, metrics.maxScroll);
+        track.style.transform = `translate3d(${translateX}px, 0, 0)`;
+        updateTileMotion(track, tileSelector, progress, tileMotion);
+      }
+
       driver.style.setProperty(progressCssVar, progress.toFixed(4));
-      updateTileMotion(track, tileSelector, progress, tileMotion);
 
       if (edgeFadeCssVar) {
         driver.style.setProperty(edgeFadeCssVar, getSectionEdgeFade(progress, edgeFadeZone).toFixed(4));
@@ -288,7 +338,10 @@ export function useHorizontalScrollPin({
     driverRef,
     edgeFadeCssVar,
     edgeFadeZone,
+    deckDirection,
+    deckStepScale,
     progressCssVar,
+    scrollMode,
     stickyRef,
     tileMotion,
     tileSelector,

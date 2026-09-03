@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import GlobalPointerCursor from "../components/GlobalPointerCursor.jsx";
+import InitialPageLoader from "../components/InitialPageLoader.jsx";
 import SeoMetadata from "../components/SeoMetadata.jsx";
 import ScrollToTopButton from "../components/ScrollToTopButton.jsx";
 import { isInvestorPath } from "../pages/investor/investor-routing.js";
@@ -128,6 +129,7 @@ export default function SiteLayout() {
 
   return (
     <>
+      <InitialPageLoader />
       <SeoMetadata />
       <div
         className={viewportClassName}

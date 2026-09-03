@@ -60,6 +60,12 @@ export function responsiveAssetFromUrl(url) {
   return sourceName ? descriptor(sourceName, url) : null;
 }
 
+export function fixedResponsiveAssetUrl(url, targetWidth, format = "avif") {
+  const sourceName = sourceNameFromUrl(url);
+  const variants = sourceName ? manifest[sourceName]?.[format] || [] : [];
+  return variants.find(({ w }) => w >= targetWidth)?.src || variants.at(-1)?.src || url;
+}
+
 export function resolveAsset() {
   return null;
 }

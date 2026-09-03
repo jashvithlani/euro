@@ -6,6 +6,11 @@ const shahiMixtureImage = new URL(
   import.meta.url,
 ).href;
 
+const masalaKhakhraImage = new URL(
+  "../category/assets/category-khakhra-masala.png",
+  import.meta.url,
+).href;
+
 export const favoriteProducts = [
   {
     id: "masala",
@@ -26,13 +31,13 @@ export const favoriteProducts = [
     copy: "A delicious burst of guava flavour.",
   },
   {
-    id: "tomato",
+    id: "khakhra",
     tone: "cyan",
-    badge: "TANGY",
+    badge: "ROASTED",
     badgeTone: "",
-    image: "bestseller-tomato.png",
-    title: "Tingling Tomato",
-    copy: "For those who like it bold.",
+    imageSrc: masalaKhakhraImage,
+    title: "Masala Khakhra",
+    copy: "Roasted crunch with a bold masala kick.",
   },
   {
     id: "mango",
@@ -86,7 +91,7 @@ export function FavoriteProductCard({ product }) {
     .join(" ");
 
   return (
-    <article className={`product-card product-card--${product.tone}`}>
+    <article className={`product-card product-card--${product.tone} product-card--${product.id}`}>
       <div className="product-art">
         <span className={badgeClassName}>{product.badge}</span>
         <OptimizedImage

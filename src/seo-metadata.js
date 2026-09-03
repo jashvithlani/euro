@@ -2,7 +2,7 @@ import { normalizePath } from "./site-routing.js";
 
 export const DEFAULT_DOCUMENT_TITLE = "Euro India Foods";
 
-const SEO_METADATA_BY_PATH = Object.freeze({
+export const SEO_METADATA_BY_PATH = Object.freeze({
   "/": Object.freeze({
     title: "Best Indian Snack Brand & Food Manufacturer | EURO India Foods",
     description:

@@ -193,6 +193,46 @@ function useExportMapJourney(sectionRef, mapRef, storyRef, disabled = false) {
       );
       section.style.setProperty("--journey-map-width", `${mapWidth}px`);
 
+      const summary = section.querySelector(".export-map-journey__summary");
+      const summaryHeight = summary?.offsetHeight || 0;
+      const summaryGutter = clamp(viewportHeightInLayout * 0.04, 12, 28);
+      const summaryAvailableHeight = Math.max(
+        1,
+        viewportHeightInLayout - summaryGutter * 2,
+      );
+      const summaryFit = summaryHeight
+        ? Math.min(1, summaryAvailableHeight / summaryHeight)
+        : 1;
+      const summaryTop = Math.max(
+        summaryGutter,
+        Math.min(
+          viewportHeightInLayout * 0.45,
+          viewportHeightInLayout - summaryHeight * summaryFit - summaryGutter,
+        ),
+      );
+
+      section.style.setProperty("--journey-summary-fit", summaryFit.toFixed(4));
+      section.style.setProperty("--journey-summary-top", `${summaryTop.toFixed(2)}px`);
+
+      const storyHeight = storyRef.current?.offsetHeight || 0;
+      const storyGutter = clamp(viewportHeightInLayout * 0.04, 12, 28);
+      const storyAvailableHeight = Math.max(
+        1,
+        viewportHeightInLayout - storyGutter * 2,
+      );
+      const storyFit = storyHeight
+        ? Math.min(1, storyAvailableHeight / storyHeight)
+        : 1;
+      const scaledStoryHeight = storyHeight * storyFit;
+      const storyCenter = clamp(
+        viewportHeightInLayout * 0.68,
+        storyGutter + scaledStoryHeight / 2,
+        viewportHeightInLayout - storyGutter - scaledStoryHeight / 2,
+      );
+
+      section.style.setProperty("--journey-story-fit", storyFit.toFixed(4));
+      section.style.setProperty("--journey-story-center", `${storyCenter.toFixed(2)}px`);
+
       if (reducedMotionQuery.matches) {
         section.style.height = "auto";
         section.dataset.reducedMotion = "true";
@@ -241,6 +281,13 @@ function useExportMapJourney(sectionRef, mapRef, storyRef, disabled = false) {
 
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
+    const summaryResizeObserver = typeof ResizeObserver === "undefined"
+      ? null
+      : new ResizeObserver(requestUpdate);
+    const summary = section.querySelector(".export-map-journey__summary");
+    if (summary) summaryResizeObserver?.observe(summary);
+    if (storyRef.current) summaryResizeObserver?.observe(storyRef.current);
+    document.fonts?.ready.then(requestUpdate).catch(() => undefined);
     measure();
     requestUpdate();
 
@@ -248,6 +295,7 @@ function useExportMapJourney(sectionRef, mapRef, storyRef, disabled = false) {
       if (frameId) window.cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
+      summaryResizeObserver?.disconnect();
       removeReducedMotionListener();
       removeMobileListener();
       section.style.removeProperty("height");
@@ -258,6 +306,10 @@ function useExportMapJourney(sectionRef, mapRef, storyRef, disabled = false) {
       section.style.removeProperty("--journey-final-scale");
       section.style.removeProperty("--journey-viewport-height");
       section.style.removeProperty("--journey-map-width");
+      section.style.removeProperty("--journey-summary-fit");
+      section.style.removeProperty("--journey-summary-top");
+      section.style.removeProperty("--journey-story-fit");
+      section.style.removeProperty("--journey-story-center");
       delete section.dataset.reducedMotion;
     };
   }, [disabled, mapRef, sectionRef, storyRef]);

@@ -9,29 +9,153 @@
   display: none;
 }
 
-.pillar-card__video {
+.pillar-card {
+  --pillar-glow: rgba(255, 218, 109, 0.72);
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 78% 13%, rgba(255, 220, 114, 0.54) 0%, transparent 28%),
+    radial-gradient(circle at 12% 72%, rgba(223, 32, 104, 0.48) 0%, transparent 38%),
+    linear-gradient(145deg, #192d7d 0%, #12235e 48%, #500d47 100%);
+}
+
+.pillar-card--innovation {
+  --pillar-glow: rgba(255, 241, 139, 0.82);
+  background:
+    radial-gradient(circle at 76% 15%, rgba(255, 246, 161, 0.82) 0%, transparent 25%),
+    radial-gradient(circle at 6% 68%, rgba(237, 31, 113, 0.56) 0%, transparent 42%),
+    linear-gradient(145deg, #ef7924 0%, #dc3b58 48%, #6e165e 100%);
+}
+
+.pillar-card--community {
+  --pillar-glow: rgba(255, 198, 73, 0.76);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 181, 55, 0.72) 0%, transparent 29%),
+    radial-gradient(circle at 0% 48%, rgba(255, 76, 114, 0.64) 0%, transparent 42%),
+    linear-gradient(145deg, #b90838 0%, #8b123b 50%, #421452 100%);
+}
+
+.pillar-card--taste {
+  --pillar-glow: rgba(127, 234, 255, 0.72);
+  background:
+    radial-gradient(circle at 82% 16%, rgba(109, 235, 255, 0.7) 0%, transparent 28%),
+    radial-gradient(circle at 7% 65%, rgba(229, 34, 120, 0.55) 0%, transparent 40%),
+    linear-gradient(145deg, #087f9d 0%, #135278 44%, #40104f 100%);
+}
+
+.pillar-card__art {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
   pointer-events: none;
-  transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar-card__aura {
+  position: absolute;
+  top: -15%;
+  right: -18%;
+  width: 92%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pillar-glow) 0%, rgba(255, 255, 255, 0.12) 31%, transparent 67%);
+  filter: blur(3px);
+  opacity: 0.78;
+}
+
+.pillar-card__ring {
+  position: absolute;
+  top: 37%;
+  left: 60%;
+  width: 95%;
+  height: 34%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  opacity: 0.32;
+  transform: translate(-50%, -50%) rotate(-18deg);
+}
+
+.pillar-card__ring--inner {
+  width: 65%;
+  height: 25%;
+  border-color: var(--pillar-glow);
+  opacity: 0.5;
+  transform: translate(-50%, -50%) rotate(13deg);
+}
+
+.pillar-card__spark {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: #fff2b5;
+  box-shadow: 0 0 14px var(--pillar-glow);
+  rotate: 45deg;
+}
+
+.pillar-card__spark--one { top: 15%; left: 42%; }
+.pillar-card__spark--two { top: 28%; right: 8%; width: 4px; height: 4px; }
+.pillar-card__spark--three { top: 48%; left: 14%; width: 5px; height: 5px; }
+.pillar-card__spark--four { top: 7%; right: 34%; width: 3px; height: 3px; }
+
+.pillar-card__product {
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  right: -20px;
+  width: 68%;
+  height: auto;
+  max-width: none;
+  filter: drop-shadow(0 22px 22px rgba(22, 4, 14, 0.42));
+  rotate: 5deg;
+  transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
+}
+
+.pillar-card__product--innovation {
+  top: 4px;
+  right: 18px;
+  width: 38%;
+  rotate: -3deg;
+}
+
+.pillar-card__product--community {
+  top: 2px;
+  right: -17px;
+  width: 66%;
+  rotate: 7deg;
+}
+
+.pillar-card__product--taste {
+  top: 16px;
+  right: -26px;
+  width: 72%;
+  rotate: 5deg;
 }
 
 .pillar-card::after {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.5) 45%,
-    rgba(0, 0, 0, 0.78) 100%
+    rgba(9, 4, 16, 0.04) 0%,
+    rgba(9, 4, 16, 0.08) 31%,
+    rgba(9, 4, 16, 0.64) 64%,
+    rgba(9, 4, 16, 0.94) 100%
   );
+  pointer-events: none;
   content: "";
+}
+
+.pillar-card .pillar-icon,
+.pillar-card__copy {
+  z-index: 3;
+}
+
+.pillar-card__copy {
+  position: relative;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.38);
 }
 
 /* =====================================================================
@@ -74,12 +198,8 @@
 }
 
 /* Isolate scroll-driven cards. `contain: layout paint` keeps each
-   card's layout/paint inside its own box. `will-change` + a static
-   transform promote each to its own GPU compositor layer so the
-   `about-rise` entrance translate runs compositor-only — without
-   this, .pillar-card's looping video background
-   was being repainted during scroll (massive jank around the
-   Pillars section). */
+   card's layout/paint inside its own box while the entrance motion
+   stays on its own compositor layer. */
 .pillar-card,
 .manufacturing-feature,
 .infra-card,
@@ -95,8 +215,10 @@
   scale: 1.03;
 }
 
-.pillar-card:hover .pillar-card__video {
-  scale: 1.06;
+.pillar-card:hover .pillar-card__product {
+  scale: 1.08;
+  rotate: 1deg;
+  filter: drop-shadow(0 26px 25px rgba(22, 4, 14, 0.5));
 }
 
 .pillar-card:hover {
@@ -128,6 +250,32 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  @keyframes pillar-product-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
+  }
+
+  @keyframes pillar-spark-pulse {
+    0%, 100% { opacity: 0.35; scale: 0.75; }
+    50% { opacity: 1; scale: 1.2; }
+  }
+
+  .pillar-card__product {
+    animation: pillar-product-float 4.2s ease-in-out infinite;
+  }
+
+  .pillar-card:nth-child(2) .pillar-card__product { animation-delay: -0.8s; }
+  .pillar-card:nth-child(3) .pillar-card__product { animation-delay: -1.6s; }
+  .pillar-card:nth-child(4) .pillar-card__product { animation-delay: -2.4s; }
+
+  .pillar-card__spark {
+    animation: pillar-spark-pulse 2.8s ease-in-out infinite;
+  }
+
+  .pillar-card__spark--two { animation-delay: -0.7s; }
+  .pillar-card__spark--three { animation-delay: -1.4s; }
+  .pillar-card__spark--four { animation-delay: -2.1s; }
+
   .about-hero-copy .about-kicker {
     animation: about-rise-left 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
   }

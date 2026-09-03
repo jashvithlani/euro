@@ -25,3 +25,14 @@ export const complianceReports = secretarialSection.years.flatMap((year, yearInd
     };
   }),
 );
+
+export const latestComplianceFiscalYear = secretarialSection.years[0] ?? "";
+
+const complianceCalendarYears = complianceReports
+  .map((report) => Number(report.reportYear))
+  .filter(Number.isFinite);
+
+export const complianceReportRange = {
+  first: complianceCalendarYears.length ? Math.min(...complianceCalendarYears) : null,
+  last: complianceCalendarYears.length ? Math.max(...complianceCalendarYears) : null,
+};

@@ -456,8 +456,7 @@
   .investor-page .investor-annual__year-head,
   .investor-page .investor-annual__grid-2024,
   .investor-page .investor-annual__grid-2023,
-  .investor-page .investor-annual__archive-grid,
-  .investor-page .investor-annual__side-stack {
+  .investor-page .investor-annual__archive-grid {
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -503,9 +502,8 @@
   }
 
   .investor-page .investor-annual__integrated,
-  .investor-page .investor-annual__side-stack,
   .investor-page .investor-annual__report-card,
-  .investor-page .investor-annual__grid-2023 .investor-annual__notice-card--peach {
+  .investor-page .investor-annual__return-card {
     grid-column: auto;
     width: 100%;
   }
@@ -528,28 +526,20 @@
     letter-spacing: 0.8px;
   }
 
-  .investor-page .investor-annual__notice-card {
+  .investor-page .investor-annual__return-card {
+    min-height: 220px;
     padding: 24px;
     border-radius: 12px;
   }
 
-  .investor-page .investor-annual__notice-card--amber h4,
-  .investor-page .investor-annual__notice-card--peach h4 {
-    font-size: 18px;
-    line-height: 24px;
+  .investor-page .investor-annual__return-card-copy strong {
+    font-size: 22px;
+    line-height: 28px;
   }
 
-  .investor-page .investor-annual__return-row {
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .investor-page .investor-annual__return-row h4 {
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .investor-page .investor-annual__return-row p {
+  .investor-page .investor-annual__return-card-eyebrow,
+  .investor-page .investor-annual__return-card-meta,
+  .investor-page .investor-annual__return-card-cta {
     font-size: 12px;
     line-height: 16px;
   }

@@ -27,6 +27,27 @@ function ArchiveLink({ label, href }) {
   );
 }
 
+function AnnualReturnCard({ card }) {
+  if (!card) return null;
+
+  return (
+    <a className="investor-annual__return-card" href={card.href}>
+      <span className="investor-annual__return-card-icon" aria-hidden="true">
+        <img src={annualAsset("annual-pdf-small.svg")} alt="" />
+      </span>
+      <span className="investor-annual__return-card-copy">
+        <span className="investor-annual__return-card-eyebrow">Annual return</span>
+        <strong>{card.title}</strong>
+        <span className="investor-annual__return-card-meta">{card.meta}</span>
+      </span>
+      <span className="investor-annual__return-card-cta">
+        <span>Download return</span>
+        <img src={annualAsset("annual-external-link.svg")} alt="" aria-hidden="true" />
+      </span>
+    </a>
+  );
+}
+
 export default function InvestorAnnualReports() {
   const [year2024, year2023] = annualFeaturedYears;
 
@@ -65,61 +86,19 @@ export default function InvestorAnnualReports() {
               </a>
             </div>
 
-            <div className="investor-annual__side-stack">
-              <div className="investor-annual__notice-card investor-annual__notice-card--amber">
-                <div>
-                  <p className="investor-annual__eyebrow investor-annual__eyebrow--amber">
-                    {year2024.side.notice.eyebrow}
-                  </p>
-                  <h4>
-                    {year2024.side.notice.titleLines.map((line) => (
-                      <span key={line}>{line}</span>
-                    ))}
-                  </h4>
-                </div>
-                <a className="investor-annual__text-cta investor-annual__text-cta--amber" href={year2024.side.notice.href}>
-                  <img src={annualAsset("annual-pdf-small.svg")} alt="" aria-hidden="true" />
-                  <span>{year2024.side.notice.cta}</span>
-                </a>
-              </div>
-
-              <a className="investor-annual__return-row" href={year2024.side.returnCard.href}>
-                <div className="investor-annual__return-row-main">
-                  <span className="investor-annual__return-icon" aria-hidden="true">
-                    <img src={annualAsset("annual-pdf-small.svg")} alt="" />
-                  </span>
-                  <div>
-                    <h4>{year2024.side.returnCard.title}</h4>
-                    <p>{year2024.side.returnCard.meta}</p>
-                  </div>
-                </div>
-                <img className="investor-annual__return-arrow" src={annualAsset("annual-external-link.svg")} alt="" aria-hidden="true" />
-              </a>
-            </div>
+            <AnnualReturnCard card={year2024.returnCard} />
           </div>
         </article>
 
         <article className="investor-annual__block" aria-labelledby="annual-year-2023-24">
           <YearDivider label={year2023.yearLabel} align={year2023.yearAlign} />
           <div className="investor-annual__grid-2023">
-            <div className="investor-annual__notice-card investor-annual__notice-card--peach">
-              <h4 id="annual-year-2023-24">
-                {year2023.noticeCard.titleLines.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </h4>
-              <a className="investor-annual__text-cta investor-annual__text-cta--brand" href={year2023.noticeCard.href}>
-                <img src={annualAsset("annual-pdf-small.svg")} alt="" aria-hidden="true" />
-                <span>{year2023.noticeCard.cta}</span>
-              </a>
-            </div>
-
             <div className="investor-annual__report-card">
               <div>
                 <p className="investor-annual__eyebrow investor-annual__eyebrow--muted">
                   {year2023.reportCard.eyebrow}
                 </p>
-                <h4>{year2023.reportCard.title}</h4>
+                <h4 id="annual-year-2023-24">{year2023.reportCard.title}</h4>
                 <a className="investor-annual__pill-cta" href={year2023.reportCard.href}>
                   {year2023.reportCard.cta}
                 </a>
@@ -129,6 +108,8 @@ export default function InvestorAnnualReports() {
                 <span />
               </div>
             </div>
+
+            <AnnualReturnCard card={year2023.returnCard} />
           </div>
         </article>
 
